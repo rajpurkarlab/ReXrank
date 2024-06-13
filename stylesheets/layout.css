@@ -126,7 +126,7 @@
 }
 .alert {
   color: #fff;
-  background-color: #A41034;
+  background-color: #a41034;
   font-weight: 600;
   padding: 10px;
   border: none;
@@ -213,7 +213,7 @@
   font-weight: 400;
 }
 .infoCard .infoSubheadline.backgrounded {
-  background: #A41034;
+  background: #a41034;
 }
 .infoCard .infoSubheadline.backgrounded h1,
 .infoCard .infoSubheadline.backgrounded h2,
@@ -221,7 +221,7 @@
   color: #fff;
 }
 .infoCard .actLink {
-  background: #A41034;
+  background: #a41034;
 }
 .infoCard .actLink h1,
 .infoCard .actLink h2,
