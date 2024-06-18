@@ -263,8 +263,8 @@
   border-color: #a41034;
 }
 .actionBtn {
-  display: block;
-  margin: 10px auto;
+  display: inline-block; /* changed from block to inline-block */
+  margin: 10px;  /*  from 10px auto to 10px, simplified, no longer centering specifically */
   max-width: 350px;
   width: 100%;
   background-color: #a41034;
