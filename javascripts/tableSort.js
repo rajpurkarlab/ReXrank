@@ -1,17 +1,9 @@
-// javascripts/tableSort.js
-
 function sortTable(n) {
     const table = document.getElementById("modelTable");
     let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     switching = true;
     dir = "asc"; 
 
-    const headers = table.querySelectorAll('th span.sort-arrow');
-    headers.forEach(header => {
-        header.innerHTML = '▲';  // Reset all arrows to ascending
-    });
-
-    const header = headers[n - 1]; // Adjust index for the header
     while (switching) {
         switching = false;
         rows = table.rows;
@@ -21,12 +13,12 @@ function sortTable(n) {
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
 
-            if (dir === "asc") {
+            if (dir == "asc") {
                 if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
                     shouldSwitch = true;
                     break;
                 }
-            } else if (dir === "desc") {
+            } else if (dir == "desc") {
                 if (parseFloat(x.innerHTML) < parseFloat(y.innerHTML)) {
                     shouldSwitch = true;
                     break;
@@ -38,10 +30,9 @@ function sortTable(n) {
             switching = true;
             switchcount++;
         } else {
-            if (switchcount === 0 && dir === "asc") {
+            if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
                 switching = true;
-                header.innerHTML = '▼';  // Change the arrow to descending
             }
         }
     }
