@@ -6,6 +6,12 @@ function sortTable(n) {
     switching = true;
     dir = "asc"; 
 
+    const headers = table.querySelectorAll('th span');
+    headers.forEach(header => {
+        header.innerHTML = '▲';  // Reset all arrows to ascending
+    });
+
+    const header = headers[n-2];
     while (switching) {
         switching = false;
         rows = table.rows;
@@ -35,6 +41,7 @@ function sortTable(n) {
             if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
                 switching = true;
+                header.innerHTML = '▼';  // Change the arrow to descending
             }
         }
     }

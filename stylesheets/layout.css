@@ -290,6 +290,16 @@
 .optionsBtn:hover {
   opacity: 0.9;
 }
+.sort-arrow {
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 5px;
+  color: #000;
+}
+
+.sort-arrow:hover {
+  color: #555;
+}
 button:focus {
   outline: none !important;
 }
