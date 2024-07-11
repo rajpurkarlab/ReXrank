@@ -302,14 +302,14 @@
   display: inline-block;
   width: 0;
   height: 0;
-  border-left: 3px solid transparent; /* Smaller triangle */
-  border-right: 3px solid transparent; /* Smaller triangle */
-  border-bottom: 4px solid #000; /* Smaller triangle */
+  border-left: 6px solid transparent; /* Smaller triangle */
+  border-right: 6px solid transparent; /* Smaller triangle */
+  border-bottom: 7px solid #000; /* Smaller triangle */
   margin-left: 2px;
 }
 .sort-btn.desc .triangle {
   border-bottom: none;
-  border-top: 4px solid #000; /* Smaller triangle */
+  border-top: 7px solid #000; /* Smaller triangle */
 }
 button:focus {
   outline: none !important;
