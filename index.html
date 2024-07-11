@@ -379,335 +379,61 @@
         </div>
       </div>    
      <div class="col-md-12">
-      <div class="infoCard">
-       <div class="infoBody">
-        <div class="infoHeadline">
-         <h2>
-          Leaderboard on MIMIC-CXR
-         </h2>
+        <div class="infoCard">
+          <div class="infoBody">
+            <div class="infoHeadline">
+              <h2>
+                Leaderboard on Our Private Dataset
+              </h2>
+            </div>
+            <p>
+              Info about the dataset.
+            </p>
+            <table class="table performanceTable" id="modelTable">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Model</th>
+                  <th>BLEU <span class="sort-btn" onclick="sortTable(2)"><span class="triangle"></span></span></th>
+                  <th>Bert-Sim <span class="sort-btn" onclick="sortTable(3)"><span class="triangle"></span></span></th>
+                  <th>RadGraph <span class="sort-btn" onclick="sortTable(4)"><span class="triangle"></span></span></th>
+                  <th>RadCliQ-v1 <span class="sort-btn" onclick="sortTable(5)"><span class="triangle"></span></span></th>
+                  <th>KG-Sim <span class="sort-btn" onclick="sortTable(6)"><span class="triangle"></span></span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="human-row">
+                  <td></td>
+                  <td>Ground Truth
+                    <p class="institution">Institution</p>
+                    <a href="http://arxiv.org/abs/1606.05250">Paper Link</a>
+                  </td>
+                  <td>86.831</td>
+                  <td>89.452</td>
+                  <td>89.452</td>
+                  <td>89.452</td>
+                  <td>89.452</td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>1</p>
+                    <span class="date label label-default">Date</span>
+                  </td>
+                  <td style="word-break:break-word;">
+                    <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                    <p class="institution">Institution</p>
+                  </td>
+                  <td><b>90.939</b></td>
+                  <td><b>93.214</b></td>
+                  <td><b>93.214</b></td>
+                  <td><b>93.214</b></td>
+                  <td><b>93.214</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <p>
-          The MIMIC-CXR dataset contains 377,110 chest X-ray images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. 
-        </p>
-        <table class="table performanceTable">
-         <tr>
-          <th>
-           Rank
-          </th>
-          <th>
-           Model
-          </th>
-          <th>
-           BLEU
-          </th>
-          <th>
-           Bert-Sim
-          </th>
-          <th>
-           RadGraph
-           </th>
-           <th>
-            RadCliQ-v1
-            </th>
-            <th>
-            KG-Sim
-           </th>
-         </tr>
-         <tr class="human-row">
-          <td>
-          </td>
-          <td>
-           Ground Truth
-           <p class="institution">
-            Institution
-           </p>
-           <a href="http://arxiv.org/abs/1606.05250">
-            Paper Link
-           </a>
-          </td>
-          <td>
-           86.831
-          </td>
-          <td>
-           89.452
-          </td>
-          <td>
-            89.452
-           </td>
-           <td>
-            89.452
-           </td>
-           <td>
-            89.452
-           </td>
-         </tr>
-         <tr>
-          <td>
-           <p>
-            1
-           </p>
-           <span class="date label label-default">
-            Date
-           </span>
-          </td>
-          <td style="word-break:break-word;">
-           <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">
-            Model Name
-           </a>
-           <p class="institution">
-            Institution
-           </p>
-          </td>
-          <td>
-           <b>
-            90.939
-           </b>
-          </td>
-          <td>
-           <b>
-            93.214
-           </b>
-          </td>
-          <td>
-            <b>
-             93.214
-            </b>
-           </td>
-           <td>
-            <b>
-             93.214
-            </b>
-           </td>
-           <td>
-            <b>
-             93.214
-            </b>
-           </td>
-         </tr>
-        </table>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-12">
-      <div class="infoCard">
-       <div class="infoBody">
-        <div class="infoHeadline">
-         <h2>
-          Leaderboard on CheXper-Plus
-         </h2>
-        </div>
-        <p>
-          The CheXpert Plus dataset is a comprehensive collection that brings together text and images in the medical field, featuring a total of 223,462 unique pairs of radiology reports and chest X-rays across 187,711 studies from 64,725 patients. This dataset is notable for its organization and depth, with each patient potentially linked to multiple studies, and each study possibly including several chest X-rays. 
-        </p>
-        <table class="table performanceTable">
-         <tr>
-          <th>
-           Rank
-          </th>
-          <th>
-           Model
-          </th>
-          <th>
-           BLEU
-          </th>
-          <th>
-           Bert-Sim
-          </th>
-          <th>
-           RadGraph
-           </th>
-           <th>
-            RadCliQ-v1
-            </th>
-            <th>
-            KG-Sim
-           </th>
-         </tr>
-         <tr class="human-row">
-          <td>
-          </td>
-          <td>
-           Ground Truth
-           <p class="institution">
-            Institution
-           </p>
-           <a href="http://arxiv.org/abs/1606.05250">
-            Paper Link
-           </a>
-          </td>
-          <td>
-           86.831
-          </td>
-          <td>
-           89.452
-          </td>
-          <td>
-            89.452
-           </td>
-           <td>
-            89.452
-           </td>
-           <td>
-            89.452
-           </td>
-         </tr>
-         <tr>
-          <td>
-           <p>
-            1
-           </p>
-           <span class="date label label-default">
-            Date
-           </span>
-          </td>
-          <td style="word-break:break-word;">
-           <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">
-            Model Name
-           </a>
-           <p class="institution">
-            Institution
-           </p>
-          </td>
-          <td>
-           <b>
-            90.939
-           </b>
-          </td>
-          <td>
-           <b>
-            93.214
-           </b>
-          </td>
-          <td>
-            <b>
-             93.214
-            </b>
-           </td>
-           <td>
-            <b>
-             93.214
-            </b>
-           </td>
-           <td>
-            <b>
-             93.214
-            </b>
-           </td>
-         </tr>
-        </table>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-12">
-      <div class="infoCard">
-       <div class="infoBody">
-        <div class="infoHeadline">
-         <h2>
-          Leaderboard on CT-RATE
-         </h2>
-        </div>
-        <p>
-          The CT-RATE is a dataset consists of 25,692 non-contrast chest CT volumes, expanded to 50,188 through various reconstructions, from 21,304 unique patients, along with corresponding radiology text reports, multi-abnormality labels, and metadata. 
-        </p>
-        <table class="table performanceTable">
-         <tr>
-          <th>
-           Rank
-          </th>
-          <th>
-           Model
-          </th>
-          <th>
-           BLEU
-          </th>
-          <th>
-           Bert-Sim
-          </th>
-          <th>
-           RadGraph
-           </th>
-           <th>
-            RadCliQ-v1
-            </th>
-            <th>
-            KG-Sim
-           </th>
-         </tr>
-         <tr class="human-row">
-          <td>
-          </td>
-          <td>
-           Ground Truth
-           <p class="institution">
-            Institution
-           </p>
-           <a href="http://arxiv.org/abs/1606.05250">
-            Paper Link
-           </a>
-          </td>
-          <td>
-           86.831
-          </td>
-          <td>
-           89.452
-          </td>
-          <td>
-            89.452
-           </td>
-           <td>
-            89.452
-           </td>
-           <td>
-            89.452
-           </td>
-         </tr>
-         <tr>
-          <td>
-           <p>
-            1
-           </p>
-           <span class="date label label-default">
-            Date
-           </span>
-          </td>
-          <td style="word-break:break-word;">
-           <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">
-            Model Name
-           </a>
-           <p class="institution">
-            Institution
-           </p>
-          </td>
-          <td>
-           <b>
-            90.939
-           </b>
-          </td>
-          <td>
-           <b>
-            93.214
-           </b>
-          </td>
-          <td>
-            <b>
-             93.214
-            </b>
-           </td>
-           <td>
-            <b>
-             93.214
-            </b>
-           </td>
-           <td>
-            <b>
-             93.214
-            </b>
-           </td>
-         </tr>
-        </table>
-       </div>
-      </div>
-     </div>
+      </div>   
     </div>
    </div>
   </div>
