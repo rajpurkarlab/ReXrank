@@ -11,7 +11,7 @@ function sortTable(n) {
         header.innerHTML = '▲';  // Reset all arrows to ascending
     });
 
-    const header = headers[n - 2]; // Adjust index for the header
+    const header = headers[n - 1]; // Adjust index for the header
     while (switching) {
         switching = false;
         rows = table.rows;
