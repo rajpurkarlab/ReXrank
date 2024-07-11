@@ -18,6 +18,7 @@
   <link href="/ReXRank/stylesheets/index.css" rel="stylesheet"/>
   <script async="" defer="" src="https://buttons.github.io/buttons.js">
   </script>
+  <script src="javascripts/tableSort.js" defer></script>
   <script src="/ReXRank/javascripts/analytics.js">
   </script>
  </head>
@@ -321,6 +322,62 @@
        </div>
       </div>
      </div>
+     <div class="col-md-12">
+        <div class="infoCard">
+          <div class="infoBody">
+            <div class="infoHeadline">
+              <h2>
+                Leaderboard on MIMIC-CXR
+              </h2>
+            </div>
+            <p>
+              The MIMIC-CXR dataset contains 377,110 chest X-ray images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA.
+            </p>
+            <table class="table performanceTable" id="modelTable">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Model</th>
+                  <th>BLEU <button onclick="sortTable(2)">↕</button></th>
+                  <th>Bert-Sim <button onclick="sortTable(3)">↕</button></th>
+                  <th>RadGraph <button onclick="sortTable(4)">↕</button></th>
+                  <th>RadCliQ-v1 <button onclick="sortTable(5)">↕</button></th>
+                  <th>KG-Sim <button onclick="sortTable(6)">↕</button></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="human-row">
+                  <td></td>
+                  <td>Ground Truth
+                    <p class="institution">Institution</p>
+                    <a href="http://arxiv.org/abs/1606.05250">Paper Link</a>
+                  </td>
+                  <td>86.831</td>
+                  <td>89.452</td>
+                  <td>89.452</td>
+                  <td>89.452</td>
+                  <td>89.452</td>
+                </tr>
+                <tr>
+                  <td>
+                    <p>1</p>
+                    <span class="date label label-default">Date</span>
+                  </td>
+                  <td style="word-break:break-word;">
+                    <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                    <p class="institution">Institution</p>
+                  </td>
+                  <td><b>90.939</b></td>
+                  <td><b>93.214</b></td>
+                  <td><b>93.214</b></td>
+                  <td><b>93.214</b></td>
+                  <td><b>93.214</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>    
      <div class="col-md-12">
       <div class="infoCard">
        <div class="infoBody">
