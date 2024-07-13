@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
 <html>
- <head>
+<head>
   <meta charset="utf-8"/>
   <title>
-   Radiology Report Generation Leaderboard
+    Radiology Report Generation Leaderboard
   </title>
   <meta content="ReXRank is a ." name="description"/>
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
@@ -16,8 +16,7 @@
   <link href="/ReXRank/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="/ReXRank/stylesheets/layout.css" rel="stylesheet"/>
   <link href="/ReXRank/stylesheets/index.css" rel="stylesheet"/>
-  <script async="" defer="" src="https://buttons.github.io/buttons.js">
-  </script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
   <script src="/ReXRank/javascripts/analytics.js"></script>
   <!-- 引入 jQuery 和 tablesorter 插件 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -28,290 +27,255 @@
     .performanceTable th {
       cursor: pointer;
     }
-    .sort-button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: gray;
-    }
-    .sort-button.active {
-      color: black;
-    }
   </style>
- </head>
- <body>
+</head>
+<body>
   <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
-   <div class="container clearfix" id="navContainer">
-    <div class="rightNav">
-     <div class="collapseDiv">
-      <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
-       <span class="glyphicon glyphicon-menu-hamburger">
-       </span>
-      </button>
-     </div>
-     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-       <li>
-        <a href="/ReXRank/">
-         Home
-        </a>
-       </li>
-      </ul>
-     </div>
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/ReXRank/">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="/ReXRank/">ReXRank</a>
+        </div>
+      </div>
     </div>
-    <div class="leftNav">
-     <div class="brandDiv">
-      <a class="navbar-brand" href="/ReXRank/">
-       ReXRank
-      </a>
-     </div>
-    </div>
-   </div>
   </div>
   <div class="cover" id="topCover">
-   <div class="container">
-    <div class="row">
-     <div class="col-md-12">
-      <h1 id="appTitle">
-       ReXRank
-      </h1>
-      <h2 id="appSubtitle">
-       Open-Source Radiology Report Generation Leaderboard
-      </h2>
-     </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="appTitle">ReXRank</h1>
+          <h2 id="appSubtitle">Open-Source Radiology Report Generation Leaderboard</h2>
+        </div>
+      </div>
     </div>
-   </div>
   </div>
   <div class="cover" id="contentCover">
-   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="infoCard">
-         <div class="infoBody">
-          <div class="infoHeadline">
-           <h2>
-            What is ReXRank?
-           </h2>
-          </div>
-          <p>
-            <b>ReXRank</b> is dedicated to exploring the most advanced AI models for radiology report generation, offering a comprehensive, objective, and neutral evaluation referenc for research.
-            Various metrics are incorporated in the scoring system to assess the performance of different models across multiple datasets.
-            We maintain regular updates to reflect evolving clinical needs and technological advancements.
-          </p>
-         </div>
-        </div>
-       </div>
-     <div class="col-md-5">
-      <div class="infoCard">
-       <div class="infoBody">
-        <div class="infoHeadline">
-         <h2>
-          Getting Started
-         </h2>
-        </div>
-        <p>
-         To evaluate your models, we made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input. 
-         To run the evaluation, use
-         <code>
-          python evaluate.py &lt;path_to_data&gt; &lt;path_to_predictions&gt;
-         </code>
-         .
-         <ul class="list-unstyled">
-          <li>
-           <a class="btn actionBtn inverseBtn" download="" href="https://worksheets.codalab.org/rest/bundles/0x6b567e1cf2e041ec80d7098f031c5c9e/contents/blob/">
-            Evaluation Script
-           </a>
-          </li>
-          <li>
-           <a class="btn actionBtn inverseBtn" download="" href="https://worksheets.codalab.org/bundles/0x8731effab84f41b7b874a070e40f61e2/">
-            Sample Prediction File
-           </a>
-          </li>
-         </ul>
-        </p>
-        <p>
-          Once you have a built a model that works to your expectations on the dev set, you submit it to get official scores on the dev set.  Here's a tutorial walking you through official evaluation of your model:
-         </p>
-         <a class="btn actionBtn inverseBtn" href="https://worksheets.codalab.org/worksheets/0xeaf0ac127eb9405e8ff3c68e8f9245b6">
-          Submission Tutorial
-         </a>
-         <p>
-          To keep up to date with major changes to the leaderboard and dataset, please subscribe:
-         </p>
-         <div id="mc_embed_signup">
-          <form action="//google.us13.list-manage.com/subscribe/post?u=1842e6560d6e10316b4e1aaf5&amp;id=76586bdcf4" class="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" novalidate="" target="_blank">
-           <div id="mc_embed_signup_scroll">
-            <input class="email" id="mce-EMAIL" name="EMAIL" placeholder="email address" required="" type="email" value=""/>
-            <div aria-hidden="true" style="position: absolute; left: -5000px;">
-             <input name="b_1842e6560d6e10316b4e1aaf5_76586bdcf4" tabindex="-1" type="text" value=""/>
-            </div>
-            <div class="clear">
-             <input class="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe"/>
-            </div>
-           </div>
-          </form>
-         </div>
-       </div>
-      </div>
-     </div>
-     <div class="col-md-7">
-        <div class="infoCard">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="infoCard">
             <div class="infoBody">
-                <div class="infoHeadline">
-                    <h2>Leaderboard Overview</h2>
-                </div>
-                <p>Include top models for different datasets.</p>
-                <table class="table performanceTable">
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>MIMIC-CXR</th>
-                            <th>Private Dataset</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><p>1</p></td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><p>2</p></td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><p>3</p></td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><p>4</p></td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><p>5</p></td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                            <td style="word-break:break-word;">
-                                <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                                <p class="institution">Institution</p>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+              <div class="infoHeadline">
+                <h2>What is ReXRank?</h2>
+              </div>
+              <p>
+                <b>ReXRank</b> is dedicated to exploring the most advanced AI models for radiology report generation, offering a comprehensive, objective, and neutral evaluation reference for research.
+                Various metrics are incorporated in the scoring system to assess the performance of different models across multiple datasets.
+                We maintain regular updates to reflect evolving clinical needs and technological advancements.
+              </p>
             </div>
-        </div>
-    </div>  
-    <div class="col-md-12">
-      <div class="infoCard">
-        <div class="infoBody">
-          <div class="infoHeadline">
-            <h2>Leaderboard on MIMIC-CXR Dataset</h2>
           </div>
-          <p>Info about the dataset.</p>
-          <table class="table performanceTable tablesorter" id="modelTable">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Model</th>
-                <th>BLEU <button class="sort-button">▲</button></th>
-                <th>Bert-Sim <button class="sort-button">▲</button></th>
-                <th>RadGraph <button class="sort-button active">▲</button></th>
-                <th>RadCliQ-v1 <button class="sort-button">▲</button></th>
-                <th>KG-Sim <button class="sort-button">▲</button></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <p>1</p>
-                  <span class="date label label-default">Date</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                  <p class="institution">Institution</p>
-                </td>
-                <td><b>90.939</b></td>
-                <td><b>93.214</b></td>
-                <td><b>93.214</b></td>
-                <td><b>93.214</b></td>
-                <td><b>93.214</b></td>
-              </tr>
-              <tr>
-                <td>
-                  <p>2</p>
-                  <span class="date label label-default">Date</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
-                  <p class="institution">Institution</p>
-                </td>
-                <td><b>91.939</b></td>
-                <td><b>94.214</b></td>
-                <td><b>95.214</b></td>
-                <td><b>96.214</b></td>
-                <td><b>92.214</b></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
+        <div class="col-md-5">
+          <div class="infoCard">
+            <div class="infoBody">
+              <div class="infoHeadline">
+                <h2>Getting Started</h2>
+              </div>
+              <p>
+                To evaluate your models, we made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input.
+                To run the evaluation, use
+                <code>
+                  python evaluate.py &lt;path_to_data&gt; &lt;path_to_predictions&gt;
+                </code>.
+              </p>
+              <ul class="list-unstyled">
+                <li>
+                  <a class="btn actionBtn inverseBtn" download="" href="https://worksheets.codalab.org/rest/bundles/0x6b567e1cf2e041ec80d7098f031c5c9e/contents/blob/">Evaluation Script</a>
+                </li>
+                <li>
+                  <a class="btn actionBtn inverseBtn" download="" href="https://worksheets.codalab.org/bundles/0x8731effab84f41b7b874a070e40f61e2/">Sample Prediction File</a>
+                </li>
+              </ul>
+              <p>
+                Once you have a built a model that works to your expectations on the dev set, you submit it to get official scores on the dev set. Here's a tutorial walking you through official evaluation of your model:
+              </p>
+              <a class="btn actionBtn inverseBtn" href="https://worksheets.codalab.org/worksheets/0xeaf0ac127eb9405e8ff3c68e8f9245b6">Submission Tutorial</a>
+              <p>
+                To keep up to date with major changes to the leaderboard and dataset, please subscribe:
+              </p>
+              <div id="mc_embed_signup">
+                <form action="//google.us13.list-manage.com/subscribe/post?u=1842e6560d6e10316b4e1aaf5&amp;id=76586bdcf4" class="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" novalidate="" target="_blank">
+                  <div id="mc_embed_signup_scroll">
+                    <input class="email" id="mce-EMAIL" name="EMAIL" placeholder="email address" required="" type="email" value=""/>
+                    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                      <input name="b_1842e6560d6e10316b4e1aaf5_76586bdcf4" tabindex="-1" type="text" value=""/>
+                    </div>
+                    <div class="clear">
+                      <input class="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe"/>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="infoCard">
+            <div class="infoBody">
+              <div class="infoHeadline">
+                <h2>Leaderboard Overview</h2>
+              </div>
+              <p>Include top models for different datasets.</p>
+              <table class="table performanceTable">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>MIMIC-CXR</th>
+                    <th>Private Dataset</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><p>1</p></td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p>2</p></td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p>3</p></td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p>4</p></td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><p>5</p></td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="infoCard">
+            <div class="infoBody">
+              <div class="infoHeadline">
+                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+              </div>
+              <p>Info about the dataset.</p>
+              <table class="table performanceTable tablesorter" id="modelTable">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>BLEU</th>
+                    <th>Bert-Sim</th>
+                    <th>RadGraph</th>
+                    <th>RadCliQ-v1</th>
+                    <th>KG-Sim</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <p>1</p>
+                      <span class="date label label-default">Date</span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                    <td><b>90.939</b></td>
+                    <td><b>93.214</b></td>
+                    <td><b>93.214</b></td>
+                    <td><b>93.214</b></td>
+                    <td><b>93.214</b></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>2</p>
+                      <span class="date label label-default">Date</span>
+                    </td>
+                    <td style="word-break:break-word;">
+                      <a class="link" href="https://worksheets.codalab.org/bundles/0x8bf592beb7804a49bdca7eecc3fa82ef">Model Name</a>
+                      <p class="institution">Institution</p>
+                    </td>
+                    <td><b>91.939</b></td>
+                    <td><b>94.214</b></td>
+                    <td><b>95.214</b></td>
+                    <td><b>96.214</b></td>
+                    <td><b>92.214</b></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div> 
       </div>
-    </div> 
     </div>
-   </div>
   </div>
   <nav class="navbar navbar-default navbar-static-bottom footer">
-   <div class="container clearfix">
-    <div class="rightNav">
-     <div>
-      <ul class="nav navbar-nav navbar-right">
-       <li>
-        <a href="/ReXRank/">
-         ReXRank
-        </a>
-       </li>
-       <li>
-        <a href="https://www.rajpurkarlab.hms.harvard.edu/">
-         Harvard Rajpurkar Lab
-        </a>
-       </li>
-      </ul>
-     </div>
+    <div class="container clearfix">
+      <div class="rightNav">
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/ReXRank/">ReXRank</a>
+            </li>
+            <li>
+              <a href="https://www.rajpurkarlab.hms.harvard.edu/">Harvard Rajpurkar Lab</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-   </div>
   </nav>
-  <script src="/ReXRank/bower_components/jquery/dist/jquery.min.js">
-  </script>
-  <script src="/ReXRank/bower_components/bootstrap/dist/js/bootstrap.min.js">
-  </script>
+  <script src="/ReXRank/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/ReXRank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
       // 初始化 tablesorter
