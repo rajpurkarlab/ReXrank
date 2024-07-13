@@ -18,15 +18,16 @@ def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
             <h2>Leaderboard Overview</h2>
           </div>
           <p>Include top models for different datasets.</p>
-          <table class="table performanceTable">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>MIMIC-CXR</th>
-                <th>Private Dataset</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div class="fixed-height-table">
+            <table class="table performanceTable">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>MIMIC-CXR</th>
+                  <th>Private Dataset</th>
+                </tr>
+              </thead>
+              <tbody>
     '''
     
     # 获取最长的排名数
@@ -64,8 +65,9 @@ def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
     
     # HTML结尾部分
     html_string += '''
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
