@@ -1,0 +1,9 @@
+Rank,Date,Model Name,Institution,Model URL,BLEU,Bert-Sim,RadGraph,RadCliQ-v1,KG-Sim
+1,2024-07-13,CheXpertPlus-Baseline,Institution1,https://example.com/model1,90.939,93.214,93.214,93.214,93.214
+2,2024-07-13,MedVersa,Institution2,https://example.com/model2,91.939,94.214,94.214,94.214,94.214
+3,2024-07-13,LLM-CXR,Institution3,https://example.com/model3,89.939,92.214,92.214,92.214,92.214
+4,2024-07-13,CheXagent,Institution4,https://example.com/model4,88.939,91.214,91.214,91.214,91.214
+5,2024-07-13,RadFM,Institution5,https://example.com/model5,87.939,90.214,90.214,90.214,90.214
+6,2024-07-13,VLCI,Institution6,https://example.com/model6,86.939,89.214,89.214,89.214,89.214
+7,2024-07-13,CvT2DistilGPT2,Institution7,https://example.com/model7,85.939,88.214,88.214,88.214,88.214
+8,2024-07-13,RGRG,Institution8,https://example.com/model8,84.939,87.214,87.214,87.214,87.214
