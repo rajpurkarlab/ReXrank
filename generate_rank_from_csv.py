@@ -77,5 +77,6 @@ def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
     with open(output_path, 'w') as file:
         file.write(html_string)
 
+
 # 调用函数生成HTML文件
 generate_leaderboard_html('./results/result_mimiccxr.csv', './results/result_mimiccxr.csv', './results/table_rank.html')
