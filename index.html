@@ -19,8 +19,21 @@
   <script async="" defer="" src="https://buttons.github.io/buttons.js">
   </script>
   <script src="javascripts/tableSort.js" defer></script>
-  <script src="/ReXRank/javascripts/analytics.js">
-  </script>
+  <script src="/ReXRank/javascripts/analytics.js"></script>
+  <style>
+    .performanceTable th {
+      cursor: pointer;
+    }
+    .sort-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: gray;
+    }
+    .sort-button.active {
+      color: black;
+    }
+  </style>
  </head>
  <body>
   <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">

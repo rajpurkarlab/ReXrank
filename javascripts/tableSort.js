@@ -49,3 +49,4 @@ function sortTable(columnIndex, button) {
   document.addEventListener('DOMContentLoaded', () => {
     sortTable(4, document.querySelectorAll('.sort-button')[2]);
   });
+  
