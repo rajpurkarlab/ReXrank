@@ -290,15 +290,26 @@
 .optionsBtn:hover {
   opacity: 0.9;
 }
-.sort-arrow {
-  cursor: pointer;
-  font-size: 1em;
-  margin-left: 5px;
-  color: #000;
+/* Add some basic styling for the table */
+.performanceTable {
+  width: 100%;
+  border-collapse: collapse;
 }
-
-.sort-arrow:hover {
-  color: #555;
+.performanceTable th, .performanceTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.performanceTable th {
+  cursor: pointer;
+}
+.sort-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: gray;
+}
+.sort-button.active {
+  color: black;
 }
 button:focus {
   outline: none !important;
