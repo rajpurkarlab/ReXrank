@@ -18,8 +18,12 @@
   <link href="/ReXRank/stylesheets/index.css" rel="stylesheet"/>
   <script async="" defer="" src="https://buttons.github.io/buttons.js">
   </script>
-  <script src="javascripts/tableSort.js" defer></script>
   <script src="/ReXRank/javascripts/analytics.js"></script>
+  <!-- 引入 jQuery 和 tablesorter 插件 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://mottie.github.io/tablesorter/js/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href="https://mottie.github.io/tablesorter/css/theme.default.min.css">
+
   <style>
     .performanceTable th {
       cursor: pointer;
@@ -233,16 +237,16 @@
             <h2>Leaderboard on MIMIC-CXR Dataset</h2>
           </div>
           <p>Info about the dataset.</p>
-          <table class="table performanceTable" id="modelTable">
+          <table class="table performanceTable tablesorter" id="modelTable">
             <thead>
               <tr>
-                  <th>Rank</th>
-                  <th>Model</th>
-                  <th>BLEU <button class="sort-button" onclick="sortTable(2, this)">▲</button></th>
-                  <th>Bert-Sim <button class="sort-button" onclick="sortTable(3, this)">▲</button></th>
-                  <th>RadGraph <button class="sort-button active" onclick="sortTable(4, this)">▲</button></th>
-                  <th>RadCliQ-v1 <button class="sort-button" onclick="sortTable(5, this)">▲</button></th>
-                  <th>KG-Sim <button class="sort-button" onclick="sortTable(6, this)">▲</button></th>
+                <th>Rank</th>
+                <th>Model</th>
+                <th>BLEU <button class="sort-button">▲</button></th>
+                <th>Bert-Sim <button class="sort-button">▲</button></th>
+                <th>RadGraph <button class="sort-button active">▲</button></th>
+                <th>RadCliQ-v1 <button class="sort-button">▲</button></th>
+                <th>KG-Sim <button class="sort-button">▲</button></th>
               </tr>
             </thead>
             <tbody>
@@ -308,5 +312,24 @@
   </script>
   <script src="/ReXRank/bower_components/bootstrap/dist/js/bootstrap.min.js">
   </script>
+  <script>
+    $(document).ready(function() {
+      // 初始化 tablesorter
+      $("#modelTable").tablesorter({
+        theme: 'default',
+        headers: {
+          0: { sorter: false }, // 第 0 列（Rank 列）不排序
+          1: { sorter: false }  // 第 1 列（Model 列）不排序
+        },
+        sortList: [[4, 1]] // 默认按第 4 列（RadGraph）降序排序
+      });
+  
+      // 激活按钮颜色
+      $("#modelTable th").click(function() {
+        $("#modelTable th button").removeClass('active');
+        $(this).find('button').addClass('active');
+      });
+    });
+    </script>
  </body>
 </html>
