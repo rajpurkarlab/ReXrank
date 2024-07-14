@@ -492,7 +492,14 @@
       $("#modelTable th").not(":eq(0)").click(function() { // Exclude the 0th column
             $("#modelTable th button").removeClass('active');
             $(this).find('button').addClass('active');
-      });
+        });
+
+        // Update ranks after sorting
+        $("#modelTable").bind("sortEnd", function() {
+            $("#modelTable tbody tr").each(function(index) {
+                $(this).find("td:eq(0) p").text(index + 1);
+            });
+        });
     });
   </script>
  </body>
