@@ -488,10 +488,10 @@
         sortList: [[4, 1]] // 默认按第 4 列（RadGraph）降序排序
       });
 
-      // 激活按钮颜色
-      $("#modelTable th").click(function() {
-        $("#modelTable th button").removeClass('active');
-        $(this).find('button').addClass('active');
+      // Activate button color
+      $("#modelTable th").not(":eq(0)").click(function() { // Exclude the 0th column
+            $("#modelTable th button").removeClass('active');
+            $(this).find('button').addClass('active');
       });
     });
   </script>
