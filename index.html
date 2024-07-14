@@ -470,29 +470,37 @@
   <script src="/ReXRank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
-      // 初始化 tablesorter
-      $("#modelTable").tablesorter({
-        theme: 'default',
-        headers: {
-          0: { sorter: false }, // 第 0 列（Rank 列）不排序
-          1: { sorter: false }  // 第 1 列（Model 列）不排序
-        },
-        sortList: [[4, 1]] // 默认按第 4 列（RadGraph）降序排序
-      });
+        // 初始化 tablesorter
+        $("#modelTable").tablesorter({
+            theme: 'default',
+            headers: {
+                0: { sorter: false }, // 第 0 列（Rank 列）不排序
+                1: { sorter: false }  // 第 1 列（Model 列）不排序
+            },
+            sortList: [[4, 1]] // 默认按第 4 列（RadGraph）降序排序
+        });
 
-      // Activate button color
-      $("#modelTable th").not(":eq(0)").click(function() { // Exclude the 0th column
+        // 激活按钮颜色
+        $("#modelTable th").not(":eq(0)").click(function() { // 排除第 0 列
             $("#modelTable th button").removeClass('active');
             $(this).find('button').addClass('active');
         });
 
-        // Update ranks after sorting
-        $("#modelTable").bind("sortEnd", function() {
+        // 更新排序后的排名
+        function updateRanks() {
             $("#modelTable tbody tr").each(function(index) {
                 $(this).find("td:eq(0) p").text(index + 1);
             });
+        }
+
+        // 在表格排序结束后更新排名
+        $("#modelTable").bind("sortEnd", function() {
+            updateRanks();
         });
+
+        // 页面加载后第一次更新排名
+        updateRanks();
     });
-  </script>
+</script>
  </body>
 </html>
