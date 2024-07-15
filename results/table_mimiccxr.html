@@ -1,143 +1,160 @@
 
     <div class="col-md-12">
-      <div class="infoCard">
-        <div class="infoBody">
-          <div class="infoHeadline">
-            <h2>Leaderboard on MIMIC-CXR Dataset</h2>
-          </div>
-          <p>Info about the dataset.</p>
-          <table class="table performanceTable tablesorter" id="modelTable">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Model</th>
-                <th>BLEU</th>
-                <th>Bert-Sim</th>
-                <th>RadGraph</th>
-                <th>RadCliQ-v1</th>
-                <th>KG-Sim</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div class="infoCard">
+            <div class="infoBody">
+              <div class="infoHeadline">
+                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+              </div>
+              <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA.  We follow the official split of MIMIC-CXR in the following experiments.</p>
+              <table class="table performanceTable tablesorter" id="modelTable">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>BLEU</th>
+                    <th>BertScore</th>
+                    <th>SembScore</th>
+                    <th>RadGraph</th>
+                    <th>RadCliQ-v0</th>
+                    <th>RadCliQ-v1</th>
+                  </tr>
+                </thead>
+                <tbody>
     
               <tr>
                 <td>
                   <p>1</p>
+                  <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model1">CheXpertPlus-Baseline</a>
-                  <p class="institution">Institution1</p>
+                  <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
+                  <p class="institution">Stanford</p>
                 </td>
-                <td><b>90.939</b></td>
-                <td><b>93.214</b></td>
-                <td><b>93.214</b></td>
-                <td><b>93.214</b></td>
-                <td><b>93.214</b></td>
+                <td><b>0.0939954361304667</b></td>
+                <td><b>0.3039284330095313</b></td>
+                <td><b>0.3314333808036867</b></td>
+                <td><b>0.1460215936739494</b></td>
+                <td><b>3.815563892882999</b></td>
+                <td><b>1.4368752266150038</b></td>
               </tr>
         
               <tr>
                 <td>
                   <p>2</p>
+                  <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model2">MedVersa</a>
-                  <p class="institution">Institution2</p>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-findings</a>
+                  <p class="institution">Stanford</p>
                 </td>
-                <td><b>91.939</b></td>
-                <td><b>94.214</b></td>
-                <td><b>94.214</b></td>
-                <td><b>94.214</b></td>
-                <td><b>94.214</b></td>
+                <td><b>0.1258788413655539</b></td>
+                <td><b>0.3069138274120153</b></td>
+                <td><b>0.3562815306923687</b></td>
+                <td><b>0.1651788458098919</b></td>
+                <td><b>3.752349909243391</b></td>
+                <td><b>1.3833736422547835</b></td>
               </tr>
         
               <tr>
                 <td>
                   <p>3</p>
+                  <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model3">LLM-CXR</a>
-                  <p class="institution">Institution3</p>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2</a>
+                  <p class="institution">CSIRO</p>
                 </td>
-                <td><b>89.939</b></td>
-                <td><b>92.214</b></td>
-                <td><b>92.214</b></td>
-                <td><b>92.214</b></td>
-                <td><b>92.214</b></td>
+                <td><b>0.1089685320109433</b></td>
+                <td><b>0.2775020177753941</b></td>
+                <td><b>0.314552511707704</b></td>
+                <td><b>0.1452481673252877</b></td>
+                <td><b>3.938645977389209</b></td>
+                <td><b>1.498256844948216</b></td>
               </tr>
         
               <tr>
                 <td>
                   <p>4</p>
+                  <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model4">CheXagent</a>
-                  <p class="institution">Institution4</p>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
+                  <p class="institution">Harvard</p>
                 </td>
-                <td><b>88.939</b></td>
-                <td><b>91.214</b></td>
-                <td><b>91.214</b></td>
-                <td><b>91.214</b></td>
-                <td><b>91.214</b></td>
+                <td><b>0.1925212045989015</b></td>
+                <td><b>0.4296054799761397</b></td>
+                <td><b>0.314552511707704</b></td>
+                <td><b>0.2734173627953626</b></td>
+                <td><b>3.3368269028510773</b></td>
+                <td><b>1.0875591792453905</b></td>
               </tr>
         
               <tr>
                 <td>
                   <p>5</p>
+                  <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model5">RadFM</a>
-                  <p class="institution">Institution5</p>
+                  <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
+                  <p class="institution">SJTU</p>
                 </td>
-                <td><b>87.939</b></td>
-                <td><b>90.214</b></td>
-                <td><b>90.214</b></td>
-                <td><b>90.214</b></td>
-                <td><b>90.214</b></td>
+                <td><b>0.0746945423770387</b></td>
+                <td><b>0.2996626500043033</b></td>
+                <td><b>0.271581586885383</b></td>
+                <td><b>0.1243984769313098</b></td>
+                <td><b>3.961107989040922</b></td>
+                <td><b>1.5303817035834777</b></td>
               </tr>
         
               <tr>
                 <td>
                   <p>6</p>
+                  <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model6">VLCI</a>
-                  <p class="institution">Institution6</p>
+                  <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
+                  <p class="institution">TUM</p>
                 </td>
-                <td><b>86.939</b></td>
-                <td><b>89.214</b></td>
-                <td><b>89.214</b></td>
-                <td><b>89.214</b></td>
-                <td><b>89.214</b></td>
+                <td><b>0.1121047227928916</b></td>
+                <td><b>0.3215958254971026</b></td>
+                <td><b>0.3812492519031928</b></td>
+                <td><b>0.168264181249531</b></td>
+                <td><b>3.6466491434911057</b></td>
+                <td><b>1.3304568418406115</b></td>
               </tr>
         
               <tr>
                 <td>
                   <p>7</p>
+                  <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model7">CvT2DistilGPT2</a>
-                  <p class="institution">Institution7</p>
+                  <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
+                  <p class="institution">TUM</p>
                 </td>
-                <td><b>85.939</b></td>
-                <td><b>88.214</b></td>
-                <td><b>88.214</b></td>
-                <td><b>88.214</b></td>
-                <td><b>88.214</b></td>
+                <td><b>0.1117500304963554</b></td>
+                <td><b>0.3155380587644226</b></td>
+                <td><b>0.3148445679852962</b></td>
+                <td><b>0.1645179170254039</b></td>
+                <td><b>3.7949823603665926</b></td>
+                <td><b>1.4111796875587357</b></td>
               </tr>
         
               <tr>
                 <td>
                   <p>8</p>
+                  <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://example.com/model8">RGRG</a>
-                  <p class="institution">Institution8</p>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI</a>
+                  <p class="institution">SYSU</p>
                 </td>
-                <td><b>84.939</b></td>
-                <td><b>87.214</b></td>
-                <td><b>87.214</b></td>
-                <td><b>87.214</b></td>
-                <td><b>87.214</b></td>
+                <td><b>0.6823217939495335</b></td>
+                <td><b>0.7241964073749468</b></td>
+                <td><b>0.8550301782174166</b></td>
+                <td><b>0.7588816728174517</b></td>
+                <td><b>1.0159124136358126</b></td>
+                <td><b>-0.5409248548350059</b></td>
               </tr>
         
             </tbody>
