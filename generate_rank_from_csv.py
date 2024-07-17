@@ -1,15 +1,17 @@
 import pandas as pd
 
-def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
-    # 读取两个CSV文件
+def generate_leaderboard_html(mimic_csv_path, iu_xray_csv_path, chexpert_plus_csv_path, output_path):
+    # Read the three CSV files
     df_mimic = pd.read_csv(mimic_csv_path)
-    df_private = pd.read_csv(private_csv_path)
+    df_iu_xray = pd.read_csv(iu_xray_csv_path)
+    df_chexpert_plus = pd.read_csv(chexpert_plus_csv_path)
     
-    # 根据RadCliQ-v1分数进行排序
+    # Sort each dataframe by 'RadCliQ-v1' score in ascending order
     df_mimic = df_mimic.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
-    df_private = df_private.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
+    df_iu_xray = df_iu_xray.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
+    df_chexpert_plus = df_chexpert_plus.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
     
-    # HTML开头部分
+    # HTML header
     html_string = '''
     <div class="col-md-7">
       <div class="infoCard">
@@ -24,16 +26,17 @@ def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
                 <tr>
                   <th>Rank</th>
                   <th>MIMIC-CXR</th>
-                  <th>Private Dataset</th>
+                  <th>IU-Xray</th>
+                  <th>CheXpert Plus</th>
                 </tr>
               </thead>
               <tbody>
     '''
     
-    # 获取最长的排名数
-    max_rank = max(len(df_mimic), len(df_private))
+    # Get the maximum rank length
+    max_rank = max(len(df_mimic), len(df_iu_xray), len(df_chexpert_plus))
     
-    # 生成表格内容
+    # Generate table content
     for i in range(max_rank):
         html_string += '<tr>'
         
@@ -50,12 +53,23 @@ def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
         else:
             html_string += '<td style="word-break:break-word;"></td>'
         
-        if i < len(df_private):
-            row_private = df_private.iloc[i]
+        if i < len(df_iu_xray):
+            row_iu_xray = df_iu_xray.iloc[i]
             html_string += f'''
             <td style="word-break:break-word;">
-              <a class="link" href="{row_private['Model URL']}">{row_private['Model Name']}</a>
-              <p class="institution">{row_private['Institution']}</p>
+              <a class="link" href="{row_iu_xray['Model URL']}">{row_iu_xray['Model Name']}</a>
+              <p class="institution">{row_iu_xray['Institution']}</p>
+            </td>
+            '''
+        else:
+            html_string += '<td style="word-break:break-word;"></td>'
+        
+        if i < len(df_chexpert_plus):
+            row_chexpert_plus = df_chexpert_plus.iloc[i]
+            html_string += f'''
+            <td style="word-break:break-word;">
+              <a class="link" href="{row_chexpert_plus['Model URL']}">{row_chexpert_plus['Model Name']}</a>
+              <p class="institution">{row_chexpert_plus['Institution']}</p>
             </td>
             '''
         else:
@@ -63,7 +77,7 @@ def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
         
         html_string += '</tr>'
     
-    # HTML结尾部分
+    # HTML footer
     html_string += '''
               </tbody>
             </table>
@@ -73,10 +87,13 @@ def generate_leaderboard_html(mimic_csv_path, private_csv_path, output_path):
     </div>
     '''
     
-    # 写入HTML文件
+    # Write the HTML content to the output file
     with open(output_path, 'w') as file:
         file.write(html_string)
 
 
-# 调用函数生成HTML文件
-generate_leaderboard_html('./results/result_mimiccxr.csv', './results/result_mimiccxr.csv', './results/table_rank.html')
+# Call the function to generate the HTML file
+generate_leaderboard_html('./results/result_mimiccxr.csv', './results/result_mimiccxr.csv', './results/result_mimiccxr.csv', './results/table_rank.html')
+
+# # 调用函数生成HTML文件
+# generate_leaderboard_html('./results/result_mimiccxr.csv', './results/result_mimiccxr.csv', './results/table_rank.html')
