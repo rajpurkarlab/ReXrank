@@ -295,8 +295,8 @@
               </div>
               <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
               <div>
-                <button id="testBtn" class="btn btn-primary">MIMIC-CXR Test</button>
-                <button id="validBtn" class="btn btn-secondary">MIMIC-CXR Valid</button>
+                <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
+                <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
               </div>
               <table class="table performanceTable tablesorter" id="modelTable">
                 <thead>
@@ -940,62 +940,71 @@
   <script src="/ReXRank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
-        // 初始化 tablesorter
+        // Initialize tablesorter
         $("#modelTable").tablesorter({
             theme: 'default',
             headers: {
-                0: { sorter: false }, // 第 0 列（Rank 列）不排序
-                1: { sorter: false }  // 第 1 列（Model 列）不排序
+                0: { sorter: false }, // Rank column
+                1: { sorter: false }  // Model column
             },
-            sortList: [[4, 1]] // 默认按第 4 列（RadGraph）降序排序
+            sortList: [[4, 1]] // Default sort by RadGraph descending
         });
-
-        // 激活按钮颜色
-        $("#modelTable th").not(":eq(0)").click(function() { // 排除第 0 列
-            $("#modelTable th button").removeClass('active');
-            $(this).find('button').addClass('active');
-        });
-
-        // 更新排序后的排名
+  
+        // Update ranks after sorting
         function updateRanks() {
-            $("#modelTable tbody tr").each(function(index) {
+            $("#modelTable tbody:visible tr").each(function(index) {
                 $(this).find("td:eq(0) p").text(index + 1);
             });
         }
-
-        // 在表格排序结束后更新排名
+  
+        // Update ranks after table sort ends
         $("#modelTable").bind("sortEnd", function() {
             updateRanks();
         });
-
-        // 页面加载后第一次更新排名
+  
+        // Update ranks on page load
         updateRanks();
+  
+        // Switch to test results
+        $("#testBtn").click(function() {
+            $("#testResults").show();
+            $("#validResults").hide();
+            $(this).removeClass('btn-gray').addClass('btn-black');
+            $("#validBtn").removeClass('btn-black').addClass('btn-gray');
+            updateRanks(); // Update ranks after switching
+        });
+  
+        // Switch to valid results
+        $("#validBtn").click(function() {
+            $("#testResults").hide();
+            $("#validResults").show();
+            $(this).removeClass('btn-gray').addClass('btn-black');
+            $("#testBtn").removeClass('btn-black').addClass('btn-gray');
+            updateRanks(); // Update ranks after switching
+        });
     });
-</script>
-<script>
-  document.getElementById('testBtn').addEventListener('click', function() {
-    document.getElementById('testResults').style.display = '';
-    document.getElementById('validResults').style.display = 'none';
-    this.classList.remove('btn-secondary');
-    this.classList.add('btn-primary');
-    document.getElementById('validBtn').classList.remove('btn-primary');
-    document.getElementById('validBtn').classList.add('btn-secondary');
-  });
-
-  document.getElementById('validBtn').addEventListener('click', function() {
-    document.getElementById('testResults').style.display = 'none';
-    document.getElementById('validResults').style.display = '';
-    this.classList.remove('btn-secondary');
-    this.classList.add('btn-primary');
-    document.getElementById('testBtn').classList.remove('btn-primary');
-    document.getElementById('testBtn').classList.add('btn-secondary');
-  });
-</script>
-
-<style>
-  .btn {
-    margin: 10px;
-  }
-</style>
+  </script>
+  
+  <style>
+    .btn {
+        margin: 10px;
+        padding: 10px 20px;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .btn-black {
+        background-color: black;
+    }
+  
+    .btn-gray {
+        background-color: gray;
+    }
+    
+    .btn-black:hover, .btn-gray:hover {
+        opacity: 0.8;
+    }
+  </style>
  </body>
 </html>
