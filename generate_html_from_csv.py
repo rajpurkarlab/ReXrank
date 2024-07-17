@@ -2,7 +2,7 @@ import pandas as pd
 
 
 
-def generate_html_from_csv(csv_path, output_path):
+def generate_html_from_csv_chexpertplus(csv_path, output_path):
     # 读取CSV文件
     df = pd.read_csv(csv_path)
     
@@ -98,5 +98,106 @@ import pandas as pd
 # df.to_csv('./results/result_mimiccxr.csv', index=False)
 
 # 调用函数生成HTML文件
-generate_html_from_csv('./results/result_mimiccxr.csv', './results/table_mimiccxr.html')
+# generate_html_from_csv('./results/result_mimiccxr.csv', './results/table_mimiccxr.html')
 
+
+import pandas as pd
+
+def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_path):
+    # 读取CSV文件
+    df_test = pd.read_csv(test_csv_path)
+    df_valid = pd.read_csv(valid_csv_path)
+    
+    # HTML开头部分
+    html_string = '''
+    <div class="col-md-12">
+          <div class="infoCard">
+            <div class="infoBody">
+              <div class="infoHeadline">
+                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+              </div>
+              <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
+              <div>
+                <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
+                <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
+              </div>
+              <table class="table performanceTable tablesorter" id="modelTable">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>BLEU</th>
+                    <th>BertScore</th>
+                    <th>SembScore</th>
+                    <th>RadGraph</th>
+                    <th>RadCliQ-v0</th>
+                    <th>RadCliQ-v1</th>
+                  </tr>
+                </thead>
+                <tbody id="testResults">
+    '''
+    
+    # 生成测试集表格内容
+    for _, row in df_test.iterrows():
+        html_string += f'''
+              <tr>
+                <td>
+                  <p>{row['Rank']}</p>
+                  <span class="date label label-default">{row['Date']}</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
+                  <p class="institution">{row['Institution']}</p>
+                </td>
+                <td><b>{row['BLEU']}</b></td>
+                <td><b>{row['BertScore']}</b></td>
+                <td><b>{row['SembScore']}</b></td>
+                <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+              </tr>
+        '''
+    
+    html_string += '''
+            </tbody>
+            <tbody id="validResults" style="display: none;">
+    '''
+    
+    # 生成验证集表格内容
+    for _, row in df_valid.iterrows():
+        html_string += f'''
+              <tr>
+                <td>
+                  <p>{row['Rank']}</p>
+                  <span class="date label label-default">{row['Date']}</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
+                  <p class="institution">{row['Institution']}</p>
+                </td>
+                <td><b>{row['BLEU']}</b></td>
+                <td><b>{row['BertScore']}</b></td>
+                <td><b>{row['SembScore']}</b></td>
+                <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+              </tr>
+        '''
+    
+    # HTML结尾部分
+    html_string += '''
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    '''
+    
+    # 写入HTML文件
+    with open(output_path, 'w') as file:
+        file.write(html_string)
+
+# 调用函数生成HTML文件
+generate_html_from_csv_chexpertplus('./results/result_chexpert_plus-valid.csv', './results/table_chexpertplus.html')
+generate_leaderboard_html_mimiccxr('./results/result_mimic-cxr.csv', './results/result_mimic-cxr-valid.csv', './results/table_mimiccxr.html')
+generate_leaderboard_html_iu_xray('./results/result_iu_xray.csv', './results/result_iu_xray-valid.csv', './results/table_iuxray.html')
