@@ -15,7 +15,7 @@ def generate_html_from_csv_chexpertplus(csv_path, output_path):
                 <h2>Leaderboard on CheXpert Plus Dataset</h2>
               </div>
               <p> CheXpert Plus is a dataset that pairs text and images, featuring 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments, and use the valid set for evaluation.</p>
-              <table class="table performanceTable tablesorter" id="modelTable">
+              <table class="table performanceTable tablesorter" id="modelTableCheXpert">
                 <thead>
                   <tr>
                     <th>Rank</th>
@@ -82,10 +82,10 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
               </div>
               <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
               <div>
-                <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
-                <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
+                <button id="MIMICTestBtn" class="btn btn-black">MIMIC-CXR Test</button>
+                <button id="MIMICValidBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
               </div>
-              <table class="table performanceTable tablesorter" id="modelTable">
+              <table class="table performanceTable tablesorter" id="modelTableMIMIC">
                 <thead>
                   <tr>
                     <th>Rank</th>
@@ -176,10 +176,10 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
               </div>
               <p>IU Xray is s a set of chest X-ray images paired with their corresponding diagnostic reports. The dataset contains 7,470 pairs of images and reports. We follow the split given by xxx.</p>
               <div>
-                <button id="testBtn" class="btn btn-black">IU Xray Test</button>
-                <button id="validBtn" class="btn btn-gray">IU Xray Valid</button>
-              </div>
-              <table class="table performanceTable tablesorter" id="modelTable">
+                <button id="IUTestBtn" class="btn btn-black">IU Xray Test</button>
+                <button id="IUValidBtn" class="btn btn-gray">IU Xray Valid</button>
+            </div>
+            <table class="table performanceTable tablesorter" id="modelTableIU">
                 <thead>
                   <tr>
                     <th>Rank</th>
@@ -258,7 +258,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
 # 调用函数生成HTML文件
 generate_html_from_csv_chexpertplus('./results/result_chexpert_plus-valid.csv', './results/table_chexpertplus.html')
 generate_leaderboard_html_mimiccxr('./results/result_mimic-cxr.csv', './results/result_mimic-cxr-valid.csv', './results/table_mimiccxr.html')
-generate_leaderboard_html_mimiccxr('./results/result_iu_xray.csv', './results/result_iu_xray-valid.csv', './results/table_iuxray.html')
+generate_leaderboard_html_iu_xray('./results/result_iu_xray.csv', './results/result_iu_xray-valid.csv', './results/table_iuxray.html')
 
 
 # # Data to create DataFrame
