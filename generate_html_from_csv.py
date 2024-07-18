@@ -258,7 +258,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
 # 调用函数生成HTML文件
 generate_html_from_csv_chexpertplus('./results/result_chexpert_plus-valid.csv', './results/table_chexpertplus.html')
 generate_leaderboard_html_mimiccxr('./results/result_mimic-cxr.csv', './results/result_mimic-cxr-valid.csv', './results/table_mimiccxr.html')
-generate_leaderboard_html_iu_xray('./results/result_iu_xray.csv', './results/result_iu_xray-valid.csv', './results/table_iuxray.html')
+generate_leaderboard_html_mimiccxr('./results/result_iu_xray.csv', './results/result_iu_xray-valid.csv', './results/table_iuxray.html')
 
 
 # # Data to create DataFrame
