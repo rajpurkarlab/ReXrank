@@ -899,6 +899,169 @@
     </div>
   </div>
 </div>
+<div class="col-md-12">
+  <div class="infoCard">
+    <div class="infoBody">
+      <div class="infoHeadline">
+        <h2>Leaderboard on CheXpert Plus Dataset</h2>
+      </div>
+      <p> CheXpert Plus is a dataset that pairs text and images, featuring 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments, and use the valid set for evaluation.</p>
+      <table class="table performanceTable tablesorter" id="modelTableCheXpert">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Model</th>
+            <th>BLEU</th>
+            <th>BertScore</th>
+            <th>SembScore</th>
+            <th>RadGraph</th>
+            <th>RadCliQ-v0</th>
+            <th>RadCliQ-v1</th>
+          </tr>
+        </thead>
+        <tbody>
+
+      <tr>
+        <td>
+          <p>1</p>
+          <span class="date label label-default">2024</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
+          <p class="institution">Stanford</p>
+        </td>
+        <td><b>0.077</b></td>
+        <td><b>-0.056</b></td>
+        <td><b>0.284</b></td>
+        <td><b>0.039</b></td>
+        <td><b>5.147</b></td>
+        <td><b>2.213</b></td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>2</p>
+          <span class="date label label-default">2024</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-findings</a>
+          <p class="institution">Stanford</p>
+        </td>
+        <td><b>0.088</b></td>
+        <td><b>-0.041</b></td>
+        <td><b>0.306</b></td>
+        <td><b>0.043</b></td>
+        <td><b>5.06</b></td>
+        <td><b>2.16</b></td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>3</p>
+          <span class="date label label-default">2023</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2</a>
+          <p class="institution">CSIRO</p>
+        </td>
+        <td><b>0.083</b></td>
+        <td><b>-0.052</b></td>
+        <td><b>0.288</b></td>
+        <td><b>0.038</b></td>
+        <td><b>5.132</b></td>
+        <td><b>2.202</b></td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>4</p>
+          <span class="date label label-default">2024</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
+          <p class="institution">Harvard</p>
+        </td>
+        <td><b>0.09</b></td>
+        <td><b>0.013</b></td>
+        <td><b>0.337</b></td>
+        <td><b>0.05</b></td>
+        <td><b>4.831</b></td>
+        <td><b>2.031</b></td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>5</p>
+          <span class="date label label-default">2023</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
+          <p class="institution">SJTU</p>
+        </td>
+        <td><b>0.067</b></td>
+        <td><b>-0.038</b></td>
+        <td><b>0.229</b></td>
+        <td><b>0.027</b></td>
+        <td><b>5.206</b></td>
+        <td><b>2.251</b></td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>6</p>
+          <span class="date label label-default">2023</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
+          <p class="institution">TUM</p>
+        </td>
+        <td><b>0.086</b></td>
+        <td><b>-0.035</b></td>
+        <td><b>0.348</b></td>
+        <td><b>0.041</b></td>
+        <td><b>4.967</b></td>
+        <td><b>2.111</b></td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>7</p>
+          <span class="date label label-default">2023</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
+          <p class="institution">TUM</p>
+        </td>
+        <td><b>0.103</b></td>
+        <td><b>-0.039</b></td>
+        <td><b>0.263</b></td>
+        <td><b>0.047</b></td>
+        <td><b>5.139</b></td>
+        <td><b>2.194</b></td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>8</p>
+          <span class="date label label-default">2023</span>
+        </td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://github.com/WissingChen/VLCI">VLCI</a>
+          <p class="institution">SYSU</p>
+        </td>
+        <td><b>0.084</b></td>
+        <td><b>-0.092</b></td>
+        <td><b>0.248</b></td>
+        <td><b>0.032</b></td>
+        <td><b>5.34</b></td>
+        <td><b>2.317</b></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+  </div>
+  </div>
       </div>
     </div>
   </div>
@@ -947,7 +1110,31 @@
   
         // Update ranks on page load
         updateRanks();
+        
+        // Initialize tablesorter
+        $("#modelTableCheXpert").tablesorter({
+            theme: 'default',
+            headers: {
+                0: { sorter: false }, // Rank column
+                1: { sorter: false }  // Model column
+            },
+            sortList: [[7, 0]] // Default sort by RadCliQ-v1 ascending
+        });
   
+        // Update ranks after sorting
+        function updateRanksCheXpert() {
+            $("#modelTableCheXpert tbody:visible tr").each(function(index) {
+                $(this).find("td:eq(0) p").text(index + 1);
+            });
+        }
+  
+        // Update ranks after table sort ends
+        $("#modelTableCheXpert").bind("sortEnd", function() {
+            updateRanksCheXpert();
+        });
+  
+        // Update ranks on page load
+        updateRanks();
         // Switch to test results
         $("#testBtn").click(function() {
             $("#testResults").show();
