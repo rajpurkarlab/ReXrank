@@ -601,10 +601,10 @@
           </div>
           <p>IU Xray is s a set of chest X-ray images paired with their corresponding diagnostic reports. The dataset contains 7,470 pairs of images and reports. We follow the split given by xxx.</p>
           <div>
-            <button id="testBtn" class="btn btn-black">IU Xray Test</button>
-            <button id="validBtn" class="btn btn-gray">IU Xray Valid</button>
+            <button id="testBtnIU" class="btn btn-black">IU Xray Test</button>
+            <button id="validBtnIU" class="btn btn-gray">IU Xray Valid</button>
           </div>
-          <table class="table performanceTable tablesorter" id="modelTable">
+          <table class="table performanceTable tablesorter" id="modelTableIU">
             <thead>
               <tr>
                 <th>Rank</th>
@@ -617,7 +617,7 @@
                 <th>RadCliQ-v1</th>
               </tr>
             </thead>
-            <tbody id="testResults">
+            <tbody id="testResultsIU">
 
           <tr>
             <td>
@@ -756,7 +756,7 @@
           </tr>
     
         </tbody>
-        <tbody id="validResults" style="display: none;">
+        <tbody id="validResultsIU" style="display: none;">
 
           <tr>
             <td>
@@ -1110,6 +1110,31 @@
   
         // Update ranks on page load
         updateRanks();
+
+        // Initialize tablesorter
+        $("#modelTableIU").tablesorter({
+            theme: 'default',
+            headers: {
+                0: { sorter: false }, // Rank column
+                1: { sorter: false }  // Model column
+            },
+            sortList: [[7, 0]] // Default sort by RadCliQ-v1 ascending
+        });
+  
+        // Update ranks after sorting
+        function updateRanksIU() {
+            $("#modelTableIU tbody:visible tr").each(function(index) {
+                $(this).find("td:eq(0) p").text(index + 1);
+            });
+        }
+  
+        // Update ranks after table sort ends
+        $("#modelTableIU").bind("sortEnd", function() {
+          updateRanksIU();
+        });
+  
+        // Update ranks on page load
+        updateRanksIU();
         
         // Initialize tablesorter
         $("#modelTableCheXpert").tablesorter({
@@ -1135,7 +1160,7 @@
   
         // Update ranks on page load
         updateRanksCheXpert();
-        
+
         // Switch to test results
         $("#testBtn").click(function() {
             $("#testResults").show();
@@ -1152,6 +1177,24 @@
             $(this).removeClass('btn-gray').addClass('btn-black');
             $("#testBtn").removeClass('btn-black').addClass('btn-gray');
             updateRanks(); // Update ranks after switching
+        });
+
+        // Switch to test results
+        $("#testBtnIU").click(function() {
+            $("#testResultsIU").show();
+            $("#validResultsIU").hide();
+            $(this).removeClass('btn-gray').addClass('btn-black');
+            $("#validBtn").removeClass('btn-black').addClass('btn-gray');
+            updateRanksIU(); // Update ranks after switching
+        });
+  
+        // Switch to valid results
+        $("#validBtnIU").click(function() {
+            $("#testResultsIU").hide();
+            $("#validResultsIU").show();
+            $(this).removeClass('btn-gray').addClass('btn-black');
+            $("#testBtnIU").removeClass('btn-black').addClass('btn-gray');
+            updateRanksIU(); // Update ranks after switching
         });
     });
   </script>
