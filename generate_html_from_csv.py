@@ -172,7 +172,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
           <div class="infoCard">
             <div class="infoBody">
               <div class="infoHeadline">
-                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+                <h2>Leaderboard on IU Xray Dataset</h2>
               </div>
               <p>IU Xray is s a set of chest X-ray images paired with their corresponding diagnostic reports. The dataset contains 7,470 pairs of images and reports. We follow the split given by xxx.</p>
               <div>
