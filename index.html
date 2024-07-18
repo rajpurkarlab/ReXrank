@@ -295,10 +295,10 @@
               </div>
               <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
               <div>
-                <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
-                <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
+                <button id="MIMICTestBtn" class="btn btn-black">MIMIC-CXR Test</button>
+                <button id="MIMICValidBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
               </div>
-              <table class="table performanceTable tablesorter" id="modelTable">
+              <table class="table performanceTable tablesorter" id="modelTableMIMIC">
                 <thead>
                   <tr>
                     <th>Rank</th>
@@ -601,10 +601,10 @@
           </div>
           <p>IU Xray is s a set of chest X-ray images paired with their corresponding diagnostic reports. The dataset contains 7,470 pairs of images and reports. We follow the split given by xxx.</p>
           <div>
-            <button id="testBtn" class="btn btn-black">IU Xray Test</button>
-            <button id="validBtn" class="btn btn-gray">IU Xray Valid</button>
-          </div>
-          <table class="table performanceTable tablesorter" id="modelTable">
+            <button id="IUTestBtn" class="btn btn-black">IU Xray Test</button>
+            <button id="IUValidBtn" class="btn btn-gray">IU Xray Valid</button>
+        </div>
+        <table class="table performanceTable tablesorter" id="modelTableIU">
             <thead>
               <tr>
                 <th>Rank</th>
@@ -923,50 +923,73 @@
   <script src="/ReXRank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
-        // Initialize tablesorter
-        $("#modelTable").tablesorter({
-            theme: 'default',
-            headers: {
-                0: { sorter: false }, // Rank column
-                1: { sorter: false }  // Model column
-            },
-            sortList: [[7, 0]] // Default sort by RadCliQ-v1 ascending
+        // Initialize tablesorter for all tables
+        $("#modelTableMIMIC, #modelTableIU, #modelTableCheXpert").each(function() {
+            $(this).tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[7, 0]] // Default sort by RadCliQ-v1 ascending
+            }).bind("sortEnd", function() {
+                updateRanks($(this));
+            });
         });
-  
+        
         // Update ranks after sorting
-        function updateRanks() {
-            $("#modelTable tbody:visible tr").each(function(index) {
+        function updateRanks(table) {
+            table.find("tbody:visible tr").each(function(index) {
                 $(this).find("td:eq(0) p").text(index + 1);
             });
         }
-  
-        // Update ranks after table sort ends
-        $("#modelTable").bind("sortEnd", function() {
-            updateRanks();
-        });
-  
+
         // Update ranks on page load
-        updateRanks();
-  
-        // Switch to test results
-        $("#testBtn").click(function() {
-            $("#testResults").show();
-            $("#validResults").hide();
-            $(this).removeClass('btn-gray').addClass('btn-black');
-            $("#validBtn").removeClass('btn-black').addClass('btn-gray');
-            updateRanks(); // Update ranks after switching
+        updateRanks($("#modelTableMIMIC"));
+        updateRanks($("#modelTableIU"));
+        updateRanks($("#modelTableCheXpert"));
+        
+        // Switch to test results for each dataset
+        function switchToTest(dataset) {
+            $("#" + dataset + "TestResults").show();
+            $("#" + dataset + "ValidResults").hide();
+            $("#" + dataset + "TestBtn").removeClass('btn-gray').addClass('btn-black');
+            $("#" + dataset + "ValidBtn").removeClass('btn-black').addClass('btn-gray');
+            updateRanks($("#modelTable" + dataset));
+        }
+
+        // Switch to valid results for each dataset
+        function switchToValid(dataset) {
+            $("#" + dataset + "TestResults").hide();
+            $("#" + dataset + "ValidResults").show();
+            $("#" + dataset + "ValidBtn").removeClass('btn-gray').addClass('btn-black');
+            $("#" + dataset + "TestBtn").removeClass('btn-black').addClass('btn-gray');
+            updateRanks($("#modelTable" + dataset));
+        }
+
+        // Event listeners for switching results
+        $("#MIMICTestBtn").click(function() {
+            switchToTest("MIMIC");
         });
-  
-        // Switch to valid results
-        $("#validBtn").click(function() {
-            $("#testResults").hide();
-            $("#validResults").show();
-            $(this).removeClass('btn-gray').addClass('btn-black');
-            $("#testBtn").removeClass('btn-black').addClass('btn-gray');
-            updateRanks(); // Update ranks after switching
+        $("#MIMICValidBtn").click(function() {
+            switchToValid("MIMIC");
         });
+        $("#IUTestBtn").click(function() {
+            switchToTest("IU");
+        });
+        $("#IUValidBtn").click(function() {
+            switchToValid("IU");
+        });
+        $("#CheXpertTestBtn").click(function() {
+            switchToTest("CheXpert");
+        });
+        $("#CheXpertValidBtn").click(function() {
+            switchToValid("CheXpert");
+        });
+
     });
-  </script>
+</script>
+
   
   <style>
     /* .btn {
