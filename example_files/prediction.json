@@ -1,42 +1,55 @@
 {
     "50051329": {
-        "image_path_list": [
-            "427446c1-881f5cce-85191ce1-91a58ba9-0a57d3f5.jpg",
-            "abea5eb9-b7c32823-3a14c5ca-77868030-69c83139.jpg"
+        "image_path": [
+            "/p10/p10046166/s50051329/427446c1-881f5cce-85191ce1-91a58ba9-0a57d3f5.jpg",
+            "/p10/p10046166/s50051329/abea5eb9-b7c32823-3a14c5ca-77868030-69c83139.jpg"
         ],
-        "img_root_dir": "/p10/p10046166/s50051329",
-        "findings": "Lateral view somewhat limited due to overlying motion artifact.\nThe lungs are low in volume.\nThere is no focal airspace consolidation to suggest pneumonia.\nA 1.2-cm calcified granuloma just below the medial aspect of the right hemidiaphragm is unchanged from prior study.\nNo pleural effusions or pulmonary edema.\nThere is no pneumothorax.\nThe inferior sternotomy wire is fractured but unchanged.\nSurgical clips and vascular markers in the thorax are related to prior CABG surgery.",
-        "impression": "No evidence of acute cardiopulmonary process.",
-        "subject_id": 10046166,
+        "section_findings": "Lateral view somewhat limited due to overlying motion artifact.\nThe lungs are low in volume.\nThere is no focal airspace consolidation to suggest pneumonia.\nA 1.2-cm calcified granuloma just below the medial aspect of the right hemidiaphragm is unchanged from prior study.\nNo pleural effusions or pulmonary edema.\nThere is no pneumothorax.\nThe inferior sternotomy wire is fractured but unchanged.\nSurgical clips and vascular markers in the thorax are related to prior CABG surgery.",
+        "section_impression": "No evidence of acute cardiopulmonary process.",
+        "frontal_lateral": [
+            "lateral",
+            "antero-posterior"
+        ],
         "split": "test",
+        "subject_id": 10046166,
         "context": "<context>Age:50-60.Gender:M.Indication: ___-year-old male with history of metastatic melanoma, presenting with confusion and somnolence.  Evaluate for acute cardiopulmonary process.</context>",
+        "key_image_path": "/p10/p10046166/s50051329/abea5eb9-b7c32823-3a14c5ca-77868030-69c83139.jpg",
         "model_prediction": "Findings:Frontal and lateral views of the chest were obtained.  The patient is status post median sternotomy.  There are low lung volumes.  No focal consolidation, pleural effusion, or evidence of pneumothorax is seen.  The cardiac and mediastinal silhouettes are stable.Impression:No acute cardiopulmonary process."
     },
     "53492798": {
-        "image_path_list": [
-            "18f0fd6d-f513afc9-e4aa8de2-bc5ac0d6-ea3daaff.jpg",
-            "7d5ef12b-34d86e32-207566d6-d5ed6f02-cd868f2c.jpg",
-            "eab11c59-32a5b9b8-b8d335fa-ce06c5fa-5bde0499.jpg"
+        "image_path": [
+            "/p10/p10046166/s53492798/18f0fd6d-f513afc9-e4aa8de2-bc5ac0d6-ea3daaff.jpg",
+            "/p10/p10046166/s53492798/7d5ef12b-34d86e32-207566d6-d5ed6f02-cd868f2c.jpg",
+            "/p10/p10046166/s53492798/eab11c59-32a5b9b8-b8d335fa-ce06c5fa-5bde0499.jpg"
         ],
-        "img_root_dir": "/p10/p10046166/s53492798",
-        "findings": "Frontal and lateral radiographs of the chest redemonstrate a round calcified pulmonary nodule in the posterior right lung base, unchanged from multiple priors and consistent with prior granulomatous disease.\nA known enlarged right hilar lymph node seen on CT of ___ likely accounts for the increased opacity at the right hilum.\nA known right mediastinal lymph node conglomerate accounts for the fullness at the right paratracheal region.\nNo pleural effusion, pneumothorax or focal consolidation is present.\nThe patient is status post median sternotomy and CABG with wires intact.\nThe cardiac silhouette is normal in size.\nThe mediastinal and hilar contours are unchanged from the preceding radiograph.",
-        "impression": "No acute cardiopulmonary process.",
-        "subject_id": 10046166,
+        "section_findings": "Frontal and lateral radiographs of the chest redemonstrate a round calcified pulmonary nodule in the posterior right lung base, unchanged from multiple priors and consistent with prior granulomatous disease.\nA known enlarged right hilar lymph node seen on CT of ___ likely accounts for the increased opacity at the right hilum.\nA known right mediastinal lymph node conglomerate accounts for the fullness at the right paratracheal region.\nNo pleural effusion, pneumothorax or focal consolidation is present.\nThe patient is status post median sternotomy and CABG with wires intact.\nThe cardiac silhouette is normal in size.\nThe mediastinal and hilar contours are unchanged from the preceding radiograph.",
+        "section_impression": "No acute cardiopulmonary process.",
+        "frontal_lateral": [
+            "postero-anterior",
+            "postero-anterior",
+            "left lateral"
+        ],
         "split": "test",
+        "subject_id": 10046166,
         "context": "<context>Indication: ___-year-old male with history of metastatic melanoma, now with recurrent seizures and lethargy, comes here to evaluate for pneumonia.Comparison: Chest radiograph, last performed on ___ and ___.</context>",
+        "key_image_path": "/p10/p10046166/s53492798/7d5ef12b-34d86e32-207566d6-d5ed6f02-cd868f2c.jpg",
         "model_prediction": "Findings:Frontal and lateral radiographs of the chest show interval removal of a right internal jugular central venous catheter.  The lungs are clear without focal consolidation, pleural effusion or pneumothorax.  The pulmonary vasculature is not engorged.  The cardiac silhouette is normal in size.  The mediastinal and hilar contours are within normal limits.  The patient is status post median sternotomy with intact sternal wires.  A right-sided Port-A-Cath is unchanged in position, terminating in the mid SVC.Impression:No acute cardiopulmonary process."
     },
     "57379357": {
-        "image_path_list": [
-            "6e511483-c7e1601c-76890b2f-b0c6b55d-e53bcbf6.jpg",
-            "e5ba5704-ce2f09d3-e28fe2a2-8a9aca96-86f4966a.jpg"
+        "image_path": [
+            "/p10/p10046166/s57379357/6e511483-c7e1601c-76890b2f-b0c6b55d-e53bcbf6.jpg",
+            "/p10/p10046166/s57379357/e5ba5704-ce2f09d3-e28fe2a2-8a9aca96-86f4966a.jpg"
         ],
-        "img_root_dir": "/p10/p10046166/s57379357",
-        "findings": "Frontal and lateral views of the chest were obtained.\nRounded calcified nodule in the region of the posterior right lung base is seen and represents calcified granuloma on CTs dating back to ___, likely secondary to prior granulomatous disease.\nPreviously seen pretracheal lymph node conglomerate and right hilar lymph nodes are better seen/evaluated on CT.\nNo focal consolidation is seen.\nThere is no pleural effusion or pneumothorax.\nCardiac and mediastinal silhouettes are stable with possible slight decrease in right paratracheal prominence.",
-        "impression": "No radiographic findings to suggest pneumonia.",
-        "subject_id": 10046166,
+        "section_findings": "Frontal and lateral views of the chest were obtained.\nRounded calcified nodule in the region of the posterior right lung base is seen and represents calcified granuloma on CTs dating back to ___, likely secondary to prior granulomatous disease.\nPreviously seen pretracheal lymph node conglomerate and right hilar lymph nodes are better seen/evaluated on CT.\nNo focal consolidation is seen.\nThere is no pleural effusion or pneumothorax.\nCardiac and mediastinal silhouettes are stable with possible slight decrease in right paratracheal prominence.",
+        "section_impression": "No radiographic findings to suggest pneumonia.",
+        "frontal_lateral": [
+            "lateral",
+            "antero-posterior"
+        ],
         "split": "test",
+        "subject_id": 10046166,
         "context": "<context>Indication: ___-year-old male with history of hypoglycemia.</context>",
+        "key_image_path": "/p10/p10046166/s57379357/e5ba5704-ce2f09d3-e28fe2a2-8a9aca96-86f4966a.jpg",
         "model_prediction": "Findings:Frontal and lateral views of the chest were obtained.  Patient is status post median sternotomy and CABG.  There is a left-sided PICC, terminating in the mid SVC.  No focal consolidation, pleural effusion, or evidence of pneumothorax is seen.  The cardiac and mediastinal silhouettes are stable.  Degenerative changes are seen along the spine.Impression:No acute cardiopulmonary process."
     }
 }
