@@ -10,53 +10,64 @@
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
   <meta content="/logo.png" property="og:image"/>
-  <link href="/ReXrank/logo.png" rel="image_src" type="image/png"/>
-  <link href="/ReXrank/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-  <link href="/ReXrank/favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="/ReXrank/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="/ReXrank/stylesheets/layout.css" rel="stylesheet"/>
-  <link href="/ReXrank/stylesheets/index.css" rel="stylesheet"/>
-  <script async="" defer="" src="https://buttons.github.io/buttons.js">
-  </script>
-  <script src="/ReXrank/javascripts/analytics.js">
-  </script>
- </head>
- <body>
+  <link href="/ReXRank/logo.png" rel="image_src" type="image/png"/>
+  <link href="/ReXRank/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="/ReXRank/favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="/ReXRank/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="/ReXRank/stylesheets/layout.css" rel="stylesheet"/>
+  <link href="/ReXRank/stylesheets/index.css" rel="stylesheet"/>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <script src="/ReXRank/javascripts/analytics.js"></script>
+  <!-- 引入 jQuery 和 tablesorter 插件 -->
+  <script src="/ReXRank/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/ReXRank/javascripts/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href="/ReXRank/stylesheets/theme.default.min.css">
+  <style>
+    .fixed-height-table {
+      height: 430px; /* 固定高度，可根据需要调整 */
+      overflow-y: scroll;
+      display: block;
+    }
+    .fixed-height-table thead {
+      position: sticky;
+      top: 0;
+      background-color: white; /* 表头背景色 */
+      z-index: 1;
+    }
+    .fixed-height-table th, .fixed-height-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+  <style>
+    .performanceTable th {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
   <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
-   <div class="container clearfix" id="navContainer">
-    <div class="rightNav">
-     <div class="collapseDiv">
-      <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
-       <span class="glyphicon glyphicon-menu-hamburger">
-       </span>
-      </button>
-     </div>
-     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-       <li>
-        <a href="/ReXrank/">
-         Home
-        </a>
-       </li>
-       <li>
-        <a href="/ReXrank/explore/v2.0/dev/">
-         Explore 2.0
-        </a>
-       </li>
-       <li>
-        <a href="/ReXrank/explore/1.1/dev/">
-         Explore 1.1
-        </a>
-       </li>
-      </ul>
-     </div>
-    </div>
-    <div class="leftNav">
-     <div class="brandDiv">
-      <a class="navbar-brand" href="/ReXrank/">
-       SQuAD
-      </a>
-     </div>
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="/ReXRank/">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="/ReXRank/">ReXRank</a>
+        </div>
+      </div>
     </div>
   </div>
   <div class="cover" id="topCover">
@@ -86,127 +97,6 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <p>
-         <span>
-          <b>
-           S
-          </b>
-          tanford
-          <b>
-           Qu
-          </b>
-          estion
-          <b>
-           A
-          </b>
-          nswering
-          <b>
-           D
-          </b>
-          ataset (SQuAD)
-         </span>
-         is a reading comprehension dataset, consisting of questions posed by crowdworkers on a set of Wikipedia articles, where the answer to every question is a segment of text, or
-         <i>
-          span
-         </i>
-         , from the corresponding reading passage, or the question might be unanswerable.
-        </p>
-        <hr/>
-        <p>
-         <b>
-          SQuAD2.0
-         </b>
-         combines the 100,000 questions in SQuAD1.1 with over 50,000 unanswerable questions written adversarially by crowdworkers to look similar to answerable ones. To do well on SQuAD2.0, systems must not only answer questions when possible, but also determine when no answer is supported by the paragraph and abstain from answering.
-        </p>
-        <a class="btn actionBtn" href="/ReXrank/explore/v2.0/dev/">
-         Explore SQuAD2.0 and model predictions
-        </a>
-        <a class="btn actionBtn" href="http://arxiv.org/abs/1806.03822">
-         SQuAD2.0 paper (Rajpurkar &amp; Jia et al. '18)
-        </a>
-        <hr/>
-        <p>
-         <b>
-          SQuAD 1.1,
-         </b>
-         the previous version of the SQuAD dataset, contains 100,000+ question-answer pairs on 500+ articles.
-        </p>
-        <a class="btn actionBtn" href="/ReXrank/explore/1.1/dev/">
-         Explore SQuAD1.1 and model predictions
-        </a>
-        <a class="btn actionBtn" href="http://arxiv.org/abs/1606.05250">
-         SQuAD1.0 paper (Rajpurkar et al. '16)
-        </a>
-        <div class="infoHeadline">
-         <h2>
-          Getting Started
-         </h2>
-        </div>
-        <p>
-         We've built a few resources to help you get started with the dataset.
-        </p>
-        <p>
-         Download a copy of the dataset (distributed under the
-         <a href="http://creativecommons.org/licenses/by-sa/4.0/legalcode">
-          CC BY-SA 4.0
-         </a>
-         license):
-         <ul class="list-unstyled">
-          <li>
-           <a class="btn actionBtn inverseBtn" download="" href="/ReXrank/dataset/train-v2.0.json">
-            Training Set v2.0 (40 MB)
-           </a>
-          </li>
-          <li>
-           <a class="btn actionBtn inverseBtn" download="" href="/ReXrank/dataset/dev-v2.0.json">
-            Dev Set v2.0 (4 MB)
-           </a>
-          </li>
-         </ul>
-        </p>
-        <p>
-         To evaluate your models, we have also made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input. To run the evaluation, use
-         <code>
-          python evaluate-v2.0.py &lt;path_to_dev-v2.0&gt; &lt;path_to_predictions&gt;
-         </code>
-         .
-         <ul class="list-unstyled">
-          <li>
-           <a class="btn actionBtn inverseBtn" download="" href="https://worksheets.codalab.org/rest/bundles/0x6b567e1cf2e041ec80d7098f031c5c9e/contents/blob/">
-            Evaluation Script v2.0
-           </a>
-          </li>
-          <li>
-           <a class="btn actionBtn inverseBtn" download="" href="https://worksheets.codalab.org/bundles/0x8731effab84f41b7b874a070e40f61e2/">
-            Sample Prediction File (on Dev v2.0)
-           </a>
-          </li>
-         </ul>
-        </p>
-        <p>
-         Once you have a built a model that works to your expectations on the dev set, you submit it to get official scores on the dev and a hidden test set. To preserve the integrity of test results, we do not release the test set to the public. Instead, we require you to submit your model so that we can run it on the test set for you. Here's a tutorial walking you through official evaluation of your model:
-        </p>
-        <a class="btn actionBtn inverseBtn" href="https://worksheets.codalab.org/worksheets/0x8212d84ca41c4150b555a075b19ccc05/">
-         Submission Tutorial
-        </a>
-        <p>
-         Because SQuAD is an ongoing effort, we expect the dataset to evolve.
-        </p>
-        <p>
-         To keep up to date with major changes to the dataset, please subscribe:
-        </p>
-        <div id="mc_embed_signup">
-         <form action="//google.us13.list-manage.com/subscribe/post?u=1842e6560d6e10316b4e1aaf5&amp;id=76586bdcf4" class="validate" id="mc-embedded-subscribe-form" method="post" name="mc-embedded-subscribe-form" novalidate="" target="_blank">
-          <div id="mc_embed_signup_scroll">
-           <input class="email" id="mce-EMAIL" name="EMAIL" placeholder="email address" required="" type="email" value=""/>
-           <div aria-hidden="true" style="position: absolute; left: -5000px;">
-            <input name="b_1842e6560d6e10316b4e1aaf5_76586bdcf4" tabindex="-1" type="text" value=""/>
-           </div>
-           <div class="clear">
-            <input class="button" id="mc-embedded-subscribe" name="subscribe" type="submit" value="Subscribe"/>
-           </div>
-=======
         <div class="col-md-5">
           <div class="infoCard">
             <div class="infoBody">
@@ -394,7 +284,6 @@
                 </table>
               </div>
             </div>
->>>>>>> 4e407b02e3b7cc74e72e2c0da1778503989d1fae
           </div>
         </div>
         
@@ -703,33 +592,6 @@
             </tbody>
           </table>
         </div>
-<<<<<<< HEAD
-        <p>
-         Ask us questions at our
-         <a href="https://groups.google.com/forum/#!forum/squad-stanford-qa">
-          google group
-         </a>
-         or at
-         <a href="mailto:robinjia@stanford.edu">
-          robinjia@stanford.edu
-         </a>
-         .
-        </p>
-       </div>
-       <div class="infoSubheadline">
-        <a class="twitter-share-button" data-hashtags="SQuAD" data-size="large" data-text="The Stanford Question Answering Dataset - 100,000+ questions for reading comprehension" data-url="https://stanford-qa.com" data-via="stanfordnlp" href="https://twitter.com/share">
-         Tweet
-        </a>
-        <script>
-         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-        </script>
-        <!-- Place this tag where you want the button to render. -->
-        <a aria-label="Star rajpurkar/ReXrank on GitHub" class="github-button" data-count-api="/repos/rajpurkar/ReXrank#stargazers_count" data-count-aria-label="# stargazers on GitHub" data-count-href="/rajpurkar/ReXrank/stargazers" data-icon="octicon-star" data-style="mega" href="https://github.com/rajpurkar/ReXrank">
-         Star
-        </a>
-       </div>
-=======
->>>>>>> 4e407b02e3b7cc74e72e2c0da1778503989d1fae
       </div>
     </div>
     <div class="col-md-12">
@@ -1209,24 +1071,6 @@
     </div>
   </div>
   <nav class="navbar navbar-default navbar-static-bottom footer">
-<<<<<<< HEAD
-   <div class="container clearfix">
-    <div class="rightNav">
-     <div>
-      <ul class="nav navbar-nav navbar-right">
-       <li>
-        <a href="/ReXrank/">
-         SQuAD
-        </a>
-       </li>
-       <li>
-        <a href="http://nlp.stanford.edu">
-         Stanford NLP Group
-        </a>
-       </li>
-      </ul>
-     </div>
-=======
     <div class="container clearfix">
       <div class="rightNav">
         <div>
@@ -1240,14 +1084,8 @@
           </ul>
         </div>
       </div>
->>>>>>> 4e407b02e3b7cc74e72e2c0da1778503989d1fae
     </div>
   </nav>
-<<<<<<< HEAD
-  <script src="/ReXrank/bower_components/jquery/dist/jquery.min.js">
-  </script>
-  <script src="/ReXrank/bower_components/bootstrap/dist/js/bootstrap.min.js">
-=======
   <script src="/ReXRank/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="/ReXRank/javascripts/jquery.tablesorter.min.js"></script>
   <script src="/ReXRank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -1364,7 +1202,6 @@
             updateRanksIU(); // Update ranks after switching
         });
     });
->>>>>>> 4e407b02e3b7cc74e72e2c0da1778503989d1fae
   </script>
   
   <style>
