@@ -27,8 +27,8 @@ def split_json(input_json_file, GT_REPORTS, PREDICTED_REPORTS):
 
     for study_id, input_data_idx in input_data_dict.items():
         model_prediction = input_data_idx['model_prediction']
-        findings = input_data_idx['findings']
-        impression = input_data_idx['impression']
+        findings = input_data_idx['section_findings']
+        impression = input_data_idx['section_impression']
 
         # Handle NaN values
         findings = findings if pd.notna(findings) else None

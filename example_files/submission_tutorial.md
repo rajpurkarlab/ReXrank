@@ -12,12 +12,13 @@ Your model submission should include the following:
 
 1. **Model Description:** This description identifies your submission on the leaderboard: {Name_of_model} (Institution) paper link, code link, year
 
-
 2. **Conda Environment File:** Include the `environment.yaml` file support `conda install`.
 
 3. **Inference Script:** The model should support the following command: ```python inference.py <input_json_file> <output_json_file>```  We provide an [example](URL) of MedVersa for understanding our requirements. 
 
 4. **Evaluation Result:** Include the evaluation result on the MIMIC-CXR test set.
+
+Please send an email to Xiaoman Zhang xiaomanzhang.zxm@gmail.com with all the required information. Use the email title format: [ReXrank Submission] + Name_of_model. 
 
 ## Removing Your Models from the Leaderboard
 
