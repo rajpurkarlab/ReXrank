@@ -14,7 +14,7 @@ def generate_html_from_csv_chexpertplus(csv_path, output_path):
               <div class="infoHeadline">
                 <h2>Leaderboard on CheXpert Plus Dataset</h2>
               </div>
-              <p> CheXpert Plus is a dataset that pairs text and images, featuring 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments, and use the valid set for evaluation.</p>
+              <div> <p> CheXpert Plus is a dataset that pairs text and images, featuring 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments, and use the valid set for evaluation.</p> </div>
               <table class="table performanceTable tablesorter" id="modelTableCheXpert">
                 <thead>
                   <tr>
@@ -80,7 +80,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
               <div class="infoHeadline">
                 <h2>Leaderboard on MIMIC-CXR Dataset</h2>
               </div>
-              <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
+              <div> <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p> </div>
               <div>
                 <button id="MIMICTestBtn" class="btn btn-black">MIMIC-CXR Test</button>
                 <button id="MIMICValidBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
@@ -171,10 +171,10 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
     <div class="col-md-12">
           <div class="infoCard">
             <div class="infoBody">
-              <div class="infoHeadline">
+               <div class="infoHeadline">
                 <h2>Leaderboard on IU Xray Dataset</h2>
               </div>
-              <p>IU Xray is s a set of chest X-ray images paired with their corresponding diagnostic reports. The dataset contains 7,470 pairs of images and reports. We follow the split given by xxx.</p>
+              <div> <p>IU Xray is s a set of chest X-ray images paired with their corresponding diagnostic reports. The dataset contains 7,470 pairs of images and reports. We follow the split given by <a class="link" href="https://github.com/cuhksz-nlp/R2Gen">R2Gen</a> </p> </div>
               <div>
                 <button id="IUTestBtn" class="btn btn-black">IU Xray Test</button>
                 <button id="IUValidBtn" class="btn btn-gray">IU Xray Valid</button>
