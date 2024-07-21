@@ -330,13 +330,13 @@
                 <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
                 <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
               </div>
-              <table class="table performanceTable tablesorter" id="modelTable">
+              <table class="table performanceTable tablesorter" id="modelTableTest">
                 <thead>
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
                     <th>RadCliQ-v1 <b>↓</b></th>
-                    <th>RadCliQ-v0 <b>↓</b></th>
+                    <th>FineRadScore <b>↓</b></th>
                     <th>BLEU <b>↑</b></th>
                     <th>BertScore <b>↑</b></th>
                     <th>SembScore <b>↑</b></th>
@@ -355,7 +355,7 @@
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>1.437</b></td>
-                <td><b>3.816</b></td>
+                <td><b>2.976</b></td>
                 <td><b>0.094</b></td>
                 <td><b>0.304</b></td>
                 <td><b>0.331</b></td>
@@ -372,7 +372,7 @@
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>1.369</b></td>
-                <td><b>3.729</b></td>
+                <td><b>2.846</b></td>
                 <td><b>0.128</b></td>
                 <td><b>0.308</b></td>
                 <td><b>0.365</b></td>
@@ -389,7 +389,7 @@
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>1.498</b></td>
-                <td><b>3.939</b></td>
+                <td><b>2.944</b></td>
                 <td><b>0.109</b></td>
                 <td><b>0.278</b></td>
                 <td><b>0.315</b></td>
@@ -406,7 +406,7 @@
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>1.088</b></td>
-                <td><b>3.337</b></td>
+                <td><b>2.839</b></td>
                 <td><b>0.193</b></td>
                 <td><b>0.43</b></td>
                 <td><b>0.315</b></td>
@@ -423,7 +423,7 @@
                   <p class="institution">SJTU</p>
                 </td>
                 <td><b>1.604</b></td>
-                <td><b>4.093</b></td>
+                <td><b>3.093</b></td>
                 <td><b>0.081</b></td>
                 <td><b>0.281</b></td>
                 <td><b>0.245</b></td>
@@ -440,7 +440,7 @@
                   <p class="institution">TUM</p>
                 </td>
                 <td><b>1.33</b></td>
-                <td><b>3.647</b></td>
+                <td><b>2.92</b></td>
                 <td><b>0.112</b></td>
                 <td><b>0.322</b></td>
                 <td><b>0.381</b></td>
@@ -457,7 +457,7 @@
                   <p class="institution">TUM</p>
                 </td>
                 <td><b>1.363</b></td>
-                <td><b>3.723</b></td>
+                <td><b>3.097</b></td>
                 <td><b>0.125</b></td>
                 <td><b>0.323</b></td>
                 <td><b>0.337</b></td>
@@ -474,7 +474,7 @@
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>1.573</b></td>
-                <td><b>4.081</b></td>
+                <td><b>2.96</b></td>
                 <td><b>0.124</b></td>
                 <td><b>0.252</b></td>
                 <td><b>0.293</b></td>
@@ -491,7 +491,7 @@
                   <p class="institution">KAIST</p>
                 </td>
                 <td><b>1.983</b></td>
-                <td><b>4.712</b></td>
+                <td><b>3.738</b></td>
                 <td><b>0.036</b></td>
                 <td><b>0.158</b></td>
                 <td><b>0.15</b></td>
@@ -508,7 +508,7 @@
                   <p class="institution">OpenAI</p>
                 </td>
                 <td><b>1.819</b></td>
-                <td><b>4.457</b></td>
+                <td><b>3.355</b></td>
                 <td><b>0.065</b></td>
                 <td><b>0.204</b></td>
                 <td><b>0.19</b></td>
@@ -516,7 +516,21 @@
               </tr>
         
             </tbody>
-            <tbody id="validResults" style="display: none;">
+            </table>
+           <table class="table performanceTable tablesorter" id="modelTableValid">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Model</th>
+                <th>RadCliQ-v1 <b>↓</b></th>
+                <th>RadCliQ-v0 <b>↓</b></th>
+                <th>BLEU <b>↑</b></th>
+                <th>BertScore <b>↑</b></th>
+                <th>SembScore <b>↑</b></th>
+                <th>RadGraph <b>↑</b></th>
+              </tr>
+            </thead>
+            <tbody id="validResults">
     
               <tr>
                 <td>

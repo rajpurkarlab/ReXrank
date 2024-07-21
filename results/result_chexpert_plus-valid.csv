@@ -7,3 +7,5 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,Rad
 6,2023,RaDialog,TUM,https://github.com/ChantalMP/RaDialog,0.086,-0.035,0.348,0.041,4.967,2.111
 7,2023,RGRG,TUM,https://github.com/ttanida/rgrg,0.103,-0.039,0.263,0.047,5.139,2.194
 8,2023,VLCI,SYSU,https://github.com/WissingChen/VLCI,0.084,-0.092,0.248,0.032,5.34,2.317
+9,2024,LLM-CXR,KAIST,https://github.com/hyn2028/llm-cxr,0.032,-0.082,0.201,0.013,5.388,2.369
+10,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.055,-0.065,0.208,0.028,5.318,2.316

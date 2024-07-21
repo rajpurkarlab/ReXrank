@@ -5,22 +5,23 @@
               <div class="infoHeadline">
                 <h2>Leaderboard on MIMIC-CXR Dataset</h2>
               </div>
-              <p>MIMIC-CXR contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
-              <div>
-                <button id="MIMICTestBtn" class="btn btn-black">MIMIC-CXR Test</button>
-                <button id="MIMICValidBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
               </div>
-              <table class="table performanceTable tablesorter" id="modelTableMIMIC">
+              <div>
+                <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
+                <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
+              </div>
+              <table class="table performanceTable tablesorter" id="modelTableTest">
                 <thead>
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>BLEU</th>
-                    <th>BertScore</th>
-                    <th>SembScore</th>
-                    <th>RadGraph</th>
-                    <th>RadCliQ-v0</th>
-                    <th>RadCliQ-v1</th>
+                    <th>RadCliQ-v1 <b>↓</b></th>
+                    <th>FineRadScore <b>↓</b></th>
+                    <th>BLEU <b>↑</b></th>
+                    <th>BertScore <b>↑</b></th>
+                    <th>SembScore <b>↑</b></th>
+                    <th>RadGraph <b>↑</b></th>
                   </tr>
                 </thead>
                 <tbody id="testResults">
@@ -34,12 +35,12 @@
                   <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
                   <p class="institution">Stanford</p>
                 </td>
+                <td><b>1.437</b></td>
+                <td><b>2.976</b></td>
                 <td><b>0.094</b></td>
                 <td><b>0.304</b></td>
                 <td><b>0.331</b></td>
                 <td><b>0.146</b></td>
-                <td><b>3.816</b></td>
-                <td><b>1.437</b></td>
               </tr>
         
               <tr>
@@ -51,12 +52,12 @@
                   <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-findings</a>
                   <p class="institution">Stanford</p>
                 </td>
+                <td><b>1.369</b></td>
+                <td><b>2.846</b></td>
                 <td><b>0.128</b></td>
                 <td><b>0.308</b></td>
                 <td><b>0.365</b></td>
                 <td><b>0.168</b></td>
-                <td><b>3.729</b></td>
-                <td><b>1.369</b></td>
               </tr>
         
               <tr>
@@ -68,12 +69,12 @@
                   <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2</a>
                   <p class="institution">CSIRO</p>
                 </td>
+                <td><b>1.498</b></td>
+                <td><b>2.944</b></td>
                 <td><b>0.109</b></td>
                 <td><b>0.278</b></td>
                 <td><b>0.315</b></td>
                 <td><b>0.145</b></td>
-                <td><b>3.939</b></td>
-                <td><b>1.498</b></td>
               </tr>
         
               <tr>
@@ -85,12 +86,12 @@
                   <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
+                <td><b>1.088</b></td>
+                <td><b>2.839</b></td>
                 <td><b>0.193</b></td>
                 <td><b>0.43</b></td>
                 <td><b>0.315</b></td>
                 <td><b>0.273</b></td>
-                <td><b>3.337</b></td>
-                <td><b>1.088</b></td>
               </tr>
         
               <tr>
@@ -102,12 +103,12 @@
                   <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
                   <p class="institution">SJTU</p>
                 </td>
+                <td><b>1.604</b></td>
+                <td><b>3.093</b></td>
                 <td><b>0.081</b></td>
                 <td><b>0.281</b></td>
                 <td><b>0.245</b></td>
                 <td><b>0.111</b></td>
-                <td><b>4.093</b></td>
-                <td><b>1.604</b></td>
               </tr>
         
               <tr>
@@ -119,12 +120,12 @@
                   <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
                   <p class="institution">TUM</p>
                 </td>
+                <td><b>1.33</b></td>
+                <td><b>2.92</b></td>
                 <td><b>0.112</b></td>
                 <td><b>0.322</b></td>
                 <td><b>0.381</b></td>
                 <td><b>0.168</b></td>
-                <td><b>3.647</b></td>
-                <td><b>1.33</b></td>
               </tr>
         
               <tr>
@@ -136,12 +137,12 @@
                   <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
                   <p class="institution">TUM</p>
                 </td>
+                <td><b>1.363</b></td>
+                <td><b>3.097</b></td>
                 <td><b>0.125</b></td>
                 <td><b>0.323</b></td>
                 <td><b>0.337</b></td>
                 <td><b>0.176</b></td>
-                <td><b>3.723</b></td>
-                <td><b>1.363</b></td>
               </tr>
         
               <tr>
@@ -153,16 +154,64 @@
                   <a class="link" href="https://github.com/WissingChen/VLCI">VLCI</a>
                   <p class="institution">SYSU</p>
                 </td>
+                <td><b>1.573</b></td>
+                <td><b>2.96</b></td>
                 <td><b>0.124</b></td>
                 <td><b>0.252</b></td>
                 <td><b>0.293</b></td>
                 <td><b>0.136</b></td>
-                <td><b>4.081</b></td>
-                <td><b>1.573</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>9</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR</a>
+                  <p class="institution">KAIST</p>
+                </td>
+                <td><b>1.983</b></td>
+                <td><b>3.738</b></td>
+                <td><b>0.036</b></td>
+                <td><b>0.158</b></td>
+                <td><b>0.15</b></td>
+                <td><b>0.047</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>10</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <p class="institution">OpenAI</p>
+                </td>
+                <td><b>1.819</b></td>
+                <td><b>3.355</b></td>
+                <td><b>0.065</b></td>
+                <td><b>0.204</b></td>
+                <td><b>0.19</b></td>
+                <td><b>0.085</b></td>
               </tr>
         
             </tbody>
-            <tbody id="validResults" style="display: none;">
+            </table>
+           <table class="table performanceTable tablesorter" id="modelTableValid">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Model</th>
+                <th>RadCliQ-v1 <b>↓</b></th>
+                <th>RadCliQ-v0 <b>↓</b></th>
+                <th>BLEU <b>↑</b></th>
+                <th>BertScore <b>↑</b></th>
+                <th>SembScore <b>↑</b></th>
+                <th>RadGraph <b>↑</b></th>
+              </tr>
+            </thead>
+            <tbody id="validResults">
     
               <tr>
                 <td>
@@ -173,12 +222,12 @@
                   <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
                   <p class="institution">Stanford</p>
                 </td>
+                <td><b>1.181</b></td>
+                <td><b>3.407</b></td>
                 <td><b>0.136</b></td>
                 <td><b>0.362</b></td>
                 <td><b>0.43</b></td>
                 <td><b>0.196</b></td>
-                <td><b>3.407</b></td>
-                <td><b>1.181</b></td>
               </tr>
         
               <tr>
@@ -190,12 +239,12 @@
                   <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-findings</a>
                   <p class="institution">Stanford</p>
                 </td>
+                <td><b>1.206</b></td>
+                <td><b>3.443</b></td>
                 <td><b>0.14</b></td>
                 <td><b>0.339</b></td>
                 <td><b>0.462</b></td>
                 <td><b>0.181</b></td>
-                <td><b>3.443</b></td>
-                <td><b>1.206</b></td>
               </tr>
         
               <tr>
@@ -207,12 +256,12 @@
                   <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2</a>
                   <p class="institution">CSIRO</p>
                 </td>
+                <td><b>1.287</b></td>
+                <td><b>3.582</b></td>
                 <td><b>0.133</b></td>
                 <td><b>0.318</b></td>
                 <td><b>0.428</b></td>
                 <td><b>0.17</b></td>
-                <td><b>3.582</b></td>
-                <td><b>1.287</b></td>
               </tr>
         
               <tr>
@@ -224,12 +273,12 @@
                   <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
+                <td><b>0.912</b></td>
+                <td><b>2.972</b></td>
                 <td><b>0.159</b></td>
                 <td><b>0.432</b></td>
                 <td><b>0.504</b></td>
                 <td><b>0.259</b></td>
-                <td><b>2.972</b></td>
-                <td><b>0.912</b></td>
               </tr>
         
               <tr>
@@ -241,12 +290,12 @@
                   <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
                   <p class="institution">SJTU</p>
                 </td>
+                <td><b>1.276</b></td>
+                <td><b>3.554</b></td>
                 <td><b>0.119</b></td>
                 <td><b>0.354</b></td>
                 <td><b>0.379</b></td>
                 <td><b>0.172</b></td>
-                <td><b>3.554</b></td>
-                <td><b>1.276</b></td>
               </tr>
         
               <tr>
@@ -258,12 +307,12 @@
                   <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
                   <p class="institution">TUM</p>
                 </td>
+                <td><b>1.156</b></td>
+                <td><b>3.358</b></td>
                 <td><b>0.13</b></td>
                 <td><b>0.364</b></td>
                 <td><b>0.448</b></td>
                 <td><b>0.198</b></td>
-                <td><b>3.358</b></td>
-                <td><b>1.156</b></td>
               </tr>
         
               <tr>
@@ -275,12 +324,12 @@
                   <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
                   <p class="institution">TUM</p>
                 </td>
+                <td><b>1.067</b></td>
+                <td><b>3.246</b></td>
                 <td><b>0.165</b></td>
                 <td><b>0.381</b></td>
                 <td><b>0.462</b></td>
                 <td><b>0.237</b></td>
-                <td><b>3.246</b></td>
-                <td><b>1.067</b></td>
               </tr>
         
               <tr>
@@ -292,12 +341,46 @@
                   <a class="link" href="https://github.com/WissingChen/VLCI">VLCI</a>
                   <p class="institution">SYSU</p>
                 </td>
+                <td><b>1.334</b></td>
+                <td><b>3.671</b></td>
                 <td><b>0.141</b></td>
                 <td><b>0.295</b></td>
                 <td><b>0.422</b></td>
                 <td><b>0.168</b></td>
-                <td><b>3.671</b></td>
-                <td><b>1.334</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>9</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR</a>
+                  <p class="institution">KAIST</p>
+                </td>
+                <td><b>1.992</b></td>
+                <td><b>4.725</b></td>
+                <td><b>0.034</b></td>
+                <td><b>0.171</b></td>
+                <td><b>0.127</b></td>
+                <td><b>0.04</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>10</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <p class="institution">OpenAI</p>
+                </td>
+                <td><b>1.696</b></td>
+                <td><b>4.25</b></td>
+                <td><b>0.067</b></td>
+                <td><b>0.226</b></td>
+                <td><b>0.244</b></td>
+                <td><b>0.112</b></td>
               </tr>
         
             </tbody>
