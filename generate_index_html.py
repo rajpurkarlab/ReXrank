@@ -170,7 +170,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     <script>
         $(document).ready(function() {
             // Initialize tablesorter
-            $("#modelTable").tablesorter({
+            $("#modelTableTest").tablesorter({
                 theme: 'default',
                 headers: {
                     0: { sorter: false }, // Rank column
@@ -180,19 +180,43 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             });
     
             // Update ranks after sorting
-            function updateRanks() {
-                $("#modelTable tbody:visible tr").each(function(index) {
+            function updateRankTest() {
+                $("#modelTableTest tbody:visible tr").each(function(index) {
                     $(this).find("td:eq(0) p").text(index + 1);
                 });
             }
     
             // Update ranks after table sort ends
-            $("#modelTable").bind("sortEnd", function() {
-                updateRanks();
+            $("#modelTableTest").bind("sortEnd", function() {
+              updateRankTest();
             });
     
             // Update ranks on page load
-            updateRanks();
+            updateRankTest();
+
+            // Initialize tablesorter
+            $("#modelTableValid").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 0]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRankValid() {
+                $("#modelTableValid tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
+    
+            // Update ranks after table sort ends
+            $("#updateRankValid").bind("sortEnd", function() {
+              updateRankValid();
+            });
+    
+
 
             // Initialize tablesorter
             $("#modelTableIU").tablesorter({
@@ -216,6 +240,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             updateRanksIU();
             });
     
+            $("#modelTableValid").hide();
             // Update ranks on page load
             updateRanksIU();
             
@@ -246,20 +271,20 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
 
             // Switch to test results
             $("#testBtn").click(function() {
-                $("#testResults").show();
-                $("#validResults").hide();
+                $("#modelTableTest").show();
+                $("#modelTableValid").hide();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtn").removeClass('btn-black').addClass('btn-gray');
-                updateRanks(); // Update ranks after switching
+                updateRanksTest(); // Update ranks after switching
             });
-    
+
             // Switch to valid results
             $("#validBtn").click(function() {
-                $("#testResults").hide();
-                $("#validResults").show();
+                $("#modelTableTest").hide();
+                $("#modelTableValid").show();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtn").removeClass('btn-black').addClass('btn-gray');
-                updateRanks(); // Update ranks after switching
+                updateRanksValid(); // Update ranks after switching
             });
 
             // Switch to test results
