@@ -1,0 +1,8 @@
+@misc{rexrank,
+  author       = {Rajpurkar Lab},
+  title        = {ReXrank Leaderboard},
+  year         = {2024},
+  month        = {July},
+  day          = {22},
+  howpublished = {\url{https://rajpurkarlab.github.io/rexrank/}},
+}
