@@ -185,7 +185,22 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                     $(this).find("td:eq(0) p").text(index + 1);
                 });
             }
-    
+            
+            // Function to sort table based on custom order for clicked column
+            function customSortTest(columnIndex) {
+                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableTest").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableTest th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
+                    customSortTest(columnIndex);
+                }
+            });
+
             // Update ranks after table sort ends
             $("#modelTableTest").bind("sortEnd", function() {
               updateRankTest();
@@ -210,13 +225,25 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                     $(this).find("td:eq(0) p").text(index + 1);
                 });
             }
-    
+            
+            // Function to sort table based on custom order for clicked column
+            function customSortValid(columnIndex) {
+                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableValid").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableValid th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
+                  customSortValid(columnIndex);
+                }
+            });
             // Update ranks after table sort ends
-            $("#updateRankValid").bind("sortEnd", function() {
+            $("#modelTableValid").bind("sortEnd", function() {
               updateRankValid();
             });
-    
-
 
             // Initialize tablesorter
             $("#modelTableIU").tablesorter({
@@ -234,6 +261,21 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                     $(this).find("td:eq(0) p").text(index + 1);
                 });
             }
+
+            // Function to sort table based on custom order for clicked column
+            function customSortIU(columnIndex) {
+                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableIU").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableIU th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
+                  customSortIU(columnIndex);
+                }
+            });
     
             // Update ranks after table sort ends
             $("#modelTableIU").bind("sortEnd", function() {
@@ -261,6 +303,20 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 });
             }
     
+            // Function to sort table based on custom order for clicked column
+            function customSortCheXpert(columnIndex) {
+                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableCheXpert").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableCheXpert th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
+                  customSortCheXpert(columnIndex);
+                }
+            });
             // Update ranks after table sort ends
             $("#modelTableCheXpert").bind("sortEnd", function() {
                 updateRanksCheXpert();

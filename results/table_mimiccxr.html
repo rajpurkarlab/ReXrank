@@ -5,7 +5,7 @@
               <div class="infoHeadline">
                 <h2>Leaderboard on MIMIC-CXR Dataset</h2>
               </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model used the training set.</p>
               </div>
               <div>
                 <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
@@ -16,8 +16,8 @@
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>RadCliQ-v1 <b>↓</b></th>
                     <th>FineRadScore <b>↓</b></th>
+                    <th>RadCliQ-v1 <b>↓</b></th>
                     <th>BLEU <b>↑</b></th>
                     <th>BertScore <b>↑</b></th>
                     <th>SembScore <b>↑</b></th>
@@ -32,11 +32,11 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent*</a>
                   <p class="institution">Stanford</p>
                 </td>
-                <td><b>1.437</b></td>
                 <td><b>2.976</b></td>
+                <td><b>1.437</b></td>
                 <td><b>0.094</b></td>
                 <td><b>0.304</b></td>
                 <td><b>0.331</b></td>
@@ -49,11 +49,11 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-findings</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-mimic*</a>
                   <p class="institution">Stanford</p>
                 </td>
-                <td><b>1.369</b></td>
                 <td><b>2.846</b></td>
+                <td><b>1.369</b></td>
                 <td><b>0.128</b></td>
                 <td><b>0.308</b></td>
                 <td><b>0.365</b></td>
@@ -66,11 +66,11 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2*</a>
                   <p class="institution">CSIRO</p>
                 </td>
-                <td><b>1.498</b></td>
                 <td><b>2.944</b></td>
+                <td><b>1.498</b></td>
                 <td><b>0.109</b></td>
                 <td><b>0.278</b></td>
                 <td><b>0.315</b></td>
@@ -83,11 +83,11 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa*</a>
                   <p class="institution">Harvard</p>
                 </td>
-                <td><b>1.088</b></td>
                 <td><b>2.839</b></td>
+                <td><b>1.088</b></td>
                 <td><b>0.193</b></td>
                 <td><b>0.43</b></td>
                 <td><b>0.315</b></td>
@@ -100,11 +100,11 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
+                  <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM*</a>
                   <p class="institution">SJTU</p>
                 </td>
-                <td><b>1.604</b></td>
                 <td><b>3.092</b></td>
+                <td><b>1.604</b></td>
                 <td><b>0.081</b></td>
                 <td><b>0.281</b></td>
                 <td><b>0.245</b></td>
@@ -117,11 +117,11 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
+                  <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog*</a>
                   <p class="institution">TUM</p>
                 </td>
-                <td><b>1.33</b></td>
                 <td><b>2.92</b></td>
+                <td><b>1.33</b></td>
                 <td><b>0.112</b></td>
                 <td><b>0.322</b></td>
                 <td><b>0.381</b></td>
@@ -134,11 +134,11 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
+                  <a class="link" href="https://github.com/ttanida/rgrg">RGRG*</a>
                   <p class="institution">TUM</p>
                 </td>
-                <td><b>1.363</b></td>
                 <td><b>3.142</b></td>
+                <td><b>1.363</b></td>
                 <td><b>0.125</b></td>
                 <td><b>0.323</b></td>
                 <td><b>0.337</b></td>
@@ -151,11 +151,11 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI*</a>
                   <p class="institution">SYSU</p>
                 </td>
-                <td><b>1.573</b></td>
                 <td><b>2.99</b></td>
+                <td><b>1.573</b></td>
                 <td><b>0.124</b></td>
                 <td><b>0.252</b></td>
                 <td><b>0.293</b></td>
@@ -168,11 +168,11 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR</a>
+                  <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR*</a>
                   <p class="institution">KAIST</p>
                 </td>
-                <td><b>1.983</b></td>
                 <td><b>3.681</b></td>
+                <td><b>1.983</b></td>
                 <td><b>0.036</b></td>
                 <td><b>0.158</b></td>
                 <td><b>0.15</b></td>
@@ -188,8 +188,8 @@
                   <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
-                <td><b>1.819</b></td>
                 <td><b>3.345</b></td>
+                <td><b>1.819</b></td>
                 <td><b>0.065</b></td>
                 <td><b>0.204</b></td>
                 <td><b>0.19</b></td>
