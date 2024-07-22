@@ -209,41 +209,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             // Update ranks on page load
             updateRankTest();
 
-            // Initialize tablesorter
-            $("#modelTableValid").tablesorter({
-                theme: 'default',
-                headers: {
-                    0: { sorter: false }, // Rank column
-                    1: { sorter: false }  // Model column
-                },
-                sortList: [[2, 0]] // Default sort by RadCliQ-v1 ascending
-            });
-    
-            // Update ranks after sorting
-            function updateRankValid() {
-                $("#modelTableValid tbody:visible tr").each(function(index) {
-                    $(this).find("td:eq(0) p").text(index + 1);
-                });
-            }
-            
-            // Function to sort table based on custom order for clicked column
-            function customSortValid(columnIndex) {
-                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
-                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
-                $("#modelTableValid").trigger("sorton", [[[columnIndex, sortDirection]]]);
-            }
-
-            // Detect column header click and apply custom sort
-            $("#modelTableValid th").click(function() {
-                var columnIndex = $(this).index();
-                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
-                  customSortValid(columnIndex);
-                }
-            });
-            // Update ranks after table sort ends
-            $("#modelTableValid").bind("sortEnd", function() {
-              updateRankValid();
-            });
 
             // Initialize tablesorter
             $("#modelTableIU").tablesorter({
@@ -282,7 +247,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             updateRanksIU();
             });
     
-            $("#modelTableValid").hide();
             // Update ranks on page load
             updateRanksIU();
             
@@ -325,23 +289,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             // Update ranks on page load
             updateRanksCheXpert();
 
-            // Switch to test results
-            $("#testBtn").click(function() {
-                $("#modelTableTest").show();
-                $("#modelTableValid").hide();
-                $(this).removeClass('btn-gray').addClass('btn-black');
-                $("#validBtn").removeClass('btn-black').addClass('btn-gray');
-                updateRanksTest(); // Update ranks after switching
-            });
-
-            // Switch to valid results
-            $("#validBtn").click(function() {
-                $("#modelTableTest").hide();
-                $("#modelTableValid").show();
-                $(this).removeClass('btn-gray').addClass('btn-black');
-                $("#testBtn").removeClass('btn-black').addClass('btn-gray');
-                updateRanksValid(); // Update ranks after switching
-            });
 
             // Switch to test results
             $("#testBtnIU").click(function() {

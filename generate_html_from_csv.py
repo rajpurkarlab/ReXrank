@@ -274,6 +274,70 @@ def generate_leaderboard_html_mimiccxr_fineradscore(test_csv_path, valid_csv_pat
     with open(output_path, 'w') as file:
         file.write(html_string)
 
+def generate_leaderboard_html_mimiccxr_fineradscore_onlytest(test_csv_path, valid_csv_path, output_path):
+    # 读取CSV文件
+    df_test = pd.read_csv(test_csv_path)
+    
+    # HTML开头部分
+    html_string = '''
+    <div class="col-md-12">
+          <div class="infoCard">
+            <div class="infoBody">
+              <div class="infoHeadline">
+                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+              </div>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model used the training set.</p>
+              </div>
+              <table class="table performanceTable tablesorter" id="modelTableTest">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Model</th>
+                    <th>FineRadScore <b>↓</b></th>
+                    <th>RadCliQ-v1 <b>↓</b></th>
+                    <th>BLEU <b>↑</b></th>
+                    <th>BertScore <b>↑</b></th>
+                    <th>SembScore <b>↑</b></th>
+                    <th>RadGraph <b>↑</b></th>
+                  </tr>
+                </thead>
+                <tbody>
+    '''
+    
+    # 生成测试集表格内容
+    for _, row in df_test.iterrows():
+        html_string += f'''
+              <tr>
+                <td>
+                  <p>{row['Rank']}</p>
+                  <span class="date label label-default">{row['Date']}</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
+                  <p class="institution">{row['Institution']}</p>
+                </td>
+                <td><b>{row['FineRadScore']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['BLEU']}</b></td>
+                <td><b>{row['BertScore']}</b></td>
+                <td><b>{row['SembScore']}</b></td>
+                <td><b>{row['RadGraph']}</b></td>
+              </tr>
+        '''
+    
+    html_string += '''
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    '''
+    
+    # 写入HTML文件
+    with open(output_path, 'w') as file:
+        file.write(html_string)
+
+
 def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path):
     # 读取CSV文件
     df_test = pd.read_csv(test_csv_path)
@@ -372,7 +436,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
 
 # 调用函数生成HTML文件
 generate_html_from_csv_chexpertplus('./results/result_chexpert_plus-valid.csv', './results/table_chexpertplus.html')
-generate_leaderboard_html_mimiccxr_fineradscore('./results/result_mimic-cxr.csv', './results/result_mimic-cxr-valid.csv', './results/table_mimiccxr.html')
+generate_leaderboard_html_mimiccxr_fineradscore_onlytest('./results/result_mimic-cxr.csv', './results/result_mimic-cxr-valid.csv', './results/table_mimiccxr.html')
 generate_leaderboard_html_iu_xray('./results/result_iu_xray.csv', './results/result_iu_xray-valid.csv', './results/table_iuxray.html')
 
 
