@@ -1,8 +1,7 @@
 # Evaluation Script for ReXRank Predictions
 
 ## Overview
-This script converts a prediction JSON file into ground truth and prediction CSV files. These CSV files can be used for further evaluation using the scoring metrics from the [CXR-Report-Metric](https://github.com/rajpurkarlab/CXR-Report-Metric) repository.
-
+This script converts a prediction JSON file into ground truth and prediction CSV files. These CSV files can be used for further evaluation using the scoring metrics from the [CXR-Report-Metric](https://github.com/rajpurkarlab/CXR-Report-Metric) repository. For the FineRadScore, we follow [FineRadScore](https://github.com/rajpurkarlab/FineRadScore) repository.
 ## Script
 
 ```python
