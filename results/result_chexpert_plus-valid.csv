@@ -1,6 +1,6 @@
 Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,RadCliQ-v0,RadCliQ-v1
 1,2024,CheXagent,Stanford,https://github.com/Stanford-AIMI/CheXagent,0.077,-0.056,0.284,0.039,5.147,2.213
-2,2024,CheXpertPlus-findings,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.088,-0.041,0.306,0.043,5.06,2.16
+2,2024,CheXpertPlus-mimic,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.088,-0.041,0.306,0.043,5.06,2.16
 3,2023,Cvt2distilgpt2,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.083,-0.052,0.288,0.038,5.132,2.202
 4,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa/tree/main,0.09,0.013,0.337,0.05,4.831,2.031
 5,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.067,-0.038,0.229,0.027,5.206,2.251
