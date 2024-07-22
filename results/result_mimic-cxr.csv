@@ -3,9 +3,9 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,Rad
 2,2024,CheXpertPlus-findings,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.128,0.308,0.365,0.168,3.729,1.369,2.846
 3,2023,Cvt2distilgpt2,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.109,0.278,0.315,0.145,3.939,1.498,2.944
 4,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa/tree/main,0.193,0.43,0.315,0.273,3.337,1.088,2.839
-5,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.081,0.281,0.245,0.111,4.093,1.604,3.093
+5,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.081,0.281,0.245,0.111,4.093,1.604,3.092
 6,2023,RaDialog,TUM,https://github.com/ChantalMP/RaDialog,0.112,0.322,0.381,0.168,3.647,1.33,2.920
-7,2023,RGRG,TUM,https://github.com/ttanida/rgrg,0.125,0.323,0.337,0.176,3.723,1.363,3.097
-8,2023,VLCI,SYSU,https://github.com/WissingChen/VLCI,0.124,0.252,0.293,0.136,4.081,1.573,2.960
-9,2024,LLM-CXR,KAIST,https://github.com/hyn2028/llm-cxr,0.036,0.158,0.15,0.047,4.712,1.983,3.738
-10,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.065,0.204,0.19,0.085,4.457,1.819,3.355
+7,2023,RGRG,TUM,https://github.com/ttanida/rgrg,0.125,0.323,0.337,0.176,3.723,1.363,3.142
+8,2023,VLCI,SYSU,https://github.com/WissingChen/VLCI,0.124,0.252,0.293,0.136,4.081,1.573,2.990
+9,2024,LLM-CXR,KAIST,https://github.com/hyn2028/llm-cxr,0.036,0.158,0.15,0.047,4.712,1.983,3.681
+10,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.065,0.204,0.19,0.085,4.457,1.819,3.345
