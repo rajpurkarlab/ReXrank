@@ -17,7 +17,7 @@ def generate_html_from_csv_chexpertplus(csv_path, output_path):
           <h2>Leaderboard on CheXpert Plus Dataset</h2>
         </div>
         <div>
-          <p> <a class="link" href="https://stanfordaimi.azurewebsites.net/datasets/5158c524-d3ab-4e02-96e9-6ee9efc110a1">CheXpert Plus </a> contains 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments and use the valid set for evaluation. * denotes the model used the training set.</p>
+          <p> <a class="link" href="https://stanfordaimi.azurewebsites.net/datasets/5158c524-d3ab-4e02-96e9-6ee9efc110a1">CheXpert Plus </a> contains 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments and use the valid set for evaluation. * denotes the model was trained on MIMIC-CXR.</p>
         </div>
         <table class="table performanceTable tablesorter" id="modelTableCheXpert">
           <thead>
@@ -83,7 +83,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
               <div class="infoHeadline">
                 <h2>Leaderboard on MIMIC-CXR Dataset</h2>
               </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model used the training set.</p>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model was trained on MIMIC-CXR.</p>
               </div>
               <div>
                 <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
@@ -178,7 +178,7 @@ def generate_leaderboard_html_mimiccxr_fineradscore(test_csv_path, valid_csv_pat
               <div class="infoHeadline">
                 <h2>Leaderboard on MIMIC-CXR Dataset</h2>
               </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model used the training set.</p>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model was trained on MIMIC-CXR.</p>
               </div>
               <div>
                 <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
@@ -286,7 +286,7 @@ def generate_leaderboard_html_mimiccxr_fineradscore_onlytest(test_csv_path, vali
               <div class="infoHeadline">
                 <h2>Leaderboard on MIMIC-CXR Dataset</h2>
               </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments, and report the score on test set. * denotes the model used the training set.</p>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments, and report the score on test set. * denotes the model was trained on MIMIC-CXR.</p>
               </div>
               <table class="table performanceTable tablesorter" id="modelTableTest">
                 <thead>
@@ -352,7 +352,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
             <h2>Leaderboard on IU Xray Dataset</h2>
           </div>
           <div>
-            <p> <a class="link" href="https://paperswithcode.com/dataset/iu-x-ray">IU Xray</a> contains 7,470 pairs of radiology reports and chest X-rays from Indiana University. We follow the split given by <a class="link" href="https://github.com/cuhksz-nlp/R2Gen">R2Gen</a>. * denotes the model used the training set.</p>
+            <p> <a class="link" href="https://paperswithcode.com/dataset/iu-x-ray">IU Xray</a> contains 7,470 pairs of radiology reports and chest X-rays from Indiana University. We follow the split given by <a class="link" href="https://github.com/cuhksz-nlp/R2Gen">R2Gen</a>. * denotes the model was trained on MIMIC-CXR.</p>
           </div>
           <div style="margin-top: 5px;">
             <button id="testBtnIU" class="btn btn-black">IU Xray Test</button>
