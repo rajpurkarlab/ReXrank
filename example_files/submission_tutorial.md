@@ -4,7 +4,7 @@ In this tutorial, we'll cover the process of submitting your model and results f
 
 ## 1. Evaluating on the MIMIC-CXR Test Set
 
-To achieve a consistent score with our leaderboard, please use the official MIMIC-CXR test split. You can download the file from [this link](URL). We evaluate at the study level. If the submitted model can input multiple images, we will input all images of a study. If the submitted model includes only one image, we will default to using the frontal image. Additionally, we have the context file, and the model can select if you are going to use this info. Run the evaluation script on the MIMIC-CXR test set and obtain the output score file, which needs to be included in the submission.
+To achieve a consistent score with our leaderboard, please use the official MIMIC-CXR test split. You can download the file from [this link](https://physionet.org/content/mimic-cxr/2.0.0/). We evaluate at the study level. If the submitted model can input multiple images, we will input all images of a study. If the submitted model includes only one image, we will default to using the frontal image. Additionally, we have the context file, and the model can select if you are going to use this info. Run the evaluation script on the MIMIC-CXR test set and obtain the output score file, which needs to be included in the submission.
 
 ## 2. Model Submission
 
