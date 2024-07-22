@@ -25,7 +25,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
   <link rel="stylesheet" href="/ReXrank/stylesheets/theme.default.min.css">
   <style>
     .fixed-height-table {
-      height: 430px; /* 固定高度，可根据需要调整 */
+      height: 400px; /* 固定高度，可根据需要调整 */
       overflow-y: scroll;
       display: block;
     }
