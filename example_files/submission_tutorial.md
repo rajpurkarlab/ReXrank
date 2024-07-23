@@ -14,7 +14,7 @@ Your model submission should include the following:
 
 2. **Conda Environment File:** Include the `environment.yaml` file support `conda install`.
 
-3. **Inference Script:** The model should support the following command: ```python inference.py <input_json_file> <output_json_file> <img_root_dir>```  We provide an [example](https://github.com/xiaoman-zhang/ReXrank/blob/gh-pages/example_files/merversa_inference.py) of [MedVersa](https://huggingface.co/hyzhou/MedVersa/tree/main) for understanding our requirements. 
+3. **Inference Script:** The model should support the following command: ```python inference.py <input_json_file> <output_json_file> <img_root_dir>```  We provide an [example](https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/merversa_inference.py) of [MedVersa](https://huggingface.co/hyzhou/MedVersa/tree/main) for understanding our requirements. 
 
 4. **Evaluation Result:** Include the evaluation result on the MIMIC-CXR test set.
 
