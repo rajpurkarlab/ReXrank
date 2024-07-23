@@ -2,9 +2,14 @@
 
 ReXrank is an open-source leaderboard for AI-powered radiology report generation from chest x-ray images. We're setting a new standard in healthcare AI by providing a comprehensive, objective evaluation framework for cutting-edge models. Our mission is to accelerate progress in this critical field by fostering healthy competition and collaboration among researchers, clinicians, and AI enthusiasts.
 
+![](./figures/new.gif) 
+The detailed information of the test set has been updated in `./data/`. Check the details in `./data/README.md`.
+
+
 ## Overview
 
 Using diverse datasets like MIMIC-CXR, IU-Xray, and CheXpert Plus, ReXrank offers a robust benchmarking system that evolves with clinical needs and technological advancements. Our leaderboard showcases top-performing models, driving innovation that could transform patient care and streamline medical workflows.
+
 
 ## Join Us
 
