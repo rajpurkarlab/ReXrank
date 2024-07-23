@@ -19,7 +19,7 @@ def generate_leaderboard_html(mimic_csv_path, iu_xray_csv_path, chexpert_plus_cs
           <div class="infoHeadline">
             <h2>Leaderboard Overview</h2>
           </div>
-          <p>Include top models for different datasets. * denotes model trained on MIMIC-CXR.</p>
+          <p>Include top models for different datasets. * denotes model trained on this dataset.</p>
           <div class="fixed-height-table">
             <table class="table performanceTable">
               <thead>
