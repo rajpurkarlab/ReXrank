@@ -26,6 +26,14 @@
   <script src="../javascripts/analytics.js"></script>
   <script src="../javascripts/analytics.js"></script>
   <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+   <!-- Add Cornerstone.js library and its dependencies -->
+   <script src="https://unpkg.com/cornerstone-core@2.3.0/dist/cornerstone.min.js"></script>
+   <script src="https://unpkg.com/cornerstone-math@0.1.9/dist/cornerstoneMath.min.js"></script>
+   <script src="https://unpkg.com/cornerstone-tools@6.0.6/dist/cornerstoneTools.min.js"></script>
+   <script src="https://unpkg.com/dicom-parser/dist/dicomParser.min.js"></script>
+   <script src="https://unpkg.com/cornerstone-wado-image-loader@4.13.2/dist/cornerstoneWADOImageLoader.bundle.min.js"></script>
+   
+   
   <style>
     .fixed-height-table {
       height: 400px; /* 固定高度，可根据需要调整 */
@@ -140,6 +148,26 @@
       text-decoration: none;
       cursor: pointer;
     }
+    .dicom-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+    #imageModal .modal-content {
+        width: 90%;
+        height: 90%;
+        max-width: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: black;
+    }
+
+    #modalImage {
+        width: 100%;
+        height: 100%;
+    }
   </style>  
 </head>
 <body>
@@ -215,8 +243,10 @@
 
 
 <div id="imageModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="modalImage">
+  <span class="close">&times;</span>
+  <div class="modal-content">
+      <div id="modalImage"></div>
+  </div>
 </div>
 
 <div id="customAlert" class="custom-alert">
@@ -231,19 +261,22 @@
     // Sample data (replace with your actual data)
     const voteData = [
         {
-            imageUrl: '../example_files/vote_examples/example2.png',
-            modelAAnswer: 'Findings:Cardiomediastinal silhouette and hilar contours are normal.  Lungs are clear.  There is no pleural effusion or pneumothorax.Impression:No acute cardiopulmonary abnormality.',
-            modelBAnswer: 'Findings: The heart is normal in size. The mediastinum is unremarkable. The lungs are clear. Impression: No acute disease.'
+            // imageUrl: '../example_files/vote_examples/example2.png',
+            imageUrl: '../example_files/vote_examples/example_cases/example0.dcm',
+            modelAAnswer: 'Findings: The heart size and mediastinal contours are within normal limits. Both lungs are clear. The visualized skeletal structures are unremarkable. \n Impression: No active cardiopulmonary disease.',
+            modelBAnswer: 'Findings: Frontal and lateral views of the chest.  The lungs are clear without focal consolidation, pleural effusion or pneumothorax.  The cardiac and mediastinal contours are normal.  No displaced rib fracture is seen. \n Impression:No acute cardiopulmonary process.'
         },
         {
-            imageUrl: '../example_files/vote_examples/example3.png',
-            modelAAnswer: 'Findings: The lungs are clear without focal consolidation.  No pleural effusion or pneumothorax is seen.  The cardiac and mediastinal silhouettes are unremarkable.Impression:No acute cardiopulmonary process.',
-            modelBAnswer: 'Findings: The lungs and pleural spaces show no acute abnormality. Heart size and pulmonary vascularity within normal limits. . Impression: 1. No acute pulmonary abnormality.'
+            // imageUrl: '../example_files/vote_examples/example3.png',
+            imageUrl: '../example_files/vote_examples/example_cases/example1.dcm',
+            modelAAnswer: 'Findings: The heart size and mediastinal contours are within normal limits. No pneumothorax or pleural effusion is noted. Probable hiatal hernia is noted. Both lungs are clear. The visualized skeletal structures are unremarkable. \n Impression: No acute cardiopulmonary abnormality seen.  Probable hiatal hernia.',
+            modelBAnswer: 'Findings: Frontal and lateral radiographs of the chest show interval removal of a right internal jugular central venous catheter.  The lungs are clear without focal consolidation, pleural effusion or pneumothorax.  The pulmonary vasculature is not engorged.  The cardiac silhouette is normal in size.  The mediastinal and hilar contours are within normal limits.  The patient is status post median sternotomy with intact sternal wires.  A right-sided Port-A-Cath is unchanged in position, terminating in the mid SVC. \n Impression:No acute cardiopulmonary process.'
         },
         {
-            imageUrl: '../example_files/vote_examples/example4.png',
-            modelAAnswer: 'Findings:The lungs are clear without focal consolidation.  No pleural effusion or pneumothorax is seen.  The cardiac and mediastinal silhouettes are stable.  No pulmonary edema is seen.  No displaced fracture is seen.Impression:No acute cardiopulmonary process.',
-            modelBAnswer: 'Findings: The heart and lungs have XXXX XXXX in the interval. Both lungs are clear and expanded. Heart and mediastinum normal. Impression: No active disease.'
+            // imageUrl: '../example_files/vote_examples/example4.png',
+            imageUrl: '../example_files/vote_examples/example_cases/example2.dcm',
+            modelAAnswer: 'Findings: There is a moderate left pleural effusion with consolidation in the left base. There is a small right pleural effusion. There is an ill-defined opacity, likely mass, in the left upper lobe overlying the hilum measuring 6.7 x 3.6 cm. Ill-defined opacity noted in the right upper lobe.  Heart size and pulmonary vascularity are normal. No appreciable adenopathy. There is aortic atherosclerosis. No bone lesions. \n Impression: 1. Probable mass with potential superimposed infiltrate left upper lobe.  2. Probable focus of pneumonia in the right upper lobe. Associated mass in this area cannot be excluded.  3. Pleural effusions bilaterally, larger on the left than on the right. Associated consolidation left base.  4.  Heart size normal.  5.  Aortic Atherosclerosis (ICD10-I70.0).',
+            modelBAnswer: 'Findings: The patient is status post left upper lobe wedge resection.  There is a left apical opacity which is stable.  There is a left pleural effusion.  There is a right pleural effusion.  There is mild pulmonary vascular redistribution.  The heart size is mildly enlarged. \n Impression:1.  Left apical opacity is stable. 2.  Left pleural effusion. 3.  Mild pulmonary vascular redistribution. 4.  Mild cardiomegaly.'
         },
     ];
 
@@ -254,7 +287,9 @@
     voteData.forEach((item, index) => {
         const row = tableBody.insertRow();
         row.innerHTML = `
-                <td><img src="${item.imageUrl}" alt="Image ${index + 1}" width="200"></td>
+                <td>
+                    <div id="dicomContainer${index}" class="dicom-container"></div>
+                </td>
                 <td class="model-answer" data-index="${index}" data-model="A">
                     ${item.modelAAnswer}
                     <span class="checkmark">✓</span>
@@ -264,12 +299,68 @@
                     <span class="checkmark">✓</span>
                 </td>
             `;
+        // <td><img src="${item.imageUrl}" alt="Image ${index + 1}" width="200"></td>
         // row.innerHTML = `
         //     <td><img src="${item.imageUrl}" alt="Image ${index + 1}" width="200"></td>
         //     <td class="model-answer" data-index="${index}" data-model="A">${item.modelAAnswer}</td>
         //     <td class="model-answer" data-index="${index}" data-model="B">${item.modelBAnswer}</td>
         // `;
+        // Load and display DICOM image
+        const element = document.getElementById(`dicomContainer${index}`);
+            cornerstone.enable(element);
+
+            cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
+            cornerstoneWADOImageLoader.webWorkerManager.initialize({
+                webWorkerPath: 'https://unpkg.com/cornerstone-wado-image-loader@4.13.2/dist/cornerstoneWADOImageLoaderWebWorker.min.js',
+                taskConfiguration: {
+                    decodeTask: {
+                        codecsPath: 'https://unpkg.com/cornerstone-wado-image-loader@4.13.2/dist/cornerstoneWADOImageLoaderCodecs.min.js'
+                    }
+                }
+            });
+
+            const imageId = `wadouri:${item.imageUrl}`;
+            cornerstone.loadImage(imageId).then(image => {
+                cornerstone.displayImage(element, image);
+                element.addEventListener('click', function() {
+                    openModalWithDICOM(imageId);
+                });
+            });
     });
+
+    // Function to open modal with DICOM image
+function openModalWithDICOM(imageId) {
+    const modal = document.getElementById("imageModal");
+    const modalContent = document.getElementById("modalImage");
+    
+    // Clear previous content
+    modalContent.innerHTML = '';
+    
+    // Create a new div for the image
+    const imageDiv = document.createElement('div');
+    imageDiv.style.width = '100%';
+    imageDiv.style.height = '100%';
+    modalContent.appendChild(imageDiv);
+    
+    cornerstone.enable(imageDiv);
+    cornerstone.loadImage(imageId).then(image => {
+        cornerstone.displayImage(imageDiv, image);
+        modal.style.display = "block";
+
+        // Resize the image to fit the modal
+        function resizeImage() {
+            cornerstone.resize(imageDiv);
+        }
+        window.addEventListener('resize', resizeImage);
+        resizeImage();
+
+        // Add zoom tool
+        const ZoomTool = cornerstoneTools.ZoomTool;
+        cornerstoneTools.addTool(ZoomTool)
+        cornerstoneTools.setToolActive('Zoom', { mouseButtonMask: 1 })
+    });
+}
+
 
     // 获取模态框元素
     var modal = document.getElementById("imageModal");
@@ -284,17 +375,19 @@
         }
     });
 
-    // 点击 <span> (x), 关闭模态框
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
+    // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+          document.getElementById("imageModal").style.display = "none";
+          window.removeEventListener('resize', resizeImage);
+      };
 
-    // 在模态框外点击时关闭它
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+      window.onclick = function(event) {
+          const modal = document.getElementById("imageModal");
+          if (event.target == modal) {
+              modal.style.display = "none";
+              window.removeEventListener('resize', resizeImage);
+          }
+      };
 
     // Add click event listeners to model answers
     tableBody.addEventListener('click', (e) => {
