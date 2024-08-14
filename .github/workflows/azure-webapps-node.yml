@@ -1,46 +1,9 @@
-# name: Deploy to Azure Web App
-
-# on:
-#   push:
-#     branches:
-#       - preview  # 设置为您的主分支名称
-
-# jobs:
-#   build-and-deploy:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v3
-
-#     - name: Set up Node.js
-#       uses: actions/setup-node@v3
-#       with:
-#         node-version: '20'
-
-#     - name: npm install and build
-#       run: |
-#         npm install
-#         npm run build --if-present
-
-#     - name: 'Deploy to Azure Web App'
-#       uses: azure/webapps-deploy@v2
-#       with:
-#         app-name: 'rexrank'  
-#         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-
-
 name: Deploy to Azure Web App
 
 on:
   push:
     branches:
-      - preview # 设置为您的主分支名称
-
-env:
-  AZURE_CLIENT_ID: ${{ 5bfa307b-e975-43ad-b2d0-db0a93230032 }}
-  AZURE_CLIENT_SECRET: ${{ 5i28Q~trPOEfiPQfqOtD17bg_uCH6Rd_un_jSaFJ }}
-  AZURE_TENANT_ID: ${{ 6ffa22f4-4568-4105-ad43-2e3ad4726957 }}
-  AZURE_SUBSCRIPTION_ID: ${{ 005faae4-50d0-4a05-87ba-597d9e4b3a72 }}
+      - preview  # 设置为您的主分支名称
 
 jobs:
   build-and-deploy:
@@ -59,15 +22,10 @@ jobs:
         npm install
         npm run build --if-present
 
-    - name: 'Az CLI login'
-      uses: azure/CLI@v1
-      with:
-        azcliversion: latest
-        inlineScript: |
-          az login --service-principal -u ${{ env.AZURE_CLIENT_ID }} -p ${{ env.AZURE_CLIENT_SECRET }} --tenant ${{ env.AZURE_TENANT_ID }}
-          az account set -s ${{ env.AZURE_SUBSCRIPTION_ID }}
-
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'rexrank' # 替换为你的 Web App 名称
+        app-name: 'rexrank'  
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
+
