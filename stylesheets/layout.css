@@ -373,12 +373,13 @@ button:focus {
   font-size: 7.3em;
   margin: 0px;
   padding: 0px;
-  font-weight: 100;
+  font-weight: 400;
   text-align: center;
 }
 #topCover #appTitle b {
-  font-weight: 400;
+  font-weight: 700;
 }
+
 #topCover #appSubtitle {
   color: #fff;
   font-size: 2em;
@@ -386,7 +387,9 @@ button:focus {
   padding: 0px;
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 400;  /* 添加粗体 */
 }
+
 @media (max-width: 768px) {
   #topCover #appTitle {
     font-size: 6em;
