@@ -440,4 +440,4 @@ table_mimiccxr_html = './results/table_mimiccxr.html'
 table_private_html = './results/table_gradienthealth.html'
 table_rank_html = './results/table_rank.html'
 
-generate_html(get_html_content(table_chexpertplus_html), get_html_content(table_iuxray_html), get_html_content(table_mimiccxr_html), get_html_content(table_rank_html), get_html_content(table_private_html),save_html_path='./index.html')
+generate_html(get_html_content(table_chexpertplus_html), get_html_content(table_iuxray_html), get_html_content(table_mimiccxr_html), get_html_content(table_private_html), get_html_content(table_rank_html),save_html_path='./index.html')
