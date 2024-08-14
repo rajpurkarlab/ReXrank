@@ -107,9 +107,22 @@
             align-items: center;
             margin-bottom: 1rem;
         }
-        .consent-checkbox input {
-            margin-right: 10px;
+
+        .consent-checkbox input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            margin: 0;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
         }
+
+        .consent-checkbox label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+
         #viewConsentForm {
             color: #a41034;
             cursor: pointer;
@@ -153,8 +166,16 @@
         <div id="verificationMessage" class="verification-message"></div>
         <form id="loginForm">
             <h2>Login</h2>
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            
             <button type="submit">Login</button>
             <div id="loginError" class="error-message"></div>
             <div id="loginLoading" class="loading">Logging in...</div>
@@ -199,10 +220,11 @@
                 <label for="regDegree">Degree</label>
                 <select id="regDegree" required>
                     <option value="">Select your degree</option>
-                    <option value="BS">BS (Bachelor of Science)</option>
-                    <option value="MS">MS (Master of Science)</option>
-                    <option value="PhD">PhD (Doctor of Philosophy)</option>
-                    <option value="MD">MD (Doctor of Medicine)</option>
+                    <option value="BS">BS</option>
+                    <option value="MS">MS</option>
+                    <option value="PhD">PhD</option>
+                    <option value="MD">MD</option>
+                    <option value="MD">MD-PhD</option>
                     <option value="Other">Other</option>
                 </select>
             </div>
@@ -214,7 +236,8 @@
 
             <div class="consent-checkbox">
                 <input type="checkbox" id="consentCheckbox" required>
-                <label for="consentCheckbox">I agree to the <span id="viewConsentForm">terms and conditions</span></label>
+                <label for="consentCheckbox">I agree to the <span id="viewConsentForm">terms and conditions</span>&nbsp;terms and conditions</label>
+                <!-- <label for="consentCheckbox">I agree to the <span id="viewConsentForm">terms and conditions</span></label> -->
             </div>
             <button type="submit">Register</button>
             <div id="registerError" class="error-message"></div>

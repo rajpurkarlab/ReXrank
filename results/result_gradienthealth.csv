@@ -1,0 +1,14 @@
+Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,RadCliQ-v0,RadCliQ-v1
+1,2024,CheXagent,Stanford,https://github.com/Stanford-AIMI/CheXagent,0.07,0.281,0.349,0.091,3.922,1.526
+2,2024,CheXpertPlus_mimiccxr,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.177,0.364,0.431,0.139,3.52,1.248
+3,2024,CheXpertPlus_chexpert,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.165,0.333,0.395,0.148,3.656,1.323
+4,2024,CheXpertPlus_chexpert_mimiccxr,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.196,0.389,0.429,0.166,3.419,1.175
+5,2023,Cvt2distilgpt2_mimiccxr,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.163,0.318,0.44,0.163,3.592,1.284
+6,2023,Cvt2distilgpt2_iuxray,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.146,0.328,0.373,0.163,3.676,1.335
+7,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa/tree/main,0.203,0.504,0.553,0.215,2.769,0.801
+8,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.132,0.338,0.375,0.131,3.683,1.356
+9,2023,RaDialog,TUM,https://github.com/ChantalMP/RaDialog,0.148,0.342,0.437,0.147,3.54,1.268
+10,2023,RGRG,TUM,https://github.com/ttanida/rgrg,0.175,0.358,0.448,0.172,3.451,1.199
+11,2023,VLCI_mimiccxr,SYSU,https://github.com/WissingChen/VLCI,0.14,0.257,0.384,0.115,3.94,1.501
+12,2023,VLCI_iuxray,SYSU,https://github.com/WissingChen/VLCI,0.174,0.297,0.433,0.197,3.622,1.283
+14,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.072,0.214,0.364,0.175,3.963,1.516
