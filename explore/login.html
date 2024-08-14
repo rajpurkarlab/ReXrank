@@ -26,9 +26,24 @@
             display: flex;
             flex-direction: column;
         }
-        input {
+        .form-group {
             margin-bottom: 1rem;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        input, select {
+            width: 100%;
             padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .input-info {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.25rem;
         }
         button {
             padding: 0.5rem;
@@ -82,6 +97,55 @@
             text-align: center;
             display: none;
         }
+        #passwordStrength {
+            margin-top: 5px;
+            height: 5px;
+            transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out;
+        }
+        .consent-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .consent-checkbox input {
+            margin-right: 10px;
+        }
+        #viewConsentForm {
+            color: #a41034;
+            cursor: pointer;
+        }
+        #consentFormModal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -100,19 +164,98 @@
     
     <div class="container" id="registerContainer" style="display: none;">
         <form id="registerForm">
-            <h2>Register</h2>
-            <input type="text" id="regUsername" placeholder="Username" required>
+            <h2>Register for ReXrank</h2>
+            <!-- <input type="text" id="regUsername" placeholder="Username" required>
             <input type="password" id="regPassword" placeholder="Password" required>
             <input type="email" id="regEmail" placeholder="Email" required>
             <input type="text" id="regInstitution" placeholder="Institution" required>
             <input type="text" id="regDegree" placeholder="Degree" required>
-            <input type="text" id="regCountry" placeholder="Country" required>
+            <input type="text" id="regCountry" placeholder="Country" required> -->
+            <div class="form-group">
+                <label for="regUsername">Username</label>
+                <input type="text" id="regUsername" required>
+                <div id="usernameStatus" class="input-info"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="regPassword">Password</label>
+                <input type="password" id="regPassword" required>
+                <div id="passwordStrength"></div>
+                <div class="input-info">Password should be at least 8 characters long and include uppercase, lowercase, numbers, and special characters.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="regEmail">Email</label>
+                <input type="email" id="regEmail" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regInstitution">Institution</label>
+                <input type="text" id="regInstitution" required>
+                <div class="input-info">Enter the name of your current academic or research institution.</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="regDegree">Degree</label>
+                <select id="regDegree" required>
+                    <option value="">Select your degree</option>
+                    <option value="BS">BS (Bachelor of Science)</option>
+                    <option value="MS">MS (Master of Science)</option>
+                    <option value="PhD">PhD (Doctor of Philosophy)</option>
+                    <option value="MD">MD (Doctor of Medicine)</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="regCountry">Country</label>
+                <input type="text" id="regCountry" required>
+            </div>
+
+            <div class="consent-checkbox">
+                <input type="checkbox" id="consentCheckbox" required>
+                <label for="consentCheckbox">I agree to the <span id="viewConsentForm">terms and conditions</span></label>
+            </div>
             <button type="submit">Register</button>
             <div id="registerError" class="error-message"></div>
             <div id="registerLoading" class="loading">Registering...</div>
         </form>
     </div>
 
+    <div id="consentFormModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>User Consent Form for ReXrank Voting</h2>
+            <p>By registering to participate in the voting process for ReXrank, you hereby acknowledge and agree to the following terms and conditions:</p>
+            <ol>
+                <li><strong>Purpose of the Website</strong>: You understand and acknowledge that this voting platform provides users with access to a series of chest X-ray images accompanied by AI-generated reports. The primary purpose is to enable users to evaluate and vote for the reports they deem most accurate or appropriate.</li>
+                <li><strong>Data Collection</strong>: You consent to our collection and storage of the following information:
+                    <ul>
+                        <li>Your registration details</li>
+                        <li>Your voting history and preferences</li>
+                    </ul>
+                </li>
+                <li><strong>Data Usage</strong>: You explicitly grant permission for the use of the collected voting data for the purposes of conducting research and analysis. This data will be used to improve AI-generated medical reports and advance related scientific endeavors.</li>
+                <li><strong>Data Protection</strong>: We affirm our commitment to protecting your data through the following measures:
+                    <ul>
+                        <li>Implementation of appropriate technical and organizational safeguards to ensure the security of your data</li>
+                        <li>A pledge not to sell your personal information to any third parties</li>
+                        <li>Sharing of your data with third parties only when essential for the operation of our service or when mandated by applicable laws and regulations</li>
+                    </ul>
+                </li>
+                <li><strong>Confidentiality</strong>: You agree to maintain strict confidentiality and not to share, distribute, or disclose any images, reports, or other content accessed through our website to any external parties or entities not directly involved in the ReXrank voting process.</li>
+                <li><strong>User Responsibilities</strong>: You agree to adhere to the following responsibilities:
+                    <ul>
+                        <li>Provision of accurate and truthful registration information</li>
+                        <li>Maintenance of the confidentiality of your login credentials</li>
+                        <li>Utilization of the application in full compliance with all applicable laws, regulations, and ethical guidelines</li>
+                    </ul>
+                </li>
+                <li><strong>Modification of Terms</strong>: We reserve the right to modify, amend, or update this consent form at our discretion. We will provide notification of any substantive changes to these terms.</li>
+                <li><strong>Withdrawal of Consent</strong>: You retain the right to withdraw your consent at any time by contacting our designated data protection officer and requesting the deletion of your account. Please be advised that such withdrawal may impact your ability to access and use our service.</li>
+            </ol>
+            <p>By completing the registration process for our application, you hereby affirm that you have read, fully understood, and agree to be bound by these terms and conditions.</p>
+        </div>
 
     <div id="customAlert" class="custom-alert">
         <div class="alert-content">
@@ -175,14 +318,85 @@
             document.getElementById('registerContainer').style.display = 'block';
         }
 
+        // Username availability check
+        document.getElementById('regUsername').addEventListener('blur', async function() {
+            const username = this.value;
+            if (username) {
+                try {
+                    const response = await fetch(`${API_URL}/check-username`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username }),
+                    });
+                    const data = await response.json();
+                    const statusElement = document.getElementById('usernameStatus');
+                    if (data.available) {
+                        statusElement.textContent = 'Username is available';
+                        statusElement.style.color = 'green';
+                    } else {
+                        statusElement.textContent = 'Username is already taken';
+                        statusElement.style.color = 'red';
+                    }
+                } catch (error) {
+                    console.error('Error checking username:', error);
+                }
+            }
+        });
+
+        // Password strength check
+        document.getElementById('regPassword').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrength');
+            let strength = 0;
+            
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]+/)) strength++;
+            if (password.match(/[A-Z]+/)) strength++;
+            if (password.match(/[0-9]+/)) strength++;
+            if (password.match(/[$@#&!]+/)) strength++;
+
+            switch(strength) {
+                case 0:
+                case 1:
+                    strengthBar.style.width = '20%';
+                    strengthBar.style.backgroundColor = '#ff4d4d';
+                    break;
+                case 2:
+                    strengthBar.style.width = '40%';
+                    strengthBar.style.backgroundColor = '#ffa64d';
+                    break;
+                case 3:
+                    strengthBar.style.width = '60%';
+                    strengthBar.style.backgroundColor = '#ffff4d';
+                    break;
+                case 4:
+                    strengthBar.style.width = '80%';
+                    strengthBar.style.backgroundColor = '#4dff4d';
+                    break;
+                case 5:
+                    strengthBar.style.width = '100%';
+                    strengthBar.style.backgroundColor = '#00cc00';
+                    break;
+            }
+        });
+
+
         document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const username = document.getElementById('regUsername').value;
-            const password = document.getElementById('regPassword').value;
-            const email = document.getElementById('regEmail').value;
-            const institution = document.getElementById('regInstitution').value;
-            const degree = document.getElementById('regDegree').value;
-            const country = document.getElementById('regCountry').value;
+            if (!document.getElementById('consentCheckbox').checked) {
+                document.getElementById('registerError').textContent = 'You must agree to the terms and conditions to register.';
+                return;
+            }
+            const formData = {
+                username: document.getElementById('regUsername').value,
+                password: document.getElementById('regPassword').value,
+                email: document.getElementById('regEmail').value,
+                institution: document.getElementById('regInstitution').value,
+                degree: document.getElementById('regDegree').value,
+                country: document.getElementById('regCountry').value
+            };
 
             document.getElementById('registerLoading').style.display = 'block';
             document.getElementById('registerError').textContent = '';
@@ -209,6 +423,24 @@
                 document.getElementById('registerError').textContent = 'An error occurred. Please try again.';
             } finally {
                 document.getElementById('registerLoading').style.display = 'none';
+            }
+        });
+
+
+        // Open the consent form modal
+        document.getElementById('viewConsentForm').addEventListener('click', function() {
+            document.getElementById('consentFormModal').style.display = 'block';
+        });
+
+        // Close the consent form modal
+        document.getElementsByClassName('close')[0].addEventListener('click', function() {
+            document.getElementById('consentFormModal').style.display = 'none';
+        });
+
+        // Close the modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('consentFormModal')) {
+                document.getElementById('consentFormModal').style.display = 'none';
             }
         });
 
