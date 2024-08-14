@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 500px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+        }
+        button {
+            padding: 0.5rem;
+            background-color: #a41034;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #7d0c27;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        .loading {
+            display: none;
+            margin-top: 10px;
+        }
+        .custom-alert {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .alert-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .close-btn {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #a41034;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .verification-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="verificationMessage" class="verification-message"></div>
+        <form id="loginForm">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <div id="loginError" class="error-message"></div>
+            <div id="loginLoading" class="loading">Logging in...</div>
+        </form>
+        <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
+    </div>
+    
+    <div class="container" id="registerContainer" style="display: none;">
+        <form id="registerForm">
+            <h2>Register</h2>
+            <input type="text" id="regUsername" placeholder="Username" required>
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <input type="email" id="regEmail" placeholder="Email" required>
+            <input type="text" id="regInstitution" placeholder="Institution" required>
+            <input type="text" id="regDegree" placeholder="Degree" required>
+            <input type="text" id="regCountry" placeholder="Country" required>
+            <button type="submit">Register</button>
+            <div id="registerError" class="error-message"></div>
+            <div id="registerLoading" class="loading">Registering...</div>
+        </form>
+    </div>
+
+
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <p id="alertText"></p>
+            <button onclick="closeAlert()" class="close-btn">OK</button>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = window.location.hostname.includes('github.io') 
+        ? 'https://rexrank.azurewebsites.net'  // 使用 Azure 的 API URL
+        : 'https://rexrank.azurewebsites.net'; // 本地或 Azure 环境
+
+
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            document.getElementById('loginLoading').style.display = 'block';
+            document.getElementById('loginError').textContent = '';
+
+            try {
+                const response = await fetch(`${API_URL}/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.token) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    showAlert('Login successful! Redirecting...');
+                    setTimeout(() => {
+                        window.location.href = '../explore/vote_record.html';
+                    }, 2000);
+                } else {
+                    document.getElementById('loginError').textContent = data.message || 'Login failed. Please check your credentials and try again.';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                document.getElementById('loginError').textContent = 'An error occurred. Please try again later.';
+            } finally {
+                document.getElementById('loginLoading').style.display = 'none';
+            }
+        });
+
+        document.getElementById('showRegister').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('registerContainer').style.display = 'block';
+        });
+
+        function showRegisterForm() {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('registerContainer').style.display = 'block';
+        }
+
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value;
+            const password = document.getElementById('regPassword').value;
+            const email = document.getElementById('regEmail').value;
+            const institution = document.getElementById('regInstitution').value;
+            const degree = document.getElementById('regDegree').value;
+            const country = document.getElementById('regCountry').value;
+
+            document.getElementById('registerLoading').style.display = 'block';
+            document.getElementById('registerError').textContent = '';
+
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password, email, institution, degree, country }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showAlert('Registration successful! Please check your email for verification.');
+                    document.getElementById('registerContainer').style.display = 'none';
+                    document.querySelector('.container').style.display = 'block';
+                } else {
+                    document.getElementById('registerError').textContent = data.message || 'Registration failed';
+                }
+            } catch (error) {
+                document.getElementById('registerError').textContent = 'An error occurred. Please try again.';
+            } finally {
+                document.getElementById('registerLoading').style.display = 'none';
+            }
+        });
+
+        function showAlert(message) {
+            if (message && message.trim() !== '') {
+                document.getElementById('alertText').textContent = message;
+                document.getElementById('customAlert').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close alert when clicking outside the alert box
+        document.getElementById('customAlert').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAlert();
+            }
+        });
+
+        function handleVerification() {
+            console.log('handleVerification function called');
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const message = urlParams.get('message');
+            console.log('Token:', token);
+            console.log('Message:', message);
+
+            if (token) {
+                console.log('Sending verification request to:', `${API_URL}/verify?token=${token}`);
+                fetch(`${API_URL}/verify?token=${token}`)
+                    .then(response => {
+                        console.log('Response status:', response.status);
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Verification response:', data);
+                        showVerificationMessage(data.message);
+                    })
+                    .catch(error => {
+                        console.error('Verification error:', error);
+                        showVerificationMessage('An error occurred during verification. Please try again later.');
+                    });
+            } else if (message) {
+                if (message === 'already-verified') {
+                    showVerificationMessage('Email already verified. You can now log in.');
+                } else if (message === 'verified') {
+                    showVerificationMessage('Email verified successfully. You can now log in.');
+                }
+            } else {
+                console.log('No token or message found in URL');
+            }
+        }
+
+        function showVerificationMessage(message) {
+            const verificationMessageElement = document.getElementById('verificationMessage');
+            verificationMessageElement.textContent = message;
+            verificationMessageElement.style.display = 'block';
+        }
+
+        // Function to check if we're on the verify page or have a verification message
+        function isVerifyPage() {
+            return window.location.pathname.endsWith('/verify') || 
+                   window.location.search.includes('token=') || 
+                   window.location.search.includes('message=');
+        }
+
+        // 在页面加载时检查并处理验证
+        window.addEventListener('DOMContentLoaded', () => {
+            console.log('DOMContentLoaded event fired');
+            document.querySelector('.container').style.display = 'block';
+            
+            if (isVerifyPage()) {
+                console.log('On verify page or have verification message, initiating verification');
+                handleVerification();
+            } else {
+                console.log('Not on verify page, showing normal login/register form');
+            }
+        });
+
+        // Immediately invoke handleVerification to handle cases where the page might load before DOMContentLoaded
+        handleVerification();
+    </script>
+</body>
+</html>

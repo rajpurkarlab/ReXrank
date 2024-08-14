@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!--Author: Xiaoman Zhang 2024 -->
+<html lang="en">    
+<head>
+  <meta charset="utf-8"/>
+  <title>
+    ReXrank
+  </title>
+  <meta name="description" content="ReXrank: The leading open-source leaderboard for radiology report generation. Compare and benchmark AI models for medical imaging reports."/>
+  <meta name="keywords" content="ReXrank, radiology, report generation, AI, medical imaging, leaderboard, benchmarking"/>
+  <meta property="og:title" content="ReXrank: Radiology Report Generation Leaderboard"/>
+  <meta property="og:description" content="Open-source leaderboard for comparing and benchmarking AI models in radiology report generation."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/"/>
+  <meta property="og:type" content="website"/>
+  <meta content="ReXrank is an open-source leaderboard for AI-powered radiology report generation from chest x-ray images." name="description"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="../logo.png" property="og:image"/>
+  <link href="../logo.png" rel="image_src" type="image/png"/>
+  <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../stylesheets/layout.css" rel="stylesheet"/>
+  <link href="../stylesheets/index.css" rel="stylesheet"/>
+  <link href="../stylesheets/alert.css" rel="stylesheet"/>
+  <script src="../javascripts/analytics.js"></script>
+  <script src="../javascripts/analytics.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+  <style>
+    .fixed-height-table {
+      height: 400px; /* 固定高度，可根据需要调整 */
+      overflow-y: scroll;
+      display: block;
+    }
+    .fixed-height-table thead {
+      position: sticky;
+      top: 0;
+      background-color: white; /* 表头背景色 */
+      z-index: 1;
+    }
+    .fixed-height-table th, .fixed-height-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+  <style>
+    .performanceTable th {
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        background-color: white; 
+    }
+    th {
+        background-color: white; /* 表头背景色 */
+    }
+    .model-answer {
+        cursor: pointer;
+        padding: 5px;
+        position: relative; /* Add this to position the checkmark */
+    }
+    .model-answer:hover {
+        background-color: white; /* 表头背景色 */
+    }
+    .selected {
+        background-color: #e0e0e0;
+    }
+    .checkmark {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: #a41034;
+            font-size: 20px;
+            display: none;
+      }
+      .selected .checkmark {
+          display: block;
+      }
+    #submitVotes {
+        margin-top: 20px;
+    }
+    #moreCasesBtn {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    #moreCasesBtn.enabled {
+        opacity: 1;
+        pointer-events: auto;
+    }
+  </style>
+  <style>
+    /* 模态框样式 */
+    img {
+            max-width: 100%;
+            height: auto;
+        }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+  
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+  
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+  
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>  
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../">Home</a></li>
+            <li><a href="vote_example.html">Vote</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="../">ReXrank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="topCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="appTitle">ReXrank</h1>
+          <h2 id="appSubtitle">Open-Source Radiology Report Generation Leaderboard</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover" id="contentCover">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="infoCard">
+                    <div class="infoBody">
+                      <div class="infoHeadline">
+                        <h2>Vote for the Best Report</h2>
+                      </div>
+                      <p>
+                        You will be presented with two anonymized radiology reports, each generated by a different AI model but based on the same x-ray image. 
+                        Your task is to select the report that, in your opinion, offers the most accurate and thorough interpretation of the x-ray.
+                        Click on the image to view it in full size, select the report you prefer, and then click the 'Submit Vote' button. If you are interested in viewing more cases, please click the 'More Cases' button to register.
+                      </p>
+                    </div>
+                </div>
+                <table id="voteTable">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Report A</th>
+                            <th>Report B</th>
+                        </tr>
+                    </thead>
+                    <tbody id="voteTableBody">
+                        <!-- Table rows will be dynamically added here -->
+                    </tbody>
+                </table>
+                <button id="submitVotes" class="btn actionBtn inverseBtn">Submit Votes</button> 
+                <button id="moreCasesBtn" class="btn actionBtn inverseBtn" disabled>More Cases</button>
+                <!-- <a href="/explore/vote_record.html" class="btn actionBtn inverseBtn">More Cases</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<div id="customAlert" class="custom-alert">
+  <div class="alert-content">
+      <p id="alertText"></p>
+      <button onclick="closeAlert()" class="close-btn">OK</button>
+  </div>
+</div>
+
+
+<script>
+    // Sample data (replace with your actual data)
+    const voteData = [
+        {
+            imageUrl: '../example_files/vote_examples/example2.png',
+            modelAAnswer: 'Findings:Cardiomediastinal silhouette and hilar contours are normal.  Lungs are clear.  There is no pleural effusion or pneumothorax.Impression:No acute cardiopulmonary abnormality.',
+            modelBAnswer: 'Findings: The heart is normal in size. The mediastinum is unremarkable. The lungs are clear. Impression: No acute disease.'
+        },
+        {
+            imageUrl: '../example_files/vote_examples/example3.png',
+            modelAAnswer: 'Findings: The lungs are clear without focal consolidation.  No pleural effusion or pneumothorax is seen.  The cardiac and mediastinal silhouettes are unremarkable.Impression:No acute cardiopulmonary process.',
+            modelBAnswer: 'Findings: The lungs and pleural spaces show no acute abnormality. Heart size and pulmonary vascularity within normal limits. . Impression: 1. No acute pulmonary abnormality.'
+        },
+        {
+            imageUrl: '../example_files/vote_examples/example4.png',
+            modelAAnswer: 'Findings:The lungs are clear without focal consolidation.  No pleural effusion or pneumothorax is seen.  The cardiac and mediastinal silhouettes are stable.  No pulmonary edema is seen.  No displaced fracture is seen.Impression:No acute cardiopulmonary process.',
+            modelBAnswer: 'Findings: The heart and lungs have XXXX XXXX in the interval. Both lungs are clear and expanded. Heart and mediastinum normal. Impression: No active disease.'
+        },
+    ];
+
+    const tableBody = document.getElementById('voteTableBody');
+    const votes = {};
+
+    // Populate the table
+    voteData.forEach((item, index) => {
+        const row = tableBody.insertRow();
+        row.innerHTML = `
+                <td><img src="${item.imageUrl}" alt="Image ${index + 1}" width="200"></td>
+                <td class="model-answer" data-index="${index}" data-model="A">
+                    ${item.modelAAnswer}
+                    <span class="checkmark">✓</span>
+                </td>
+                <td class="model-answer" data-index="${index}" data-model="B">
+                    ${item.modelBAnswer}
+                    <span class="checkmark">✓</span>
+                </td>
+            `;
+        // row.innerHTML = `
+        //     <td><img src="${item.imageUrl}" alt="Image ${index + 1}" width="200"></td>
+        //     <td class="model-answer" data-index="${index}" data-model="A">${item.modelAAnswer}</td>
+        //     <td class="model-answer" data-index="${index}" data-model="B">${item.modelBAnswer}</td>
+        // `;
+    });
+
+    // 获取模态框元素
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImage");
+    var span = document.getElementsByClassName("close")[0];
+
+    // 为所有图片添加点击事件
+    document.querySelectorAll('#voteTableBody img').forEach(img => {
+        img.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+        }
+    });
+
+    // 点击 <span> (x), 关闭模态框
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // 在模态框外点击时关闭它
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Add click event listeners to model answers
+    tableBody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('model-answer')) {
+            const index = e.target.dataset.index;
+            const model = e.target.dataset.model;
+            
+            // Remove 'selected' class from both answers in the same row
+            const row = e.target.parentElement;
+            row.querySelectorAll('.model-answer').forEach(cell => cell.classList.remove('selected'));
+            
+            // Add 'selected' class to the clicked answer
+            e.target.classList.add('selected');
+            
+            // Record the vote
+            votes[index] = model;
+        }
+    });
+
+    document.querySelectorAll('#voteTableBody img').forEach(img => {
+            img.loading = "lazy";  // 添加延迟加载
+            img.onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+    
+    // Submit votes
+    document.getElementById('submitVotes').addEventListener('click', async () => {
+            if (Object.keys(votes).length < voteData.length) {
+                showAlert('Please vote on all examples before submitting.');
+                return;
+            }
+            
+            try {
+                const API_URL = window.location.hostname.includes('github.io') 
+                ? 'https://rexrank.azurewebsites.net'  // 使用 Azure 的 API URL
+                : 'https://rexrank.azurewebsites.net'; // 本地或 Azure 环境
+
+                const response = await fetch(`${API_URL}/submit-votes`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ votes }),
+                });
+                    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showAlert('Votes submitted successfully!');
+                    resetVotes();
+                    enableMoreCasesButton();
+                } else {
+                    throw new Error('Server reported failure');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert(`An error occurred: ${error.message}. Please try again.`);
+            }
+    });
+
+    function resetVotes() {
+    // 清除所有选择的样式
+    document.querySelectorAll('.model-answer').forEach(cell => cell.classList.remove('selected'));
+    
+    // 重置votes对象，但保留原始的voteData
+    voteData.forEach((item, index) => {
+        votes[index] = null; // 或者使用 undefined，取决于您的偏好
+    });
+    
+    // 可选：滚动到页面顶部
+    window.scrollTo(0, 0);
+    
+    // 可选：显示一条消息，告诉用户他们可以开始新的一轮投票
+    showAlert('Thank you for your votes!');
+    }
+
+    function showAlert(message) {
+        document.getElementById('alertText').textContent = message;
+        document.getElementById('customAlert').style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // 防止背景滚动
+    }
+
+    function closeAlert() {
+        document.getElementById('customAlert').style.display = 'none';
+        document.body.style.overflow = 'auto'; // 恢复背景滚动
+    }
+
+    function enableMoreCasesButton() {
+            const moreCasesBtn = document.getElementById('moreCasesBtn');
+            moreCasesBtn.classList.add('enabled');
+            moreCasesBtn.disabled = false;
+        }
+
+    // More Cases button click event
+    document.getElementById('moreCasesBtn').addEventListener('click', () => {
+        window.location.href = 'login.html';
+    });
+    
+    // 点击警告框外部也可以关闭
+    document.getElementById('customAlert').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeAlert();
+        }
+    });
+
+
+</script>
+</body>
+</html>

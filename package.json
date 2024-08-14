@@ -1,0 +1,28 @@
+{
+  "name": "node_js",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build step required'",
+    "test": "echo 'No test specified'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "google-auth-library": "^9.13.0",
+    "googleapis": "^140.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.2",
+    "nodemailer": "^6.9.14"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
