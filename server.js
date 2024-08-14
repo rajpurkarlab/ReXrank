@@ -142,6 +142,7 @@ app.post('/submit-votes', async (req, res) => {
   }
 });
 
+
 // Existing route for submitting a single vote
 app.post('/submit-vote', async (req, res) => {
   try {
