@@ -13,3 +13,5 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,Rad
 12,2023,VLCI_iuxray*,SYSU,https://github.com/WissingChen/VLCI,0.242,0.404,0.609,0.283,2.882,0.825
 13,2024,LLM-CXR,KAIST,https://github.com/hyn2028/llm-cxr,0.035,0.175,0.061,0.023,4.863,2.072
 14,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.079,0.235,0.403,0.16,3.856,1.462
+15,2024,BiomedGPT_iu_xray*,Lehigh University,https://github.com/taokz/BiomedGPT,0.123,0.361,0.512,0.242,3.175,1.044
+16,2024,BiomedGPT_peir_gross,Lehigh University,https://github.com/taokz/BiomedGPT,0.016,0.151,0.276,0.052,4.471,1.86
