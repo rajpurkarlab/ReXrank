@@ -11,4 +11,5 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,Rad
 10,2023,RGRG,TUM,https://github.com/ttanida/rgrg,0.175,0.358,0.448,0.172,3.451,1.199
 11,2023,VLCI_mimiccxr,SYSU,https://github.com/WissingChen/VLCI,0.14,0.257,0.384,0.115,3.94,1.501
 12,2023,VLCI_iuxray,SYSU,https://github.com/WissingChen/VLCI,0.174,0.297,0.433,0.197,3.622,1.283
-14,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.072,0.214,0.364,0.175,3.963,1.516
+13,2024,LLM-CXR,KAIST,https://github.com/hyn2028/llm-cxr,0.032,-0.082,0.201,0.013,5.388,2.369
+14,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.055,-0.065,0.208,0.028,5.318,2.316

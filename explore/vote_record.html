@@ -294,12 +294,19 @@
         }
         
         function handleSkip() {
+            currentCaseIndex++; // add 1 and move to the next case
             currentCaseIndex = findNextUnvotedCase();
             if (currentCaseIndex < caseData.length) {
                 displayCase(currentCaseIndex);
             } else {
                 showAlert('You have completed all available cases!');
             }
+        }
+
+        function findNextUnvotedCase() {
+            return caseData.findIndex((caseItem, index) => 
+                index >= currentCaseIndex && !userChoices[caseItem.image_id]
+            );
         }
 
         async function handleNext() {
@@ -313,6 +320,7 @@
             const choice = selectedReport.querySelector('h3').textContent.includes('A') ? 'A' : 'B';
             await saveChoice(currentCase.image_id, choice);
 
+            currentCaseIndex++; // add 1 and move to the next case
             currentCaseIndex = findNextUnvotedCase();
             if (currentCaseIndex < caseData.length) {
                 displayCase(currentCaseIndex);
@@ -321,11 +329,6 @@
             }
         }
 
-        function findNextUnvotedCase() {
-            return caseData.findIndex((caseItem, index) => 
-                index >= currentCaseIndex && !userChoices[caseItem.image_id]
-            );
-        }
 
         async function getUserChoices() {
             const userId = userData.id;
