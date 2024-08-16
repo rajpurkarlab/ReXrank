@@ -485,12 +485,18 @@
             }
         });
 
+        // function showAlert(message) {
+        //     if (message && message.trim() !== '') {
+        //         document.getElementById('alertText').textContent = message;
+        //         document.getElementById('customAlert').style.display = 'flex';
+        //         document.body.style.overflow = 'hidden';
+        //     }
+        // }
+
         function showAlert(message) {
-            if (message && message.trim() !== '') {
-                document.getElementById('alertText').textContent = message;
-                document.getElementById('customAlert').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
+            document.getElementById('alertText').textContent = message;
+            document.getElementById('customAlert').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
         }
 
         function closeAlert() {
