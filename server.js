@@ -21,17 +21,11 @@ const allowedOrigins = [
   'https://rajpurkarlab.github.io/ReXrank/' // 如果你在本地开发也需要的话
 ];
 
+const cors = require('cors');
+
 app.use(cors({
-  origin: function(origin, callback) {
-    // 允许没有 origin 的请求（如移动应用或 curl 请求）
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: 'https://rexrank.azurewebsites.net',
+  methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());

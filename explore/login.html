@@ -447,7 +447,7 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ username, password, email, institution, degree, country }),
+                    body: JSON.stringify(formData),
                 });
 
                 const data = await response.json();
@@ -460,6 +460,7 @@
                     document.getElementById('registerError').textContent = data.message || 'Registration failed';
                 }
             } catch (error) {
+                console.error('Registration error:', error);
                 document.getElementById('registerError').textContent = 'An error occurred. Please try again.';
             } finally {
                 document.getElementById('registerLoading').style.display = 'none';
