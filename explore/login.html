@@ -242,6 +242,7 @@
             <button type="submit">Register</button>
             <div id="registerError" class="error-message"></div>
             <div id="registerLoading" class="loading">Registering...</div>
+            <div id="registerEmail" class="loading">Registration successful! Please check your email for verification.</div>
         </form>
     </div>
 
@@ -454,6 +455,7 @@
 
                 if (response.ok) {
                     showAlert('Registration successful! Please check your email for verification.');
+                    document.getElementById('registerEmail').style.display = 'block';
                     document.getElementById('registerContainer').style.display = 'none';
                     document.querySelector('.container').style.display = 'block';
                 } else {
