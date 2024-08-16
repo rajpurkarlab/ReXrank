@@ -97,6 +97,16 @@
             text-align: center;
             display: none;
         }
+
+        .success-message {
+            color: green;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
         #passwordStrength {
             margin-top: 5px;
             height: 5px;
@@ -242,8 +252,8 @@
             <button type="submit">Register</button>
             <div id="registerError" class="error-message"></div>
             <div id="registerLoading" class="loading">Registering...</div>
-            <div id="registerEmail" class="loading">Registration successful! Please check your email for verification.</div>
         </form>
+        <div id="registerEmail" class="success-message" style="display: none;">Registration successful! Please check your email for verification.</div>
     </div>
 
     <div id="consentFormModal" class="modal">
@@ -454,10 +464,15 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    showAlert('Registration successful! Please check your email for verification.');
+                    // showAlert('Registration successful! Please check your email for verification.');
                     document.getElementById('registerEmail').style.display = 'block';
-                    document.getElementById('registerContainer').style.display = 'none';
-                    document.querySelector('.container').style.display = 'block';
+                    document.getElementById('registerForm').reset(); 
+                    setTimeout(() => {
+                        document.getElementById('registerContainer').style.display = 'none';
+                        document.querySelector('.container').style.display = 'block';
+                    }, 3000); // 3秒后切换回登录界面
+                    // document.getElementById('registerContainer').style.display = 'none';
+                    // document.querySelector('.container').style.display = 'block';
                 } else {
                     document.getElementById('registerError').textContent = data.message || 'Registration failed';
                 }
