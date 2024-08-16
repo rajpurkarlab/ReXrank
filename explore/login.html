@@ -375,6 +375,7 @@
                         statusElement.style.color = 'red';
                     }
                 } else {
+                    console.error('Non-JSON response:', await response.text());
                     throw new Error('Received non-JSON response from server');
                 }
             } catch (error) {

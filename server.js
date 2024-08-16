@@ -43,6 +43,11 @@ mongoose.connect(MONGODB_URI, {
 console.log('Current directory:', __dirname);
 console.log('Index.html path:', path.join(__dirname, 'index.html'));
 
+const rateLimit = require('express-rate-limit');
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 分钟
+  max: 5 // 限制每个 IP 15 分钟内最多 5 次尝试
+});
 
 // Google Sheets authentication
 const auth = new google.auth.GoogleAuth({
@@ -101,6 +106,11 @@ function generateToken(length = 20) {
     token += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return token;
+}
+
+function validateUsername(username) {
+  const validUsernameRegex = /^[a-zA-Z0-9-_]+$/;
+  return validUsernameRegex.test(username);
 }
 
 
@@ -256,7 +266,7 @@ app.get('/get-choices/:userId', async (req, res) => {
 
 const SALT_ROUNDS = 10; // Add this line to define SALT_ROUNDS
 
-app.post('/login', async (req, res) => {
+app.post('/login',loginLimiter， async (req, res) => {
   try {
     const { username, password } = req.body;
     console.log('Login attempt for username:', username);
@@ -300,11 +310,33 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/register', async (req, res) => {
+app.post('/check-username', async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ error: 'Username is required' });
+    }
+
+    // 使用与注册相同的用户名验证逻辑
+    const user = await User.findOne({ username });
+    
+    res.json({ available: !user });
+  } catch (error) {
+    console.error('Error checking username:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/register', loginLimiter, async (req, res) => {
   try {
     const { username, password, email, institution, degree, country } = req.body;
     console.log('Sending registration data:', { username, password, email, institution, degree, country });
     
+    if (!validateUsername(username)) {
+      return res.status(400).json({ message: 'Invalid username format' });
+    }
+
     let user = await User.findOne({ $or: [{ username }, { email }] });
     if (user) {
       return res.status(400).json({ message: 'User already exists' });
@@ -460,7 +492,7 @@ app.get(BASE_PATH + '/*', (req, res) => {
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).json({ error: 'Internal server error', details: err.message });
 });
 
 app.listen(PORT, () => {
