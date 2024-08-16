@@ -15,7 +15,25 @@ const User = require(path.join(__dirname, 'models', 'User'));
 const UserChoice = require(path.join(__dirname, 'models', 'UserChoice'));
 
 const app = express();
-app.use(cors());
+
+const allowedOrigins = [
+  'https://rexrank.azurewebsites.net',
+  'https://rajpurkarlab.github.io/ReXrank/' // 如果你在本地开发也需要的话
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    // 允许没有 origin 的请求（如移动应用或 curl 请求）
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Serve static files from the root directory
@@ -311,20 +329,22 @@ app.post('/login',loginLimiter， async (req, res) => {
 });
 
 app.post('/check-username', async (req, res) => {
+  console.log('Received request to /check-username');
+  console.log('Request body:', req.body);
+  
   try {
     const { username } = req.body;
-
+    
     if (!username) {
       return res.status(400).json({ error: 'Username is required' });
     }
 
-    // 使用与注册相同的用户名验证逻辑
     const user = await User.findOne({ username });
     
     res.json({ available: !user });
   } catch (error) {
     console.error('Error checking username:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 });
 
