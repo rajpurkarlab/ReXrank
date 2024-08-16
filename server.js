@@ -21,7 +21,6 @@ const allowedOrigins = [
   'https://rajpurkarlab.github.io/ReXrank/' // 如果你在本地开发也需要的话
 ];
 
-const cors = require('cors');
 
 app.use(cors({
   origin: 'https://rexrank.azurewebsites.net',
