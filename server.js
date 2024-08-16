@@ -61,12 +61,6 @@ mongoose.connect(MONGODB_URI, {
 console.log('Current directory:', __dirname);
 console.log('Index.html path:', path.join(__dirname, 'index.html'));
 
-const rateLimit = require('express-rate-limit');
-const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 分钟
-  max: 5 // 限制每个 IP 15 分钟内最多 5 次尝试
-});
-
 // Google Sheets authentication
 const auth = new google.auth.GoogleAuth({
   credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS),
@@ -284,7 +278,7 @@ app.get('/get-choices/:userId', async (req, res) => {
 
 const SALT_ROUNDS = 10; // Add this line to define SALT_ROUNDS
 
-app.post('/login',loginLimiter, async (req, res) => {
+app.post('/login', async (req, res) => {
   try {
     const { username, password } = req.body;
     console.log('Login attempt for username:', username);
@@ -348,7 +342,7 @@ app.post('/check-username', async (req, res) => {
   }
 });
 
-app.post('/register', loginLimiter, async (req, res) => {
+app.post('/register', async (req, res) => {
   try {
     const { username, password, email, institution, degree, country } = req.body;
     console.log('Sending registration data:', { username, password, email, institution, degree, country });
