@@ -392,7 +392,7 @@ app.post('/register', async (req, res) => {
       user.email,
       'Email Verification for Your ReXrank Account',
         `
-      Dear ${user.name},
+      Dear ${user.username},
 
       Thank you for registering with ReXrank. 
 
