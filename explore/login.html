@@ -344,17 +344,29 @@
         // Username availability check
         document.getElementById('regUsername').addEventListener('blur', async function() {
             const username = this.value;
-            if (username) {
-                try {
-                    const response = await fetch(`${API_URL}/check-username`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ username }),
-                    });
+            const statusElement = document.getElementById('usernameStatus');
+            
+            if (!username) {
+                statusElement.textContent = 'Please enter a username';
+                statusElement.style.color = 'orange';
+                return;
+            }
+
+            statusElement.textContent = 'Checking username...';
+            statusElement.style.color = 'blue';
+
+            try {
+                const response = await fetch(`${API_URL}/check-username`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username }),
+                });
+                
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1) {
                     const data = await response.json();
-                    const statusElement = document.getElementById('usernameStatus');
                     if (data.available) {
                         statusElement.textContent = 'Username is available';
                         statusElement.style.color = 'green';
@@ -362,9 +374,13 @@
                         statusElement.textContent = 'Username is already taken';
                         statusElement.style.color = 'red';
                     }
-                } catch (error) {
-                    console.error('Error checking username:', error);
+                } else {
+                    throw new Error('Received non-JSON response from server');
                 }
+            } catch (error) {
+                console.error('Error checking username:', error);
+                statusElement.textContent = `Error: ${error.message || 'Unable to check username availability'}`;
+                statusElement.style.color = 'red';
             }
         });
 
