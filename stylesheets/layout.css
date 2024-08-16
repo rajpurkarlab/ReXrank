@@ -395,6 +395,22 @@ button:focus {
     font-size: 6em;
   }
 }
+
+.help-link {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.help-link a {
+  color: #a41034;
+  text-decoration: underline;
+}
+
+.help-link a:hover {
+  text-decoration: none;
+}
+
 .footer {
   background-color: #333;
   border: none;
