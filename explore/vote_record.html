@@ -23,6 +23,7 @@
     <link href="../stylesheets/alert.css" rel="stylesheet"/>
     <script src="../javascripts/analytics.js"></script>
     <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <!-- Keep existing meta tags and styles -->
     <style>
         .case-container {
@@ -354,18 +355,30 @@
             try {
                 const response = await fetch('../example_files/vote_record/reports.csv');
                 const csv = await response.text();
-                const lines = csv.split('\n');
-                const headers = lines[0].split(',');
-                for (let i = 1; i < lines.length; i++) {
-                    const values = lines[i].split(',');
-                    if (values.length === headers.length) {
-                        const caseObj = {};
-                        headers.forEach((header, index) => {
-                            caseObj[header.trim()] = values[index].trim();
-                        });
-                        caseData.push(caseObj);
+
+                // Use Papa Parse to parse the CSV data
+                Papa.parse(csv, {
+                    header: true,
+                    complete: function(results) {
+                        caseData = results.data;
+                        console.log('Parsed case data:', caseData);
+                    },
+                    error: function(error) {
+                        console.error('Error parsing CSV:', error);
                     }
-                }
+                });
+                // const lines = csv.split('\n');
+                // const headers = lines[0].split(',');
+                // for (let i = 1; i < lines.length; i++) {
+                //     const values = lines[i].split(',');
+                //     if (values.length === headers.length) {
+                //         const caseObj = {};
+                //         headers.forEach((header, index) => {
+                //             caseObj[header.trim()] = values[index].trim();
+                //         });
+                //         caseData.push(caseObj);
+                //     }
+                // }
             } catch (error) {
                 console.error('Error fetching case data:', error);
             }
