@@ -284,7 +284,7 @@ app.get('/get-choices/:userId', async (req, res) => {
 
 const SALT_ROUNDS = 10; // Add this line to define SALT_ROUNDS
 
-app.post('/login',loginLimiter， async (req, res) => {
+app.post('/login',loginLimiter, async (req, res) => {
   try {
     const { username, password } = req.body;
     console.log('Login attempt for username:', username);
