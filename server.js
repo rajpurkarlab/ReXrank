@@ -390,9 +390,26 @@ app.post('/register', async (req, res) => {
 
     await sendEmail(
       user.email,
-      'Verify Your Email',
-      `Please click this link to verify your email: ${verificationLink}`
-    );
+      'Email Verification for Your ReXrank Account',
+        `
+      Dear ${user.name},
+
+      Thank you for registering with ReXrank. 
+
+      To ensure the security of your account and activate all features, we kindly request that you verify your email address. Please click on the link below to complete the verification process:
+
+      ${verificationLink}
+
+      Should you encounter any issues or have any questions, please reply to this email.
+
+      Best regards,
+
+      Xiaoman Zhang
+      Postdoctoral Fellow
+      Rajpurkar Lab
+      Harvard Medical School
+        `
+      );
 
     console.log('Verification email sent to:', user.email);
 
