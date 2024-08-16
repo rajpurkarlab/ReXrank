@@ -396,19 +396,28 @@ button:focus {
   }
 }
 
-.help-link {
+#topCover #helpLink {
+  color: #fff;
+  font-size: 1.5em;
+  margin: 0px;
+  padding: 0px;
   text-align: center;
-  margin-top: 10px;
-  font-size: 18px;
+  font-weight: 400;
 }
 
-.help-link a {
-  color: #a41034;
+#topCover #helpLink a {
+  color: #fff;
   text-decoration: underline;
 }
 
-.help-link a:hover {
+#topCover #helpLink a:hover {
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  #topCover #helpLink {
+    font-size: 1.2em;
+  }
 }
 
 .footer {
