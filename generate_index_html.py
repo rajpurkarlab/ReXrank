@@ -7,6 +7,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
   <title>
     ReXrank
   </title>
+  <meta name="google-site-verification" content="nhtTEYeNrlo4w3RA5TuRR338uGFQGDhhSYAFEBA301c" />
   <meta name="description" content="ReXrank: The leading open-source leaderboard for radiology report generation. Compare and benchmark AI models for medical imaging reports."/>
   <meta name="keywords" content="ReXrank, radiology, report generation, AI, medical imaging, leaderboard, benchmarking"/>
   <meta property="og:title" content="ReXrank: Radiology Report Generation Leaderboard"/>
@@ -79,13 +80,13 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="./">Home</a>
+              <a href="./" style="font-size: 18px;">Home</a>
             </li>
             <li>
-              <a href="./explore/vote_example.html">Vote</a>
+              <a href="./explore/vote_example.html" style="font-size: 18px;">Vote</a>
             </li>
             <li>
-              <a href="./explore/login.html">Login</a>
+              <a href="./explore/login.html" style="font-size: 18px;">Login</a>
             </li>
           </ul>
         </div>
@@ -103,6 +104,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         <div class="col-md-12">
           <h1 id="appTitle">ReXrank</h1>
           <h2 id="appSubtitle">Open-Source Radiology Report Generation Leaderboard</h2>
+          <h3 id="helpLink"><a href="https://forms.office.com/r/1wDsy2MmAM" target="_blank" rel="noopener noreferrer">Wanna help us?</a></h3>
+          <!-- <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
         </div>
       </div>
     </div>
