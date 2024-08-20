@@ -83,7 +83,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
               <a href="./" style="font-size: 18px;">Home</a>
             </li>
             <li>
-              <a href="./explore/vote_example.html" style="font-size: 18px;">Vote</a>
+              <a href="./explore/vote_example.html" style="font-size: 18px;">Arena</a>
             </li>
             <li>
               <a href="./explore/login.html" style="font-size: 18px;">Login</a>
