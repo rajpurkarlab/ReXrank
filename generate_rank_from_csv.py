@@ -107,7 +107,7 @@ def generate_leaderboard_html(private_csv_path,mimic_csv_path, iu_xray_csv_path,
 
 
 # Call the function to generate the HTML file
-generate_leaderboard_html('./results/result_gradienthealth.csv','./results/result_mimic-cxr.csv', './results/result_iu_xray.csv', './results/result_chexpert_plus-valid.csv', './results/table_rank.html')
+generate_leaderboard_html('./results/findings_result_gradienthealth.csv','./results/findings_result_mimiccxr.csv', './results/findings_result_iu_xray.csv', './results/findings_result_chexpertplus.csv', './results/table_rank.html')
 
 # # 调用函数生成HTML文件
 # generate_leaderboard_html('./results/result_mimiccxr.csv', './results/result_mimiccxr.csv', './results/table_rank.html')

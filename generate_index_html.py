@@ -104,7 +104,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         <div class="col-md-12">
           <h1 id="appTitle">ReXrank</h1>
           <h2 id="appSubtitle">Open-Source Radiology Report Generation Leaderboard</h2>
-          <h3 id="helpLink"><a href="https://forms.office.com/r/1wDsy2MmAM" target="_blank" rel="noopener noreferrer">Wanna help us?</a></h3>
+          <h3 id="helpLink"><a href="https://forms.office.com/r/1wDsy2MmAM" target="_blank" rel="noopener noreferrer">⭐@Radiologist: Join ReXrank Evaluation</a></h3>
           <!-- <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
         </div>
       </div>
@@ -199,7 +199,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     <script src="/ReXrank/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/ReXrank/javascripts/jquery.tablesorter.min.js"></script>
     <script src="/ReXrank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script>
+     <script>
         $(document).ready(function() {
             // Initialize tablesorter
             $("#modelTableTest").tablesorter({
@@ -368,6 +368,27 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validBtnIU").removeClass('btn-black').addClass('btn-gray');
                 updateRanksIU(); // Update ranks after switching
             });
+            $("#testBtnPrivate").click(function() {
+                $("#testResultsPrivate").show();
+                $("#validResultsPrivate").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+                updateRanksPrivate(); // Update ranks after switching
+            });
+            $("#testBtnCheXpert").click(function() {
+                $("#testResultsCheXpert").show();
+                $("#validResultsCheXpert").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+                updateRanksCheXpert(); // Update ranks after switching
+            });
+            $("#testBtnMIMIC").click(function() {
+                $("#testResultsMIMIC").show();
+                $("#validResultsMIMIC").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+                updateRankTest(); // Update ranks after switching
+            });
     
             // Switch to valid results
             $("#validBtnIU").click(function() {
@@ -376,6 +397,27 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnIU").removeClass('btn-black').addClass('btn-gray');
                 updateRanksIU(); // Update ranks after switching
+            });
+            $("#validBtnPrivate").click(function() {
+                $("#testResultsPrivate").hide();
+                $("#validResultsPrivate").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+                updateRanksPrivate(); // Update ranks after switching
+            });
+            $("#validBtnCheXpert").click(function() {
+                $("#testResultsCheXpert").hide();
+                $("#validResultsCheXpert").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+                updateRanksCheXpert(); // Update ranks after switching
+            });
+            $("#validBtnMIMIC").click(function() {
+                $("#testResultsMIMIC").hide();
+                $("#validResultsMIMIC").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+                updateRankTest(); // Update ranks after switching
             });
           });
           document.addEventListener('DOMContentLoaded', function() {
