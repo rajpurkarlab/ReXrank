@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="utf-8"/>
+    <title>ReXrank</title>
+    <meta name="description" content="ReXrank: The leading open-source leaderboard for radiology report generation. Compare and benchmark AI models for medical imaging reports."/>
+    <meta name="keywords" content="ReXrank, radiology, report generation, AI, medical imaging, leaderboard, benchmarking"/>
+    <meta property="og:title" content="ReXrank: Radiology Report Generation Leaderboard"/>
+    <meta property="og:description" content="Open-source leaderboard for comparing and benchmarking AI models in radiology report generation."/>
+    <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/"/>
+    <meta property="og:type" content="website"/>
+    <meta content="ReXrank is an open-source leaderboard for AI-powered radiology report generation from chest x-ray images." name="description"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <meta content="/logo.png" property="og:image"/>
+    <meta content="../logo.png" property="og:image"/>
+    <link href="../logo.png" rel="image_src" type="image/png"/>
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../stylesheets/layout.css" rel="stylesheet"/>
+    <link href="../stylesheets/index.css" rel="stylesheet"/>
+    <link href="../stylesheets/alert.css" rel="stylesheet"/>
+    <script src="../javascripts/analytics.js"></script>
+    <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <!-- Keep existing meta tags and styles -->
+    <style>
+        .case-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .image-container {
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-height: 300px;
+            width: auto;
+            /* max-width: 100%;
+            height: auto; */
+            cursor: pointer;
+        }
+        .reports-container {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+        }
+        .report {
+            flex: 1;
+            border: 1px solid #ddd;
+            background-color: white; 
+            padding: 10px;
+            cursor: pointer;
+            position: relative; /* Add this to position the checkmark */
+        }
+        .report.selected {
+            background-color: #e0e0e0;
+        }
+        .checkmark {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #a41034;
+            font-size: 24px;
+            display: none;
+        }
+        .report.selected .checkmark {
+            display: block;
+        }
+        /* Keep existing styles */
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;  /* Add space between buttons */
+            width: 100%;
+            margin-top: 20px;
+        }
+        #userInfo {
+            text-align: right;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+    }
+
+    /* 模态框中的图片 */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100vh;
+        object-fit: contain;
+    }
+
+    /* 关闭按钮 */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+        <div class="container clearfix" id="navContainer">
+          <div class="rightNav">
+            <div class="collapseDiv">
+              <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+              </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                    <a href="../" style="font-size: 18px;">Home</a>
+                    </li>
+                    <li>
+                    <a href="vote_example.html" style="font-size: 18px;">Arena</a>
+                    </li>
+                    <li>
+                    <a href="login.html" style="font-size: 18px;">Login</a>
+                    </li>
+                </ul>
+              </div>
+          </div>
+          <div class="leftNav">
+            <div class="brandDiv">
+              <a class="navbar-brand" href="../">ReXrank</a>
+            </div>
+          </div>
+        </div>
+      </div>
+     <div id="userInfo"></div>
+    
+    <div class="cover" id="contentCover">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="infoCard">
+                        <div class="infoBody">
+                          <div class="infoHeadline">
+                            <h2>Report Generation Arena: Vote for the Better Report</h2>
+                          </div>
+                          <p>
+                            You will be presented with two anonymized radiology reports, each generated by a different AI model but based on the same x-ray image. 
+                            Your task is to select the report that you believe provides the most accurate and thorough interpretation of the x-ray.
+                            Click on the image to view it in full size, choose the report you prefer, and then click the 'Submit' button. If you're unsure about this case, click 'Skip' to move on to the next one.
+                        </p>
+                        </div>
+                    </div>
+                    <div id="caseContainer" class="case-container">
+                        <!-- Case content will be dynamically inserted here -->
+                    </div>
+                    <div class="navigation-buttons">
+                        <button id="skipButton" class="btn actionBtn inverseBtn">Skip</button>
+                        <button id="nextButton" class="btn actionBtn inverseBtn">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <div id="customAlert" class="custom-alert">
+        <div class="alert-content">
+            <p id="alertText"></p>
+            <button onclick="closeAlert()" class="close-btn">OK</button>
+        </div>
+    </div>
+
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        const BASE_URL = window.location.hostname.includes('github.io') 
+            ? 'https://rexrank.azurewebsites.net'  // 使用 Azure 的 API URL
+            : 'https://rexrank.azurewebsites.net'; // 本地或 Azure 环境
+
+
+        let currentCaseIndex = 0;
+        let caseData = [];
+        let userData = null;
+        let userChoices = {};
+
+        async function checkAuth() {
+            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!token || !user) {
+                window.location.href = 'login.html';
+            } else {
+                userData = user;
+                displayUserInfo();
+                await getUserChoices();
+                await fetchCaseData();
+                currentCaseIndex = findNextUnvotedCase();
+                displayCase(currentCaseIndex);
+            }
+        }
+
+        function displayUserInfo() {
+            const userInfoDiv = document.getElementById('userInfo');
+            userInfoDiv.innerHTML = `Welcome, ${userData.username || userData.email || 'User'}!`;
+        }
+
+        async function saveChoice(imageId, choice) {
+            const userId = userData.id;
+            try {
+                const response = await fetch(`${BASE_URL}/save-choice`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({ userId, imageId, choice }),
+                });
+                const data = await response.json();
+                if (data.success) {
+                    userChoices[imageId] = choice;
+                    console.log('Choice saved:', imageId, choice);
+                } else {
+                    console.error('Failed to save choice:', data.message);
+                }
+            } catch (error) {
+                console.error('Error saving choice:', error);
+            }
+        }
+
+        function displayCase(index) {
+            if (index >= caseData.length) {
+                showAlert('You have completed all available cases!');
+                return;
+            }
+            
+            const caseContainer = document.getElementById('caseContainer');
+            const currentCase = caseData[index];
+            caseContainer.innerHTML = `
+                <div class="image-container">
+                    <img src="../example_files/vote_record/images/${currentCase.image_id}" alt="X-ray Image">
+                </div>
+                <div class="reports-container">
+                    <div class="report" onclick="selectReport('A', this)">
+                        <h3>Report A</h3>
+                        <p>${currentCase.report_a}</p>
+                        <span class="checkmark">✓</span>
+                    </div>
+                    <div class="report" onclick="selectReport('B', this)">
+                        <h3>Report B</h3>
+                        <p>${currentCase.report_b}</p>
+                        <span class="checkmark">✓</span>
+                    </div>
+                </div>
+            `;
+            // caseContainer.innerHTML = `
+            //     <div class="image-container">
+            //         <img src="/example_files/vote_record/images/${currentCase.image_id}" alt="X-ray Image">
+            //     </div>
+            //     <div class="reports-container">
+            //         <div class="report" onclick="selectReport('A', this)">
+            //             <h3>Report A</h3>
+            //             <p>${currentCase.report_a}</p>
+            //         </div>
+            //         <div class="report" onclick="selectReport('B', this)">
+            //             <h3>Report B</h3>
+            //             <p>${currentCase.report_b}</p>
+            //         </div>
+            //     </div>
+            // `;
+        }
+
+        function selectReport(report, element) {
+            const reports = document.querySelectorAll('.report');
+            reports.forEach(r => r.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+        
+        function handleSkip() {
+            currentCaseIndex++; // add 1 and move to the next case
+            currentCaseIndex = findNextUnvotedCase();
+            if (currentCaseIndex < caseData.length) {
+                displayCase(currentCaseIndex);
+            } else {
+                showAlert('You have completed all available cases!');
+            }
+        }
+
+        function findNextUnvotedCase() {
+            return caseData.findIndex((caseItem, index) => 
+                index >= currentCaseIndex && !userChoices[caseItem.image_id]
+            );
+        }
+
+        async function handleNext() {
+            const selectedReport = document.querySelector('.report.selected');
+            if (!selectedReport) {
+                showAlert('Please select a report before proceeding.');
+                return;
+            }
+
+            const currentCase = caseData[currentCaseIndex];
+            const choice = selectedReport.querySelector('h3').textContent.includes('A') ? 'A' : 'B';
+            await saveChoice(currentCase.image_id, choice);
+
+            currentCaseIndex++; // add 1 and move to the next case
+            currentCaseIndex = findNextUnvotedCase();
+            if (currentCaseIndex < caseData.length) {
+                displayCase(currentCaseIndex);
+            } else {
+                showAlert('Thank you for completing all cases!');
+            }
+        }
+
+
+        async function getUserChoices() {
+            const userId = userData.id;
+            try {
+                const response = await fetch(`${BASE_URL}/get-choices/${userId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                });
+                const data = await response.json();
+                if (data.success) {
+                    userChoices = data.choices;
+                } else {
+                    console.error('Failed to get user choices:', data.message);
+                }
+            } catch (error) {
+                console.error('Error getting user choices:', error);
+            }
+        }
+
+        async function fetchCaseData() {
+            try {
+                const response = await fetch('../example_files/vote_record/reports.csv');
+                const csv = await response.text();
+
+                // Use Papa Parse to parse the CSV data
+                Papa.parse(csv, {
+                    header: true,
+                    complete: function(results) {
+                        caseData = results.data;
+                        console.log('Parsed case data:', caseData);
+                    },
+                    error: function(error) {
+                        console.error('Error parsing CSV:', error);
+                    }
+                });
+                // const lines = csv.split('\n');
+                // const headers = lines[0].split(',');
+                // for (let i = 1; i < lines.length; i++) {
+                //     const values = lines[i].split(',');
+                //     if (values.length === headers.length) {
+                //         const caseObj = {};
+                //         headers.forEach((header, index) => {
+                //             caseObj[header.trim()] = values[index].trim();
+                //         });
+                //         caseData.push(caseObj);
+                //     }
+                // }
+            } catch (error) {
+                console.error('Error fetching case data:', error);
+            }
+        }
+
+        function showAlert(message) {
+            document.getElementById('alertText').textContent = message;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        // 获取模态框元素
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeSpan = document.getElementsByClassName("close")[0];
+
+        // 为图片容器内的所有图片添加点击事件
+        document.getElementById('caseContainer').addEventListener('click', function(e) {
+            const target = e.target;
+            if (target.tagName === 'IMG') {
+                openModal(target.src);
+            }
+        });
+
+        // 打开模态框的函数
+        function openModal(src) {
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+
+        // 关闭模态框的函数
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // 点击关闭按钮关闭模态框
+        closeSpan.onclick = closeModal;
+
+        // 点击模态框外部关闭模态框
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        window.onload = checkAuth;
+        document.getElementById('skipButton').addEventListener('click', handleSkip);
+        document.getElementById('nextButton').addEventListener('click', handleNext);
+    </script>
+
+</body>
+</html>

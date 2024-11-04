@@ -1,12 +1,13 @@
 import pandas as pd
 
-def generate_leaderboard_html(mimic_csv_path, iu_xray_csv_path, chexpert_plus_csv_path, output_path):
+def generate_leaderboard_html(private_csv_path,mimic_csv_path, iu_xray_csv_path, chexpert_plus_csv_path, output_path):
     # Read the three CSV files
     df_mimic = pd.read_csv(mimic_csv_path)
     df_iu_xray = pd.read_csv(iu_xray_csv_path)
     df_chexpert_plus = pd.read_csv(chexpert_plus_csv_path)
-    
+    df_private = pd.read_csv(private_csv_path)
     # Sort each dataframe by 'RadCliQ-v1' score in ascending order
+    df_private = df_private.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
     df_mimic = df_mimic.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
     df_iu_xray = df_iu_xray.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
     df_chexpert_plus = df_chexpert_plus.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
@@ -25,6 +26,7 @@ def generate_leaderboard_html(mimic_csv_path, iu_xray_csv_path, chexpert_plus_cs
               <thead>
                 <tr>
                   <th>Rank</th>
+                  <th>Private</th>
                   <th>MIMIC-CXR</th>
                   <th>IU-Xray</th>
                   <th>CheXpert Plus</th>
@@ -34,7 +36,7 @@ def generate_leaderboard_html(mimic_csv_path, iu_xray_csv_path, chexpert_plus_cs
     '''
     
     # Get the maximum rank length
-    max_rank = max(len(df_mimic), len(df_iu_xray), len(df_chexpert_plus))
+    max_rank = max(len(df_private), len(df_mimic), len(df_iu_xray), len(df_chexpert_plus))
     
     # Generate table content
     for i in range(max_rank):
@@ -42,6 +44,18 @@ def generate_leaderboard_html(mimic_csv_path, iu_xray_csv_path, chexpert_plus_cs
         
         html_string += f'<td><p>{i+1}</p></td>'
         
+        if i < len(df_private):
+            row_private = df_private.iloc[i]
+            html_string += f'''
+            <td style="word-break:break-word;">
+              <a class="link" href
+              "{row_private['Model URL']}">{row_private['Model Name']}</a>
+              <p class="institution">{row_private['Institution']}</p>
+            </td>
+            '''
+        else:
+            html_string += '<td style="word-break:break-word;"></td>'
+
         if i < len(df_mimic):
             row_mimic = df_mimic.iloc[i]
             html_string += f'''
@@ -93,7 +107,7 @@ def generate_leaderboard_html(mimic_csv_path, iu_xray_csv_path, chexpert_plus_cs
 
 
 # Call the function to generate the HTML file
-generate_leaderboard_html('./results/result_mimic-cxr.csv', './results/result_iu_xray.csv', './results/result_chexpert_plus-valid.csv', './results/table_rank.html')
+generate_leaderboard_html('./results/findings_result_gradienthealth.csv','./results/findings_result_mimiccxr.csv', './results/findings_result_iu_xray.csv', './results/findings_result_chexpertplus.csv', './results/table_rank.html')
 
 # # 调用函数生成HTML文件
 # generate_leaderboard_html('./results/result_mimiccxr.csv', './results/result_mimiccxr.csv', './results/table_rank.html')

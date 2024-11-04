@@ -373,12 +373,13 @@ button:focus {
   font-size: 7.3em;
   margin: 0px;
   padding: 0px;
-  font-weight: 100;
+  font-weight: 400;
   text-align: center;
 }
 #topCover #appTitle b {
-  font-weight: 400;
+  font-weight: 700;
 }
+
 #topCover #appSubtitle {
   color: #fff;
   font-size: 2em;
@@ -386,12 +387,41 @@ button:focus {
   padding: 0px;
   text-align: center;
   margin-bottom: 20px;
+  font-weight: 400;  /* 添加粗体 */
 }
+
 @media (max-width: 768px) {
   #topCover #appTitle {
     font-size: 6em;
   }
 }
+
+#topCover #helpLink {
+  color: #fff; /* 保持白色 */
+  font-size: 1.5em;
+  margin: 10px 0 0 0; /* 添加上边距 */
+  padding: 0px;
+  text-align: center;
+  font-weight: 400;
+}
+
+#topCover #helpLink a {
+  color: #fff; /* 确保链接文字也是白色 */
+  text-decoration: underline;
+  opacity: 0.9; /* 稍微降低不透明度以区分于其他文字 */
+}
+
+#topCover #helpLink a:hover {
+  text-decoration: none;
+  opacity: 1; /* 鼠标悬停时恢复完全不透明 */
+}
+
+@media (max-width: 768px) {
+  #topCover #helpLink {
+    font-size: 1.2em;
+  }
+}
+
 .footer {
   background-color: #333;
   border: none;

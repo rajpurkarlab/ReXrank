@@ -1,4 +1,4 @@
-def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_html, table_rank_html, save_html_path):
+def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_html, table_private_html, table_rank_html, save_html_path):
     head_html = '''<!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
 <html>
@@ -7,22 +7,43 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
   <title>
     ReXrank
   </title>
-  <meta content="ReXrank is an open-source leaderboard for radiology report generation." name="description"/>
+  <meta name="google-site-verification" content="nhtTEYeNrlo4w3RA5TuRR338uGFQGDhhSYAFEBA301c" />
+  <meta name="description" content="ReXrank: The leading open-source leaderboard for radiology report generation. Compare and benchmark AI models for medical imaging reports."/>
+  <meta name="keywords" content="ReXrank, radiology, report generation, AI, medical imaging, leaderboard, benchmarking"/>
+  <meta property="og:title" content="ReXrank: Radiology Report Generation Leaderboard"/>
+  <meta property="og:description" content="Open-source leaderboard for comparing and benchmarking AI models in radiology report generation."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/"/>
+  <meta property="og:type" content="website"/>
+  <html lang="en"></html>
+  <meta content="ReXrank is an open-source leaderboard for AI-powered radiology report generation from chest x-ray images." name="description"/>
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
   <meta content="/logo.png" property="og:image"/>
-  <link href="/ReXrank/logo.png" rel="image_src" type="image/png"/>
-  <link href="/ReXrank/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
-  <link href="/ReXrank/favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="/ReXrank/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="/ReXrank/stylesheets/layout.css" rel="stylesheet"/>
-  <link href="/ReXrank/stylesheets/index.css" rel="stylesheet"/>
+  <link href="./logo.png" rel="image_src" type="image/png"/>
+  <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="./favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="./stylesheets/layout.css" rel="stylesheet"/>
+  <link href="./stylesheets/index.css" rel="stylesheet"/>
+  <script src="./javascripts/analytics.js"></script>
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./javascripts/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href="./stylesheets/theme.default.min.css">
+
   <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
-  <script src="/ReXrank/javascripts/analytics.js"></script>
-  <!-- 引入 jQuery 和 tablesorter 插件 -->
-  <script src="/ReXrank/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="/ReXrank/javascripts/jquery.tablesorter.min.js"></script>
-  <link rel="stylesheet" href="/ReXrank/stylesheets/theme.default.min.css">
+  <link rel="canonical" href="https://rexrank.azurewebsites.net/" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ReXrank",
+      "description": "Open-source leaderboard for radiology report generation",
+      "url": "https://rajpurkarlab.github.io/ReXrank/",
+      "keywords": ["ReXrank", "radiology", "report generation", "chest x-ray", "leaderboard", "benchmarking"]      
+    }
+  </script>
+
   <style>
     .fixed-height-table {
       height: 400px; /* 固定高度，可根据需要调整 */
@@ -59,14 +80,20 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a href="/ReXrank/">Home</a>
+              <a href="./" style="font-size: 18px;">Home</a>
+            </li>
+            <li>
+              <a href="./explore/vote_example.html" style="font-size: 18px;">Arena</a>
+            </li>
+            <li>
+              <a href="./explore/login.html" style="font-size: 18px;">Login</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="leftNav">
         <div class="brandDiv">
-          <a class="navbar-brand" href="/ReXrank/">ReXrank</a>
+          <a class="navbar-brand" href="./">ReXrank</a>
         </div>
       </div>
     </div>
@@ -77,6 +104,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         <div class="col-md-12">
           <h1 id="appTitle">ReXrank</h1>
           <h2 id="appSubtitle">Open-Source Radiology Report Generation Leaderboard</h2>
+          <h3 id="helpLink"><a href="https://forms.office.com/r/1wDsy2MmAM" target="_blank" rel="noopener noreferrer">⭐@Radiologist: Join ReXrank Evaluation</a></h3>
+          <!-- <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
         </div>
       </div>
     </div>
@@ -93,7 +122,10 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
               <p>
               <b>ReXrank</b> is an open-source leaderboard for AI-powered radiology report generation from chest x-ray images. We're setting a new standard in healthcare AI by providing a comprehensive, objective evaluation framework for cutting-edge models. Our mission is to accelerate progress in this critical field by fostering healthy competition and collaboration among researchers, clinicians, and AI enthusiasts.
                 Using diverse datasets like MIMIC-CXR, IU-Xray, and CheXpert Plus, ReXrank offers a robust benchmarking system that evolves with clinical needs and technological advancements. Our leaderboard showcases top-performing models, driving innovation that could transform patient care and streamline medical workflows. </p>
-               <p> Join us in shaping the future of AI-assisted radiology. Develop your models, submit your results, and see how you stack up against the best in the field. Together, we can push the boundaries of what's possible in medical imaging and report generation. </p>
+              <p style="margin-bottom: 10px;">Join us in shaping the future of AI-assisted radiology. Develop your models, submit your results, and see how you stack up against the best in the field. Together, we can push the boundaries of what's possible in medical imaging and report generation. </p>
+              </p>
+              <p>
+                <span>⭐ <b>News!</b></span> Click <a href="./explore/vote_example.html">here</a> to vote for the models!
               </p>
             </div>
           </div>
@@ -143,7 +175,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             </div>
           </div>
         </div>'''
-    mid_html = '''{table_rank_html} {table_mimiccxr_html} {table_iuxray_html} {table_chexpertplus_html} '''.format(table_chexpertplus_html=table_chexpertplus_html, table_iuxray_html=table_iuxray_html, table_mimiccxr_html=table_mimiccxr_html, table_rank_html=table_rank_html)
+    mid_html = '''{table_rank_html} {table_private_html} {table_mimiccxr_html} {table_iuxray_html} {table_chexpertplus_html} '''.format(table_chexpertplus_html=table_chexpertplus_html, table_iuxray_html=table_iuxray_html, table_mimiccxr_html=table_mimiccxr_html, table_private_html= table_private_html, table_rank_html=table_rank_html)
     tail_html = '''
         </div>
         </div>
@@ -167,7 +199,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     <script src="/ReXrank/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/ReXrank/javascripts/jquery.tablesorter.min.js"></script>
     <script src="/ReXrank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script>
+     <script>
         $(document).ready(function() {
             // Initialize tablesorter
             $("#modelTableTest").tablesorter({
@@ -289,6 +321,44 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             // Update ranks on page load
             updateRanksCheXpert();
 
+            // Initialize tablesorter
+            $("#modelTablePrivate").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 0]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRanksPrivate() {
+                $("#modelTablePrivate tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
+    
+            // Function to sort table based on custom order for clicked column
+            function customSortPrivate(columnIndex) {
+                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTablePrivate").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTablePrivate th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
+                  customSortPrivate(columnIndex);
+                }
+            });
+            // Update ranks after table sort ends
+            $("#modelTablePrivate").bind("sortEnd", function() {
+                updateRanksPrivate();
+            });
+    
+            // Update ranks on page load
+            updateRanksPrivate();
 
             // Switch to test results
             $("#testBtnIU").click(function() {
@@ -297,6 +367,27 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnIU").removeClass('btn-black').addClass('btn-gray');
                 updateRanksIU(); // Update ranks after switching
+            });
+            $("#testBtnPrivate").click(function() {
+                $("#testResultsPrivate").show();
+                $("#validResultsPrivate").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+                updateRanksPrivate(); // Update ranks after switching
+            });
+            $("#testBtnCheXpert").click(function() {
+                $("#testResultsCheXpert").show();
+                $("#validResultsCheXpert").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+                updateRanksCheXpert(); // Update ranks after switching
+            });
+            $("#testBtnMIMIC").click(function() {
+                $("#testResultsMIMIC").show();
+                $("#validResultsMIMIC").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+                updateRankTest(); // Update ranks after switching
             });
     
             // Switch to valid results
@@ -307,6 +398,34 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#testBtnIU").removeClass('btn-black').addClass('btn-gray');
                 updateRanksIU(); // Update ranks after switching
             });
+            $("#validBtnPrivate").click(function() {
+                $("#testResultsPrivate").hide();
+                $("#validResultsPrivate").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+                updateRanksPrivate(); // Update ranks after switching
+            });
+            $("#validBtnCheXpert").click(function() {
+                $("#testResultsCheXpert").hide();
+                $("#validResultsCheXpert").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+                updateRanksCheXpert(); // Update ranks after switching
+            });
+            $("#validBtnMIMIC").click(function() {
+                $("#testResultsMIMIC").hide();
+                $("#validResultsMIMIC").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+                updateRankTest(); // Update ranks after switching
+            });
+          });
+          document.addEventListener('DOMContentLoaded', function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const message = urlParams.get('message');
+          if (message === 'verified' || message === 'already-verified') {
+              window.location.href = '/explore/login.html?message=' + message;
+          }
         });
     </script>
     
@@ -363,6 +482,7 @@ def get_html_content(input_html):
 table_chexpertplus_html = './results/table_chexpertplus.html'
 table_iuxray_html = './results/table_iuxray.html'
 table_mimiccxr_html = './results/table_mimiccxr.html'
+table_private_html = './results/table_gradienthealth.html'
 table_rank_html = './results/table_rank.html'
 
-generate_html(get_html_content(table_chexpertplus_html), get_html_content(table_iuxray_html), get_html_content(table_mimiccxr_html), get_html_content(table_rank_html),save_html_path='./index.html')
+generate_html(get_html_content(table_chexpertplus_html), get_html_content(table_iuxray_html), get_html_content(table_mimiccxr_html), get_html_content(table_private_html), get_html_content(table_rank_html),save_html_path='./index.html')

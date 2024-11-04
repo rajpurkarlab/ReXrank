@@ -1,0 +1,29 @@
+name: Deploy to Azure Web App
+
+on:
+  push:
+    branches:
+      - preview  # 设置为您的主分支名称
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: npm install and build
+      run: |
+        npm install
+        npm run build --if-present
+
+    - name: 'Deploy to Azure Web App'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'rexrank'  
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}

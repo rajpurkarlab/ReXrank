@@ -1,0 +1,17 @@
+Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,RadCliQ-v0,RadCliQ-v1,RaTEScore,GREEN
+1,2024,CheXagent,Stanford,https://github.com/Stanford-AIMI/CheXagent,0.116,0.353,0.488,0.139,3.401,1.209,0.503,0.389
+2,2024,CheXpertPlus_MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.178,0.386,0.593,0.169,3.101,1.012,0.585,0.661
+3,2024,CheXpertPlus_CheX,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.157,0.413,0.495,0.153,3.217,1.087,0.534,0.541
+4,2024,CheXpertPlus_CheX_MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.198,0.453,0.593,0.211,2.846,0.848,0.618,0.648
+5,2023,Cvt2distilgpt2_MIMIC,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.199,0.422,0.609,0.209,2.916,0.888,0.606,0.682
+6,2023,Cvt2distilgpt2_IU*,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.244,0.482,0.548,0.265,2.792,0.779,0.62,0.686
+7,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa/tree/main,0.206,0.527,0.606,0.235,2.57,0.685,0.65,0.631
+8,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.2,0.459,0.566,0.23,2.851,0.843,0.627,0.615
+9,2023,RaDialog,TUM,https://github.com/ChantalMP/RaDialog,0.201,0.444,0.544,0.205,2.979,0.921,0.586,0.586
+10,2023,RGRG,TUM,https://github.com/ttanida/rgrg,0.216,0.437,0.602,0.223,2.873,0.852,0.62,0.665
+11,2023,VLCI_MIMIC,SYSU,https://github.com/WissingChen/VLCI,0.139,0.364,0.483,0.22,3.267,1.096,0.578,0.474
+12,2023,VLCI_IU*,SYSU,https://github.com/WissingChen/VLCI,0.268,0.455,0.619,0.288,2.72,0.724,0.679,0.698
+13,2024,LLM-CXR,KAIST,https://github.com/hyn2028/llm-cxr,0.033,0.186,0.057,0.023,4.838,2.058,0.28,0.025
+14,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.076,0.274,0.405,0.146,3.755,1.413,0.517,0.651
+15,2024,BiomedGPT_IU*,Lehigh University,https://github.com/taokz/BiomedGPT,0.142,0.375,0.522,0.213,3.172,1.046,0.543,0.523
+16,2024,MAIRA-2,Microsoft,https://huggingface.co/microsoft/maira-2,0.219,0.477,0.604,0.233,2.733,0.771,0.627,0.194
