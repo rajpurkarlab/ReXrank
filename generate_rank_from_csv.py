@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def generate_leaderboard_html(private_csv_path,mimic_csv_path, iu_xray_csv_path, chexpert_plus_csv_path, output_path):
     # Read the three CSV files
     df_mimic = pd.read_csv(mimic_csv_path)
@@ -11,7 +12,7 @@ def generate_leaderboard_html(private_csv_path,mimic_csv_path, iu_xray_csv_path,
     df_mimic = df_mimic.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
     df_iu_xray = df_iu_xray.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
     df_chexpert_plus = df_chexpert_plus.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
-    
+
     # HTML header
     html_string = '''
     <div class="col-md-7">
