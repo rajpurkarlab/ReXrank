@@ -208,7 +208,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                     0: { sorter: false }, // Rank column
                     1: { sorter: false }  // Model column
                 },
-                sortList: [[2, 0]] // Default sort by RadCliQ-v1 ascending
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
             });
     
             // Update ranks after sorting
@@ -249,7 +249,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                     0: { sorter: false }, // Rank column
                     1: { sorter: false }  // Model column
                 },
-                sortList: [[2, 0]] // Default sort by RadCliQ-v1 ascending
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
             });
     
             // Update ranks after sorting
@@ -289,7 +289,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                     0: { sorter: false }, // Rank column
                     1: { sorter: false }  // Model column
                 },
-                sortList: [[2, 0]] // Default sort by RadCliQ-v1 ascending
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
             });
     
             // Update ranks after sorting
@@ -328,7 +328,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                     0: { sorter: false }, // Rank column
                     1: { sorter: false }  // Model column
                 },
-                sortList: [[2, 0]] // Default sort by RadCliQ-v1 ascending
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
             });
     
             // Update ranks after sorting
