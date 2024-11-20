@@ -26,14 +26,14 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>1/RadCliQ-v1 <b>↑</b></th>
+                    <th>RadCliQ-v1 <b>↓</b></th>
+                    <th>RadCliQ-v0 <b>↓</b></th>
                     <th>BLEU <b>↑</b></th>
                     <th>BertScore <b>↑</b></th>
                     <th>SembScore <b>↑</b></th>
                     <th>RadGraph <b>↑</b></th>
                     <th>RaTEScore <b>↑</b></th>
                     <th>GREEN <b>↑</b></th>
-                    <th>1/FineRadScore <b>↑</b></th>
                   </tr>
                 </thead>
                 <tbody id="testResultsMIMIC">
@@ -51,14 +51,14 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -79,14 +79,14 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-               <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -130,14 +130,14 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
             <tr>
               <th>Rank</th>
               <th>Model</th>
-              <th>1/RadCliQ-v1 <b>↑</b></th>
+              <th>RadCliQ-v1 <b>↓</b></th>
+              <th>RadCliQ-v0 <b>↓</b></th>
               <th>BLEU <b>↑</b></th>
               <th>BertScore <b>↑</b></th>
               <th>SembScore <b>↑</b></th>
               <th>RadGraph <b>↑</b></th>
               <th>RaTEScore <b>↑</b></th>
               <th>GREEN <b>↑</b></th>
-              <th>1/FineRadScore <b>↑</b></th>
             </tr>
           </thead>
           <tbody id="testResultsPrivate">
@@ -155,14 +155,14 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -182,14 +182,14 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
 
@@ -234,14 +234,14 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
             <tr>
               <th>Rank</th>
               <th>Model</th>
-              <th>1/RadCliQ-v1 <b>↑</b></th>
+              <th>RadCliQ-v1 <b>↓</b></th>
+              <th>RadCliQ-v0 <b>↓</b></th>
               <th>BLEU <b>↑</b></th>
               <th>BertScore <b>↑</b></th>
               <th>SembScore <b>↑</b></th>
               <th>RadGraph <b>↑</b></th>
               <th>RaTEScore <b>↑</b></th>
               <th>GREEN <b>↑</b></th>
-              <th>1/FineRadScore <b>↑</b></th>
             </tr>
           </thead>
           <tbody id="testResultsCheXpert">
@@ -259,14 +259,14 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     html_string += '''
@@ -286,14 +286,14 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         ''' 
     
@@ -335,14 +335,14 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>1/RadCliQ-v1 <b>↑</b></th>
+                    <th>RadCliQ-v1 <b>↓</b></th>
+                    <th>RadCliQ-v0 <b>↓</b></th>
                     <th>BLEU <b>↑</b></th>
                     <th>BertScore <b>↑</b></th>
                     <th>SembScore <b>↑</b></th>
                     <th>RadGraph <b>↑</b></th>
                     <th>RaTEScore <b>↑</b></th>
                     <th>GREEN <b>↑</b></th>
-                    <th>1/FineRadScore <b>↑</b></th>
                   </tr>
                 </thead>
             <tbody id="testResultsIU">
@@ -360,14 +360,14 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -388,14 +388,14 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v1']}</b></td>
+                <td><b>{row['RadCliQ-v0']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     

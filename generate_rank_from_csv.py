@@ -8,10 +8,10 @@ def generate_leaderboard_html(private_csv_path,mimic_csv_path, iu_xray_csv_path,
     df_chexpert_plus = pd.read_csv(chexpert_plus_csv_path)
     df_private = pd.read_csv(private_csv_path)
     # Sort each dataframe by 'RadCliQ-v1' score in ascending order
-    df_private = df_private.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
-    df_mimic = df_mimic.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
-    df_iu_xray = df_iu_xray.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
-    df_chexpert_plus = df_chexpert_plus.sort_values(by='RadCliQ-v1', ascending=True).reset_index(drop=True)
+    df_private = df_private.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_mimic = df_mimic.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_iu_xray = df_iu_xray.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_chexpert_plus = df_chexpert_plus.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
 
     # HTML header
     html_string = '''
@@ -27,7 +27,7 @@ def generate_leaderboard_html(private_csv_path,mimic_csv_path, iu_xray_csv_path,
               <thead>
                 <tr>
                   <th>Rank</th>
-                  <th>Private</th>
+                  <th>ReXGradient</th>
                   <th>MIMIC-CXR</th>
                   <th>IU-Xray</th>
                   <th>CheXpert Plus</th>

@@ -220,7 +220,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             
             // Function to sort table based on custom order for clicked column
             function customSortTest(columnIndex) {
-                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
                 var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
                 $("#modelTableTest").trigger("sorton", [[[columnIndex, sortDirection]]]);
             }
@@ -261,7 +261,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
 
             // Function to sort table based on custom order for clicked column
             function customSortIU(columnIndex) {
-                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
                 var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
                 $("#modelTableIU").trigger("sorton", [[[columnIndex, sortDirection]]]);
             }
@@ -301,7 +301,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     
             // Function to sort table based on custom order for clicked column
             function customSortCheXpert(columnIndex) {
-                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
                 var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
                 $("#modelTableCheXpert").trigger("sorton", [[[columnIndex, sortDirection]]]);
             }
@@ -340,7 +340,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     
             // Function to sort table based on custom order for clicked column
             function customSortPrivate(columnIndex) {
-                var sortOrder = [0, 0, 1, 1, 1, 1]; // 示例排序顺序数组
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
                 var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
                 $("#modelTablePrivate").trigger("sorton", [[[columnIndex, sortDirection]]]);
             }

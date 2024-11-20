@@ -15,10 +15,10 @@ def generate_leaderboard_html_gradienthealth(csv_path, output_path):
     <div class="infoCard">
       <div class="infoBody">
         <div class="infoHeadline">
-          <h2>Leaderboard on Private Dataset</h2>
+          <h2>Leaderboard on ReXGradient Dataset</h2>
         </div>
         <div>
-          <p> Our private test dataset contains 10,000 studies collected from different medical centers in the US. </p>
+          <p> ReXGradient is a large-scale private test dataset contains 10,000 studies collected from different medical centers in the US. </p>
         </div>
         <table class="table performanceTable tablesorter" id="modelTablePrivate">
           <thead>
