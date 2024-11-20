@@ -116,7 +116,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
     <div class="infoCard">
       <div class="infoBody">
         <div class="infoHeadline">
-          <h2>Leaderboard on Private Dataset</h2>
+          <h2>Leaderboard on ReXGradient</h2>
         </div>
         <div>
           <p> ReXGradient is a large-scale private test dataset contains 10,000 studies collected from different medical centers in the US. </p>
