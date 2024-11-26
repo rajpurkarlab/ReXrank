@@ -126,7 +126,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
               <p>
               <b>ReXrank</b> is a public leaderboard for AI-powered radiology report generation from chest x-ray images. We're setting a new standard in healthcare AI by providing a comprehensive, objective evaluation framework for cutting-edge models. Our mission is to accelerate progress in this critical field by fostering healthy competition and collaboration among researchers, clinicians, and AI enthusiasts.
                 Using diverse datasets like MIMIC-CXR, IU-Xray, and CheXpert Plus, ReXrank offers a robust benchmarking system that evolves with clinical needs and technological advancements. Our leaderboard showcases top-performing models, driving innovation that could transform patient care and streamline medical workflows. </p>
-              <p style="margin-bottom: 20px;"><b>Join us in shaping the future of AI-assisted radiology.</b>Develop your models, submit your results, and see how you stack up against the best in the field. Together, we can push the boundaries of what's possible in medical imaging and report generation. </p>
+              <p style="margin-bottom: 20px;"><b>Join us</b> in shaping the future of AI-assisted radiology. Develop your models, submit your results, and see how you stack up against the best in the field. Together, we can push the boundaries of what's possible in medical imaging and report generation. </p>
               </p>
               <!-- <p>
                 <span>⭐ <b>News!</b></span> Click <a href="./explore/vote_example.html">here</a> to vote for the models!
