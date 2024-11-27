@@ -219,15 +219,17 @@
                     </div>
                     <p>
                       The ReXrank Challenge is a  competition in chest X-ray report generation leveraging ReXGradient, our comprehensive multi-institutional dataset, running from December 1, 2024, to March 1, 2025.
-                      The competition welcomes participation from academic institutions, industry professionals, and independent researchers worldwide. Our evaluation framework encompasses multiple critical dimensions, including clinical accuracy and generalization capability across diverse institutions. A panel of distinguished radiologists will conduct thorough assessments of the highest-performing models. 
-                      Following Round 1, top-performing participants will be invited to collaborate on <b>future research initiatives and model development</b>.
+                      The competition welcomes participation from academic institutions, industry professionals, and independent researchers worldwide. 
+                      We will evaluate the performance of the models from multiple critical dimensions, including clinical accuracy and generalization capability across diverse institutions. 
+                      A panel of distinguished radiologists will conduct thorough assessments of the highest-performing models. 
+                      Top-performing participants will be invited to collaborate on <b>future research initiatives and model development</b>.
                     </p>
 
                     <div class="infoHeadline">
                         <h2>Getting Started</h2>
                     </div>
                     <p>
-                        To evaluate your models, we made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input.
+                        To evaluate your models, we made available the <a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/evaluation_script.md", target="_blank">evaluation script</a> we will use for official evaluation, along with a sample prediction file that the script will take as input.
                         To run the evaluation, use
                         <code>python evaluate.py &lt;path_to_data&gt; &lt;path_to_predictions&gt;</code>.
                     </p>
@@ -241,16 +243,12 @@
                       <p><b>2. Model Submission</b></p>
                       <p>Your model submission should include the following:</p>
                       <ol>
-                          <li><b>Model Description:</b> This description identifies your submission on the leaderboard: {Name_of_model} (Institution) paper link, code link, year</li>
+                          <li><b>Model Description:</b> This description identifies your submission on the leaderboard: Name of the model, Institution, Paper link, Code link, Year</li>
                           <li><b>Conda Environment File:</b> Include the <code>environment.yaml</code> file support <code>conda install</code></li>
                           <li><b>Inference Script:</b> The model should support the command: <code>python inference.py &lt;input_json_file&gt; &lt;output_json_file&gt; &lt;img_root_dir&gt;</code> We provide an <a href="https://github.com/xiaoman-zhang/ReXrank/blob/gh-pages/example_files/merversa_inference.py", target="_blank">example</a> of <a href="https://huggingface.co/hyzhou/MedVersa_Internal", target="_blank">MedVersa</a> for understanding our requirements.</li>
                           <li><b>Evaluation Result:</b> Include the evaluation result on the MIMIC-CXR test set</li>
                       </ol>
 
-                    <p><b>3. Evaluation Script</b></p>
-                    <p>
-                        The evaluation script is available <a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/evaluation_script.md", target="_blank">here</a>.
-                    </p>
                     <div class="infoHeadline"></div>
                     <p>
                         Any questions or concerns? Please reach out to us at <a href="mailto:xiaomanzhang.zxm@gmail.com" target="_blank"> 
