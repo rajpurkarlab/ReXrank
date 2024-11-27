@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--Author: Xiaoman Zhang 2024 -->
+<html lang="en">    
+<head>
+  <meta charset="utf-8"/>
+  <title>
+    ReXrank
+  </title>
+  <meta name="description" content="ReXrank: The leading open-source leaderboard for radiology report generation. Compare and benchmark AI models for medical imaging reports."/>
+  <meta name="keywords" content="ReXrank, radiology, report generation, AI, medical imaging, leaderboard, benchmarking"/>
+  <meta property="og:title" content="ReXrank: Radiology Report Generation Leaderboard"/>
+  <meta property="og:description" content="Open-source leaderboard for comparing and benchmarking AI models in radiology report generation."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/"/>
+  <meta property="og:type" content="website"/>
+  <meta content="ReXrank is an open-source leaderboard for AI-powered radiology report generation from chest x-ray images." name="description"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="../logo.png" property="og:image"/>
+  <link href="../logo.png" rel="image_src" type="image/png"/>
+  <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../stylesheets/layout.css" rel="stylesheet"/>
+  <link href="../stylesheets/index.css" rel="stylesheet"/>
+  <link href="../stylesheets/alert.css" rel="stylesheet"/>
+  <script src="../javascripts/analytics.js"></script>
+  <script src="../javascripts/analytics.js"></script>
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+   <!-- Add Cornerstone.js library and its dependencies -->
+   <script src="https://unpkg.com/cornerstone-core@2.3.0/dist/cornerstone.min.js"></script>
+   <script src="https://unpkg.com/cornerstone-math@0.1.9/dist/cornerstoneMath.min.js"></script>
+   <script src="https://unpkg.com/cornerstone-tools@6.0.6/dist/cornerstoneTools.min.js"></script>
+   <script src="https://unpkg.com/dicom-parser/dist/dicomParser.min.js"></script>
+   <script src="https://unpkg.com/cornerstone-wado-image-loader@4.13.2/dist/cornerstoneWADOImageLoader.bundle.min.js"></script>
+   
+   
+  <style>
+    .fixed-height-table {
+      height: 400px; /* 固定高度，可根据需要调整 */
+      overflow-y: scroll;
+      display: block;
+    }
+    .fixed-height-table thead {
+      position: sticky;
+      top: 0;
+      background-color: white; /* 表头背景色 */
+      z-index: 1;
+    }
+    .fixed-height-table th, .fixed-height-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+  <style>
+    .performanceTable th {
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        background-color: white; 
+    }
+    th {
+        background-color: white; /* 表头背景色 */
+    }
+    .model-answer {
+        cursor: pointer;
+        padding: 5px;
+        position: relative; /* Add this to position the checkmark */
+    }
+    .model-answer:hover {
+        background-color: white; /* 表头背景色 */
+    }
+    .selected {
+        background-color: #e0e0e0;
+    }
+    .checkmark {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: #a41034;
+            font-size: 20px;
+            display: none;
+      }
+      .selected .checkmark {
+          display: block;
+      }
+    #submitVotes {
+        margin-top: 20px;
+    }
+    #moreCasesBtn {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+    #moreCasesBtn.enabled {
+        opacity: 1;
+        pointer-events: auto;
+    }
+  </style>
+  <style>
+    /* 模态框样式 */
+    img {
+            max-width: 100%;
+            height: auto;
+        }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 100px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+  
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 80%;
+      max-width: 700px;
+    }
+  
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+  
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .dicom-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+    #imageModal .modal-content {
+        width: 90%;
+        height: 90%;
+        max-width: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: black;
+    }
+
+    #modalImage {
+        width: 100%;
+        height: 100%;
+    }
+  </style>  
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="../" style="font-size: 18px;">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="../">ReXrank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="topCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="appTitle">ReXrank</h1>
+          <h2 id="appSubtitle">Chest X-ray Report Generation Leaderboard</h2>
+          <!-- https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/submission_tutorial.md -->
+          <!-- <h3 id="helpLink"><a href="./explore/submission_guideline.html" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank Now!</a></h3> -->
+          <!-- <h3 id="helpLink"><a href="https://forms.office.com/r/1wDsy2MmAM" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank Now!</a></h3> -->
+          <!-- <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="contentCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <div class="infoCard">
+                <div class="infoBody">
+                    <div class="infoHeadline">
+                        <h2>ReXrank Submission Guideline (Round 1)</h2>
+                    </div>
+                    <p>
+                      The ReXrank Challenge is a  competition in chest X-ray report generation leveraging ReXGradient, our comprehensive multi-institutional dataset, running from December 1, 2024, to March 1, 2025.
+                      The competition welcomes participation from academic institutions, industry professionals, and independent researchers worldwide. Our evaluation framework encompasses multiple critical dimensions, including clinical accuracy and generalization capability across diverse institutions. A panel of distinguished radiologists will conduct thorough assessments of the highest-performing models. 
+                      Following Round 1, top-performing participants will be invited to collaborate on <b>future research initiatives and model development</b>.
+                    </p>
+
+                    <div class="infoHeadline">
+                        <h2>Getting Started</h2>
+                    </div>
+                    <p>
+                        To evaluate your models, we made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input.
+                        To run the evaluation, use
+                        <code>python evaluate.py &lt;path_to_data&gt; &lt;path_to_predictions&gt;</code>.
+                    </p>
+
+                    <div class="infoHeadline">
+                        <h2>Submission Guidelines</h2>
+                    </div>
+                      <p><b>1. Evaluating on the MIMIC-CXR Test Set</b></p>
+                      <p>To achieve a consistent score with our leaderboard, please use the official MIMIC-CXR test split. You can download the file from  <a href="https://physionet.org/content/mimic-cxr/2.0.0/", target="_blank">here</a>. We evaluate at the study level. If the submitted model can input multiple images, we will input all images of a study. If the submitted model includes only one image, we will default to using the frontal image. We also include context information like patient age, patient gender, indication and comparison. When submission, you can select if you are going to use this info.</p>
+
+                      <p><b>2. Model Submission</b></p>
+                      <p>Your model submission should include the following:</p>
+                      <ol>
+                          <li><b>Model Description:</b> This description identifies your submission on the leaderboard: {Name_of_model} (Institution) paper link, code link, year</li>
+                          <li><b>Conda Environment File:</b> Include the <code>environment.yaml</code> file support <code>conda install</code></li>
+                          <li><b>Inference Script:</b> The model should support the command: <code>python inference.py &lt;input_json_file&gt; &lt;output_json_file&gt; &lt;img_root_dir&gt;</code> We provide an <a href="https://github.com/xiaoman-zhang/ReXrank/blob/gh-pages/example_files/merversa_inference.py", target="_blank">example</a> of <a href="https://huggingface.co/hyzhou/MedVersa_Internal", target="_blank">MedVersa</a> for understanding our requirements.</li>
+                          <li><b>Evaluation Result:</b> Include the evaluation result on the MIMIC-CXR test set</li>
+                      </ol>
+
+                    <p><b>3. Evaluation Script</b></p>
+                    <p>
+                        The evaluation script is available <a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/evaluation_script.md", target="_blank">here</a>.
+                    </p>
+                    <div class="infoHeadline"></div>
+                    <p>
+                        Any questions or concerns? Please reach out to us at <a href="mailto:xiaomanzhang.zxm@gmail.com" target="_blank"> 
+                    </p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
