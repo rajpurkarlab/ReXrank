@@ -197,6 +197,7 @@
         
 
         
+        
         const cases = [
             {
                 "subject_id": "00000013_027",
@@ -247,7 +248,7 @@
                 "subject_id": "00000013_043",
                 "context": "Age:56.Gender:M.Indication:None.Comparison:None.",
                 "image_path": "../example_files/nih_images/00000013_043.png",
-                "report": "Mass|Pleural_Thickening",
+                "report": "Mass|Pleural Thickening",
                 "predictions": {
                     "Model 1": "Findings:PA and lateral views of the chest.  Left-sided pacemaker with leads in the right atrium and right ventricle.  Sternotomy wires are intact.  The lungs are clear.  There is no pleural effusion or pneumothorax.  The cardiomediastinal and hilar contours are normal.Impression:No acute cardiopulmonary process.",
                     "Model 2": "There is a pacemaker in the left upper chest with leads terminating in the right atrium and right ventricle. The cardiac silhouette is mildly enlarged. The mediastinal and hilar contours are normal. There is no pleural effusion or pneumothorax. There is no pulmonary vascular congestion. There is mild pleural thickening at the right lung apex. There is no concerning parenchymal opacity.",
@@ -279,7 +280,7 @@
                 "image_path": "../example_files/nih_images/00000032_008.png",
                 "report": "No Finding",
                 "predictions": {
-                    "Model 1": "Findings:The patient is rotated to the right.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's chin overlies the medial lung apices.  The patient's ch",
+                    "Model 1": "Findings:The patient is rotated to the right.  The patient's chin overlies the medial lung apices. ",
                     "Model 2": "Sternotomy wires are noted. There is moderate cardiomegaly. There is mild pulmonary edema. There are small bilateral pleural effusions. There is no pneumothorax. There is no focal consolidation.",
                     "Model 3": "Findings:the patient is rotated to the right. the patient is rotated to the right. the patient is rotated to the right. the patient is status post median sternotomy and cabg. there are moderate to severe bilateral pleural effusions with overlying atelectasis. underlying consolidation is difficult to exclude. the cardiac silhouette is enlarged. mediastinal contours are grossly stable. Impression: limited exam with cardiomegaly and mild pulmonary edema.",
                     "Model 4": "Findings:submitted for review is a single frontal portable view of the chest dated 4 / 14 / 2013 at 0831. sternotomy wires are seen in the midline. the cardiac silhouette is enlarged. the cardiomediastinal silhouette is otherwise unremarkable. the lung volumes are low. there is confluent alveolar opacification in the bases bilaterally. there is blunting of the costophrenic angles bilaterally. Impression: 1. cardiomegaly with pulmonary edema and bilateral pleural effusions consistent with congestive heart failure. 2. left lower lobe atelectasis versus consolidation.",
@@ -349,7 +350,8 @@
                 }
             }
         ];
-    
+            
+
         function displayCase(index) {
             const currentCase = cases[index];
             
