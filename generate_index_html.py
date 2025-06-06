@@ -46,7 +46,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
 
   <style>
     .fixed-height-table {
-      height: 400px; /* 固定高度，可根据需要调整 */
+      height: 300px; /* 固定高度，可根据需要调整 */
       overflow-y: scroll;
       display: block;
     }
@@ -107,9 +107,9 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
       <div class="row">
         <div class="col-md-12">
           <h1 id="appTitle">ReXrank</h1>
-          <h2 id="appSubtitle">Chest X-ray Report Generation Leaderboard</h2>
-          <h3 id="helpLink"><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/submission_tutorial.md" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank</a></h3>
-          <!-- <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
+          <h2 id="appSubtitle">Chest X-ray Interpretation Leaderboard</h2>
+          <!-- <h3 id="helpLink"><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/submission_tutorial.md" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank</a></h3>
+          <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
         </div>
       </div>
     </div>
