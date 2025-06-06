@@ -1,0 +1,9 @@
+Model,Overall Accuracy,Differential Diagnosis,Geometric Information Assessment,Location and Distribution Assessment,Negation Assessment,Presence Assessment,Failed Extractions
+Gemini,0.6331,0.6221,0.4689,0.596,0.8568,0.6217,0
+Eagle2,0.6443,0.6817,0.5698,0.5695,0.8632,0.5375,0.0
+Janus-Pro-7B,0.6656,0.5634,0.7542,0.6462,0.7573,0.607,0.0
+LLaVA,0.2661,0.2161,0.2346,0.2761,0.2402,0.3633,971
+Qwen2VL,0.547,0.5265,0.4494,0.5405,0.6269,0.5915,1
+Qwen25VL,0.6555,0.6361,0.6648,0.6324,0.8327,0.5114,0.0
+Phi35_Vision_Instruct,0.4749,0.6224,0.2215,0.3711,0.795,0.3644,20
+MedGemma,0.8217,0.7671,0.8045,0.8347,0.8503,0.8521,0.0

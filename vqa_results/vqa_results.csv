@@ -1,0 +1,9 @@
+Rank,Model Name,Institution,Model URL,Overall Accuracy,Differential Diagnosis,Geometric Information Assessment,Location and Distribution Assessment,Negation Assessment,Presence Assessment
+1,MedGemma-4B-it,Google,https://huggingface.co/google/medgemma-4b-it,0.8217,0.7671,0.8045,0.8347,0.8503,0.8521
+2,Janus-Pro-7B,DeepSeek,https://huggingface.co/deepseek-ai/Janus-Pro-7B,0.6656,0.5634,0.7542,0.6462,0.7573,0.607
+3,Qwen2.5VL-7B-Instruct,Qwen,https://huggingface.co/Qwen/Qwen2.5VL-7B-Instruct,0.6555,0.6361,0.6648,0.6324,0.8327,0.5114
+4,Eagle2-9B,NVIDIA,https://huggingface.co/nvidia/Eagle2-9B,0.6443,0.6817,0.5698,0.5695,0.8632,0.5375
+5,Gemini-1.5-Pro,Google,https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/1-5-pro,0.6331,0.6221,0.4689,0.596,0.8568,0.6217
+6,Qwen2VL-7B-Instruct,Alibaba,https://huggingface.co/Qwen/Qwen2VL-7B-Instruct,0.547,0.5265,0.4494,0.5405,0.6269,0.5915
+7,Phi35-Vision-Instruct,Microsoft,https://huggingface.co/microsoft/Phi-3.5-vision-instruct,0.4749,0.6224,0.2215,0.3711,0.795,0.3644
+8,LLaVA-1.5-7B,Meta,https://huggingface.co/llava-hf/llava-1.5-7b-hf,0.2661,0.2161,0.2346,0.2761,0.2402,0.3633

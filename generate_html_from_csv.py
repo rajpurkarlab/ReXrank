@@ -2,141 +2,6 @@ import pandas as pd
 
 
 
-import pandas as pd
-
-
-def generate_leaderboard_html_gradienthealth(csv_path, output_path):
-  # 读取CSV文件
-    df = pd.read_csv(csv_path)
-    
-    # HTML开头部分
-    html_string = '''
-    <div class="col-md-12">
-    <div class="infoCard">
-      <div class="infoBody">
-        <div class="infoHeadline">
-          <h2>Leaderboard on ReXGradient Dataset</h2>
-        </div>
-        <div>
-          <p> ReXGradient is a large-scale private test dataset contains 10,000 studies collected from different medical centers in the US. </p>
-        </div>
-        <table class="table performanceTable tablesorter" id="modelTablePrivate">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Model</th>
-              <th>RadCliQ-v1 <b>↓</b></th>
-              <th>RadCliQ-v0 <b>↓</b></th>
-              <th>BLEU <b>↑</b></th>
-              <th>BertScore <b>↑</b></th>
-              <th>SembScore <b>↑</b></th>
-              <th>RadGraph <b>↑</b></th>
-            </tr>
-          </thead>
-          <tbody>
-    '''
-    
-    # 生成表格内容
-    for _, row in df.iterrows():
-        html_string += f'''
-              <tr>
-                <td>
-                  <p>{row['Rank']}</p>
-                  <span class="date label label-default">{row['Date']}</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
-                  <p class="institution">{row['Institution']}</p>
-                </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
-                <td><b>{row['BLEU']}</b></td>
-                <td><b>{row['BertScore']}</b></td>
-                <td><b>{row['SembScore']}</b></td>
-                <td><b>{row['RadGraph']}</b></td>
-              </tr>
-        '''
-    
-    # HTML结尾部分
-    html_string += '''
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    '''
-    
-    # 写入HTML文件
-    with open(output_path, 'w') as file:
-        file.write(html_string)
-
-
-def generate_html_from_csv_chexpertplus(csv_path, output_path):
-    # 读取CSV文件
-    df = pd.read_csv(csv_path)
-    
-    # HTML开头部分
-    html_string = '''
-    <div class="col-md-12">
-    <div class="infoCard">
-      <div class="infoBody">
-        <div class="infoHeadline">
-          <h2>Leaderboard on CheXpert Plus Dataset</h2>
-        </div>
-        <div>
-          <p> <a class="link" href="https://stanfordaimi.azurewebsites.net/datasets/5158c524-d3ab-4e02-96e9-6ee9efc110a1">CheXpert Plus </a> contains 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments and use the valid set for evaluation. * denotes the model was trained on CheXpert Plus.</p>
-        </div>
-        <table class="table performanceTable tablesorter" id="modelTableCheXpert">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Model</th>
-              <th>RadCliQ-v1 <b>↓</b></th>
-              <th>RadCliQ-v0 <b>↓</b></th>
-              <th>BLEU <b>↑</b></th>
-              <th>BertScore <b>↑</b></th>
-              <th>SembScore <b>↑</b></th>
-              <th>RadGraph <b>↑</b></th>
-            </tr>
-          </thead>
-          <tbody>
-    '''
-    
-    # 生成表格内容
-    for _, row in df.iterrows():
-        html_string += f'''
-              <tr>
-                <td>
-                  <p>{row['Rank']}</p>
-                  <span class="date label label-default">{row['Date']}</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
-                  <p class="institution">{row['Institution']}</p>
-                </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
-                <td><b>{row['BLEU']}</b></td>
-                <td><b>{row['BertScore']}</b></td>
-                <td><b>{row['SembScore']}</b></td>
-                <td><b>{row['RadGraph']}</b></td>
-              </tr>
-        '''
-    
-    # HTML结尾部分
-    html_string += '''
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    '''
-    
-    # 写入HTML文件
-    with open(output_path, 'w') as file:
-        file.write(html_string)
-
-
 def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_path):
     # 读取CSV文件
     df_test = pd.read_csv(test_csv_path)
@@ -148,28 +13,30 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
           <div class="infoCard">
             <div class="infoBody">
               <div class="infoHeadline">
-                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+                <h2>ReXrank Challenge V1.0 - RRG Performance on MIMIC-CXR</h2>
               </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model was trained on this dataset.</p>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
               </div>
               <div>
-                <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
-                <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
+                <button id="testBtnMIMIC" class="btn btn-black">Findings</button>
+                <button id="validBtnMIMIC" class="btn btn-gray">Findings + Impression</button>
               </div>
-              <table class="table performanceTable tablesorter" id="modelTable">
+              <table class="table performanceTable tablesorter" id="modelTableTest">
                 <thead>
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>RadCliQ-v1 <b>↓</b></th>
-                    <th>RadCliQ-v0 <b>↓</b></th>
-                    <th>BLEU <b>↑</b></th>
-                    <th>BertScore <b>↑</b></th>
-                    <th>SembScore <b>↑</b></th>
-                    <th>RadGraph <b>↑</b></th>
+                    <th>1/RadCliQ-v1</th>
+                    <th>BLEU</th>
+                    <th>BertScore</th>
+                    <th>SembScore</th>
+                    <th>RadGraph</th>
+                    <th>RaTEScore</th>
+                    <th>GREEN</th>
+                    <th>1/FineRadScore</th>
                   </tr>
                 </thead>
-                <tbody id="testResults">
+                <tbody id="testResultsMIMIC">
     '''
     
     # 生成测试集表格内容
@@ -184,18 +51,20 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
+                <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
     html_string += '''
             </tbody>
-            <tbody id="validResults" style="display: none;">
+            <tbody id="validResultsMIMIC" style="display: none;">
     '''
     
     # 生成验证集表格内容
@@ -210,12 +79,14 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
+               <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -232,182 +103,12 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
     with open(output_path, 'w') as file:
         file.write(html_string)
 
-def generate_leaderboard_html_mimiccxr_fineradscore(test_csv_path, valid_csv_path, output_path):
+
+def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, output_path):
     # 读取CSV文件
     df_test = pd.read_csv(test_csv_path)
     df_valid = pd.read_csv(valid_csv_path)
     
-    # HTML开头部分
-    html_string = '''
-    <div class="col-md-12">
-          <div class="infoCard">
-            <div class="infoBody">
-              <div class="infoHeadline">
-                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
-              </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model was trained on this dataset.</p>
-              </div>
-              <div>
-                <button id="testBtn" class="btn btn-black">MIMIC-CXR Test</button>
-                <button id="validBtn" class="btn btn-gray">MIMIC-CXR Valid</button>
-              </div>
-              <table class="table performanceTable tablesorter" id="modelTableTest">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Model</th>
-                    <th>FineRadScore <b>↓</b></th>
-                    <th>RadCliQ-v1 <b>↓</b></th>
-                    <th>BLEU <b>↑</b></th>
-                    <th>BertScore <b>↑</b></th>
-                    <th>SembScore <b>↑</b></th>
-                    <th>RadGraph <b>↑</b></th>
-                  </tr>
-                </thead>
-                <tbody id="testResults">
-    '''
-    
-    # 生成测试集表格内容
-    for _, row in df_test.iterrows():
-        html_string += f'''
-              <tr>
-                <td>
-                  <p>{row['Rank']}</p>
-                  <span class="date label label-default">{row['Date']}</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
-                  <p class="institution">{row['Institution']}</p>
-                </td>
-                <td><b>{row['FineRadScore']}</b></td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['BLEU']}</b></td>
-                <td><b>{row['BertScore']}</b></td>
-                <td><b>{row['SembScore']}</b></td>
-                <td><b>{row['RadGraph']}</b></td>
-              </tr>
-        '''
-    
-    html_string += '''
-            </tbody>
-            </table>
-           <table class="table performanceTable tablesorter" id="modelTableValid">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Model</th>
-                <th>RadCliQ-v1 <b>↓</b></th>
-                <th>RadCliQ-v0 <b>↓</b></th>
-                <th>BLEU <b>↑</b></th>
-                <th>BertScore <b>↑</b></th>
-                <th>SembScore <b>↑</b></th>
-                <th>RadGraph <b>↑</b></th>
-              </tr>
-            </thead>
-            <tbody id="validResults">
-    '''
-    
-    # 生成验证集表格内容
-    for _, row in df_valid.iterrows():
-        html_string += f'''
-              <tr>
-                <td>
-                  <p>{row['Rank']}</p>
-                  <span class="date label label-default">{row['Date']}</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
-                  <p class="institution">{row['Institution']}</p>
-                </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
-                <td><b>{row['BLEU']}</b></td>
-                <td><b>{row['BertScore']}</b></td>
-                <td><b>{row['SembScore']}</b></td>
-                <td><b>{row['RadGraph']}</b></td>
-              </tr>
-        '''
-    
-    # HTML结尾部分
-    html_string += '''
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    '''
-    
-    # 写入HTML文件
-    with open(output_path, 'w') as file:
-        file.write(html_string)
-
-def generate_leaderboard_html_mimiccxr_fineradscore_onlytest(test_csv_path, valid_csv_path, output_path):
-    # 读取CSV文件
-    df_test = pd.read_csv(test_csv_path)
-    
-    # HTML开头部分
-    html_string = '''
-    <div class="col-md-12">
-          <div class="infoCard">
-            <div class="infoBody">
-              <div class="infoHeadline">
-                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
-              </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments, and report the score on test set. * denotes the model was trained on MIMIC-CXR.</p>
-              </div>
-              <table class="table performanceTable tablesorter" id="modelTableTest">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Model</th>
-                    <th>FineRadScore <b>↓</b></th>
-                    <th>RadCliQ-v1 <b>↓</b></th>
-                    <th>BLEU <b>↑</b></th>
-                    <th>BertScore <b>↑</b></th>
-                    <th>SembScore <b>↑</b></th>
-                    <th>RadGraph <b>↑</b></th>
-                  </tr>
-                </thead>
-                <tbody>
-    '''
-    
-    # 生成测试集表格内容
-    for _, row in df_test.iterrows():
-        html_string += f'''
-              <tr>
-                <td>
-                  <p>{row['Rank']}</p>
-                  <span class="date label label-default">{row['Date']}</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
-                  <p class="institution">{row['Institution']}</p>
-                </td>
-                <td><b>{row['FineRadScore']}</b></td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['BLEU']}</b></td>
-                <td><b>{row['BertScore']}</b></td>
-                <td><b>{row['SembScore']}</b></td>
-                <td><b>{row['RadGraph']}</b></td>
-              </tr>
-        '''
-    
-    html_string += '''
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    '''
-    
-    # 写入HTML文件
-    with open(output_path, 'w') as file:
-        file.write(html_string)
-
-
-def generate_leaderboard_html_mimiccxr_onlytest(csv_path, output_path):
-    # 读取CSV文件
-    df = pd.read_csv(csv_path)
     
     # HTML开头部分
     html_string = '''
@@ -415,28 +116,35 @@ def generate_leaderboard_html_mimiccxr_onlytest(csv_path, output_path):
     <div class="infoCard">
       <div class="infoBody">
         <div class="infoHeadline">
-          <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+          <h2>ReXrank Challenge V1.0 - RRG Performance on ReXGradient</h2>
         </div>
-        <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments, and report the score on test set. * denotes the model was trained on MIMIC-CXR.</p>
+        <div>
+          <p> ReXGradient is a large-scale private test dataset contains 10,000 studies collected from different medical centers in the US. </p>
         </div>
-        <table class="table performanceTable tablesorter" id="modelTableTest">
+        <div style="margin-top: 5px;">
+          <button id="testBtnPrivate" class="btn btn-black">Findings</button>
+          <button id="validBtnPrivate" class="btn btn-gray">Findings + Impression</button>
+        </div>
+        <table class="table performanceTable tablesorter" id="modelTablePrivate">
           <thead>
             <tr>
               <th>Rank</th>
               <th>Model</th>
-              <th>RadCliQ-v1 <b>↓</b></th>
-              <th>RadCliQ-v0 <b>↓</b></th>
-              <th>BLEU <b>↑</b></th>
-              <th>BertScore <b>↑</b></th>
-              <th>SembScore <b>↑</b></th>
-              <th>RadGraph <b>↑</b></th>
+              <th>1/RadCliQ-v1</th>
+              <th>BLEU</th>
+              <th>BertScore</th>
+              <th>SembScore</th>
+              <th>RadGraph</th>
+              <th>RaTEScore</th>
+              <th>GREEN</th>
+              <th>1/FineRadScore</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="testResultsPrivate">
     '''
     
     # 生成表格内容
-    for _, row in df.iterrows():
+    for _, row in df_test.iterrows():
         html_string += f'''
               <tr>
                 <td>
@@ -447,15 +155,44 @@ def generate_leaderboard_html_mimiccxr_onlytest(csv_path, output_path):
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
+                <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
+    html_string += '''
+            </tbody>
+            <tbody id="validResultsPrivate" style="display: none;">
+    '''
+
+    for _, row in df_valid.iterrows():
+        html_string += f'''
+              <tr>
+                <td>
+                  <p>{row['Rank']}</p>
+                  <span class="date label label-default">{row['Date']}</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
+                  <p class="institution">{row['Institution']}</p>
+                </td>
+                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['BLEU']}</b></td>
+                <td><b>{row['BertScore']}</b></td>
+                <td><b>{row['SembScore']}</b></td>
+                <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
+              </tr>
+        '''
+
     # HTML结尾部分
     html_string += '''
             </tbody>
@@ -469,6 +206,109 @@ def generate_leaderboard_html_mimiccxr_onlytest(csv_path, output_path):
     with open(output_path, 'w') as file:
         file.write(html_string)
 
+
+
+def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output_path):
+    # 读取CSV文件
+    df_test = pd.read_csv(test_csv_path)
+    df_valid = pd.read_csv(valid_csv_path)
+    
+    
+    # HTML开头部分
+    html_string = '''
+    <div class="col-md-12">
+    <div class="infoCard">
+      <div class="infoBody">
+        <div class="infoHeadline">
+          <h2>ReXrank Challenge V1.0 - RRG Performance on CheXpert Plus</h2>
+        </div>
+        <div>
+          <p> <a class="link" href="https://stanfordaimi.azurewebsites.net/datasets/5158c524-d3ab-4e02-96e9-6ee9efc110a1">CheXpert Plus </a> contains 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments and use the valid set for evaluation.</p>
+        </div>
+        <div style="margin-top: 5px;">
+          <button id="testBtnCheXpert" class="btn btn-black">Findings</button>
+          <button id="validBtnCheXpert" class="btn btn-gray">Findings + Impression</button>
+        </div>
+        <table class="table performanceTable tablesorter" id="modelTableCheXpert">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Model</th>
+              <th>1/RadCliQ-v1</th>
+              <th>BLEU</th>
+              <th>BertScore</th>
+              <th>SembScore</th>
+              <th>RadGraph</th>
+              <th>RaTEScore</th>
+              <th>GREEN</th>
+              <th>1/FineRadScore</th>
+            </tr>
+          </thead>
+          <tbody id="testResultsCheXpert">
+    '''
+    
+    # 生成表格内容
+    for _, row in df_test.iterrows():
+        html_string += f'''
+              <tr>
+                <td>
+                  <p>{row['Rank']}</p>
+                  <span class="date label label-default">{row['Date']}</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
+                  <p class="institution">{row['Institution']}</p>
+                </td>
+                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['BLEU']}</b></td>
+                <td><b>{row['BertScore']}</b></td>
+                <td><b>{row['SembScore']}</b></td>
+                <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
+              </tr>
+        '''
+    html_string += '''
+            </tbody>
+            <tbody id="validResultsCheXpert" style="display: none;">
+    '''
+
+    # 生成验证集表格内容
+    for _, row in df_valid.iterrows():
+        html_string += f'''
+              <tr>
+                <td>
+                  <p>{row['Rank']}</p>
+                  <span class="date label label-default">{row['Date']}</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
+                  <p class="institution">{row['Institution']}</p>
+                </td>
+                <td><b>{row['1/RadCliQ-v1']}</b></td>
+                <td><b>{row['BLEU']}</b></td>
+                <td><b>{row['BertScore']}</b></td>
+                <td><b>{row['SembScore']}</b></td>
+                <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
+              </tr>
+        ''' 
+    
+    # HTML结尾部分
+    html_string += '''
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    '''
+    
+    # 写入HTML文件
+    with open(output_path, 'w') as file:
+        file.write(html_string)
 
 def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path):
     # 读取CSV文件
@@ -481,26 +321,28 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
       <div class="infoCard">
         <div class="infoBody">
           <div class="infoHeadline">
-            <h2>Leaderboard on IU Xray Dataset</h2>
+            <h2>ReXrank Challenge V1.0 - RRG Performance on IU Xray</h2>
           </div>
           <div>
-            <p> <a class="link" href="https://paperswithcode.com/dataset/iu-x-ray">IU Xray</a> contains 7,470 pairs of radiology reports and chest X-rays from Indiana University. We follow the split given by <a class="link" href="https://github.com/cuhksz-nlp/R2Gen">R2Gen</a>. * denotes the model was trained on IU X-ray.</p>
+            <p> <a class="link" href="https://paperswithcode.com/dataset/iu-x-ray">IU Xray</a> contains 7,470 pairs of radiology reports and chest X-rays from Indiana University. We follow the split given by <a class="link" href="https://github.com/cuhksz-nlp/R2Gen">R2Gen</a>.</p>
           </div>
           <div style="margin-top: 5px;">
-            <button id="testBtnIU" class="btn btn-black">IU Xray Test</button>
-            <button id="validBtnIU" class="btn btn-gray">IU Xray Valid</button>
+            <button id="testBtnIU" class="btn btn-black">Findings</button>
+            <button id="validBtnIU" class="btn btn-gray">Findings + Impression</button>
           </div>
           <table class="table performanceTable tablesorter" id="modelTableIU">
             <thead>
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>RadCliQ-v1 <b>↓</b></th>
-                    <th>RadCliQ-v0 <b>↓</b></th>
-                    <th>BLEU <b>↑</b></th>
-                    <th>BertScore <b>↑</b></th>
-                    <th>SembScore <b>↑</b></th>
-                    <th>RadGraph <b>↑</b></th>
+                    <th>1/RadCliQ-v1</th>
+                    <th>BLEU</th>
+                    <th>BertScore</th>
+                    <th>SembScore</th>
+                    <th>RadGraph</th>
+                    <th>RaTEScore</th>
+                    <th>GREEN</th>
+                    <th>1/FineRadScore</th>
                   </tr>
                 </thead>
             <tbody id="testResultsIU">
@@ -518,12 +360,14 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
+                <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -544,12 +388,14 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
+                <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
                 <td><b>{row['SembScore']}</b></td>
                 <td><b>{row['RadGraph']}</b></td>
+                <td><b>{row['RaTEScore']}</b></td>
+                <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -567,109 +413,8 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
         file.write(html_string)
 
 
-def generate_leaderboard_html_iu_xray_onlytest(csv_path, output_path):
-    # 读取CSV文件
-    df = pd.read_csv(csv_path)
-    
-    # HTML开头部分
-    html_string = '''
-    <div class="col-md-12">
-    <div class="infoCard">
-      <div class="infoBody">
-        <div class="infoHeadline">
-            <h2>Leaderboard on IU Xray Dataset</h2>
-          </div>
-          <div>
-            <p> <a class="link" href="https://paperswithcode.com/dataset/iu-x-ray">IU Xray</a> contains 7,470 pairs of radiology reports and chest X-rays from Indiana University. We follow the split given by <a class="link" href="https://github.com/cuhksz-nlp/R2Gen">R2Gen</a>. * denotes the model was trained on IU X-ray.</p>
-          </div>
-        <table class="table performanceTable tablesorter" id="modelTableIU">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Model</th>
-              <th>RadCliQ-v1 <b>↓</b></th>
-              <th>RadCliQ-v0 <b>↓</b></th>
-              <th>BLEU <b>↑</b></th>
-              <th>BertScore <b>↑</b></th>
-              <th>SembScore <b>↑</b></th>
-              <th>RadGraph <b>↑</b></th>
-            </tr>
-          </thead>
-          <tbody>
-    '''
-    
-    # 生成表格内容
-    for _, row in df.iterrows():
-        html_string += f'''
-              <tr>
-                <td>
-                  <p>{row['Rank']}</p>
-                  <span class="date label label-default">{row['Date']}</span>
-                </td>
-                <td style="word-break:break-word;">
-                  <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
-                  <p class="institution">{row['Institution']}</p>
-                </td>
-                <td><b>{row['RadCliQ-v1']}</b></td>
-                <td><b>{row['RadCliQ-v0']}</b></td>
-                <td><b>{row['BLEU']}</b></td>
-                <td><b>{row['BertScore']}</b></td>
-                <td><b>{row['SembScore']}</b></td>
-                <td><b>{row['RadGraph']}</b></td>
-              </tr>
-        '''
-    
-    # HTML结尾部分
-    html_string += '''
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    '''
-    
-    # 写入HTML文件
-    with open(output_path, 'w') as file:
-        file.write(html_string)
 
-
-# 调用函数生成HTML文件
-generate_html_from_csv_chexpertplus('./results/result_chexpert_plus-valid.csv', './results/table_chexpertplus.html')
-# generate_leaderboard_html_mimiccxr_fineradscore_onlytest('./results/result_mimic-cxr.csv', './results/result_mimic-cxr-valid.csv', './results/table_mimiccxr.html')
-generate_leaderboard_html_mimiccxr_onlytest('./results/result_mimic-cxr.csv', './results/table_mimiccxr.html')
-# generate_leaderboard_html_iu_xray('./results/result_iu_xray.csv', './results/result_iu_xray-valid.csv', './results/table_iuxray.html')
-generate_leaderboard_html_iu_xray_onlytest('./results/result_iu_xray.csv','./results/table_iuxray.html')
-
-generate_leaderboard_html_gradienthealth('./results/result_gradienthealth.csv', './results/table_gradienthealth.html')
-# # Data to create DataFrame
-# data = {
-#     "Rank": [1, 2, 3, 4, 5, 6, 7, 8],
-#     "Date": ["2024-07-13"] * 8,
-#     "Model Name": ["CheXpertPlus-Baseline", "MedVersa", "LLM-CXR", "CheXagent", "RadFM", "VLCI", "CvT2DistilGPT2", "RGRG"],
-#     "Institution": ["Institution1", "Institution2", "Institution3", "Institution4", "Institution5", "Institution6", "Institution7", "Institution8"],
-#     "Model URL": [
-#         "https://example.com/model1", 
-#         "https://example.com/model2", 
-#         "https://example.com/model3", 
-#         "https://example.com/model4", 
-#         "https://example.com/model5", 
-#         "https://example.com/model6", 
-#         "https://example.com/model7", 
-#         "https://example.com/model8"
-#     ],
-#     "BLEU": [90.939, 91.939, 89.939, 88.939, 87.939, 86.939, 85.939, 84.939],
-#     "Bert-Sim": [93.214, 94.214, 92.214, 91.214, 90.214, 89.214, 88.214, 87.214],
-#     "RadGraph": [93.214, 94.214, 92.214, 91.214, 90.214, 89.214, 88.214, 87.214],
-#     "RadCliQ-v1": [93.214, 94.214, 92.214, 91.214, 90.214, 89.214, 88.214, 87.214],
-#     "KG-Sim": [93.214, 94.214, 92.214, 91.214, 90.214, 89.214, 88.214, 87.214]
-# }
-
-# # Create DataFrame
-# df = pd.DataFrame(data)
-
-# # Save DataFrame to CSV
-# df.to_csv('./results/result_mimiccxr.csv', index=False)
-
-# 调用函数生成HTML文件
-# generate_html_from_csv('./results/result_mimiccxr.csv', './results/table_mimiccxr.html')
-
+generate_leaderboard_html_iu_xray('./results/findings_result_iu_xray.csv','./results/result_iu_xray.csv','./results/table_iuxray.html')
+generate_leaderboard_html_chexpertplus('./results/findings_result_chexpertplus.csv','./results/result_chexpertplus.csv','./results/table_chexpertplus.html')
+generate_leaderboard_html_gradienthealth('./results/findings_result_gradienthealth.csv','./results/result_gradienthealth.csv','./results/table_gradienthealth.html')
+generate_leaderboard_html_mimiccxr('./results/findings_result_mimiccxr.csv','./results/result_mimiccxr.csv','./results/table_mimiccxr.html')

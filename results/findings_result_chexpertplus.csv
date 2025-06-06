@@ -1,17 +1,25 @@
 Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/RadCliQ-v1,RaTEScore,GREEN,1/FineRadScore
 1,2024,CheXagent,Stanford,https://github.com/Stanford-AIMI/CheXagent,0.123,0.278,0.269,0.125,0.638,0.434,0.183,0.341
-2,2024,CheXpertPlus_MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.14,0.292,0.294,0.134,0.663,0.43,0.238,0.344
-3,2024,CheXpertPlus_CheX*,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.15,0.342,0.377,0.191,0.786,0.487,0.237,0.343
-4,2024,CheXpertPlus_CheX_MIMIC*,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.153,0.335,0.404,0.207,0.808,0.497,0.274,0.348
-5,2023,Cvt2distilgpt2_MIMIC,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.124,0.267,0.266,0.119,0.626,0.42,0.215,0.346
-6,2023,Cvt2distilgpt2_IU,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.084,0.267,0.155,0.098,0.577,0.382,0.147,0.332
-7,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa_Internal/tree/main,0.129,0.323,0.344,0.147,0.719,0.47,0.243,0.343
+2,2024,CheXpertPlus-MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.14,0.292,0.294,0.134,0.663,0.43,0.238,0.344
+3,2024,CheXpertPlus-CheX,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.15,0.342,0.377,0.191,0.786,0.487,0.237,0.343
+4,2024,CheXpertPlus-CheX-MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.153,0.335,0.404,0.207,0.808,0.497,0.274,0.348
+5,2023,Cvt2distilgpt2-MIMIC,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.124,0.267,0.266,0.119,0.626,0.42,0.215,0.346
+6,2023,Cvt2distilgpt2-IU,CSIRO,https://github.com/aehrc/cvt2distilgpt2,0.084,0.267,0.155,0.098,0.577,0.382,0.147,0.332
+7,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa-Internal/tree/main,0.129,0.323,0.344,0.147,0.719,0.47,0.243,0.343
 8,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.081,0.235,0.216,0.08,0.572,0.396,0.096,0.333
 9,2023,RaDialog,TUM,https://github.com/ChantalMP/RaDialog,0.131,0.312,0.353,0.138,0.709,0.445,0.211,0.333
 10,2023,RGRG,TUM,https://github.com/ttanida/rgrg,0.154,0.315,0.274,0.14,0.674,0.453,0.216,0.337
-11,2023,VLCI_MIMIC,SYSU,https://github.com/WissingChen/VLCI,0.12,0.229,0.251,0.101,0.589,0.384,0.165,0.33
-12,2023,VLCI_IU,SYSU,https://github.com/WissingChen/VLCI,0.106,0.22,0.17,0.094,0.555,0.418,0.194,0.339
+11,2023,VLCI-MIMIC,SYSU,https://github.com/WissingChen/VLCI,0.12,0.229,0.251,0.101,0.589,0.384,0.165,0.33
+12,2023,VLCI-IU,SYSU,https://github.com/WissingChen/VLCI,0.106,0.22,0.17,0.094,0.555,0.418,0.194,0.339
 13,2024,LLM-CXR,KAIST,https://github.com/hyn2028/llm-cxr,0.041,0.162,0.211,0.037,0.519,0.321,0.022,0.291
-14,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.081,0.215,0.234,0.082,0.568,0.415,0.152,0.339
-15,2024,BiomedGPT_IU,Lehigh University,https://github.com/taokz/BiomedGPT,0.022,0.2,0.241,0.056,0.552,0.351,0.118,0.32
+14,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV-System-Card.pdf,0.081,0.215,0.234,0.082,0.568,0.415,0.152,0.339
+15,2024,BiomedGPT-IU,Lehigh University,https://github.com/taokz/BiomedGPT,0.022,0.2,0.241,0.056,0.552,0.351,0.118,0.32
 16,2024,MAIRA-2,Microsoft,https://huggingface.co/microsoft/maira-2,0.163,0.359,0.355,0.189,0.788,0.485,0.273,0.352
+17,2024,CXRMate-ED,CSIRO,https://huggingface.co/aehrc/cxrmate-ed,0.157,0.324,0.316,0.175,0.723,0.498,0.265,0.367
+18,2024,CXRMate-RRG24,CSIRO,https://huggingface.co/aehrc/cxrmate-rrg24,0.157,0.315,0.411,0.218,0.801,0.521,0.276,0.35
+19,2024,Libra,University of Glasgow,https://github.com/X-iZhang/Libra,0.157,0.319,0.323,0.169,0.718,0.466,0.253,0.344
+20,2025,MoERad-IU,IIT Madras,https://github.com/gssriram/MoERad,0.075,0.284,0.175,0.102,0.595,0.39,0.127,0.341
+21,2025,MoERad-MIMIC,IIT Madras,https://github.com/gssriram/MoERad,0.122,0.267,0.3,0.12,0.641,0.434,0.166,0.343
+22,2025,RadPhi3.5Vision,Microsoft,https://github.com/MercyPrasanna/rexrank,0.198,0.353,0.437,0.217,0.86,0.51,0.243,0.356
+23,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.085,0.318,0.385,0.172,0.753,0.476,0.206,0.343
+24,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.147,0.328,0.325,0.137,0.706,0.511,0.246,0.337

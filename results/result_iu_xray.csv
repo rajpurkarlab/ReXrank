@@ -1,7 +1,7 @@
 Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/RadCliQ-v1,RaTEScore,GREEN,1/FineRadScore
-1,2024,CheXpertPlus_MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.227,0.449,0.594,0.187,1.111,0.57,0.681,0.615
-2,2024,CheXpertPlus_CheX,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.198,0.394,0.55,0.211,0.995,0.604,0.706,0.568
-3,2024,CheXpertPlus_CheX_MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.244,0.476,0.598,0.232,1.249,0.606,0.694,0.588
+1,2024,CheXpertPlus-MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.227,0.449,0.594,0.187,1.111,0.57,0.681,0.615
+2,2024,CheXpertPlus-CheX,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.198,0.394,0.55,0.211,0.995,0.604,0.706,0.568
+3,2024,CheXpertPlus-CheX-MIMIC,Stanford,https://github.com/Stanford-AIMI/chexpert-plus,0.244,0.476,0.598,0.232,1.249,0.606,0.694,0.588
 4,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa/tree/main,0.195,0.518,0.601,0.244,1.452,0.628,0.658,0.583
 5,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.196,0.479,0.556,0.234,1.22,0.596,0.644,0.551
-6,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.079,0.235,0.403,0.16,0.683,0.519,0.399,0.528
+6,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV-System-Card.pdf,0.079,0.235,0.403,0.16,0.683,0.519,0.399,0.528

@@ -1,4 +1,4 @@
-def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_html, table_private_html, table_rank_html, save_html_path):
+def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_html, table_private_html, table_rank_v1_html, table_rank_v2_html, table_vqa_html, save_html_path):
     head_html = '''<!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
 <html>
@@ -123,50 +123,19 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
               <div class="infoHeadline">
                 <h2>What is ReXrank?</h2>
               </div>
-              <p>
-              <b>ReXrank</b> is a public leaderboard for AI-powered radiology report generation from chest x-ray images. We're setting a new standard in healthcare AI by providing a comprehensive, objective evaluation framework for cutting-edge models. Our mission is to accelerate progress in this critical field by fostering healthy competition and collaboration among researchers, clinicians, and AI enthusiasts.
-                Using diverse datasets like MIMIC-CXR, IU-Xray, and CheXpert Plus, ReXrank offers a robust benchmarking system that evolves with clinical needs and technological advancements. Our leaderboard showcases top-performing models, driving innovation that could transform patient care and streamline medical workflows. </p>
-              <p style="margin-bottom: 20px;"><b>Join us</b> in shaping the future of AI-assisted radiology. Develop your models, submit your results, and see how you stack up against the best in the field. Together, we can push the boundaries of what's possible in medical imaging and report generation. </p>
-              </p>
-              <!-- <p>
-                <span>⭐ <b>News!</b></span> Click <a href="./explore/vote_example.html">here</a> to vote for the models!
-              </p> -->
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-md-5">
-          <div class="infoCard">
-            <div class="infoBody">
-              <div class="infoHeadline">
-                <h2>Getting Started</h2>
+              <p><b>ReXrank</b> is a public leaderboard for chest X-ray image interpretation, including both radiology report generation (RRG) and visual question answering (VQA) tasks. 
+              <hr>
+              <p><b>ReXrank Challenge V1.0</b> is a competition in the generation of chest radiograph reports utilizing ReXGradient, the largest private test dataset consisting of 10,000 studies across 67 sites. The challenge attracted diverse participants from academic institutions, industry, and independent research teams, resulting in 24 state-of-the-art models previously benchmarked. </p>   
+             <hr>
+              <p><b>ReXrank Challenge V2.0</b> is a competition in VQA task utilizing VQA dataset constructed from ReXGradient, including 41,007 VQA pairs with 10,000 radiological studies. We benchmarked 8 state-of-the-art models. </p>
+              <hr>
+              <p><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGradient-160K" target="_blank">ReXGradient-160K</a>  is the largest publicly available multi-site chest X-ray dataset, containing 273,004 unique chest X-ray images from 160,000 radiological studies, collected from 109,487 unique patients across 3 U.S. health systems (79 medical sites). In ReXrank, we use additional private test set ReXGradient, 10,000 studies for benchmarking.</p>
+              <hr>
+              <p><a href="https://huggingface.co/datasets/rajpurkarlab/ReXVQA" target="_blank">ReXVQA</a> is the largest and most comprehensive benchmark for VQA in chest radiology, comprising 653834 questions paired with 160,000 radiological studies. The dataset is constructed from ReXGradient-160K.</p>
               </div>
-              <p>
-                To evaluate your models, we made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input.
-                To run the evaluation, use
-                <code>
-                  python evaluate.py &lt;path_to_data&gt; &lt;path_to_predictions&gt;
-                </code>.
-              </p>
-              <ul class="list-unstyled">
-                <li>
-                  <a class="btn actionBtn inverseBtn" download="" href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/evaluation_script.md" target="_blank">Evaluation Script</a>
-                </li>                
-                <li>
-                  <a class="btn actionBtn inverseBtn" download="" href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/prediction.json" target="_blank">Sample Prediction File</a>
-                </li>
-              </ul>
-              <p>
-                Once you have a built a model that works to your expectations on the MIMIC-CXR test set, you submit it to get official scores on our Private test set. Here's a tutorial on the submission for a smooth evaluation process.
-              </p>
-              <a class="btn actionBtn inverseBtn" href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/submission_tutorial.md" target="_blank">Submission Tutorial</a>
-              <p>
-                Please <b><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/cite.txt" target="_blank">cite</a> </b>if you find our leaderboard helpful. </p>
-              <p> To keep up to date with major changes to the leaderboard and dataset, please <b><a href="https://forms.gle/bZpsPUccYF1Th7Xv9" target="_blank">subscribe</a></b> here ! 
-              </p>
             </div>
-          </div>
-        </div> -->'''
-    mid_html = '''{table_rank_html} {table_private_html} {table_mimiccxr_html} {table_iuxray_html} {table_chexpertplus_html} '''.format(table_chexpertplus_html=table_chexpertplus_html, table_iuxray_html=table_iuxray_html, table_mimiccxr_html=table_mimiccxr_html, table_private_html= table_private_html, table_rank_html=table_rank_html)
+        </div>'''
+    mid_html = '''{table_rank_v1_html} {table_rank_v2_html} {table_private_html} {table_mimiccxr_html} {table_iuxray_html} {table_chexpertplus_html} {table_vqa_html}  '''.format(table_chexpertplus_html=table_chexpertplus_html, table_iuxray_html=table_iuxray_html, table_mimiccxr_html=table_mimiccxr_html, table_private_html= table_private_html, table_rank_v1_html=table_rank_v1_html, table_rank_v2_html=table_rank_v2_html, table_vqa_html=table_vqa_html)
     tail_html = '''
         </div>
         </div>
@@ -231,6 +200,46 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     
             // Update ranks on page load
             updateRankTest();
+            
+            // Initialize tablesorter
+            $("#modelTableVQA").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRankVQA() {
+                $("#modelTableVQA tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
+            
+            // Function to sort table based on custom order for clicked column
+            function customSortTest(columnIndex) {
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableVQA").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableVQA th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
+                    customSortTest(columnIndex);
+                }
+            });
+
+            // Update ranks after table sort ends
+            $("#modelTableVQA").bind("sortEnd", function() {
+              updateRankVQA();
+            });
+    
+            // Update ranks on page load
+            updateRankVQA();
 
 
             // Initialize tablesorter
@@ -470,10 +479,13 @@ def get_html_content(input_html):
         return f.read()
 
 
+
 table_chexpertplus_html = './results/table_chexpertplus.html'
 table_iuxray_html = './results/table_iuxray.html'
 table_mimiccxr_html = './results/table_mimiccxr.html'
 table_private_html = './results/table_gradienthealth.html'
-table_rank_html = './results/table_rank.html'
+table_rank_v1_html = './results/table_rank_v1.html'
+table_rank_v2_html = './results/table_rank_v2.html'
+table_vqa_html = './vqa_results/vqa_results.html'
 
-generate_html(get_html_content(table_chexpertplus_html), get_html_content(table_iuxray_html), get_html_content(table_mimiccxr_html), get_html_content(table_private_html), get_html_content(table_rank_html),save_html_path='./index.html')
+generate_html(get_html_content(table_chexpertplus_html), get_html_content(table_iuxray_html), get_html_content(table_mimiccxr_html), get_html_content(table_private_html), get_html_content(table_rank_v1_html), get_html_content(table_rank_v2_html), get_html_content(table_vqa_html), save_html_path='./index.html')

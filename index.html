@@ -45,7 +45,7 @@
 
   <style>
     .fixed-height-table {
-      height: 420px; /* 固定高度，可根据需要调整 */
+      height: 400px; /* 固定高度，可根据需要调整 */
       overflow-y: scroll;
       display: block;
     }
@@ -107,7 +107,7 @@
         <div class="col-md-12">
           <h1 id="appTitle">ReXrank</h1>
           <h2 id="appSubtitle">Chest X-ray Report Generation Leaderboard</h2>
-          <!-- <h3 id="helpLink"><a href="./explore/submission_guideline.html" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank before March 1, 2025</a></h3> -->
+          <h3 id="helpLink"><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/submission_tutorial.md" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank</a></h3>
           <!-- <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
         </div>
       </div>
@@ -122,59 +122,24 @@
               <div class="infoHeadline">
                 <h2>What is ReXrank?</h2>
               </div>
-              <p>
-              <b>ReXrank</b> is a public leaderboard for AI-powered radiology report generation from chest x-ray images. We're setting a new standard in healthcare AI by providing a comprehensive, objective evaluation framework for cutting-edge models. Our mission is to accelerate progress in this critical field by fostering healthy competition and collaboration among researchers, clinicians, and AI enthusiasts.
-                Using diverse datasets like MIMIC-CXR, IU-Xray, and CheXpert Plus, ReXrank offers a robust benchmarking system that evolves with clinical needs and technological advancements. Our leaderboard showcases top-performing models, driving innovation that could transform patient care and streamline medical workflows. Develop and submit your models, and see how you stack up against the best in the field. Together, we can push the boundaries of what's possible in medical imaging and report generation! </p>
-              <!-- <p style="margin-bottom: 20px;"><b>Join us</b> in shaping the future of AI-assisted radiology. Develop your models, submit your results, and see how you stack up against the best in the field. Together, we can push the boundaries of what's possible in medical imaging and report generation. </p> -->
-                <p style="margin-bottom: 20px;">
-                  <strong> ⭐ Join the ReXrank Challenge Round 1 - <a href="./explore/submission_guideline.html">Submit your models</a> before March 15, 2025</strong>.
-              </p>
-              </p>
-              <!-- <p>
-                <span>⭐ <b>News!</b></span> Click <a href="./explore/vote_example.html">here</a> to vote for the models!
-              </p> -->
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-md-5">
-          <div class="infoCard">
-            <div class="infoBody">
-              <div class="infoHeadline">
-                <h2>Getting Started</h2>
+              <p><b>ReXrank</b> is a public leaderboard for chest X-ray image interpretation, including both radiology report generation (RRG) and visual question answering (VQA) tasks. 
+              <hr>
+              <p><b>ReXrank Challenge V1.0</b> is a competition in the generation of chest radiograph reports utilizing ReXGradient, the largest private test dataset consisting of 10,000 studies across 67 sites. The challenge attracted diverse participants from academic institutions, industry, and independent research teams, resulting in 24 state-of-the-art models previously benchmarked. </p>   
+             <hr>
+              <p><b>ReXrank Challenge V2.0</b> is a competition in VQA task utilizing VQA dataset constructed from ReXGradient, including 41,007 VQA pairs with 10,000 radiological studies. We benchmarked 8 state-of-the-art models. </p>
+              <hr>
+              <p><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGradient-160K" target="_blank">ReXGradient-160K</a>  is the largest publicly available multi-site chest X-ray dataset, containing 273,004 unique chest X-ray images from 160,000 radiological studies, collected from 109,487 unique patients across 3 U.S. health systems (79 medical sites). In ReXrank, we use additional private test set ReXGradient, 10,000 studies for benchmarking.</p>
+              <hr>
+              <p><a href="https://huggingface.co/datasets/rajpurkarlab/ReXVQA" target="_blank">ReXVQA</a> is the largest and most comprehensive benchmark for VQA in chest radiology, comprising 653834 questions paired with 160,000 radiological studies. The dataset is constructed from ReXGradient-160K.</p>
               </div>
-              <p>
-                To evaluate your models, we made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input.
-                To run the evaluation, use
-                <code>
-                  python evaluate.py &lt;path_to_data&gt; &lt;path_to_predictions&gt;
-                </code>.
-              </p>
-              <ul class="list-unstyled">
-                <li>
-                  <a class="btn actionBtn inverseBtn" download="" href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/evaluation_script.md" target="_blank">Evaluation Script</a>
-                </li>                
-                <li>
-                  <a class="btn actionBtn inverseBtn" download="" href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/prediction.json" target="_blank">Sample Prediction File</a>
-                </li>
-              </ul>
-              <p>
-                Once you have a built a model that works to your expectations on the MIMIC-CXR test set, you submit it to get official scores on our Private test set. Here's a tutorial on the submission for a smooth evaluation process.
-              </p>
-              <a class="btn actionBtn inverseBtn" href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/submission_tutorial.md" target="_blank">Submission Tutorial</a>
-              <p>
-                Please <b><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/cite.txt" target="_blank">cite</a> </b>if you find our leaderboard helpful. </p>
-              <p> To keep up to date with major changes to the leaderboard and dataset, please <b><a href="https://forms.gle/bZpsPUccYF1Th7Xv9" target="_blank">subscribe</a></b> here ! 
-              </p>
             </div>
-          </div>
-        </div> -->
-    <div class="col-md-7">
+        </div>
+    <div class="col-md-7 right-column">
       <div class="infoCard">
         <div class="infoBody">
           <div class="infoHeadline">
-            <h2>Leaderboard Overview</h2>
+            <h2>ReXrank Challenge V1.0 Leaderboard (RRG)</h2>
           </div>
-          <p>Include top models for different datasets. * denotes model trained on this dataset.</p>
           <div class="fixed-height-table">
             <table class="table performanceTable">
               <thead>
@@ -189,23 +154,23 @@
               <tbody>
     <tr><td><p>1</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
+              <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
               <p class="institution">Harvard</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa*</a>
+              <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
               <p class="institution">Harvard</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
-              <p class="institution">Harvard</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC*</a>
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
               <p class="institution">Stanford</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+              <p class="institution">CSIRO</p>
             </td>
             </tr><tr><td><p>2</p></td>
             <td style="word-break:break-word;">
@@ -214,29 +179,28 @@
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC*</a>
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
               <p class="institution">Stanford</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_IU*</a>
-              <p class="institution">SYSU</p>
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
+              <p class="institution">CSIRO</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2</a>
+              <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
               <p class="institution">Microsoft</p>
             </td>
             </tr><tr><td><p>3</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href
-              "https://github.com/WissingChen/VLCI">VLCI_IU</a>
-              <p class="institution">SYSU</p>
+              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+              <p class="institution">University of Glasgow</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog*</a>
-              <p class="institution">TUM</p>
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
+              <p class="institution">Stanford</p>
             </td>
             
             <td style="word-break:break-word;">
@@ -245,222 +209,158 @@
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX*</a>
-              <p class="institution">Stanford</p>
+              <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2</a>
+              <p class="institution">Microsoft</p>
             </td>
             </tr><tr><td><p>4</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
-              <p class="institution">TUM</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC*</a>
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
               <p class="institution">Stanford</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU*</a>
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
               <p class="institution">CSIRO</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
-              <p class="institution">Harvard</p>
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
+              <p class="institution">CSIRO</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
+              <p class="institution">CSIRO</p>
             </td>
             </tr><tr><td><p>5</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href
-              "https://github.com/ChantalMP/RaDialog">RaDialog</a>
-              <p class="institution">TUM</p>
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+              <p class="institution">CSIRO</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ttanida/rgrg">RGRG*</a>
-              <p class="institution">TUM</p>
+              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+              <p class="institution">University of Glasgow</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
-              <p class="institution">SJTU</p>
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+              <p class="institution">CSIRO</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
-              <p class="institution">TUM</p>
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
+              <p class="institution">Stanford</p>
             </td>
             </tr><tr><td><p>6</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC</a>
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
               <p class="institution">CSIRO</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent*</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC</a>
-              <p class="institution">Stanford</p>
+              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+              <p class="institution">SNUH</p>
             </td>
             
             <td style="word-break:break-word;">
               <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
               <p class="institution">TUM</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
+              <p class="institution">CSIRO</p>
             </td>
             </tr><tr><td><p>7</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU</a>
-              <p class="institution">CSIRO</p>
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+              <p class="institution">IIT Madras</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC*</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
-              <p class="institution">TUM</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
-              <p class="institution">Stanford</p>
-            </td>
-            </tr><tr><td><p>8</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
-              <p class="institution">Stanford</p>
-            </td>
-            </tr><tr><td><p>9</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2*</a>
+              <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2</a>
               <p class="institution">Microsoft</p>
             </td>
             
             <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+              <p class="institution">University of Glasgow</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
+              <p class="institution">Stanford</p>
+            </td>
+            </tr><tr><td><p>8</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
+              <p class="institution">Stanford</p>
+            </td>
+            
+            <td style="word-break:break-word;">
               <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
               <p class="institution">TUM</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC</a>
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+              <p class="institution">IIT Madras</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+              <p class="institution">University of Glasgow</p>
+            </td>
+            </tr><tr><td><p>9</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
+              <p class="institution">TUM</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
               <p class="institution">CSIRO</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+              <p class="institution">IIT Madras</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
+              <p class="institution">Stanford</p>
             </td>
             </tr><tr><td><p>10</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
+              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+              <p class="institution">SNUH</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+              <p class="institution">CSIRO</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
               <p class="institution">Stanford</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_MIMIC*</a>
-              <p class="institution">SYSU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_MIMIC</a>
-              <p class="institution">SYSU</p>
+              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+              <p class="institution">SNUH</p>
             </td>
             </tr><tr><td><p>11</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
-              <p class="institution">SJTU</p>
+              <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
+              <p class="institution">Microsoft</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM*</a>
-              <p class="institution">SJTU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT_IU*</a>
-              <p class="institution">Lehigh University</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            </tr><tr><td><p>12</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href=
-              "https://github.com/taokz/BiomedGPT">BiomedGPT_IU</a>
-              <p class="institution">Lehigh University</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
-              <p class="institution">SJTU</p>
-            </td>
-            </tr><tr><td><p>13</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href=
-              "https://github.com/WissingChen/VLCI">VLCI_MIMIC</a>
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
               <p class="institution">SYSU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_IU</a>
-              <p class="institution">SYSU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_MIMIC</a>
-              <p class="institution">SYSU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
-              <p class="institution">OpenAI</p>
-            </td>
-            </tr><tr><td><p>14</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href=
-              "https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
-              <p class="institution">OpenAI</p>
             </td>
             
             <td style="word-break:break-word;">
@@ -469,39 +369,257 @@
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_IU</a>
-              <p class="institution">SYSU</p>
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+              <p class="institution">IIT Madras</p>
+            </td>
+            </tr><tr><td><p>12</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
+              <p class="institution">CSIRO</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
+              <p class="institution">Microsoft</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+              <p class="institution">SNUH</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/hyzhou/MedVersa-Internal/tree/main">MedVersa</a>
+              <p class="institution">Harvard</p>
+            </td>
+            </tr><tr><td><p>13</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+              <p class="institution">Google</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
+              <p class="institution">Stanford</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
+              <p class="institution">SJTU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
+              <p class="institution">Stanford</p>
+            </td>
+            </tr><tr><td><p>14</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
+              <p class="institution">CSIRO</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+              <p class="institution">IIT Madras</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+              <p class="institution">Google</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+              <p class="institution">IIT Madras</p>
             </td>
             </tr><tr><td><p>15</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href=
-              "https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
-              <p class="institution">OpenAI</p>
+              <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
+              <p class="institution">Stanford</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT_IU</a>
-              <p class="institution">Lehigh University</p>
+              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
+              <p class="institution">TUM</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
-              <p class="institution">OpenAI</p>
+              <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
+              <p class="institution">Harvard</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT_IU</a>
-              <p class="institution">Lehigh University</p>
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
+              <p class="institution">SYSU</p>
             </td>
             </tr><tr><td><p>16</p></td>
             <td style="word-break:break-word;">
-              <a class="link" href=
-              "https://github.com/hyn2028/llm-cxr">LLM-CXR</a>
+              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
+              <p class="institution">TUM</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
+              <p class="institution">Stanford</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
+              <p class="institution">CSIRO</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
+              <p class="institution">OpenAI</p>
+            </td>
+            </tr><tr><td><p>17</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
+              <p class="institution">SYSU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
+              <p class="institution">SJTU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
+              <p class="institution">Microsoft</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
+              <p class="institution">TUM</p>
+            </td>
+            </tr><tr><td><p>18</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
+              <p class="institution">SYSU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+              <p class="institution">Google</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
+              <p class="institution">SYSU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+              <p class="institution">Google</p>
+            </td>
+            </tr><tr><td><p>19</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
+              <p class="institution">Lehigh University</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
+              <p class="institution">CSIRO</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
+              <p class="institution">OpenAI</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
+              <p class="institution">TUM</p>
+            </td>
+            </tr><tr><td><p>20</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+              <p class="institution">IIT Madras</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
+              <p class="institution">SYSU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
+              <p class="institution">Stanford</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
+              <p class="institution">SJTU</p>
+            </td>
+            </tr><tr><td><p>21</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
+              <p class="institution">SJTU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+              <p class="institution">IIT Madras</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
+              <p class="institution">TUM</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
+              <p class="institution">CSIRO</p>
+            </td>
+            </tr><tr><td><p>22</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
+              <p class="institution">OpenAI</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
+              <p class="institution">OpenAI</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
+              <p class="institution">Lehigh University</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
+              <p class="institution">SYSU</p>
+            </td>
+            </tr><tr><td><p>23</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
+              <p class="institution">Stanford</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
+              <p class="institution">Lehigh University</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
+              <p class="institution">SYSU</p>
+            </td>
+            
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
+              <p class="institution">Lehigh University</p>
+            </td>
+            </tr><tr><td><p>24</p></td>
+            <td style="word-break:break-word;">
+              <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR</a>
               <p class="institution">KAIST</p>
             </td>
             
             <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR*</a>
+              <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR</a>
               <p class="institution">KAIST</p>
             </td>
             
@@ -522,11 +640,74 @@
       </div>
     </div>
      
+    <div class="col-md-7 right-column">
+      <div class="infoCard">
+        <div class="infoBody">
+          <div class="infoHeadline">
+            <h2>ReXrank Challenge V2.0 Leaderboard (VQA)</h2>
+          </div>
+          <div class="fixed-height-table">
+            <table class="table performanceTable">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>ReXVQA</th>
+                </tr>
+              </thead>
+              <tbody>
+    <tr><td><p>1</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma-4B-it</a>
+          <p class="institution">Google</p>
+        </td>
+        </tr><tr><td><p>2</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/deepseek-ai/Janus-Pro-7B">Janus-Pro-7B</a>
+          <p class="institution">DeepSeek</p>
+        </td>
+        </tr><tr><td><p>3</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/Qwen/Qwen2.5VL-7B-Instruct">Qwen2.5VL-7B-Instruct</a>
+          <p class="institution">Qwen</p>
+        </td>
+        </tr><tr><td><p>4</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/nvidia/Eagle2-9B">Eagle2-9B</a>
+          <p class="institution">NVIDIA</p>
+        </td>
+        </tr><tr><td><p>5</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/1-5-pro">Gemini-1.5-Pro</a>
+          <p class="institution">Google</p>
+        </td>
+        </tr><tr><td><p>6</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/Qwen/Qwen2VL-7B-Instruct">Qwen2VL-7B-Instruct</a>
+          <p class="institution">Alibaba</p>
+        </td>
+        </tr><tr><td><p>7</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/microsoft/Phi-3.5-vision-instruct">Phi35-Vision-Instruct</a>
+          <p class="institution">Microsoft</p>
+        </td>
+        </tr><tr><td><p>8</p></td>
+        <td style="word-break:break-word;">
+          <a class="link" href="https://huggingface.co/llava-hf/llava-1.5-7b-hf">LLaVA-1.5-7B</a>
+          <p class="institution">Meta</p>
+        </td>
+        </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+     
     <div class="col-md-12">
     <div class="infoCard">
       <div class="infoBody">
         <div class="infoHeadline">
-          <h2>Leaderboard on ReXGradient</h2>
+          <h2>ReXrank Challenge V1.0 - Model Performance on ReXGradient</h2>
         </div>
         <div>
           <p> ReXGradient is a large-scale private test dataset contains 10,000 studies collected from different medical centers in the US. </p>
@@ -540,14 +721,14 @@
             <tr>
               <th>Rank</th>
               <th>Model</th>
-              <th>1/RadCliQ-v1 <b>↑</b></th>
-              <th>BLEU <b>↑</b></th>
-              <th>BertScore <b>↑</b></th>
-              <th>SembScore <b>↑</b></th>
-              <th>RadGraph <b>↑</b></th>
-              <th>RaTEScore <b>↑</b></th>
-              <th>GREEN <b>↑</b></th>
-              <th>1/FineRadScore <b>↑</b></th>
+              <th>1/RadCliQ-v1</th>
+              <th>BLEU</th>
+              <th>BertScore</th>
+              <th>SembScore</th>
+              <th>RadGraph</th>
+              <th>RaTEScore</th>
+              <th>GREEN</th>
+              <th>1/FineRadScore</th>
             </tr>
           </thead>
           <tbody id="testResultsPrivate">
@@ -577,7 +758,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.777</b></td>
@@ -596,7 +777,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.787</b></td>
@@ -615,7 +796,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.83</b></td>
@@ -634,7 +815,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>0.866</b></td>
@@ -653,7 +834,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>0.842</b></td>
@@ -672,7 +853,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>1.008</b></td>
@@ -748,7 +929,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_MIMIC</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>0.721</b></td>
@@ -767,7 +948,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_IU</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>0.897</b></td>
@@ -805,7 +986,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
                 <td><b>0.629</b></td>
@@ -824,7 +1005,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT_IU</a>
+                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
                   <p class="institution">Lehigh University</p>
                 </td>
                 <td><b>0.771</b></td>
@@ -856,6 +1037,158 @@
                 <td><b>0.475</b></td>
               </tr>
         
+              <tr>
+                <td>
+                  <p>17</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>0.872</b></td>
+                <td><b>0.202</b></td>
+                <td><b>0.398</b></td>
+                <td><b>0.415</b></td>
+                <td><b>0.187</b></td>
+                <td><b>0.564</b></td>
+                <td><b>0.518</b></td>
+                <td><b>0.472</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>18</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>0.792</b></td>
+                <td><b>0.15</b></td>
+                <td><b>0.327</b></td>
+                <td><b>0.462</b></td>
+                <td><b>0.152</b></td>
+                <td><b>0.518</b></td>
+                <td><b>0.408</b></td>
+                <td><b>0.458</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>19</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+                  <p class="institution">University of Glasgow</p>
+                </td>
+                <td><b>0.881</b></td>
+                <td><b>0.165</b></td>
+                <td><b>0.385</b></td>
+                <td><b>0.474</b></td>
+                <td><b>0.168</b></td>
+                <td><b>0.544</b></td>
+                <td><b>0.555</b></td>
+                <td><b>0.473</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>20</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>1.018</b></td>
+                <td><b>0.227</b></td>
+                <td><b>0.434</b></td>
+                <td><b>0.446</b></td>
+                <td><b>0.247</b></td>
+                <td><b>0.575</b></td>
+                <td><b>0.494</b></td>
+                <td><b>0.468</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>21</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>0.756</b></td>
+                <td><b>0.145</b></td>
+                <td><b>0.351</b></td>
+                <td><b>0.406</b></td>
+                <td><b>0.116</b></td>
+                <td><b>0.508</b></td>
+                <td><b>0.431</b></td>
+                <td><b>0.446</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>22</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
+                  <p class="institution">Microsoft</p>
+                </td>
+                <td><b>0.891</b></td>
+                <td><b>0.209</b></td>
+                <td><b>0.383</b></td>
+                <td><b>0.488</b></td>
+                <td><b>0.169</b></td>
+                <td><b>0.544</b></td>
+                <td><b>0.453</b></td>
+                <td><b>0.458</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>23</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+                  <p class="institution">SNUH</p>
+                </td>
+                <td><b>0.886</b></td>
+                <td><b>0.166</b></td>
+                <td><b>0.387</b></td>
+                <td><b>0.469</b></td>
+                <td><b>0.174</b></td>
+                <td><b>0.542</b></td>
+                <td><b>0.504</b></td>
+                <td><b>0.459</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>24</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+                  <p class="institution">Google</p>
+                </td>
+                <td><b>1.008</b></td>
+                <td><b>0.2</b></td>
+                <td><b>0.427</b></td>
+                <td><b>0.479</b></td>
+                <td><b>0.223</b></td>
+                <td><b>0.617</b></td>
+                <td><b>0.566</b></td>
+                <td><b>0.457</b></td>
+              </tr>
+        
             </tbody>
             <tbody id="validResultsPrivate" style="display: none;">
     
@@ -865,7 +1198,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.791</b></td>
@@ -884,7 +1217,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.748</b></td>
@@ -903,7 +1236,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.838</b></td>
@@ -922,7 +1255,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>0.984</b></td>
@@ -960,7 +1293,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
                 <td><b>0.605</b></td>
@@ -983,7 +1316,7 @@
           <div class="infoCard">
             <div class="infoBody">
               <div class="infoHeadline">
-                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
+                <h2>ReXrank Challenge V1.0 - Model Performance on MIMIC-CXR</h2>
               </div>
               <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model was trained on this dataset.</p>
               </div>
@@ -996,14 +1329,14 @@
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>1/RadCliQ-v1 <b>↑</b></th>
-                    <th>BLEU <b>↑</b></th>
-                    <th>BertScore <b>↑</b></th>
-                    <th>SembScore <b>↑</b></th>
-                    <th>RadGraph <b>↑</b></th>
-                    <th>RaTEScore <b>↑</b></th>
-                    <th>GREEN <b>↑</b></th>
-                    <th>1/FineRadScore <b>↑</b></th>
+                    <th>1/RadCliQ-v1</th>
+                    <th>BLEU</th>
+                    <th>BertScore</th>
+                    <th>SembScore</th>
+                    <th>RadGraph</th>
+                    <th>RaTEScore</th>
+                    <th>GREEN</th>
+                    <th>1/FineRadScore</th>
                   </tr>
                 </thead>
                 <tbody id="testResultsMIMIC">
@@ -1014,7 +1347,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.741</b></td>
@@ -1033,7 +1366,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.788</b></td>
@@ -1052,7 +1385,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.698</b></td>
@@ -1071,7 +1404,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.805</b></td>
@@ -1090,7 +1423,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC*</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>0.719</b></td>
@@ -1109,7 +1442,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>0.613</b></td>
@@ -1128,7 +1461,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa*</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>1.103</b></td>
@@ -1147,7 +1480,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM*</a>
+                  <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
                   <p class="institution">SJTU</p>
                 </td>
                 <td><b>0.65</b></td>
@@ -1166,7 +1499,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog*</a>
+                  <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
                   <p class="institution">TUM</p>
                 </td>
                 <td><b>0.799</b></td>
@@ -1185,7 +1518,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/ttanida/rgrg">RGRG*</a>
+                  <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
                   <p class="institution">TUM</p>
                 </td>
                 <td><b>0.755</b></td>
@@ -1204,7 +1537,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_MIMIC*</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>0.68</b></td>
@@ -1223,7 +1556,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_IU</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>0.599</b></td>
@@ -1242,7 +1575,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR*</a>
+                  <a class="link" href="https://github.com/hyn2028/llm-cxr">LLM-CXR</a>
                   <p class="institution">KAIST</p>
                 </td>
                 <td><b>0.516</b></td>
@@ -1261,7 +1594,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
                 <td><b>0.558</b></td>
@@ -1280,7 +1613,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT_IU</a>
+                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
                   <p class="institution">Lehigh University</p>
                 </td>
                 <td><b>0.544</b></td>
@@ -1299,7 +1632,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2*</a>
+                  <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2</a>
                   <p class="institution">Microsoft</p>
                 </td>
                 <td><b>0.694</b></td>
@@ -1312,6 +1645,158 @@
                 <td><b>0.359</b></td>
               </tr>
         
+              <tr>
+                <td>
+                  <p>17</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>0.872</b></td>
+                <td><b>0.208</b></td>
+                <td><b>0.383</b></td>
+                <td><b>0.396</b></td>
+                <td><b>0.223</b></td>
+                <td><b>0.531</b></td>
+                <td><b>0.327</b></td>
+                <td><b>0.358</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>18</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>0.87</b></td>
+                <td><b>0.198</b></td>
+                <td><b>0.367</b></td>
+                <td><b>0.423</b></td>
+                <td><b>0.22</b></td>
+                <td><b>0.521</b></td>
+                <td><b>0.338</b></td>
+                <td><b>0.359</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>19</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+                  <p class="institution">University of Glasgow</p>
+                </td>
+                <td><b>0.898</b></td>
+                <td><b>0.232</b></td>
+                <td><b>0.402</b></td>
+                <td><b>0.403</b></td>
+                <td><b>0.218</b></td>
+                <td><b>0.523</b></td>
+                <td><b>0.356</b></td>
+                <td><b>0.362</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>20</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>0.643</b></td>
+                <td><b>0.064</b></td>
+                <td><b>0.321</b></td>
+                <td><b>0.213</b></td>
+                <td><b>0.122</b></td>
+                <td><b>0.455</b></td>
+                <td><b>0.174</b></td>
+                <td><b>0.347</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>21</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>0.726</b></td>
+                <td><b>0.163</b></td>
+                <td><b>0.341</b></td>
+                <td><b>0.334</b></td>
+                <td><b>0.143</b></td>
+                <td><b>0.465</b></td>
+                <td><b>0.24</b></td>
+                <td><b>0.354</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>22</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
+                  <p class="institution">Microsoft</p>
+                </td>
+                <td><b>0.888</b></td>
+                <td><b>0.223</b></td>
+                <td><b>0.386</b></td>
+                <td><b>0.431</b></td>
+                <td><b>0.207</b></td>
+                <td><b>0.534</b></td>
+                <td><b>0.294</b></td>
+                <td><b>0.356</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>23</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+                  <p class="institution">SNUH</p>
+                </td>
+                <td><b>0.801</b></td>
+                <td><b>0.154</b></td>
+                <td><b>0.348</b></td>
+                <td><b>0.402</b></td>
+                <td><b>0.182</b></td>
+                <td><b>0.505</b></td>
+                <td><b>0.301</b></td>
+                <td><b>0.361</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>24</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+                  <p class="institution">Google</p>
+                </td>
+                <td><b>0.744</b></td>
+                <td><b>0.165</b></td>
+                <td><b>0.346</b></td>
+                <td><b>0.339</b></td>
+                <td><b>0.159</b></td>
+                <td><b>0.549</b></td>
+                <td><b>0.293</b></td>
+                <td><b>0.349</b></td>
+              </tr>
+        
             </tbody>
             <tbody id="validResultsMIMIC" style="display: none;">
     
@@ -1321,7 +1806,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                <td><b>0.802</b></td>
@@ -1340,7 +1825,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                <td><b>0.715</b></td>
@@ -1359,7 +1844,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                <td><b>0.825</b></td>
@@ -1378,10 +1863,10 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa*</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
-               <td><b>1.063</b></td>
+               <td><b>0.919</b></td>
                 <td><b>0.193</b></td>
                 <td><b>0.43</b></td>
                 <td><b>0.315</b></td>
@@ -1397,7 +1882,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM*</a>
+                  <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
                   <p class="institution">SJTU</p>
                 </td>
                <td><b>0.625</b></td>
@@ -1416,7 +1901,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
                <td><b>0.549</b></td>
@@ -1439,7 +1924,7 @@
       <div class="infoCard">
         <div class="infoBody">
           <div class="infoHeadline">
-            <h2>Leaderboard on IU Xray Dataset</h2>
+            <h2>ReXrank Challenge V1.0 - Model Performance on IU Xray</h2>
           </div>
           <div>
             <p> <a class="link" href="https://paperswithcode.com/dataset/iu-x-ray">IU Xray</a> contains 7,470 pairs of radiology reports and chest X-rays from Indiana University. We follow the split given by <a class="link" href="https://github.com/cuhksz-nlp/R2Gen">R2Gen</a>. * denotes the model was trained on IU X-ray.</p>
@@ -1453,14 +1938,14 @@
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>1/RadCliQ-v1 <b>↑</b></th>
-                    <th>BLEU <b>↑</b></th>
-                    <th>BertScore <b>↑</b></th>
-                    <th>SembScore <b>↑</b></th>
-                    <th>RadGraph <b>↑</b></th>
-                    <th>RaTEScore <b>↑</b></th>
-                    <th>GREEN <b>↑</b></th>
-                    <th>1/FineRadScore <b>↑</b></th>
+                    <th>1/RadCliQ-v1</th>
+                    <th>BLEU</th>
+                    <th>BertScore</th>
+                    <th>SembScore</th>
+                    <th>RadGraph</th>
+                    <th>RaTEScore</th>
+                    <th>GREEN</th>
+                    <th>1/FineRadScore</th>
                   </tr>
                 </thead>
             <tbody id="testResultsIU">
@@ -1490,7 +1975,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.988</b></td>
@@ -1509,7 +1994,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.92</b></td>
@@ -1528,7 +2013,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>1.179</b></td>
@@ -1547,7 +2032,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>1.126</b></td>
@@ -1566,7 +2051,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU*</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>1.283</b></td>
@@ -1585,7 +2070,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>1.46</b></td>
@@ -1661,7 +2146,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_MIMIC</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>0.913</b></td>
@@ -1680,7 +2165,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_IU*</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>1.381</b></td>
@@ -1718,7 +2203,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
                 <td><b>0.708</b></td>
@@ -1737,7 +2222,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT_IU*</a>
+                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
                   <p class="institution">Lehigh University</p>
                 </td>
                 <td><b>0.956</b></td>
@@ -1769,6 +2254,158 @@
                 <td><b>0.599</b></td>
               </tr>
         
+              <tr>
+                <td>
+                  <p>17</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>1.22</b></td>
+                <td><b>0.225</b></td>
+                <td><b>0.464</b></td>
+                <td><b>0.557</b></td>
+                <td><b>0.249</b></td>
+                <td><b>0.655</b></td>
+                <td><b>0.685</b></td>
+                <td><b>0.597</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>18</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>1.458</b></td>
+                <td><b>0.245</b></td>
+                <td><b>0.456</b></td>
+                <td><b>0.638</b></td>
+                <td><b>0.302</b></td>
+                <td><b>0.666</b></td>
+                <td><b>0.68</b></td>
+                <td><b>0.598</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>19</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+                  <p class="institution">University of Glasgow</p>
+                </td>
+                <td><b>1.176</b></td>
+                <td><b>0.183</b></td>
+                <td><b>0.441</b></td>
+                <td><b>0.614</b></td>
+                <td><b>0.21</b></td>
+                <td><b>0.624</b></td>
+                <td><b>0.698</b></td>
+                <td><b>0.593</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>20</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>1.922</b></td>
+                <td><b>0.277</b></td>
+                <td><b>0.525</b></td>
+                <td><b>0.641</b></td>
+                <td><b>0.341</b></td>
+                <td><b>0.684</b></td>
+                <td><b>0.665</b></td>
+                <td><b>0.587</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>21</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>1.02</b></td>
+                <td><b>0.171</b></td>
+                <td><b>0.42</b></td>
+                <td><b>0.559</b></td>
+                <td><b>0.178</b></td>
+                <td><b>0.603</b></td>
+                <td><b>0.584</b></td>
+                <td><b>0.579</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>22</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
+                  <p class="institution">Microsoft</p>
+                </td>
+                <td><b>1.166</b></td>
+                <td><b>0.248</b></td>
+                <td><b>0.433</b></td>
+                <td><b>0.607</b></td>
+                <td><b>0.22</b></td>
+                <td><b>0.634</b></td>
+                <td><b>0.597</b></td>
+                <td><b>0.552</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>23</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+                  <p class="institution">SNUH</p>
+                </td>
+                <td><b>1.204</b></td>
+                <td><b>0.189</b></td>
+                <td><b>0.443</b></td>
+                <td><b>0.6</b></td>
+                <td><b>0.233</b></td>
+                <td><b>0.636</b></td>
+                <td><b>0.671</b></td>
+                <td><b>0.574</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>24</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+                  <p class="institution">Google</p>
+                </td>
+                <td><b>1.34</b></td>
+                <td><b>0.217</b></td>
+                <td><b>0.475</b></td>
+                <td><b>0.6</b></td>
+                <td><b>0.26</b></td>
+                <td><b>0.678</b></td>
+                <td><b>0.724</b></td>
+                <td><b>0.57</b></td>
+              </tr>
+        
             </tbody>
             <tbody id="validResultsIU" style="display: none;">
     
@@ -1778,7 +2415,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>1.111</b></td>
@@ -1797,7 +2434,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.995</b></td>
@@ -1816,7 +2453,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>1.249</b></td>
@@ -1835,7 +2472,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>1.452</b></td>
@@ -1873,7 +2510,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
                 <td><b>0.683</b></td>
@@ -1896,7 +2533,7 @@
     <div class="infoCard">
       <div class="infoBody">
         <div class="infoHeadline">
-          <h2>Leaderboard on CheXpert Plus Dataset</h2>
+          <h2>ReXrank Challenge V1.0 - Model Performance on CheXpert Plus</h2>
         </div>
         <div>
           <p> <a class="link" href="https://stanfordaimi.azurewebsites.net/datasets/5158c524-d3ab-4e02-96e9-6ee9efc110a1">CheXpert Plus </a> contains 223,228 unique pairs of radiology reports and chest X-rays from 187,711 studies and 64,725 patients. We follow the official split of CheXpert Plus in the following experiments and use the valid set for evaluation. * denotes the model was trained on CheXpert Plus.</p>
@@ -1910,14 +2547,14 @@
             <tr>
               <th>Rank</th>
               <th>Model</th>
-              <th>1/RadCliQ-v1 <b>↑</b></th>
-              <th>BLEU <b>↑</b></th>
-              <th>BertScore <b>↑</b></th>
-              <th>SembScore <b>↑</b></th>
-              <th>RadGraph <b>↑</b></th>
-              <th>RaTEScore <b>↑</b></th>
-              <th>GREEN <b>↑</b></th>
-              <th>1/FineRadScore <b>↑</b></th>
+              <th>1/RadCliQ-v1</th>
+              <th>BLEU</th>
+              <th>BertScore</th>
+              <th>SembScore</th>
+              <th>RadGraph</th>
+              <th>RaTEScore</th>
+              <th>GREEN</th>
+              <th>1/FineRadScore</th>
             </tr>
           </thead>
           <tbody id="testResultsCheXpert">
@@ -1947,7 +2584,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_MIMIC</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.663</b></td>
@@ -1966,7 +2603,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.786</b></td>
@@ -1985,7 +2622,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.808</b></td>
@@ -2004,7 +2641,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_MIMIC</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-MIMIC</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>0.626</b></td>
@@ -2023,7 +2660,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2_IU</a>
+                  <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
                   <p class="institution">CSIRO</p>
                 </td>
                 <td><b>0.577</b></td>
@@ -2042,7 +2679,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa-Internal/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>0.719</b></td>
@@ -2118,7 +2755,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_MIMIC</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-MIMIC</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>0.589</b></td>
@@ -2137,7 +2774,7 @@
                   <span class="date label label-default">2023</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI_IU</a>
+                  <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
                   <p class="institution">SYSU</p>
                 </td>
                 <td><b>0.555</b></td>
@@ -2175,7 +2812,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://cdn.openai.com/papers/GPTV_System_Card.pdf">GPT4V</a>
+                  <a class="link" href="https://cdn.openai.com/papers/GPTV-System-Card.pdf">GPT4V</a>
                   <p class="institution">OpenAI</p>
                 </td>
                 <td><b>0.568</b></td>
@@ -2194,7 +2831,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT_IU</a>
+                  <a class="link" href="https://github.com/taokz/BiomedGPT">BiomedGPT-IU</a>
                   <p class="institution">Lehigh University</p>
                 </td>
                 <td><b>0.552</b></td>
@@ -2226,6 +2863,158 @@
                 <td><b>0.352</b></td>
               </tr>
         
+              <tr>
+                <td>
+                  <p>17</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>0.723</b></td>
+                <td><b>0.157</b></td>
+                <td><b>0.324</b></td>
+                <td><b>0.316</b></td>
+                <td><b>0.175</b></td>
+                <td><b>0.498</b></td>
+                <td><b>0.265</b></td>
+                <td><b>0.367</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>18</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
+                  <p class="institution">CSIRO</p>
+                </td>
+                <td><b>0.801</b></td>
+                <td><b>0.157</b></td>
+                <td><b>0.315</b></td>
+                <td><b>0.411</b></td>
+                <td><b>0.218</b></td>
+                <td><b>0.521</b></td>
+                <td><b>0.276</b></td>
+                <td><b>0.35</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>19</p>
+                  <span class="date label label-default">2024</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
+                  <p class="institution">University of Glasgow</p>
+                </td>
+                <td><b>0.718</b></td>
+                <td><b>0.157</b></td>
+                <td><b>0.319</b></td>
+                <td><b>0.323</b></td>
+                <td><b>0.169</b></td>
+                <td><b>0.466</b></td>
+                <td><b>0.253</b></td>
+                <td><b>0.344</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>20</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>0.595</b></td>
+                <td><b>0.075</b></td>
+                <td><b>0.284</b></td>
+                <td><b>0.175</b></td>
+                <td><b>0.102</b></td>
+                <td><b>0.39</b></td>
+                <td><b>0.127</b></td>
+                <td><b>0.341</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>21</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/gssriram/MoERad">MoERad-MIMIC</a>
+                  <p class="institution">IIT Madras</p>
+                </td>
+                <td><b>0.641</b></td>
+                <td><b>0.122</b></td>
+                <td><b>0.267</b></td>
+                <td><b>0.3</b></td>
+                <td><b>0.12</b></td>
+                <td><b>0.434</b></td>
+                <td><b>0.166</b></td>
+                <td><b>0.343</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>22</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
+                  <p class="institution">Microsoft</p>
+                </td>
+                <td><b>0.86</b></td>
+                <td><b>0.198</b></td>
+                <td><b>0.353</b></td>
+                <td><b>0.437</b></td>
+                <td><b>0.217</b></td>
+                <td><b>0.51</b></td>
+                <td><b>0.243</b></td>
+                <td><b>0.356</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>23</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
+                  <p class="institution">SNUH</p>
+                </td>
+                <td><b>0.753</b></td>
+                <td><b>0.085</b></td>
+                <td><b>0.318</b></td>
+                <td><b>0.385</b></td>
+                <td><b>0.172</b></td>
+                <td><b>0.476</b></td>
+                <td><b>0.206</b></td>
+                <td><b>0.343</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>24</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
+                  <p class="institution">Google</p>
+                </td>
+                <td><b>0.706</b></td>
+                <td><b>0.147</b></td>
+                <td><b>0.328</b></td>
+                <td><b>0.325</b></td>
+                <td><b>0.137</b></td>
+                <td><b>0.511</b></td>
+                <td><b>0.246</b></td>
+                <td><b>0.337</b></td>
+              </tr>
+        
             </tbody>
             <tbody id="validResultsCheXpert" style="display: none;">
     
@@ -2254,7 +3043,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.512</b></td>
@@ -2273,7 +3062,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC*</a>
+                  <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus_CheX_MIMIC</a>
                   <p class="institution">Stanford</p>
                 </td>
                 <td><b>0.511</b></td>
@@ -2292,7 +3081,7 @@
                   <span class="date label label-default">2024</span>
                 </td>
                 <td style="word-break:break-word;">
-                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa_Internal/tree/main">MedVersa</a>
+                  <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
                   <p class="institution">Harvard</p>
                 </td>
                 <td><b>0.493</b></td>
@@ -2349,6 +3138,148 @@
       </div>
     </div>
      
+    <div class="col-md-12">
+    <div class="infoCard">
+      <div class="infoBody">
+        <div class="infoHeadline">
+          <h2>ReXrank Challenge V2.0 - Model Performance</h2>
+        </div>
+        <div>
+          <p>Performance comparison of various vision-language models on medical VQA tasks. </p>
+        </div>
+        <table class="table performanceTable tablesorter" id="modelTableVQA">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Model</th>
+              <th>Overall Accuracy </th>
+              <th>Differential Diagnosis </th>
+              <th>Geometric Information </th>
+              <th>Location Assessment </th>
+              <th>Negation Assessment </th>
+              <th>Presence Assessment </th>
+            </tr>
+          </thead>
+          <tbody>
+    
+              <tr>
+                <td>1</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma-4B-it</a>
+                  <p class="institution">Google</p>
+                </td>
+                <td><b>0.8217</b></td>
+                <td><b>0.7671</b></td>
+                <td><b>0.8045</b></td>
+                <td><b>0.8347</b></td>
+                <td><b>0.8503</b></td>
+                <td><b>0.8521</b></td>
+              </tr>
+        
+              <tr>
+                <td>2</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/deepseek-ai/Janus-Pro-7B">Janus-Pro-7B</a>
+                  <p class="institution">DeepSeek</p>
+                </td>
+                <td><b>0.6656</b></td>
+                <td><b>0.5634</b></td>
+                <td><b>0.7542</b></td>
+                <td><b>0.6462</b></td>
+                <td><b>0.7573</b></td>
+                <td><b>0.6070</b></td>
+              </tr>
+        
+              <tr>
+                <td>3</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/Qwen/Qwen2.5VL-7B-Instruct">Qwen2.5VL-7B-Instruct</a>
+                  <p class="institution">Qwen</p>
+                </td>
+                <td><b>0.6555</b></td>
+                <td><b>0.6361</b></td>
+                <td><b>0.6648</b></td>
+                <td><b>0.6324</b></td>
+                <td><b>0.8327</b></td>
+                <td><b>0.5114</b></td>
+              </tr>
+        
+              <tr>
+                <td>4</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/nvidia/Eagle2-9B">Eagle2-9B</a>
+                  <p class="institution">NVIDIA</p>
+                </td>
+                <td><b>0.6443</b></td>
+                <td><b>0.6817</b></td>
+                <td><b>0.5698</b></td>
+                <td><b>0.5695</b></td>
+                <td><b>0.8632</b></td>
+                <td><b>0.5375</b></td>
+              </tr>
+        
+              <tr>
+                <td>5</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/1-5-pro">Gemini-1.5-Pro</a>
+                  <p class="institution">Google</p>
+                </td>
+                <td><b>0.6331</b></td>
+                <td><b>0.6221</b></td>
+                <td><b>0.4689</b></td>
+                <td><b>0.5960</b></td>
+                <td><b>0.8568</b></td>
+                <td><b>0.6217</b></td>
+              </tr>
+        
+              <tr>
+                <td>6</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/Qwen/Qwen2VL-7B-Instruct">Qwen2VL-7B-Instruct</a>
+                  <p class="institution">Alibaba</p>
+                </td>
+                <td><b>0.5470</b></td>
+                <td><b>0.5265</b></td>
+                <td><b>0.4494</b></td>
+                <td><b>0.5405</b></td>
+                <td><b>0.6269</b></td>
+                <td><b>0.5915</b></td>
+              </tr>
+        
+              <tr>
+                <td>7</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/microsoft/Phi-3.5-vision-instruct">Phi35-Vision-Instruct</a>
+                  <p class="institution">Microsoft</p>
+                </td>
+                <td><b>0.4749</b></td>
+                <td><b>0.6224</b></td>
+                <td><b>0.2215</b></td>
+                <td><b>0.3711</b></td>
+                <td><b>0.7950</b></td>
+                <td><b>0.3644</b></td>
+              </tr>
+        
+              <tr>
+                <td>8</td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="https://huggingface.co/llava-hf/llava-1.5-7b-hf">LLaVA-1.5-7B</a>
+                  <p class="institution">Meta</p>
+                </td>
+                <td><b>0.2661</b></td>
+                <td><b>0.2161</b></td>
+                <td><b>0.2346</b></td>
+                <td><b>0.2761</b></td>
+                <td><b>0.2402</b></td>
+                <td><b>0.3633</b></td>
+              </tr>
+        
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+      
         </div>
         </div>
     </div>
@@ -2412,6 +3343,46 @@
     
             // Update ranks on page load
             updateRankTest();
+            
+            // Initialize tablesorter
+            $("#modelTableVQA").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRankVQA() {
+                $("#modelTableVQA tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
+            
+            // Function to sort table based on custom order for clicked column
+            function customSortTest(columnIndex) {
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableVQA").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableVQA th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
+                    customSortTest(columnIndex);
+                }
+            });
+
+            // Update ranks after table sort ends
+            $("#modelTableVQA").bind("sortEnd", function() {
+              updateRankVQA();
+            });
+    
+            // Update ranks on page load
+            updateRankVQA();
 
 
             // Initialize tablesorter
