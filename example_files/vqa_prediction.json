@@ -1,0 +1,28 @@
+{
+    "50051329": {
+        "image_path": [
+            "/p10/p10046166/s50051329/427446c1-881f5cce-85191ce1-91a58ba9-0a57d3f5.jpg",
+            "/p10/p10046166/s50051329/abea5eb9-b7c32823-3a14c5ca-77868030-69c83139.jpg"
+        ],
+        "section_findings": "Lateral view somewhat limited due to overlying motion artifact.\nThe lungs are low in volume.\nThere is no focal airspace consolidation to suggest pneumonia.\nA 1.2-cm calcified granuloma just below the medial aspect of the right hemidiaphragm is unchanged from prior study.\nNo pleural effusions or pulmonary edema.\nThere is no pneumothorax.\nThe inferior sternotomy wire is fractured but unchanged.\nSurgical clips and vascular markers in the thorax are related to prior CABG surgery.",
+        "section_impression": "No evidence of acute cardiopulmonary process.",
+        "frontal_lateral": [
+            "lateral",
+            "antero-posterior"
+        ],
+        "split": "test",
+        "subject_id": 10046166,
+        "context": "<context>Age:50-60.Gender:M.Indication: ___-year-old male with history of metastatic melanoma, presenting with confusion and somnolence.  Evaluate for acute cardiopulmonary process.</context>",
+        "question": "Based on the chest X-ray findings, which of the following statements is correct regarding the lung fields?",
+        "options": [
+            "A. The lungs are clear without focal opacities",
+            "B. There is a unilateral left pleural effusion.",
+            "C. There is a unilateral right pleural effusion.",
+            "D. There is a small right pneumothorax."
+        ],
+        "correct_answer": "A",
+        "category": "Lung and Pleural Opacity",
+        "subcategory": "Airspace Opacity",
+        "model_prediction": "A"
+    }
+}
