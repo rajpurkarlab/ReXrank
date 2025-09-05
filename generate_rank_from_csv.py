@@ -68,10 +68,10 @@ def generate_leaderboard_html_v1(private_csv_path, mimic_csv_path, iu_xray_csv_p
     df_private = pd.read_csv(private_csv_path)
     
     # Sort each dataframe by their respective metrics
-    df_private = df_private.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
-    df_mimic = df_mimic.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
-    df_iu_xray = df_iu_xray.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
-    df_chexpert_plus = df_chexpert_plus.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
+    df_private = df_private.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_mimic = df_mimic.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_iu_xray = df_iu_xray.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_chexpert_plus = df_chexpert_plus.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
     
     # HTML header
     html_string = '''
@@ -174,10 +174,10 @@ def generate_leaderboard_html(private_csv_path, mimic_csv_path, iu_xray_csv_path
     df_rexvqa = pd.read_csv(rexvqa_csv_path)
     
     # Sort each dataframe by their respective metrics
-    df_private = df_private.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
-    df_mimic = df_mimic.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
-    df_iu_xray = df_iu_xray.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
-    df_chexpert_plus = df_chexpert_plus.sort_values(by='1/FineRadScore', ascending=False).reset_index(drop=True)
+    df_private = df_private.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_mimic = df_mimic.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_iu_xray = df_iu_xray.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
+    df_chexpert_plus = df_chexpert_plus.sort_values(by='1/RadCliQ-v1', ascending=False).reset_index(drop=True)
     df_rexvqa = df_rexvqa.sort_values(by='Overall Accuracy', ascending=False).reset_index(drop=True)
 
     # HTML header

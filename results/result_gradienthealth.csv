@@ -5,3 +5,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 4,2024,MedVersa,Harvard,https://huggingface.co/hyzhou/MedVersa/tree/main,0.172,0.438,0.48,0.188,0.984,0.527,0.524,0.467
 5,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.132,0.338,0.375,0.131,0.737,0.466,0.405,0.429
 6,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV-System-Card.pdf,0.072,0.214,0.364,0.175,0.605,0.456,0.356,0.423
+7,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.3,0.532,0.573,0.3,1.59,0.612,0.494

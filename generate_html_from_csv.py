@@ -33,7 +33,6 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                     <th>RadGraph</th>
                     <th>RaTEScore</th>
                     <th>GREEN</th>
-                    <th>1/FineRadScore</th>
                   </tr>
                 </thead>
                 <tbody id="testResultsMIMIC">
@@ -58,7 +57,6 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -86,7 +84,6 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -137,7 +134,6 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
               <th>RadGraph</th>
               <th>RaTEScore</th>
               <th>GREEN</th>
-              <th>1/FineRadScore</th>
             </tr>
           </thead>
           <tbody id="testResultsPrivate">
@@ -162,7 +158,6 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -189,7 +184,6 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
 
@@ -241,7 +235,6 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
               <th>RadGraph</th>
               <th>RaTEScore</th>
               <th>GREEN</th>
-              <th>1/FineRadScore</th>
             </tr>
           </thead>
           <tbody id="testResultsCheXpert">
@@ -266,7 +259,6 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     html_string += '''
@@ -293,7 +285,6 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         ''' 
     
@@ -342,7 +333,6 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                     <th>RadGraph</th>
                     <th>RaTEScore</th>
                     <th>GREEN</th>
-                    <th>1/FineRadScore</th>
                   </tr>
                 </thead>
             <tbody id="testResultsIU">
@@ -367,7 +357,6 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     
@@ -395,7 +384,6 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['1/FineRadScore']}</b></td>
               </tr>
         '''
     

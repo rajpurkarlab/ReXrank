@@ -23,3 +23,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 22,2025,RadPhi3.5Vision,Microsoft,https://github.com/MercyPrasanna/rexrank,0.248,0.433,0.607,0.22,1.166,0.634,0.597,0.552
 23,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.189,0.443,0.6,0.233,1.204,0.636,0.671,0.574
 24,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.217,0.475,0.6,0.26,1.34,0.678,0.724,0.57
+25,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.265,0.565,0.659,0.286,1.977,0.69,0.639
