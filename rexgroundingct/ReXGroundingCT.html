@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--Author: Xiaoman Zhang 2024 -->
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>
+    ReXGroundingCT
+  </title>
+  <meta name="description" content="ReXGroundingCT: A large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging."/>
+  <meta name="keywords" content="ReXGroundingCT, radiology, chest CT, segmentation, medical imaging"/>
+  <meta property="og:title" content="ReXGroundingCT: 3D Chest CT Dataset"/>
+  <meta property="og:description" content="A large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/rexgroundingct/"/>
+  <meta property="og:type" content="website"/>
+  <html lang="en"></html>
+  <meta content="ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging." name="description"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="/logo.png" property="og:image"/>
+  <link href="../logo.png" rel="image_src" type="image/png"/>
+  <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../stylesheets/layout.css" rel="stylesheet"/>
+  <link href="../stylesheets/index.css" rel="stylesheet"/>
+  <script src="../javascripts/analytics.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../javascripts/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href="../stylesheets/theme.default.min.css">
+
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+
+  <style>
+    .fixed-height-table {
+      height: 300px; /* Fixed height, adjust as needed */
+      overflow-y: scroll;
+      display: block;
+    }
+    .fixed-height-table thead {
+      position: sticky;
+      top: 0;
+      background-color: white; /* Table header background color */
+      z-index: 1;
+    }
+    .fixed-height-table th, .fixed-height-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .justified-text {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  </style>
+  <style>
+    .performanceTable th {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="../" style="font-size: 18px;">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="../">ReXrank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="topCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="appTitle">ReXGroundingCT</h1>
+          <h2 id="appSubtitle">3D Chest CT Dataset</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="contentCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="infoCard">
+            <div class="infoBody justified-text">
+              <div class="infoHeadline">
+                <h2>About ReXGroundingCT</h2>
+              </div>
+              <p>ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging. It comprises 3,142 non-contrast chest CT scans with 8,028 annotated findings (16,301 entities) from the CT-RATE dataset.</p>
+              <p>ReXGroundingCT enables sentence-level grounding for both focal and non-focal lung and pleural abnormalities across 14 categories. On ReXrank, we are hosting ReXGroundingCT's testset, which contains 100 CT scans with exhaustive radiologist annotations for all visible findings.</p>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Performance Metrics</h2>
+              </div>
+              <p><strong>Global Dice:</strong> Average Dice per finding per case</p>
+              <p><strong>Global HIT Rate:</strong> Proportion of findings that have Dice >= 0.1</p>
+              <p><strong>Instance Precision:</strong> TP / (TP + FP), where True Positives are instances that have a Dice >= 0.2</p>
+              <p><strong>Instance Recall:</strong> TP / (TP + FN)</p>
+              <p><strong>Instance F1:</strong> Harmonic mean of Instance Precision and Instance Recall</p>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Model Performance</h2>
+              </div>
+              <table class="table performanceTable tablesorter">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Global Dice</th>
+                    <th>Global HIT Rate</th>
+                    <th>Instance Precision</th>
+                    <th>Instance Recall</th>
+                    <th>Instance F1</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>SAT-FT</td>
+                    <td>0.209</td>
+                    <td>0.473</td>
+                    <td>0.074</td>
+                    <td>0.369</td>
+                    <td>0.123</td>
+                  </tr>
+                  <tr>
+                    <td>BiomedParseV2</td>
+                    <td>0.025</td>
+                    <td>0.066</td>
+                    <td>0.007</td>
+                    <td>0.072</td>
+                    <td>0.012</td>
+                  </tr>
+                  <tr>
+                    <td>SegVol</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td>SAT</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $(".performanceTable").tablesorter({
+        sortList: [[0, 0]]
+      });
+    });
+  </script>
+</body>
+</html>

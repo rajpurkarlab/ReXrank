@@ -1,0 +1,5 @@
+Model,Global Dice,Global HIT Rate,Instance Precision,Instance Recall,Instance F1
+SAT-FT,0.209,0.473,0.074,0.369,0.123
+BiomedParseV2,0.025,0.066,0.007,0.072,0.012
+SegVol,0,0,0,0,0
+SAT,0,0,0,0,0
