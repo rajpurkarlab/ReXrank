@@ -508,6 +508,11 @@ app.get(BASE_PATH + '/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// ReXGroundingCT route 
+app.get(BASE_PATH + '/rexgroundingct', (req, res) => {
+  res.redirect(BASE_PATH + '/rexgroundingct/ReXGroundingCT.html');
+});
+
 app.get(BASE_PATH + '/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
