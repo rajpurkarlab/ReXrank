@@ -32,6 +32,7 @@ app.use(express.json());
 // Serve static files from the root directory
 app.use(express.static(path.join(__dirname)));
 
+
 // add 
 const BASE_PATH = process.env.NODE_ENV === 'production' ? '/ReXrank' : '';
 app.use(BASE_PATH, express.static(path.join(__dirname)));
@@ -503,16 +504,15 @@ app.get('/verify', async (req, res) => {
 //   }
 // });
 
-// Root route
-app.get(BASE_PATH + '/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// ReXGroundingCT route 
+// Define specific routes FIRST
 app.get(BASE_PATH + '/rexgroundingct', (req, res) => {
   res.redirect(BASE_PATH + '/rexgroundingct/ReXGroundingCT.html');
 });
 
+// Then static files
+app.use(BASE_PATH, express.static(path.join(__dirname)));
+
+// Catch-all route LAST
 app.get(BASE_PATH + '/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
