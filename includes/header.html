@@ -1,0 +1,52 @@
+<div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+  <div class="container clearfix" id="navContainer">
+    <div class="rightNav">
+      <div class="collapseDiv">
+        <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/" style="font-size: 18px;">Home</a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
+              ReXrankCT <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/ReXGroundingCT/index.html">ReXGroundingCT</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="leftNav">
+      <div class="brandDiv">
+        <a class="navbar-brand" href="/">ReXrank</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Dropdown hover functionality */
+  .navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  .navbar-nav .dropdown-menu {
+    margin-top: 0;
+  }
+  /* Fix dropdown menu colors */
+  .navbar-nav .dropdown-menu {
+    background-color: #fff;
+  }
+  .navbar-nav .dropdown-menu > li > a {
+    color: #333 !important;
+  }
+  .navbar-nav .dropdown-menu > li > a:hover {
+    background-color: #f5f5f5;
+    color: #a41034 !important;
+  }
+</style>
