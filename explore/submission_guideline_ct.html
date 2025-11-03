@@ -82,13 +82,7 @@
                   Run inference on the test set from the <a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT" target="_blank">ReXGroundingCT dataset</a>. Your model's predictions should be saved as individual files with the same names as the original CT scan files.
                 </li>
                 <li>
-                  Each prediction file should have the shape <code>(F, H, W, D)</code>, where:
-                  <ul>
-                    <li><strong>F</strong> is the number of findings for that scan</li>
-                    <li><strong>H</strong> is the height dimension</li>
-                    <li><strong>W</strong> is the width dimension</li>
-                    <li><strong>D</strong> is the depth dimension</li>
-                  </ul>
+                  Each prediction file should have the shape <code>(F, H, W, D)</code>, where <code>F</code> is the number of findings for that scan
                   The shape should match the ground truth dimensions.
                 </li>
                 <li>Compress all your prediction files into a single archive (e.g., .zip or .gz file).</li>
