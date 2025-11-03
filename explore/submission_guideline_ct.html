@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>ReXrankCT Submission Guideline</title>
+  <meta name="description" content="Submission guideline for ReXrankCT."/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../stylesheets/layout.css" rel="stylesheet"/>
+  <link href="../stylesheets/index.css" rel="stylesheet"/>
+  <link href="../stylesheets/article.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../index.html" style="font-size: 18px;">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
+                ReXrankCT <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="../ReXGroundingCT/index.html">ReXGroundingCT</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="../index.html">ReXrank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover" id="contentCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="infoCard">
+            <div class="infoBody article">
+              <h1>ReXrankCT Submission Instructions</h1>
+              <hr>
+              <h2>How to Submit</h2>
+              <p>To submit your model's predictions for evaluation on the ReXrankCT leaderboard, please follow these steps:</p>
+              <ol>
+                <li>Prepare your model's output in the specified JSON format. For details on the format, please refer to the dataset page on the main leaderboard.</li>
+                <li>Compress your prediction file (e.g., into a .zip or .gz archive).</li>
+                <li>Compose an email with the subject line: <strong>"ReXrankCT Submission: [Your Model Name]"</strong>.</li>
+                <li>Attach the compressed prediction file to the email.</li>
+                <li>
+                  In the body of the email, please include:
+                  <ul>
+                    <li>Your model's name.</li>
+                    <li>A brief description of your model.</li>
+                    <li>A link to the paper or code repository, if available.</li>
+                    <li>The name of your institution.</li>
+                  </ul>
+                </li>
+                <li>
+                  Send the email to:
+                  <br>
+                  <strong>Mohammed Baharoon</strong>
+                  <br>
+                  <a href="mailto:mohammed_baharoon@hms.harvard.edu">mohammed_baharoon@hms.harvard.edu</a>
+                </li>
+              </ol>
+              <p>We will evaluate your submission and add the results to the leaderboard. Thank you for your contribution to advancing medical imaging research!</p>
+              <hr>
+              <h2>Removing Your Models from the Leaderboard</h2>
+              <p>If you wish to have your model removed from the leaderboard, please send an email to Mohammed Baharoon with the subject line "ReXrankCT Leaderboard Removal Request" and include your model's name in the email body.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
