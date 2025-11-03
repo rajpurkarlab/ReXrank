@@ -73,37 +73,36 @@
         <div class="col-md-12">
           <div class="infoCard">
             <div class="infoBody article">
-              <h1>ReXRank Submission Guideline</h1>
-              <p>In this tutorial, we'll cover the process of submitting your model and results for official evaluation on ReXRank. Once your model has been evaluated, your scores will be added to the leaderboard.</p>
+              <h1>ReXrankCT Submission Instructions</h1>
               <hr>
-              <h2>Model Submission</h2>
-              <p>Your model submission should include the following:</p>
+              <h2>How to Submit</h2>
+              <p>To submit your model's predictions for evaluation on the ReXrankCT leaderboard, please follow these steps:</p>
               <ol>
+                <li>Prepare your model's output in the specified JSON format. For details on the format, please refer to the dataset page on the main leaderboard.</li>
+                <li>Compress your prediction file (e.g., into a .zip or .gz archive).</li>
+                <li>Compose an email with the subject line: <strong>"ReXrankCT Submission: [Your Model Name]"</strong>.</li>
+                <li>Attach the compressed prediction file to the email.</li>
                 <li>
-                  <strong>Model Description:</strong> This description identifies your submission on the leaderboard: {Name_of_model} (Institution) paper link, code link, year
-                </li>
-                <li>
-                  <strong>Conda Environment File:</strong> Include the <code>environment.yaml</code> file support <code>conda install</code>.
-                </li>
-                <li>
-                  <strong>Inference Script:</strong> The model should support the following command: 
-                  <pre style="background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 10px; color: #333; overflow-x: auto;"><code>python inference.py --input_json_file &lt;input_json_file&gt; --save_json_file &lt;output_json_file&gt; --img_root_dir &lt;img_root_dir&gt;</code></pre>
-                  <p>We provide example scripts for both tasks:</p>
+                  In the body of the email, please include:
                   <ul>
-                    <li><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/merversa_inference.py" target="_blank">Radiology Report Generation (RRG) Example</a> using <a href="https://huggingface.co/hyzhou/MedVersa/tree/main" target="_blank">MedVersa</a></li>
-                    <li><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/medgamma_inference.py" target="_blank">Visual Question Answering (VQA) Example</a> using <a href="https://huggingface.co/google/medgemma-4b-it" target="_blank">MedGemma</a></li>
+                    <li>Your model's name.</li>
+                    <li>A brief description of your model.</li>
+                    <li>A link to the paper or code repository, if available.</li>
+                    <li>The name of your institution.</li>
                   </ul>
-                  <p>Your submission should clearly indicate which task(s) your model is designed for (RRG, VQA, or both).</p>
+                </li>
+                <li>
+                  Send the email to:
+                  <br>
+                  <strong>Mohammed Baharoon</strong>
+                  <br>
+                  <a href="mailto:mohammed_baharoon@hms.harvard.edu">mohammed_baharoon@hms.harvard.edu</a>
                 </li>
               </ol>
-              <p>
-                Please send an email to <strong>Xiaoman Zhang</strong> at 
-                <a href="mailto:xiaomanzhang.zxm@gmail.com">xiaomanzhang.zxm@gmail.com</a> with all the required information. 
-                Use the email title format: <strong>[ReXrank Submission] + Name_of_model</strong>.
-              </p>
+              <p>We will evaluate your submission and add the results to the leaderboard. Thank you for your contribution to advancing medical imaging research!</p>
               <hr>
               <h2>Removing Your Models from the Leaderboard</h2>
-              <p>If you decide you no longer want your model's score on the leaderboard, you can send an email to us. When the leaderboard updates, your model will no longer appear.</p>
+              <p>If you wish to have your model removed from the leaderboard, please send an email to Mohammed Baharoon with the subject line "ReXrankCT Leaderboard Removal Request" and include your model's name in the email body.</p>
             </div>
           </div>
         </div>
