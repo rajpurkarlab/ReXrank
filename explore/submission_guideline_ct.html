@@ -78,8 +78,14 @@
               <h2>How to Submit</h2>
               <p>To submit your model's predictions for evaluation on the ReXrankCT leaderboard, please follow these steps:</p>
               <ol>
-                <li>Prepare your model's output in the specified JSON format. For details on the format, please refer to the dataset page on the main leaderboard.</li>
-                <li>Compress your prediction file (e.g., into a .zip or .gz archive).</li>
+                <li>
+                  Run inference on the test set from the <a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT" target="_blank">ReXGroundingCT dataset</a>. Your model's predictions should be saved as individual files with the same names as the original CT scan files.
+                </li>
+                <li>
+                  Each prediction file should have the shape <code>(F, H, W, D)</code>, where <code>F</code> is the number of findings for that scan
+                  The shape should match the ground truth dimensions.
+                </li>
+                <li>Compress all your prediction files into a single archive (e.g., .zip or .gz file).</li>
                 <li>Compose an email with the subject line: <strong>"ReXrankCT Submission: [Your Model Name]"</strong>.</li>
                 <li>Attach the compressed prediction file to the email.</li>
                 <li>
