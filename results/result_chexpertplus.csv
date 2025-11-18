@@ -6,3 +6,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 5,2023,RadFM,SJTU,https://github.com/chaoyi-wu/RadFM,0.067,-0.038,0.229,0.027,0.443,0.39,0.137,0.34
 6,2024,GPT4V,OpenAI,https://cdn.openai.com/papers/GPTV_System_Card.pdf,0.055,-0.065,0.208,0.028,0.431,0.393,0.182,0.329
 7,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.13,0.026,0.433,0.072,0.53,0.536,0.298
+8,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.137,0.183,0.463,0.174,0.68,0.503,0.315

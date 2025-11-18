@@ -7,13 +7,25 @@ import numpy as np
 
 
 model_dict = {
-    "Gemini": {
-        "Model Name": "Gemini-1.5-Pro",
-        "Date": "2024-09-24",
-        "Institution": "Google",
-        "Model URL": "https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/1-5-pro",
+    # "Gemini": {
+    #     "Model Name": "Gemini-1.5-Pro",
+    #     "Date": "2024-09-24",
+    #     "Institution": "Google",
+    #     "Model URL": "https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/1-5-pro",
+    # },
+    "CheXOne-R1": {
+        "Model Name": "CheXOne-R1",
+        "Date": "2025-11-03",
+        "Institution": "Stanford",
+        "Model URL": "https://github.com/YBZh/CheXOne-R1",
     },
-    "Eagle2": {
+    "RadPhi4VisionCXR": {
+        "Model Name": "RadPhi4VisionCXR",
+        "Date": "2025-11-17",
+        "Institution": "Microsoft Research",
+        "Model URL": "https://www.microsoft.com/en-us/research/",
+    },
+    "Eagle2-9B": {
         "Model Name": "Eagle2-9B",
         "Date": "2025-01-20",
         "Institution": "NVIDIA",
@@ -25,31 +37,31 @@ model_dict = {
         "Institution": "DeepSeek",
         "Model URL": "https://huggingface.co/deepseek-ai/Janus-Pro-7B",
     },
-    "LLaVA": {
+    "LLaVA-1.5-7B": {
         "Model Name": "LLaVA-1.5-7B",
         "Date": "2024-01-03",
         "Institution": "Meta",
         "Model URL": "https://huggingface.co/llava-hf/llava-1.5-7b-hf",
     },
-    "Qwen2VL": {
+    "Qwen2VL-7B-Instruct": {
         "Model Name": "Qwen2VL-7B-Instruct",
         "Date": "2024-09-19",
         "Institution": "Alibaba",
         "Model URL": "https://huggingface.co/Qwen/Qwen2VL-7B-Instruct",
     },
-    "Qwen25VL": {
+    "Qwen2.5VL-7B-Instruct": {
         "Model Name": "Qwen2.5VL-7B-Instruct",
         "Date": "2025-04-28",
         "Institution": "Alibaba",
         "Model URL": "https://huggingface.co/Qwen/Qwen2.5VL-7B-Instruct",
     },
-    "Phi35_Vision_Instruct": {
+    "Phi35-Vision-Instruct": {
         "Model Name": "Phi35-Vision-Instruct",
         "Date": "2024-08-20",
         "Institution": "Microsoft",
         "Model URL": "https://huggingface.co/microsoft/Phi-3.5-vision-instruct",
     },
-    "MedGemma": {
+    "MedGemma-4B-it": {
         "Model Name": "MedGemma-4B-it",
         "Date": "2025-05-20",
         "Institution": "Google",

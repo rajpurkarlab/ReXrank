@@ -1,9 +1,10 @@
 Rank,Model Name,Institution,Model URL,Overall Accuracy,Differential Diagnosis,Geometric Information Assessment,Location and Distribution Assessment,Negation Assessment,Presence Assessment
-1,MedGemma-4B-it,Google,https://huggingface.co/google/medgemma-4b-it,0.8217,0.7671,0.8045,0.8347,0.8503,0.8521
-2,Janus-Pro-7B,DeepSeek,https://huggingface.co/deepseek-ai/Janus-Pro-7B,0.6656,0.5634,0.7542,0.6462,0.7573,0.607
-3,Qwen2.5VL-7B-Instruct,Qwen,https://huggingface.co/Qwen/Qwen2.5VL-7B-Instruct,0.6555,0.6361,0.6648,0.6324,0.8327,0.5114
-4,Eagle2-9B,NVIDIA,https://huggingface.co/nvidia/Eagle2-9B,0.6443,0.6817,0.5698,0.5695,0.8632,0.5375
-5,Gemini-1.5-Pro,Google,https://cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/1-5-pro,0.6331,0.6221,0.4689,0.596,0.8568,0.6217
-6,Qwen2VL-7B-Instruct,Alibaba,https://huggingface.co/Qwen/Qwen2VL-7B-Instruct,0.547,0.5265,0.4494,0.5405,0.6269,0.5915
-7,Phi35-Vision-Instruct,Microsoft,https://huggingface.co/microsoft/Phi-3.5-vision-instruct,0.4749,0.6224,0.2215,0.3711,0.795,0.3644
-8,LLaVA-1.5-7B,Meta,https://huggingface.co/llava-hf/llava-1.5-7b-hf,0.2661,0.2161,0.2346,0.2761,0.2402,0.3633
+1,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research/,0.9083,0.8975,0.7598,0.8193,0.9493,0.8887
+2,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.8803,0.8447,0.7374,0.8038,0.911,0.8799
+3,MedGemma-4B-it,Google,https://huggingface.co/google/medgemma-4b-it,0.8344,0.819,0.6872,0.7504,0.8979,0.7935
+4,Eagle2-9B,NVIDIA,https://huggingface.co/nvidia/Eagle2-9B,0.6939,0.7212,0.5084,0.5761,0.8568,0.5403
+5,Qwen2.5VL-7B-Instruct,Alibaba,https://huggingface.co/Qwen/Qwen2.5VL-7B-Instruct,0.6867,0.7451,0.5642,0.5609,0.8802,0.4892
+6,Qwen2VL-7B-Instruct,Alibaba,https://huggingface.co/Qwen/Qwen2VL-7B-Instruct,0.6835,0.7661,0.676,0.616,0.7048,0.6363
+7,Janus-Pro-7B,DeepSeek,https://huggingface.co/deepseek-ai/Janus-Pro-7B,0.627,0.6923,0.6592,0.6235,0.6764,0.5483
+8,Phi35-Vision-Instruct,Microsoft,https://huggingface.co/microsoft/Phi-3.5-vision-instruct,0.618,0.699,0.4469,0.5252,0.7527,0.4643
+9,LLaVA-1.5-7B,Meta,https://huggingface.co/llava-hf/llava-1.5-7b-hf,0.2632,0.2628,0.3464,0.2571,0.2576,0.269

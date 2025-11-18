@@ -24,3 +24,8 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 23,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.085,0.318,0.385,0.172,0.753,0.476,0.206,0.343
 24,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.147,0.328,0.325,0.137,0.706,0.511,0.246,0.337
 25,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.19,0.428,0.46,0.236,1.008,0.564,0.279,0
+26,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.18,0.43,0.487,0.243,1.048,0.522,0.25
+27,2025,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research,0.163,0.348,0.448,0.205,0.85,0.541,0.282
+28,2025,zzy-RGv1-8b,Individual,,0.141,0.356,0.42,0.213,0.848,0.544,0.264
+29,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.112,0.317,0.238,0.132,0.656,0.498,0.179
+
