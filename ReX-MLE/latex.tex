@@ -1,0 +1,969 @@
+\documentclass{midl} % Include author names
+
+% The following packages will be automatically loaded:
+% jmlr, amsmath, amssymb, natbib, graphicx, url, algorithm2e
+% ifoddpage, relsize and probably more
+% make sure they are installed with your latex distribution
+
+\usepackage{mwe} % to get dummy images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{booktabs}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+% \usepackage{subfigure}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage{pmboxdraw}  % For box-drawing characters
+
+
+% \usepackage{amsthm}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric}
+
+% if you use cleveref..
+% \usepackage[capitalize,noabbrev]{cleveref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THEOREMS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\jmlrvolume{-- Under Review}
+\jmlryear{2026}
+\jmlrworkshop{Validation Studies -- MIDL 2026 submission}
+
+\editors{Under Review for MIDL 2026}
+
+% \title[ReX-MLE]{AI Agents Fail at Medical Imaging Challenges} 
+
+\title[ReX-MLE]{ReX-MLE: The Autonomous Agent Benchmark \\ \vspace{1pt} for Medical Imaging Challenges} 
+
+\midlauthor{
+\Name{Roshan Kenia\midljointauthortext{Contributed equally}\nametag{$^{1}$}} \Email{roshan\_kenia@fas.harvard.edu}\\
+\Name{Xiaoman Zhang\midlotherjointauthor\nametag{$^{1}$}} \Email{xiaoman\_zhang@hms.harvard.edu}\\
+\Name{Pranav Rajpurkar\nametag{$^{1}$}} \\%\Email{pranav\_rajpurkar@hms.harvard.edu}\\
+\addr $^{1}$ Department of Biomedical Informatics, Harvard Medical School, Boston, MA
+}
+
+
+ % Use \Name{Author Name} to specify the name.
+ % If the surname contains spaces, enclose the surname
+ % in braces, e.g. \Name{John {Smith Jones}} similarly
+ % if the name has a "von" part, e.g \Name{Jane {de Winter}}.
+ % If the first letter in the forenames is a diacritic
+ % enclose the diacritic in braces, e.g. \Name{{\'E}louise Smith}
+
+ % Two authors with the same address
+ % \midlauthor{\Name{Author Name1} \Email{abc@sample.edu}\and
+ %  \Name{Author Name2} \Email{xyz@sample.edu}\\
+ %  \addr Address}
+
+ % Three or more authors with the same address:
+ % \midlauthor{\Name{Author Name1} \Email{an1@sample.edu}\\
+ %  \Name{Author Name2} \Email{an2@sample.edu}\\
+ %  \Name{Author Name3} \Email{an3@sample.edu}\\
+ %  \addr Address}
+
+
+% Authors with different addresses:
+% \midlauthor{\Name{Author Name1} \Email{abc@sample.edu}\\
+% \addr Address 1
+% \AND
+% \Name{Author Name2} \Email{xyz@sample.edu}\\
+% \addr Address 2
+% }
+
+%\footnotetext[1]{Contributed equally}
+
+% More complicate cases, e.g. with dual affiliations and joint authorship
+% \midlauthor{\Name{Author Name1\midljointauthortext{Contributed equally}\nametag{$^{1,2}$}} \orcid{1111-2222-3333-4444} \Email{abc@sample.edu}\\
+% \addr $^{1}$ Address 1 \\
+% \addr $^{2}$ Address 2 \AND
+% \Name{Author Name2\midlotherjointauthor\nametag{$^{1}$}} \Email{xyz@sample.edu}\\
+% \Name{Author Name3\nametag{$^{2}$}} \Email{alphabeta@example.edu}\\
+% \Name{Author Name4\midljointauthortext{Contributed equally}\nametag{$^{3}$}} \Email{uvw@foo.ac.uk}\\
+% \addr $^{3}$ Address 3 \AND
+% \Name{Author Name5\midlotherjointauthor\nametag{$^{4}$}} \Email{fgh@bar.com}\\
+% \addr $^{4}$ Address 4
+% }
+
+\begin{document}
+
+\maketitle
+
+
+\begin{abstract}
+    Autonomous coding agents built on large language models (LLMs) can now solve many general software and machine learning tasks, but they remain ineffective on complex, domain-specific scientific problems. Medical imaging is a particularly demanding domain, requiring long training cycles, high-dimensional data handling, and specialized preprocessing and validation pipelines, capabilities not fully measured in existing agent benchmarks. 
+    To address this gap, we introduce \textbf{ReX-MLE}, a benchmark of 20 challenges derived from high-impact medical imaging competitions spanning diverse modalities and task types. Unlike prior ML-agent benchmarks, ReX-MLE evaluates full end-to-end workflows, requiring agents to independently manage data preprocessing, model training, and submission under realistic compute and time constraints. 
+    Evaluating state-of-the-art agents (AIDE, ML-Master, R$\&$D-Agent) with different LLM backends (GPT-5, Gemini, Claude), we observe a severe performance gap: most submissions rank in the 0th percentile compared to human experts. 
+    Failures stem from domain-knowledge and engineering limitations. ReX-MLE exposes these bottlenecks and provides a foundation for developing domain-aware autonomous AI systems.
+\end{abstract}
+
+\begin{keywords}
+Autonomous Coding Agents, Medical Imaging, Benchmarking
+\end{keywords}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{figures/figure1_v3.png}
+    \vspace{-10pt}
+    \caption{Performance of SOTA AI coding agents on ReX-MLE.} 
+    % All agents show substantially lower average scores compared to documented human competition winners.}
+    \label{fig:figure1}
+\end{figure}
+
+\clearpage
+
+\section{Introduction}
+% \textcolor{red}{Keep intro within 1 page.}
+Recent advances in large language models (LLMs) have enabled autonomous coding agents capable of solving standard machine learning engineering (MLE) and software engineering tasks~\cite{liu2025ml,chan2024mle,yang2025rdagentllmagentframeworkautonomous}. These frameworks indicate the potential for agents to operate as autonomous AI scientists in the future~\cite{gottweis2025towards}. However, despite their success on general benchmarks, current agents break down when faced with complex, domain-specific scientific challenges~\cite{zhu2025ai}. Medical imaging represents a particularly demanding domain that exposes these limitations. 
+
+Unlike standard computer vision benchmarks, medical imaging tasks involve high-dimensional and heterogeneous modalities, including 3D CT and MRI volumes, multi-parametric scans, and gigapixel pathology slices, which require specialized preprocessing, normalization, and augmentation strategies~\cite{shen2017deep}. These processes often require the specialized insight of someone with substantial hands‑on experience. Training these models often requires multi-stage pipelines, long training cycles, and careful hyperparameter tuning, demanding meticulous workflow management~\cite{eisenmann2023winner}. 
+% . Addressing these challenges typically requires deep domain expertise and meticulous computational management~\cite{eisenmann2023winner}.
+
+Despite rapid progress in agent capabilities, existing evaluation frameworks remain poorly aligned with real-world scientific requirements. Current coding benchmarks \cite{jimenez2023swe, chan2024mle, tang2023ml, padigela2025ml} tend to emphasize code generation or simplified ML pipeline construction, but overlook 
+% the dimensions that determine success in medical imaging: evaluation using 
+competition-grade metrics, assessment of actual model outputs under realistic training constraints, adherence to domain-expert preprocessing and validation standards, and comparison against documented winning strategies. 
+Lacking these elements, prior benchmarks fail to surface the behaviors that prevent current agents from succeeding on real medical imaging tasks, such as early training termination, mismanagement of computational budgets, flawed preprocessing pipelines, and invalid evaluation procedures. 
+% In practice, agents frequently terminate training early, mismanage limited computational budgets, produce flawed preprocessing pipelines, and adopt invalid evaluation procedures.
+% Those failure modes remain invisible under existing benchmark designs.
+
+To address these gaps, we construct \textbf{ReX-MLE}, a benchmark comprised of \textbf{20} diverse challenge tasks derived from \textbf{10} high‑impact medical imaging competitions. ReX-MLE spans \textbf{8} imaging modalities and multiple task types, including segmentation, detection, classification, image quality assessment, and generative enhancement.
+Within this environment, agents must independently handle the full scientific workflow, like preprocessing, model design, training, and evaluation, and are required to generate full submission‑ready predictions (e.g., NIfTI volumes, masks, and JSON detection files) rather than single textual responses.
+
+% To address these gaps, we introduce ReX-MLE, a benchmark comprised of 20 diverse challenge tasks derived from 10 high‑impact medical imaging competitions spanning segmentation, detection, classification, and generation. 
+% The benchmark spans 10 different imaging modalities, including CT, MRI, ultrasound, and digital pathology, requiring agents to process high-dimensional, heterogeneous data rather than simplified toy datasets.
+% ReX-MLE evaluates agents in a realistic, end‑to‑end setting in which they must independently handle preprocessing, model design, training, and evaluation. 
+% Unlike other benchmarks, agents are required to generate full submission‑ready predictions (e.g., NIfTI volumes, segmentation masks, and JSON detection files) rather than a single textual response. 
+
+% Our results reveal large performance gaps between state-of-the-art agents and human experts. As shown in Figure~\ref{fig:figure1}, even leading systems, including ML-Master and AIDE, utilizing SOTA API models (GPT-5, Gemini 3 Pro, Claude 4.5 Sonnet), consistently rank in the lowest percentiles relative to human competition winners. These findings highlight the need for benchmarks that reflect real scientific workflows and underscore the importance of tackling domain-specific obstacles to achieve truly autonomous scientific agents.
+
+Our main contributions are: (i) We introduce ReX-MLE, a comprehensive benchmark for evaluating autonomous AI agents on domain-specific scientific challenges, derived from high-impact medical imaging competitions spanning segmentation, detection, classification, and generation.
+(ii) We establish a rigorous evaluation protocol that assesses agents' abilities to generate full, submission-ready prediction files under strict computational and time constraints, mirroring the requirements of real-world scientific discovery.
+(iii) We conduct an extensive evaluation of leading autonomous systems, including ML-Master and AIDE, utilizing state-of-the-art foundation models (GPT-5, Gemini 3 Pro, and Claude 4.5 Sonnet). As shown in Figure~\ref{fig:figure1}, \textbf{our results reveal a significant performance disparity, with even the most advanced agents consistently ranking in the lowest percentiles relative to human experts, highlighting critical gaps in domain-specific engineering and process validity.}
+
+
+
+\section{ReX-MLE}
+\label{sec:method}
+
+
+
+\subsection{Benchmark Design}
+
+To systematically evaluate AI agent capabilities on medical imaging tasks, we construct \textbf{ReX-MLE}, a curated benchmark of medical imaging competitions adapted from Grand Challenge\footnote{\url{https://grand-challenge.org/challenges/}}. Our benchmark is designed to cover diverse modalities, task types, and clinical applications while maintaining rigorous standards for data quality and evaluation protocols, enabling systematic comparison of agent performance against expert-built solutions.
+
+\paragraph{Challenge Selection Criteria.}
+We select Grand Challenge tasks that meet standard requirements for data quality and reproducibility. 
+Eligible challenges required substantial community participation (typically over 200 registrants or extensive submissions), open licensing that permits research use, and publicly released evaluation metrics and scripts. We included challenges with complete competition materials, including task descriptions and sample submissions. We ensured broad modality coverage and task diversity, spanning classification, detection, segmentation, regression, and image enhancement.
+
+% We select challenges from Grand Challenge based on the following criteria to ensure data quality, clinical utility, and evaluation rigor:
+
+% \begin{itemize}
+%     \item \textbf{High community participation:} At least 200 registered participants or substantial submissions, ensuring well-established baselines and robust leaderboard.
+%     \item \textbf{Open licensing}: Datasets available under open licenses permitting research use.
+%     \item \textbf{Reproducible evaluation}: Clear metrics with publicly available evaluation scripts.
+%     \item \textbf{Complete challenge materials}: Full competition package including task description, data introduction, and sample submission formats.
+%     \item \textbf{Modality coverage:} Inclusion of CT, MRI, X-ray, ultrasound, and digital pathology.
+%     \item \textbf{Task diversity}: Inclusion of classification, detection, segmentation, regression, and enhancement tasks.
+% \end{itemize}
+
+% \begin{table*}[!t]
+% \footnotesize
+% \centering  
+% \caption{Overview of the 20 ReX-MLE challenges across 10 competitions.}\vspace{3pt}
+% \label{tab:medical_mlebench_overview}
+% \setlength{\tabcolsep}{3pt}
+% \begin{tabular}{llll}
+% \toprule
+% \textbf{Challenge} & \textbf{Modality} & \textbf{Anatomy} & \textbf{Task Type} \\
+% \midrule
+% % \multicolumn{4}{l}{\textit{USenhance Challenge (2023)}} \\
+% USenhance ~\cite{usenhance} & Ultrasound & Various Organs & Image Generation \\
+% % \midrule
+% % \multicolumn{4}{l}{\textit{LDCT-IQA Challenge (2023)}} \\
+% LDCTIQA2023~\cite{ldct_iqa} & CT & Abdominal & Quality Assessment  \\
+% % \midrule
+% % ---------------------- PANTHER TASKS ----------------------
+% % \multicolumn{4}{l}{\textit{PANTHER Challenge (2025)}} \\
+% PANTHER-T1 ~\cite{panther}& MRI & Pancreas & Tumor Segmentation \\
+% PANTHER-T2 ~\cite{panther}& MRI & Pancreas & Tumor Segmentation \\
+% % \midrule
+% % \multicolumn{4}{l}{\textit{SEG.A Challenge (2023)}} \\
+% SEG.A ~\cite{seg_a} & CTA & Aorta / Heart & Segmentation \\
+% % \midrule
+% % \multicolumn{4}{l}{\textit{DENTEX Challenge (2023)}} \\
+% DENTEX~\cite{hamamci2023dentex} & X-ray & Dental & Detection \\
+% % \midrule
+% % \multicolumn{4}{l}{\textit{TopCoW Challenge (2024)}} \\
+% TopCoW-CTA-Seg~\cite{topcow} & CTA & Brain & Segmentation \\
+% TopCoW-CTA-Det~\cite{topcow} & CTA & Brain & Detection \\
+% TopCoW-CTA-Cls~\cite{topcow} & CTA & Brain & Classification \\
+% TopCoW-MRA-Seg~\cite{topcow} & MRA & Brain & Segmentation \\
+% TopCoW-MRA-Det~\cite{topcow} & MRA & Brain & Detection \\
+% TopCoW-MRA-Cls~\cite{topcow} & MRA & Brain & Classification \\
+% % \midrule
+% % ---------------------- PUMA TASKS ----------------------
+% % \multicolumn{4}{l}{\textit{PUMA Challenge (2025)}} \\
+% PUMA-Track1-TissueSeg~\cite{puma} & Pathology & Skin & Segmentation \\ % Semantic Tissue Segmentation \\
+% PUMA-Track1-NucleiDet~\cite{puma} & Pathology & Skin & Nuclei Detection \\ % (3 classes) \\
+% PUMA-Track2-TissueSeg~\cite{puma} & Pathology & Skin & Segmentation \\ % Semantic Tissue Segmentation \\ %  (5 classes) \\
+% PUMA-Track2-NucleiDet~\cite{puma} & Pathology & Skin & Nuclei Detection  \\ %  (10 classes) \\
+% % \midrule
+% % \multicolumn{4}{l}{\textit{ISLES22 Challenge (2022)}} \\
+% ISLES22~\cite{hernandez2022isles} & MRI & Brain & Segmentation \\
+% % \midrule
+% % \multicolumn{4}{l}{\textit{NeurIPS Cell Segmentation Challenge (2022)}} \\
+% CellSeg \cite{neurips_cellseg} & Microscopy & Cells & Segmentation \\
+% % \midrule
+% % \multicolumn{4}{l}{\textit{TopBrain Challenge (2025)}} \\
+% TopBrain-CTA-Seg ~\cite{topcow} & CTA & Brain & Segmentation \\
+% TopBrain-MRA-Seg ~\cite{topcow} & MRA & Brain & Segmentation \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+\begin{table*}[!t]
+\footnotesize
+\centering  
+\caption{Overview of the 20 ReX-MLE challenges across 10 competitions.}\vspace{3pt}
+\label{tab:medical_mlebench_overview}
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{lll}
+\toprule
+\textbf{Challenge} & \textbf{Modality} & \textbf{Task Type} \\
+\midrule
+USenhance ~\cite{usenhance} & Ultrasound & Image Generation \\
+LDCTIQA2023~\cite{ldct_iqa} & CT & Image Quality Assessment \\
+PANTHER-T1 ~\cite{panther} & MRI & Tumor Segmentation \\
+PANTHER-T2 ~\cite{panther} & MRI & Tumor Segmentation \\
+SEG.A ~\cite{seg_a} & CTA & Segmentation \\
+DENTEX~\cite{hamamci2023dentex} & X-ray & Detection \\
+TopCoW-CTA-Seg~\cite{topcow} & CTA & Segmentation \\
+TopCoW-CTA-Det~\cite{topcow} & CTA & Detection \\
+TopCoW-CTA-Cls~\cite{topcow} & CTA & Classification \\
+TopCoW-MRA-Seg~\cite{topcow} & MRA & Segmentation \\
+TopCoW-MRA-Det~\cite{topcow} & MRA & Detection \\
+TopCoW-MRA-Cls~\cite{topcow} & MRA & Classification \\
+PUMA-Track1-TissueSeg~\cite{puma} & Pathology & Segmentation \\
+PUMA-Track1-NucleiDet~\cite{puma} & Pathology & Nuclei Detection \\
+PUMA-Track2-TissueSeg~\cite{puma} & Pathology & Segmentation \\
+PUMA-Track2-NucleiDet~\cite{puma} & Pathology & Nuclei Detection \\
+ISLES22~\cite{hernandez2022isles} & MRI & Segmentation \\
+CellSeg \cite{neurips_cellseg} & Microscopy & Segmentation \\
+TopBrain-CTA-Seg ~\cite{topcow} & CTA & Segmentation \\
+TopBrain-MRA-Seg ~\cite{topcow} & MRA & Segmentation \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\paragraph{Benchmark Composition.}
+ReX-MLE comprises 20 challenges across 10 major medical imaging competitions, covering diverse modalities, task types, and anatomical regions. Table~\ref{tab:medical_mlebench_overview} summarizes the benchmark composition.
+The dataset distribution requires agents to operate across highly heterogeneous data formats and clinical contexts, covering neurovascular imaging (TopCoW, SEG.A, ISLES22, TopBrain), oncology (PANTHER, PUMA), microscopy (CellSeg), dentistry (DENTEX), and image quality enhancement and reconstruction (LDCT-IQA, USenhance). This diversity enforces generalization across anatomical structures and clinical objectives, providing a realistic testbed for autonomous medical model development.
+
+% The benchmark incorporates 8 imaging modalities, including X-ray, CT, CTA, MRI, MRA, ultrasound, digital pathology, and microscopy, requiring agents to operate across heterogeneous data formats. These tasks encompass segmentation, detection, classification, image quality assessment, and generative enhancement, thereby testing both foundational computer vision abilities and domain-specific reasoning skills essential for medical AI systems. 
+% Clinically, the benchmark covers high-impact application areas ranging from vascular and neuroimaging (TopCoW, SEG.A, ISLES22, TopBrain) to oncology (PANTHER, PUMA), multi-modal microscopy (NeurIPS-CellSeg), dentistry (DENTEX), and diagnostic imaging quality and reconstruction (LDCT-IQA, USenhance). 
+% This breadth ensures that agents must generalize across diverse anatomical regions, clinical objectives, and data acquisition processes, offering a comprehensive and realistic evaluation of autonomous medical model-building capabilities.
+
+\paragraph{Challenge Adaptation.}
+For each challenge, we prepare standardized materials following the MLE-bench framework~\citep{chan2024mle}. Provided materials include a concise competition description, automated dataset-preparation scripts, sample submissions, and Python implementations of official evaluation metrics for fully local validation. Each task also includes a YAML metadata file defining challenge identifiers, task types, data paths, and grading parameters. All preparation and evaluation code is publicly released to support reproducibility and future extensions.
+
+% This includes a comprehensive competition description detailing the task objectives, clinical context, dataset characteristics, and evaluation metrics; automated dataset-preparation scripts for downloading data from Zenodo, Figshare, or Google Drive, converting formats, and generating consistent train–validation–test splits; and sample submission files that illustrate the required output structure. We also recreate the official evaluation metrics in Python to enable fully local validation without access to test labels, and provide YAML metadata files specifying the challenge ID, task type, data paths, and grading parameters. All dataset preparation and evaluation code is publicly released to support reproducibility and extendability of the benchmark.
+
+% \begin{itemize} 
+%     \item \textbf{Competition description}: Comprehensive markdown document detailing task objectives, clinical context, dataset characteristics, and evaluation metrics
+%     \item \textbf{Dataset preparation}: Automated scripts to download data from Zenodo, Figshare, or Google Drive; convert formats; and establish consistent train/validation/test splits
+%     \item \textbf{Sample submission}: Template files demonstrating expected submission format for each challenge
+%     \item \textbf{Local evaluation}: Recreated Python implementation of official evaluation metrics enabling agents to validate solutions locally without accessing test labels
+%     \item \textbf{Metadata}: YAML configuration files specifying challenge ID, task type, data paths, and grading parameters
+% \end{itemize}
+
+% All code for dataset preparation and evaluation is made publicly available to facilitate reproducibility and future extensions of the benchmark.
+
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=0.85\columnwidth]{figures/figure3.png}
+    \caption{Overview of ReX-MLE Task Categories. This figure illustrates the four distinct task types included in the benchmark: Segmentation, Detection, Classification, and Image Generation. }
+    \label{fig:workflows}
+\end{figure}
+
+
+
+
+
+\subsection{Baseline Agents}
+
+\vspace{3pt} \noindent \textbf{AIDE}~\citep{schmidt2024aide} frames machine learning engineering as a code-space optimization problem and performs greedy tree search with iterative refinement. The agent proposes candidate solutions, executes them, and uses automated feedback to diagnose errors and incrementally correct code. 
+% Prioritizing rapid trial-and-error over exhaustive search, AIDE achieved a 16.9\% medal rate on MLE-Bench, demonstrating the effectiveness of fast, locally guided improvements for ML pipeline construction.
+
+\vspace{3pt} \noindent \textbf{ML-Master}~\citep{liu2025ml} integrates large-scale exploration and reflective reasoning through a Monte Carlo Tree Search (MCTS) framework. By maintaining multiple solution trajectories and adaptively balancing exploration of new strategies with exploitation of promising ones, ML-Master efficiently navigates complex search spaces. 
+% It achieved a 47.7\% medal rate on MLE-Bench, nearly tripling AIDE’s performance, highlighting the advantage of structured, multi-trajectory search reinforced by selective memory mechanisms.
+
+\vspace{3pt} \noindent \textbf{R$\&$D-Agent}~\citep{yang2025rdagentllmagentframeworkautonomous} employs a dual-agent design that separates conceptual exploration from implementation refinement. A Researcher module proposes strategic directions, while a Developer module resolves execution errors and iteratively improves the code, enabling diverse and resilient multi-trace exploration.
+% A Researcher agent proposes higher-level methodological directions based on performance signals, while a Developer agent focuses on resolving execution errors and improving code quality. This division of labor allows the system to run multiple interacting exploration traces in parallel, strengthening robustness and search diversity. 
+% On MLE-Bench, R$\&$D-Agent ranks among the strongest open-source baselines, underscoring the benefits of coordinated, multi-trace iterative exploration.
+
+\subsection{Experimental Setup}
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{figures/figure2.png}
+    \caption{Autonomous Agent Interaction Workflow.  This diagram depicts the workflow between the Medical Image Challenge Environment and the AI Agent. The environment provides task instructions, data, and grading feedback, while the agent iteratively performs strategy generation, error analysis, coding, debugging, and model training to produce a final submission.}
+    \label{fig:workflows}
+\end{figure}
+
+
+\vspace{3pt} \noindent \textbf{Computational Resources.}  
+All agents are executed on standardized hardware consisting of NVIDIA H100 GPUs (80GB memory), 64 CPU cores, and 128GB RAM. This configuration reflects realistic research computing environments while remaining broadly accessible to the academic community. We select GPT-5 as the primary model for all experiments (unless otherwise noted) due to its widespread adoption and API accessibility.
+
+\vspace{3pt} \noindent \textbf{Time Budget.}  
+Each agent is allocated a strict 24-hour wall-clock budget per challenge to develop a complete solution. This constraint evaluates the agent’s ability to efficiently explore solution spaces, manage computational resources, and prioritize promising methodological directions under realistic time limitations.
+
+\vspace{3pt} \noindent \textbf{Agent Inputs.}  
+For every challenge, agents receive five standardized inputs:  
+(1) a competition description document outlining task objectives and clinical context;  
+(2) the full training dataset with accompanying annotations;
+(3) the test data without ground truth annotations;
+(4) a sample submission illustrating the expected output format;  
+(5) a local evaluation script enabling iterative validation.  
+Without any human intervention, the agents must use these materials to autonomously perform the entire workflow, including data exploration, preprocessing, model design, training, validation, and final submission generation.
+
+\vspace{3pt} \noindent \textbf{Agent Outputs.} Each agent is instructed to produce a \texttt{submission.csv} file following the format of the provided sample submission. Unlike MLE-Bench, however, tasks that require saving predictions such as segmentations must be submitted as a folder containing both the CSV and the corresponding prediction files, rather than encoding all outputs within a single CSV. This setup reflects a realistic workflow in which model outputs need to be generated and used directly, rather than converted into easily represented text. We extract these submission folders for evaluation.
+
+
+\vspace{3pt} \noindent \textbf{Evaluation Metrics.} For each challenge, we collect the top 10 human competitor scores, or the maximum available if fewer, from the public test leaderboard. For each metric within a challenge (Appendix \ref{appendix:tables}), we reconstruct the competitors’ positional rankings and then average these positions to obtain a mean ranking, which serves as the basis for each competitor’s overall standing in the challenge. Although some competitors may have evaluated their submissions on private test sets, we recreate the evaluation conditions as closely as possible. We then assess agent performance comprehensively, using both absolute metrics and leaderboard‑relative metrics tailored to the Grand Challenge environment:
+
+\begin{itemize}[leftmargin=*, nosep]
+\item \textbf{Challenge-specific scores}: Raw performance on each challenge’s evaluation metrics, as defined by their respective leaderboards. These scores allow for direct, like-for-like comparison across agents.
+
+\item \textbf{Competition rank}: For each challenge, we compute positional rankings for every metric relative to the human leaderboard, then average these positions to obtain a mean ranking ($\overline{\text{rank}}$). From this, we derive the agent’s percentile using: $1 - \frac{\overline{\text{rank}} - 1}{\text{number of human competitors}}$. Under this formulation for a competition with 10 human competitors, an agent with a mean ranking of 1 (best) is placed in the 100\textsuperscript{th} percentile, while a mean ranking of 11 (worst) corresponds to the 0\textsuperscript{th} percentile.
+
+\item \textbf{ReX-MLE Rank}: The overall benchmark ranking, computed as the mean of all competition percentiles across challenges (with failures assigned 0\%).
+\end{itemize}
+
+\subsection{Capability Evaluation Methodology}
+
+Beyond quantitative performance metrics, we conduct systematic capability analysis to understand \textit{why} agents fail.
+For each agent and challenge, we evaluate the full execution logs, including reasoning traces, planning decisions, code generation, debugging attempts, and intermediate outputs, using the 13 “Winning Strategies” identified by \citet{eisenmann2023winner} (Figure~\ref{fig:capabilities}). This analysis is conducted through an automated LLM-as-a-judge pipeline, which applies a standardized rubric to determine whether there is explicit, verifiable evidence that an agent exhibited each strategy. A binary indicator is assigned accordingly, with detailed procedures and the exact prompts provided in Appendix \ref{appendix:capability-analysis}. Aggregating these scores across all 20 challenges yields capability profiles that reveal which core scientific and engineering practices current autonomous ML systems consistently fail to demonstrate.
+
+% we analyze the complete logs of agent reasoning, planning decisions, code generation, and debugging attempts; all attempted solutions, including failed experiments and debugging iterations; and systematic categorization of failures (implementation bugs, memory issues, format errors, metric misunderstandings). 
+% We also evaluate each agent against the 13 crucial winning strategies identified by Eisenmann et al.~\citep{eisenmann2023winner} from comprehensive analysis of biomedical competition winners (Figure~\ref{fig:capabilities}).
+% Following a standardized protocol, we assign a binary indicator for whether a strategy is demonstrated in the textual reasoning trace, with detailed procedures and prompts provided in the Appendix. Averaging these scores across all 20 challenges yields a capability profile that reveals which core scientific and engineering practices are missing in current autonomous ML systems.
+
+% To standardize and simplify this process between each agent, we extract the textual analysis excluding code produced by the agent during its challenge run. For each agent-challenge pair, we assign a binary score: 1 if the agent demonstrates the strategy (attempts or implements it, even partially) or 0 if the strategy is absent (not attempted or considered). These binary scores are averaged across all 20 challenges to produce final capability scores.
+% This systematic evaluation reveals which fundamental capabilities are missing from current autonomous ML systems, providing actionable insights for future agent development targeted at medical imaging tasks.
+
+
+
+
+
+% \begin{table*}[h]
+% \centering
+% \small
+% \caption{Comparison of ML agent benchmarks. \textbf{Real Grade:} Uses real competition leaderboards. \textbf{Output Eval:} Evaluates actual model outputs/submissions. \textbf{Domain Expert:} Requires domain expertise. \textbf{Strategy Analysis:} Compares against documented winning strategies.} \vspace{3pt}
+% \begin{tabular}{lcccc}
+% \toprule
+% & \multicolumn{4}{c}{\textbf{Evaluation}} \\
+% \cmidrule{2-5}
+% & Real Grade & Output Eval & Domain Expert & Strategy Analysis\\
+% % & Grade & Eval & Expert & Analysis \\
+% % \midrule
+% MLE-Bench \cite{chan2024mle} & \textcolor{green}{\cmark} & \textcolor{red}{\xmark} & \textcolor{red}{\xmark} & \textcolor{red}{\xmark} \\
+% SWE-Bench \cite{jimenez2023swe} & \textcolor{green}{\cmark} & \textcolor{green}{\cmark} & \textcolor{red}{\xmark} & \textcolor{red}{\xmark} \\
+% TimeSeriesGym \cite{cai2025timeseriesgym} & \textcolor{red}{\xmark} & \textcolor{green}{\cmark} & \textcolor{red}{\xmark} & \textcolor{green}{\cmark} \\
+% ML-Bench \cite{tang2023ml} & \textcolor{red}{\xmark} & \textcolor{red}{\xmark} & \textcolor{red}{\xmark} & \textcolor{red}{\xmark} \\
+% ML-Dev-Bench \cite{padigela2025ml} & \textcolor{red}{\xmark} & \textcolor{green}{\cmark} & \textcolor{red}{\xmark} & \textcolor{red}{\xmark} \\
+% ReX-MLE & \textcolor{green}{\cmark} & \textcolor{green}{\cmark} & \textcolor{green}{\cmark} & \textcolor{green}{\cmark} \\
+% \bottomrule
+% \end{tabular}
+% \label{tab:benchmark_comparison}
+% \end{table*}
+
+
+
+
+
+% \begin{figure*}[t]
+% \centering
+% \begin{tikzpicture}[
+%     node distance=0.3cm,
+%     box/.style={rectangle, rounded corners, draw, thick, minimum width=4.2cm, minimum height=2.8cm, align=left, font=\footnotesize},
+%     yellowbox/.style={box, fill=yellow!30},
+%     bluebox/.style={box, fill=blue!20},
+%     greenbox/.style={box, fill=green!20},
+%     redbox/.style={box, fill=red!20},
+%     purplebox/.style={box, fill=purple!20},
+%     orangebox/.style={box, fill=orange!20},
+% ]
+% % Top row - Data Preparation
+% \node[purplebox] (rawdata) at (-5.5,2) {
+%     \textbf{Raw Medical Data}\\[0.2cm]
+%     Figshare Dataset\\
+%     • 56 CTA scans (NRRD)\\
+%     • 3 institutions\\
+%     • Expert annotations\\
+%     • $\sim$15GB medical images
+% };
+
+% \node[orangebox] (prepare) at (0,2) {
+%     \textbf{Domain Preparation}\\[0.2cm]
+%     \texttt{prepare.py}\\
+%     • Parse NRRD format\\
+%     • Match image-mask pairs\\
+%     • 80/20 train/test split\\
+%     • Preserve spacing info\\
+%     • Institution metadata
+% };
+
+% \node[bluebox] (structure) at (5.5,2) {
+%     \textbf{Agent Data View}\\[0.2cm]
+%     \texttt{prepared/public/}\\
+%     ├─ train/images/ (45)\\
+%     ├─ train/labels/ (45)\\
+%     ├─ test/images/ (11)\\
+%     ├─ description.md\\
+%     └─ sample\_submission.csv
+% };
+
+% % Bottom row - Task specification
+% \node[yellowbox] (instructions) at (-5.5,-1.5) {
+%     \textbf{Task Instructions}\\[0.2cm]
+%     Binary segmentation of\\
+%     aortic vessel tree\\[0.2cm]
+%     \textit{Requires understanding:}\\
+%     • 3D medical imaging\\
+%     • Cross-institutional\\
+%     \hspace{0.3cm}generalization\\
+%     • Clinical variability
+% };
+
+% \node[greenbox] (submission) at (0,-1.5) {
+%     \textbf{Submission Format}\\[0.2cm]
+%     \texttt{submission.csv}:\\
+%     image\_id, predicted\_mask\_path\\[0.2cm]
+%     \texttt{predictions/}:\\
+%     D1.seg.nrrd (3D binary)\\
+%     K5.seg.nrrd\\
+%     ...
+% };
+
+% \node[redbox] (grading) at (5.5,-1.5) {
+%     \textbf{Domain-Expert Grading}\\[0.2cm]
+%     \texttt{grade.py}\\[0.1cm]
+%     \textit{Per-case evaluation:}\\
+%     • Load 3D NRRD masks\\
+%     • Dice coefficient\\
+%     • Hausdorff distance (mm)\\[0.1cm]
+%     \textit{Aggregate metrics:}\\
+%     • Mean/Median DSC
+% };
+
+% % Arrows showing flow
+% \draw[->, very thick] (rawdata) -- (prepare);
+% \draw[->, very thick] (prepare) -- (structure);
+% \draw[->, very thick] (structure) -- (grading);
+% \draw[->, very thick] (instructions) -- (submission);
+% \draw[->, very thick] (submission) -- (grading);
+
+
+% \end{tikzpicture}
+% \caption{Task preparation pipeline for medical imaging benchmarks (SEG.A example). Medical imaging tasks require domain-specific data preparation handling 3D medical formats, complex submission formats with spatial predictions, and real pixel-level evaluation using clinical metrics.}
+% \label{fig:medical_task_preparation}
+% \end{figure*}
+\section{Results}
+\label{sec:results}
+
+\subsection{Performance on the Medical Subset of MLE-Bench}
+
+
+
+\begin{table*}[t]
+\centering
+\footnotesize	
+\caption{Performance of autonomous ML agents on the medical subset of MLE-Bench. 
+Each challenge is evaluated using its primary leaderboard metric ($\uparrow$ indicates higher is better; $\downarrow$ indicates lower is better). 
+Values are reported as raw metric scores. 
+\textbf{Bold} text denotes the best agent score for each challenge.}
+\label{tab:mlebench_medical_summary}
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Challenge} &
+\textbf{Metric} &
+\textbf{Winner} &
+\multicolumn{2}{c}{\textbf{AIDE}} &
+\multicolumn{2}{c}{\textbf{ML-Master}} &
+\multicolumn{2}{c}{\textbf{R\&D-Agent}} \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+& & & w/o sol. & w/ sol. & w/o sol. & w/ sol. & w/o sol. & w/ sol. \\
+\midrule
+HCD & AUROC $\uparrow$ & 0.983 & 0.988 & 0.989 &  0.990 & 0.992 & 0.981 & \textbf{0.993} \\
+RANZCR & AUROC $\uparrow$ & 0.973 & 0.807 & 0.910  & 0.880  & 0.859  & \textbf{0.932} & 0.928 \\
+ISIC & AUROC $\uparrow$ & 0.945 & 0.879 & \textbf{0.881}  & 0.845  & 0.808 & 0.787 & 0.791 \\
+HuBMAP & DICE $\uparrow$& 0.948 & \textbf{0.133} & 0.000  & 0.000  & 0.000 & 0.008 & 0.000 \\
+OSIC & LLL $\uparrow$& -6.841 & -7.999 & -8.915  & \textbf{-7.389}  & -8.191 & \textcolor{red}{FAIL} & -9.351 \\
+UWGI & DICE/Haus. $\uparrow$& 0.879 & 0.366 & 0.000  & 0.000  & 0.000 & \textbf{0.580} & 0.509 \\
+RSNA-Spine & Combo $\downarrow$& 0.276 & \textbf{0.563} & 0.761  & 0.600  & 0.675 & 4.959 & 0.656 \\
+RSNA-BC & F1 $\uparrow$& 0.490 & 0.056 & 0.048  & 0.028  & \textcolor{red}{FAIL} & 0.043 & \textbf{0.120} \\
+RSNA-RG & AUROC $\uparrow$& 0.600 & 0.454 & \textbf{0.547}  & 0.500  & 0.462 & 0.540 & 0.480 \\
+SIIM-COVID & mAP $\uparrow$& 0.623 & 0.236 & \textbf{0.393}  &  \textcolor{red}{FAIL}  & 0.305 &\textcolor{red}{FAIL} & \textcolor{red}{FAIL} \\
+VinBig & COCO $\uparrow$& 0.289 & \textcolor{red}{FAIL} & \textcolor{red}{FAIL}  & \textcolor{red}{FAIL}  & \textcolor{red}{FAIL} & \textbf{0.116} & \textcolor{red}{FAIL} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+To establish a performance baseline, we first evaluated AIDE, ML-Master, and R$\&$D-Agent on the medical subset of the original MLE-Bench. Table \ref{tab:mlebench_medical_summary} shows that agents perform well on simpler tasks such as the HCD (Histopathologic Cancer Detection) challenge, 
+where ML-Master achieved an AUROC of 0.992, surpassing the human gold standard of 0.983. 
+However, across more complex medical imaging tasks, especially those involving segmentation or detection (e.g., HuBMAP, UWGI), performance deteriorated sharply.
+Multiple agents produced near-zero Dice or mAP scores despite correct training scripts, indicating fundamental deficiencies in handling high-dimensional medical image data.
+
+We conducted an additional experiment on the medical subset of MLE-Bench in which we provided the agents with the winning solution reports created by the 1\textsuperscript{st}-place winners of each challenge, excluding HCD, which did not have a report available. These reports described the methodology used by the winning teams but did not include the full training or evaluation code. Our analysis in Table \ref{tab:mlebench_medical_summary} shows that the performance gap remains even when agents are explicitly given the top-performing strategy (``w/ sol.''). The inability of agents to reproduce expert-level performance, even when provided with the solution, suggests that the limitation goes beyond domain knowledge or hypothesis generation and reflects a fundamental inability to carry out the engineering work needed to adapt, debug, and deploy medical imaging pipelines.
+
+\subsection{Quantitative Performance Gap on ReX-MLE}
+
+\begin{table*}[t]
+\centering
+\footnotesize	
+\caption{Agent performance across the ReX-MLE suite with primary metric values and percentile ranks (Competition Rank) separated.}
+\label{tab:agent_performance_full_split}
+\begin{tabular}{l l 
+                c c 
+                c c 
+                c c 
+                c}
+\toprule
+\textbf{Challenge} & \textbf{Metric ($\uparrow$)} 
+& \multicolumn{2}{c}{\textbf{AIDE}} 
+& \multicolumn{2}{c}{\textbf{ML-Master}} 
+& \multicolumn{2}{c}{\textbf{R\&D Agent}} 
+& \textbf{Human} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+& & Value & Rank & Value & Rank & Value & Rank & Value \\
+\midrule
+\multicolumn{9}{l}{\textit{\textbf{Segmentation Tasks}}} \\
+ISLES'22 & Dice & 0.04 & 0\% & 0.02 & 0\%  & 0.02 & 0\% & 0.79 \\
+NeurIPS-CellSeg & F1 & 0.04 & 0\% & 0.26 & 0\% & 0.36 & 0\% & 0.88 \\
+PANTHER-T1 & Dice & 0.33 & 16\% & 0.09 & 8\% & 0.16 & 8\% & 0.73 \\
+PANTHER-T2 & Dice & 0.09 & 10\% & 0.14 & 12\% & 0.28 & 58\% & 0.53 \\
+PUMA-T1-Seg & Dice & \textcolor{red}{FAIL} & -- & 0.00 & 0\% & 0.00 & 0\% & 0.78 \\
+PUMA-T2-Seg & Dice & 0.00 & 0\% & 0.00 & 0\% & 0.00 & 0\% & 0.78 \\
+SEG.A & Dice & 0.02 & 0\% & 0.72 & 0\% & 0.00 & 0\% & 0.92 \\
+TopBrain-CTA & Mean Dice & 0.03 & 2\% & 0.04 & 18\% & 0.08 & 2\% & 0.79 \\
+TopBrain-MRA & Mean Dice & 0.01 & 10\% & 0.00 & 27\% & 0.50 & 0\% & 0.81 \\
+TopCoW-CTA-Seg & Mean Dice & 0.09 & 0\% & 0.12 & 0\% & 0.49 & 2\% & 0.87 \\
+TopCoW-MRA-Seg & Mean Dice & 0.11 & 0\% & 0.28 & 0\% & 0.73 & 3\% & 0.88 \\
+\midrule
+\multicolumn{9}{l}{\textit{\textbf{Detection Tasks}}} \\
+DENTEX & AP & 0.09 & 0\% & \textcolor{red}{FAIL} & -- & 0.00 & 0\% & 0.40 \\
+PUMA-T1-Det & F1 & 0.02 & 0\% & 0.01 & 0\% & 0.06 & 0\% & 0.66 \\
+PUMA-T2-Det & F1 & \textcolor{red}{FAIL} & -- & 0.00 & 0\% & 0.01 & 0\% & 0.27 \\
+TopCoW-CTA-Det & IoU & 0.67 & 38\% & 0.04 & 0\% & 0.70 & 56\% & 0.79 \\
+TopCoW-MRA-Det & IoU & 0.66 & 14\% & 0.67 & 14\% & 0.19 & 14\% & 0.85 \\
+\midrule
+\multicolumn{9}{l}{\textit{\textbf{Classification Tasks}}} \\
+TopCoW-CTA-Cls & Accuracy & 0.33 & 33\% & 0.02 & 0\% & 0.28 & 50\% & 0.73 \\
+TopCoW-MRA-Cls & Accuracy & 0.33 & 25\% & 0.00 & 0\% & 0.09 & 0\% & 0.89 \\
+\midrule
+\multicolumn{9}{l}{\textit{\textbf{Image Quality $\&$ Enhancement Tasks}}} \\
+LDCT-IQA & Score & 2.62 & 33\% & 2.56 & 0\% & 2.66 & 50\% & 2.74 \\
+USenhance & LNCC & 0.11 & 0\% & 0.14 & 0\% & \textcolor{red}{FAIL} & -- & 0.91 \\
+\midrule
+Overall Mean Percentile & -- & -- & 9.05\% & -- & 3.95\% & -- & \textbf{12.15}\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+% \begin{table*}[t]
+% \centering
+% \footnotesize	
+% \caption{Agent performance across the full ReX-MLE suite. 
+% Each challenge is evaluated using its official competition metric ($\uparrow$  indicates higher is better). Values are shown as metric score with corresponding percentile rank in parenthesis relative to human competitors. Percentile rank are based on a mean rank of all evaluation metrics for a challenge (not just primary metric).
+% \textbf{Bold} indicates the best agent performance for each challenge. 
+% ``FAIL'' denotes missing or invalid submissions.}
+% \label{tab:agent_performance}
+% \begin{tabular}{lllllc}
+% \toprule
+% \textbf{Challenge} & \textbf{Metric} & \textbf{AIDE} & \textbf{ML-Master} & \textbf{R$\&$D Agent} & \textbf{Winner} \\
+% \midrule
+% \multicolumn{6}{l}{\textit{\textbf{Segmentation Tasks}}} \\
+% ISLES'22 & Dice $\uparrow$ & 0.04 (0\%) & 0.02 (0\%) & 0.02 (0\%) & 0.79 \\
+% NeurIPS-CellSeg & F1 $\uparrow$ & 0.04 (0\%) & 0.26 (0\%) & 0.36 (0\%) & 0.88 \\
+% PANTHER-T1 & Dice $\uparrow$ & 0.33 (16\%) & 0.09 (7\%) & FAIL & 0.73 \\
+% PANTHER-T2 & Dice $\uparrow$ & 0.09 (10\%) & 0.13 (11\%) & FAIL & 0.53 \\
+% PUMA-T1-Seg & Dice $\uparrow$ & FAIL & 0.00 (0\%) & 0.00 (0\%) & 0.78 \\
+% PUMA-T2-Seg & Dice $\uparrow$ & 0.00 (0\%) & 0.00 (0\%) & 0.00 (0\%) & 0.78 \\
+% SEG.A & Dice $\uparrow$ & 0.02 (0\%) & 0.72 (0\%) & 0.00 (0\%) & 0.92 \\
+% TopBrain-CTA & Mean Dice $\uparrow$ & 0.03 (2\%) & 0.04 (16\%) & 0.08 (2\%) & 0.79 \\
+% TopBrain-MRA & Mean Dice $\uparrow$ & 0.01 (10\%) & 0.0 (24\%) & 0.50 (0\%) & 0.81 \\
+% TopCoW-CTA-Seg & Mean Dice $\uparrow$ & 0.09 (0\%) & 0.12 (0\%) & FAIL & 0.87 \\
+% TopCoW-MRA-Seg & Mean Dice $\uparrow$ & 0.11 (0\%) & 0.27 (0\%) & 0.73 (3\%) & 0.88 \\
+% \midrule
+% \multicolumn{6}{l}{\textit{\textbf{Detection Tasks}}} \\
+% DENTEX & AP $\uparrow$ & 0.09 (0\%) & FAIL & 0.00 (0\%) & 0.40 \\
+% PUMA-T1-Det & F1 $\uparrow$ & 0.02 (0\%) & 0.01 (0\%) & 0.06 (0\%) & 0.66 \\
+% PUMA-T2-Det & F1 $\uparrow$ & FAIL & 0.00 (0\%) & 0.01 (0\%) & 0.27 \\
+% TopCoW-CTA-Det & IoU $\uparrow$ & 0.57 (38\%) & 0.04 (0\%) & 0.70 (56\%) & 0.79 \\
+% TopCoW-MRA-Det & IoU $\uparrow$ & 0.66 (14\%) & 0.67 (13\%) & 0.19 (14\%) & 0.85 \\
+% \midrule
+% \multicolumn{6}{l}{\textit{\textbf{Classification Tasks}}} \\
+% TopCoW-CTA-Cls & Accuracy $\uparrow$ & 0.33 (33\%) & 0.02 (0\%) & 0.28 (50\%) & 0.73 \\
+% TopCoW-MRA-Cls & Accuracy $\uparrow$ & 0.33 (25\%) & 0.00 (0\%) & 0.09 (0\%) & 0.89 \\
+% \midrule
+% \multicolumn{6}{l}{\textit{\textbf{Image Quality $\&$ Enhancement Tasks}}} \\
+% LDCT-IQA & Score $\uparrow$ & 2.62482 (33\%) & 2.56(0\%) & 2.66 (50\%) & 2.74 \\
+% USenhance & Score $\uparrow$ & 0.11 (0\%) & 0.14(0\%) & FAIL & 0.91 \\
+% \midrule
+% Overall & Mean Rank $\uparrow$ & 9.05\% & 3.55\% & 8.75\% & / \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+% \begin{table*}[t]
+% \centering
+% \small	
+% \caption{Agent performance across the full ReX-MLE suite (percentile ranks only).}
+% \label{tab:agent_performance_updated}
+% \begin{tabular}{llll}
+% \toprule
+% \textbf{Challenge} & \textbf{AIDE} & \textbf{ML-Master} & \textbf{R\&D Agent} \\
+% \midrule
+% \multicolumn{4}{l}{\textit{\textbf{Segmentation Tasks}}} \\
+% ISLES'22 & 0\% & 0\% & 0\% \\
+% NeurIPS-CellSeg & 0\% & 0\% & 0\% \\
+% PANTHER-T1 & 16\% & 7\% & FAIL \\
+% PANTHER-T2 & 10\% & 11\% & FAIL \\
+% PUMA-T1-Seg & FAIL & 0\% & 0\% \\
+% PUMA-T2-Seg & 0\% & 0\% & 0\% \\
+% SEG.A & 0\% & 0\% & 0\% \\
+% TopBrain-CTA & 2\% & 16\% & 2\% \\
+% TopBrain-MRA & 10\% & 24\% & 0\% \\
+% TopCoW-CTA-Seg & 0\% & 0\% & FAIL \\
+% TopCoW-MRA-Seg & 0\% & 0\% & 3\% \\
+% \midrule
+% \multicolumn{4}{l}{\textit{\textbf{Detection Tasks}}} \\
+% DENTEX & 0\% & FAIL & 0\% \\
+% PUMA-T1-Det & 0\% & 0\% & 0\% \\
+% PUMA-T2-Det & FAIL & 0\% & 0\% \\
+% TopCoW-CTA-Det & 38\% & 0\% & 56\% \\
+% TopCoW-MRA-Det & 14\% & 13\% & 14\% \\
+% \midrule
+% \multicolumn{4}{l}{\textit{\textbf{Classification Tasks}}} \\
+% TopCoW-CTA-Cls & 33\% & 0\% & 50\% \\
+% TopCoW-MRA-Cls & 25\% & 0\% & 0\% \\
+% \midrule
+% \multicolumn{4}{l}{\textit{\textbf{Image Quality \& Enhancement Tasks}}} \\
+% LDCT-IQA & 33\% & 0\% & 50\% \\
+% USenhance & 0\% & 0\% & FAIL \\
+% \midrule
+% Overall Mean Rank & 9.05\% & 3.55\% & 8.75\% \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+
+We further evaluated AIDE, ML-Master, and R$\&$D-Agent across all 20 challenges in ReX-MLE.
+As detailed in Table \ref{tab:agent_performance_full_split}, agents failed to achieve expert-level performance across all 20 tasks, with the majority of submissions scoring in the $0^{th}$ relative to human competitors.
+
+\vspace{3pt} \noindent \textbf{Segmentation Tasks.} Segmentation represents the most challenging category. In pathology segmentation (PUMA), AIDE failed to produce valid submissions, and ML-Master and R\&D-Agent achieved Dice scores of zero. These failures likely stem from agents’ inability to handle gigapixel WSI data, whether via memory‑efficient patching or proper preprocessing. Similar trends are observed in volumetric neurovascular tasks (TopBrain, TopCoW), where the majority of mean Dice scores remain below 0.3, despite winners exceeding 0.85. R\&D-Agent shows modest improvement on certain TopCoW and TopBrain tasks, achieving Dice scores up to 0.73, though still below human performance. These results suggest difficulties in handling 3D spatial consistency, voxel spacing normalization, and robust volumetric inference.
+
+\vspace{3pt} \noindent \textbf{Detection and Classification Tasks.} Compared with segmentation, agents achieved slightly better performance on detection and classification tasks, but results remain substantially worse than human competitors. For example, on TopCoW-CTA-Det, R$\&$D-Agent reached an IoU of 0.70 (56\%), representing one of the few non-zero-percentile outcomes across the entire benchmark. Similarly, agents achieved moderate accuracies in the TopCoW classification tasks (e.g., AIDE at 33\%), although still far below the winning solutions (0.73). Nevertheless, the overall performance remains poor: scores are inconsistent, often collapse to 0\%, and never approach competitive human baselines. Thus, even on the tasks where agents show their best results, they are still far from demonstrating reliable or clinically meaningful competence.
+
+\vspace{3pt} \noindent \textbf{Generative and Quality Assessment.} Performance on generative tasks was notably poor, with the USenhance (Ultrasound enhancement) task showing agents achieved scores of $\sim0.11$ against a human baseline of 0.91. Visual inspection suggests agents treated the task as simple style transfer without accounting for the specific speckle noise statistics of ultrasound physics. Conversely, on LDCT-IQA (CT Image Quality Assessment), R\&D-Agent achieved a score of 2.66 (50th percentile), coming close to the winning score of 2.74. However, this strong performance may be influenced by the metric’s sensitivity to global image statistics rather than a genuine understanding of diagnostic image quality, a pattern examined further in our failure taxonomy. Notably, LDCT-IQA is the only challenge that does not require submitting separate prediction files beyond a \texttt{submission.csv}, suggesting that these agents perform best when the submission process is substantially simplified but not realistic.
+
+ \subsection{Capability Analysis}
+
+% \begin{table*}[t]
+% \centering
+% \footnotesize	
+% \caption{Agent capability evaluation across 13 winning strategies from medical imaging competition winners~\cite{eisenmann2023winner}. For each strategy and agent, we score each of the 20 tasks as 0 (strategy not demonstrated) or 1 (strategy demonstrated), then report the average score. Scores range from 0 (never demonstrates strategy) to 1 (demonstrates strategy on all tasks). Based on manual analysis of agent execution traces, generated code, and comparison with documented winning approaches.}
+% \label{tab:winning_strategies}
+% \begin{tabular}{lp{7.5cm}cccc}
+% \toprule
+% \textbf{\#} & \textbf{Winning Strategy} & \textbf{AIDE} & \textbf{ML-Master} & \textbf{R$\&$D Agent}\\
+% \midrule
+% 1 & Analyzing and handling failure cases & & & & \\
+% 2 & Knowing the state of the art in the field & & & & \\
+% 3 & Reflecting the metrics in the method design & & & & \\
+% 4 & Having domain knowledge & & & & \\
+% 5 & Investing in an experiment pipeline that allows rapid iteration of experiments & & & & \\
+% 6 & Optimizing the augmentation method & & & & \\
+% 7 & Incorporating domain experts in the challenge team & & & & \\
+% 8 & Spending time on data curation & & & & \\
+% 9 & Postprocessing results & & & & \\
+% 10 & Ensembling heterogeneous models & & & & \\
+% 11 & Leveraging external data from the same domain & & & & \\
+% 12 & Ensembling models trained on different data and/or with different seeds & & & & \\
+% 13 & Optimizing hyperparameters systematically & & & & \\
+% % 14 & Performing pretraining & & & & \\
+% % 15 & Performing data sampling (e.g. to handle imbalance) & & & & \\
+% % 16 & Exploring different network architecture(s) in parallel & & & & \\
+% % 17 & Leveraging external data from different domains & & & & \\
+% % 18 & Exploring different training paradigms in parallel & & & & \\
+% % 19 & Finding optimal data splits & & & & \\
+% % 20 & Working in a large team & & & & \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{figures/figure6.png}
+    \caption{Comparison of ML research agent capabilities across 13 key success factors.}
+    \label{fig:capabilities}
+\end{figure}
+
+
+To investigate the underlying causes of the performance gap, we moved beyond outcome-level metrics and examined the process validity of each agent’s workflow by evaluating every execution trace excluding code against the 13 Winning Strategies identified by \citet{eisenmann2023winner} in their meta-analysis of biomedical competition winners. Given the scale of our benchmark, which includes 60 execution traces across 20 challenges, manual annotation was impractical, so we developed an automated adjudication pipeline powered by a state-of-the-art large language model (GPT-5) acting as a technical evaluator. This system parses full execution logs, including shell commands, Python code, and internal reasoning traces, and assigns each strategy a binary score: 1 when explicit evidence is present (for example, importing nibabel for resampling or applying test-time augmentation) and 0 when the evidence is absent or ambiguous.
+
+The capability scores in Figure \ref{fig:capabilities} reveal substantial differences in how agents leverage winning strategies. R\&D-Agent demonstrates notably higher coverage across multiple strategies, particularly excelling in having domain knowledge (0.663), reflecting metrics in method design (0.638), postprocessing results (0.614), and analyzing and handling failure cases (0.601). In contrast, AIDE and ML-Master show comparable but considerably lower coverage overall. ML-Master exhibits modest strengths in analyzing and handling failure cases (0.322) and knowing the state of the art (0.021), while AIDE shows its highest engagement in postprocessing results (0.339) and reflecting metrics in method design (0.195). Despite these differences, all three agents converge on notably poor performance in several critical areas: optimizing the augmentation method, ensembling, and leveraging external data, where scores approach or reach zero. Overall, the results show that while R\&D-Agent engages with winning strategies substantially more frequently than AIDE and ML-Master, even this higher coverage falls short of expert-level rigor, and as demonstrated by our previous results, capability presence does not guarantee correct execution or improved outcomes.
+
+\begin{table*}[t]
+\centering
+\footnotesize	
+\caption{3-Day agent performance across representative ReX-MLE challenges with primary metric values and percentile ranks (Competition Rank) separated.}
+\label{tab:3_day_performance_split}
+\begin{tabular}{l l 
+                c c 
+                c c 
+                c c 
+                c}
+\toprule
+\textbf{Challenge} & \textbf{Metric ($\uparrow$)} 
+& \multicolumn{2}{c}{\textbf{AIDE}} 
+& \multicolumn{2}{c}{\textbf{ML-Master}} 
+& \multicolumn{2}{c}{\textbf{R\&D Agent}} 
+& \textbf{Winner} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+& & Value & Rank & Value & Rank & Value & Rank & Value \\
+\midrule
+ISLES'22          & Dice     & 0.18 & 0\%  & 0.05 & 0\%  & 0.04 & 25\% & 0.79 \\
+DENTEX            & AP       & 0.10 & 0\%  & 0.02 & 0\%  & 0.03 & 0\%  & 0.40 \\
+TopCoW-CTA-Cls    & Accuracy & 0.31 & 25\% & 0.33 & 25\% & 0.26 & 25\% & 0.73 \\
+LDCT-IQA          & Score    & 2.24 & 0\%  & 2.43 & 0\%  & 2.70 & 83\% & 2.74 \\
+\midrule
+Overall Mean Percentile & -- & -- & 6.25\% & -- & 6.25\% & -- & 33.25\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Effect of Time Budget and Model Backend}
+To assess how agent performance scales with compute and model choice, we ran two ablations: (1) extending the time budget from 24 to 72 hours, and (2) evaluating agents across three LLMs (GPT-5, Gemini, Claude). Both ablations use four representative challenges spanning segmentation, detection, classification, and image quality assessment.
+% To better understand how agent performance scales with additional compute and with different foundation model backends, we conducted two ablation experiments: (1) extending the time budget from 24 hours to 72 hours (``3-Day Experiments''), and (2) evaluating agents across three LLM providers (GPT-5, Gemini, and Claude) on a subset of representative challenges.
+
+\paragraph{Three-Day Experiments.}
+Table~\ref{tab:3_day_performance_split} shows that extending the time budget to three full days yields minimal improvement for most agents and tasks. Across ISLES'22 and DENTEX, all agents remain in the 0th percentile except for R\&D-Agent, which shows a slight improvement. This indicates that failures stem from structural weaknesses, such as inadequate preprocessing, model misconfiguration, or inability to execute full training cycles, rather than insufficient wall-clock time. Classification performance on TopCoW-CTA-Cls improved slightly to the 25th percentile, but remained far below expert solutions. The only substantial gain appears in LDCT-IQA, where R$\&$D-Agent reached the 83rd percentile, again suggesting that simpler, non-3D tasks benefit more from additional time, while complex volumetric tasks do not. Overall, the mean percentile rank on these 4 challenges actually decreased for AIDE (16.5\% to 6.25\%) and improved marginally for ML-Master (0\% to 6.25\%), and improved moderately for R\&D-Agent (25\% to 33.25\%), confirming that time alone does not resolve core failure modes. % such as memory inefficiency, preprocessing errors, and pipeline fragility.
+
+
+\paragraph{Model Backend Ablation.}
+Table~\ref{tab:agent_performance_models_split} evaluates AIDE and ML-Master using GPT-5, Gemini, and Claude as their backend LLMs. We exclude R\&D-Agent from these results as it has no native backend support for Claude and Gemini. While LLM choice influences absolute scores, the overall pattern of failure is unchanged. In segmentation (ISLES’22), Claude produces the highest Dice score (0.65), yet still ranks in the 25th percentile, indicating that even different backends cannot compensate for missing domain-specific engineering. In detection (DENTEX), Gemini enables AIDE to reach the 8th percentile, but performance remains far below the winning 40\% AP. Classification tasks show minor variation across backends but remain capped at 25--33\% percentiles. For LDCT-IQA, backend differences again alter absolute scores but do not meaningfully enable agents to approach competitive performance. Across all tasks, backend effects are second-order relative to structural agent limitations: agents cannot reliably build, train, or validate domain-appropriate medical imaging pipelines, regardless of the foundation model driving their reasoning.
+
+
+\begin{table*}[t]
+\centering
+\footnotesize	
+\caption{Varying backend LLM performance across representative ReX-MLE challenges with primary metric values and percentile ranks (Competition Rank) separated.}
+\setlength{\tabcolsep}{10pt}
+\label{tab:agent_performance_models_split}
+\begin{tabular}{l l l 
+                c c 
+                c c 
+                c}
+\toprule
+\textbf{Challenge} & \textbf{Model} & \textbf{Metric ($\uparrow$)} 
+& \multicolumn{2}{c}{\textbf{AIDE}} 
+& \multicolumn{2}{c}{\textbf{ML-Master}} 
+& \textbf{Winner} \\
+\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+& & & Value & Rank & Value & Rank & Value \\
+\midrule
+
+\multicolumn{8}{l}{\textit{\textbf{Segmentation Tasks}}} \\
+ISLES'22 & GPT-5  & Dice & 0.04 & 0\%  & 0.02 & --   & 0.79 \\
+ISLES'22 & Gemini & Dice & \textcolor{red}{FAIL} & --   & 0.46 & 25\% & 0.79 \\
+ISLES'22 & Claude & Dice & 0.45 & 5\%  & 0.65 & 25\%  & 0.79 \\
+\midrule
+
+\multicolumn{8}{l}{\textit{\textbf{Detection Tasks}}} \\
+DENTEX & GPT-5  & AP & 0.09 & 0\%  & \textcolor{red}{FAIL} & --   & 0.40 \\
+DENTEX & Gemini & AP & 0.20 & 8\%  & 0.19 & 1\%  & 0.40 \\
+DENTEX & Claude & AP & 0.02 & 0\%  & 0.12 & 0\%  & 0.40 \\
+\midrule
+
+\multicolumn{8}{l}{\textit{\textbf{Classification Tasks}}} \\
+TopCoW-CTA-Cls & GPT-5  & Accuracy & 0.33 & 33\% & 0.33 & 2\%  & 0.73 \\
+TopCoW-CTA-Cls & Gemini & Accuracy & 0.35 & 25\% & 0.33 & 25\% & 0.73 \\
+TopCoW-CTA-Cls & Claude & Accuracy & 0.33 & 25\% & 0.33 & 25\% & 0.73 \\
+\midrule
+
+\multicolumn{8}{l}{\textit{\textbf{Image Quality $\&$ Enhancement Tasks}}} \\
+LDCT-IQA & GPT-5  & Score & 2.62 & 33\% & 2.56 & 0\%  & 2.74 \\
+LDCT-IQA & Gemini & Score & 2.70 & 83\% & 2.62 & 17\% & 2.74 \\
+LDCT-IQA & Claude & Score & 1.12 & 0\%  & \textcolor{red}{FAIL} & -- & 2.74 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+% \begin{table*}[t]
+% \centering
+% \footnotesize	
+% \caption{Agent performance across 4 representative ReX-MLE challenges with different underlying LLMs (GPT-5, Gemini, or Claude). Values are metric scores (primary evaluation metric from the competition leaderboard). Percentile ranks in parentheses are based on a \textbf{mean rank of all evaluation metrics}. \textbf{Bold} denotes the best-performing agent–model combination per task.}
+% \label{tab:agent_performance}
+% \begin{tabular}{llllll}
+% \toprule
+% \textbf{Challenge} & \textbf{Model} & \textbf{Metric}  & \textbf{AIDE} & \textbf{ML-Master} & \textbf{Winner} \\
+% \midrule
+
+% \multicolumn{6}{l}{\textit{\textbf{Segmentation Tasks}}} \\
+% ISLES'22 & GPT-5 & Dice $\uparrow$ & 0.04 (0\%) & 0.02 (0\%) & 0.83 \\
+% ISLES'22 & Gemini & Dice $\uparrow$ & FAIL & 0.46 (0\%) & 0.83 \\
+% ISLES'22 & Claude & Dice $\uparrow$ & 0.45 (0\%) & 0.65 (0\%) & 0.83 \\
+% \midrule
+
+% \multicolumn{6}{l}{\textit{\textbf{Detection Tasks}}} \\
+% DENTEX & GPT-5 & AP $\uparrow$ & 0.09 (0\%) & FAIL & 0.40 \\
+% DENTEX & Gemini & AP $\uparrow$ & 0.20 (6\%) & 0.19 (1\%) & 0.40 \\
+% DENTEX & Claude & AP $\uparrow$ & 0.02 (0\%) & 0.11 (0\%) & 0.40 \\
+% \midrule
+
+% \multicolumn{6}{l}{\textit{\textbf{Classification Tasks}}} \\
+% TopCoW-CTA-Cls & GPT-5 & Accuracy $\uparrow$ & 0.33 (33\%) & 0.02 (0\%) & 0.73 \\
+% TopCoW-CTA-Cls & Gemini & Accuracy $\uparrow$ & 0.35 (25\%) & 0.33 (21\%) & 0.73 \\
+% TopCoW-CTA-Cls & Claude & Accuracy $\uparrow$ & 0.33 (33\%) & 0.33 (21\%) & 0.73 \\
+% \midrule
+
+% \multicolumn{6}{l}{\textit{\textbf{Image Quality $\&$ Enhancement Tasks}}} \\
+% LDCT-IQA & GPT-5 & Score $\uparrow$ & 2.62 (29\%) & 2.56 (0\%) & 2.74 \\
+% LDCT-IQA & Gemini & Score $\uparrow$ & 2.70 (83\%) & 2.61 (14\%) & 2.74 \\
+% LDCT-IQA & Claude & Score $\uparrow$ & 1.12 (0\%) & FAIL & 2.74 \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+
+
+
+% \begin{table*}[t]
+% \centering
+% \footnotesize	
+% \caption{3 Day agent performance across 4 representative ReX-MLE challenges. Values are metric scores (primary evaluation metric from the competition leaderboard). Percentile ranks in parenthesis are based on a mean rank of all evaluation metrics for a challenge (not just primary metric).
+% \textbf{Bold} denotes the best-performing agent–model combination per task.}
+% \label{tab:3_day_performance}
+% \begin{tabular}{lllllc}
+% \toprule
+% \textbf{Challenge} & \textbf{Metric} & \textbf{AIDE} & \textbf{ML-Master} & \textbf{R$\&$D Agent} & \textbf{Winner} \\
+% \midrule
+% ISLES'22 & Dice $\uparrow$ & 0.18 (0\%) & 0.05 (0\%) & 0.04 (0\%) & 0.79 \\
+% DENTEX & AP $\uparrow$ & 0.10 (0\%) & 0.02 (0\%) & FAIL & 0.40 \\
+% TopCoW-CTA-Cls & Accuracy $\uparrow$ & 0.31 (25\%) & 0.33 (25\%) & 0.26 (25\%) & 0.73 \\
+% LDCT-IQA & Score $\uparrow$ & 2.24 (0\%) & 2.43 (0\%) & 2.7 (71\%) & 2.74 \\
+% \midrule
+% Overall & Mean Rank $\uparrow$ & 6.25\% & 6.25\% & 24\% & / \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+% To be completed
+
+
+
+% \begin{table*}[t]
+% \centering
+% \footnotesize	
+% \caption{Agent and baseline performance across Kaggle Medical ML challenges. Metrics and thresholds from official competition leaderboards. \textbf{Bold} indicates best score per challenge. Gold threshold represents official Kaggle medal cutoff.}\vspace{3pt}
+% \label{tab:kaggle_performance}
+% \begin{tabular}{lcccccc}
+% \toprule
+% \textbf{Challenge} & \textbf{Metric} & \textbf{Gold} & \textbf{AIDE} & \textbf{ML-Master} & \textbf{AIDE (w/ sol)} & \textbf{ML-Master (w/ sol)} \\
+% \midrule
+% \multicolumn{7}{l}{\textit{\textbf{Classification Tasks}}} \\
+% histopathologic-cancer-detection & AUC & 0.9835 & \textbf{0.99686} & 0.99754 \\
+% ranzcr-clip-catheter-line & AUC & 0.9735 & 0.8755 & 0.8637 \\
+% siim-isic-melanoma & AUC & 0.9455 & 0.8474 & 0.8929 \\
+% rsna-miccai-brain-tumor & AUC & 0.6009 & 0.5691 & \textbf{0.6117} \\
+% \midrule
+% \multicolumn{7}{l}{\textit{\textbf{Segmentation Tasks}}} \\
+% hubmap-kidney-segmentation & Dice & 0.9484 & 0.0149 & 0.0974 \\
+% uw-madison-gi-tract & Dice & 0.8791 & 0.06548 & 0.0473 \\
+% \midrule
+% \multicolumn{7}{l}{\textit{\textbf{Detection Tasks}}} \\
+% rsna-2022-cervical-spine & F1 & 0.276 & \textbf{0.7706} & 0.6729 \\
+% rsna-breast-cancer-detection & pF1 & 0.49 & --- & --- \\
+% siim-covid19-detection & mAP & 0.623 & 0.19073 & \textbf{0.3695} \\
+% vinbigdata-chest-xray & mAP & 0.289 & --- & --- \\
+% \midrule
+% \multicolumn{7}{l}{\textit{\textbf{Regression Tasks}}} \\
+% osic-pulmonary-fibrosis & Laplace LL & $-6.8412$ & \textbf{$-7.7310$} & $-9.1825$ \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+% \subsection{What are the Critical Gaps Between AI Agents and Medical Imaging Winners?}
+
+% To systematically understand \textit{why} agents fail on medical imaging challenges, we evaluate their capabilities against the 20 winning strategies identified by Eisenmann et al.~\cite{eisenmann2023winner} from comprehensive analysis of biomedical competition winners. Table~\ref{tab:winning_strategies} presents the evaluation results, showing each agent's capability score averaged across all 16 tasks.
+
+% \subsection{How Can We Improve Current AI Agents?}
+% \subsubsection{Time Analysis}
+% The four state-of-the-art AI agents we evaluated were designed with efficiency and rapid iteration in mind. These agents typically run with a 24-hour time limit and are therefore forced to plan, debug, train, and perform inference within that window. In real-world medical imaging scenarios, competitions last months at a time, giving competitors ample time to do exploratory data analysis, find related work and competitions, train over many days, and run many inference iterations. Within our benchmark, agents spent on average XX minutes writing code, XX minutes debugging, and XX hours training. As evidenced by their performance, this clearly was not sufficient time for in-depth understanding of the challenge and how to succeed.
+
+\section{Discussion}
+\label{sec:discussion}
+% These assessments are routine for human experts, but agents still fail to translate the knowledge in the literature into effective technical decisions.
+
+\vspace{3pt} \noindent \textbf{Domain Knowledge.} Deep learning for medical imaging requires not only machine learning expertise but also deep understanding of the underlying data. Analyses of winning competition solutions show that substantial medical domain knowledge is applied during data preprocessing, a time-consuming stage demanding visualization, parameter tuning, and strategic decision-making. In domains such as CT, automated deep learning–based windowing methods have only recently begun to see adoption~\cite{Zhang2025InterpretableAW, Lee2018PracticalWS}. These challenges highlight why agents struggle: success in medical imaging depends on nuanced, modality‑specific judgments that emerge from years of experience, not simply from applying generic machine learning workflows. Without the ability to iteratively explore the data, validate assumptions, and adjust pipelines, agents fall short of the careful engineering that expert practitioners rely on. Although medical imaging knowledge is abundant in papers, forums, and open-source code, current agents struggle to leverage it effectively. Even widely adopted frameworks like nnU-Net \cite{Isensee2020nnUNetAS}, with over 5,000 citations, are often overlooked because agents cannot judge when they are relevant, creating a retrieval‑relevance gap where agents find methods but lack understanding to assess whether the task is truly 3D, whether the data support that approach, or whether computational resources are sufficient.
+
+
+\vspace{3pt} \noindent \textbf{Beyond Domain Knowledge: The Medical Engineering Gap.}
+The agents we evaluated (AIDE, R\&D Agent, and ML-Master) lack the medical deep learning knowledge and engineering skills necessary for medical imaging solutions. Even with winning strategies in Table \ref{tab:mlebench_medical_summary}, they cannot replicate results as they are fundamentally designed for general machine learning tasks and lack critical infrastructure for specialized formats (DICOM, NIfTI) and domain libraries (nnU-Net, MONAI, SimpleITK). Their tree search and reasoning mechanisms, effective for tabular or natural image tasks, fail to navigate 3D volumetric complexities like patch-based training, variable voxel spacing, or clinical metrics (Dice coefficients, Hausdorff distances), producing code that either fails or trains clinically meaningless models. M\textsuperscript{3}Builder~\citep{feng2025m} addresses this through medical-specific templates but remains limited by predefined frameworks (nnU-Net, Transformers), with its M\textsuperscript{3}Bench success likely reflecting template-solvable problems rather than tacit engineering knowledge for edge cases like unconventional protocols or debugging clinically implausible predictions without explicit error signals.
+
+
+
+Additional failure modes outside of the winning strategies are based on the overall utility of the agents. For a given 80GB NVIDIA H100 GPU, the agents typically only utilized 10-20\% of the full memory while training their models, representing a significant opportunity cost in computational efficiency that human practitioners would naturally optimize through larger batch sizes, model ensembles, or hyperparameter sweeps. This inefficiency is compounded by the fact that most of these agent architectures are inherently iterative in nature and can only work on one task at a time rather than multi-tasking as a human would. While human experts routinely run multiple experiments in parallel, monitor training curves across different model configurations, and contextualize results from concurrent trials, these agents follow strictly sequential workflows that dramatically extend development time and limit their ability to efficiently explore the solution space within fixed time budgets.
+
+\vspace{3pt} \noindent \textbf{Implications for Autonomous Scientific Research.}
+While this work focuses on medical imaging, the failure modes we identify (retrieval-relevance gaps, domain-specific engineering deficits, and inability to apply documented best practices) extend to other expert scientific domains~\cite{schmidgall2024agentclinic, xie2024travelplanner, mitchener2025bixbench}. Although agentic frameworks grounded in scientific insight have been developed~\cite{ding2025scitoolagent, jansen2024discoveryworld}, current benchmarks primarily measure engineering competence rather than domain expertise. Our capability analysis in Figure \ref{fig:capabilities} reveals that agents fail to demonstrate fundamental scientific practices identified in winning solutions: systematic failure case analysis, domain-appropriate preprocessing strategies, and metric-aligned model design. These competencies emerge from years of iterative experience, understanding which methods transfer across problem instances, recognizing data artifacts versus true signal, and knowing which engineering shortcuts compromise clinical validity. This gap has critical implications for autonomous agents in high-stakes domains like drug discovery, materials science, and genomics, where incorrect modeling decisions waste experimental resources and may impact patient safety. Current agents' inability to recognize when they lack domain knowledge, evident in confident but meaningless submissions, suggests they cannot reliably self-assess their competence boundaries, a prerequisite for safe autonomous operation. Achieving genuine scientific autonomy requires architectural innovations beyond scaling: mechanisms for domain-specific reasoning rather than retrieval pattern-matching and competence self-awareness to identify when human expertise is required.
+
+\vspace{3pt} \noindent \textbf{Limitations.} Our work has several limitations. First, the standardized computational resources (H100 GPUs, 24-hour time budget) may not reflect all research environments. Second, potential data leakage exists if foundation models were pre-trained on competition solutions, though such knowledge did not translate to successful implementations. Third, our automated capability assessment provides scalability but lacks the depth of manual expert analysis, which would be prohibitively labor-intensive. Finally, ablation studies (Tables \ref{tab:3_day_performance_split} \& \ref{tab:agent_performance_models_split}) evaluated only 4 representative challenges due to computational constraints.
+
+
+\section{Conclusion}
+% In this work, we introduced ReX-MLE, a 20-challenge medical imaging benchmark revealing a large gap between general-purpose autonomous ML agents and the domain expertise required for medical AI. Leading agents achieve only 3.95–12.15\% mean percentile rank, with many submissions at the 0th percentile. Our analysis shows these failures stem from missing scientific and engineering practices rather than limits in time or model scale; agents rarely employ the strategies used by human experts, even when given solution reports. ReX-MLE highlights that scaling general agents alone is insufficient for scientific competence and underscores the need for architectures that incorporate domain knowledge, structured reasoning, and robust experimentation.
+
+In this paper, we introduced ReX-MLE, a 20-challenge medical imaging benchmark that exposes a substantial gap between general-purpose autonomous ML agents and the domain expertise required for medical AI. We showed that leading agents achieve only 3.95–12.15\% mean percentile rank on ReX-MLE, with most submissions falling to the 0th percentile. Our capability analysis shows that these failures arise from missing scientific and engineering practices rather than insufficient time or model scale. Agents rarely demonstrate the core strategies used by human competition winners, even when provided with solution reports. These results challenge the notion that scaling general agents will naturally yield scientific competence and highlight the need for architectures that integrate domain knowledge, structured reasoning, and robust experimental workflows. We release ReX-MLE to support systematic progress toward autonomous systems capable of credible medical imaging research.
+
+% \clearpage  % Acknowledgements, references, and appendix do not count toward the page limit (if any)
+% % Acknowledgments---Will not appear in anonymized version
+% \midlacknowledgments{We thank a bunch of people.}
+
+
+\bibliography{references}
+
+
+\input{sections/appendix}
+% \appendix
+
+% \section{Proof of Theorem 1}
+
+% This is a boring technical proof of
+% \begin{equation}\label{eq:example}
+% \cos^2\theta + \sin^2\theta \equiv 1.
+% \end{equation}
+
+% \section{Proof of Theorem 2}
+
+% This is a complete version of a proof sketched in the main text.
+
+\end{document}

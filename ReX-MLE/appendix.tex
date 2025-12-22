@@ -1,0 +1,552 @@
+\clearpage
+
+\appendix
+\renewcommand{\thetable}{S\arabic{table}}
+
+\setcounter{table}{0}  
+
+
+\section{Detailed Benchmark Results}
+\label{appendix:tables}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across DENTEX challenge.}
+\vspace{3pt} \label{tab:dentex}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+AP Mean & 0.0892 (11) & 0.0000 (11) & FAIL & 0.3995 (1) \\
+AP50 Mean & 0.1635 (11) & 0.0000 (11) & FAIL & 0.5775 (5) \\
+AP75 Mean & 0.0885 (11) & 0.0000 (11) & FAIL & 0.4843 (1) \\
+AR Mean & 0.4437 (11) & 0.0000 (11) & FAIL & 0.6760 (4) \\
+AP Quadrant & 0.1651 (11) & 0.0000 (11) & FAIL & 0.4745 (1) \\
+AP50 Quadrant & 0.3117 (11) & 0.0000 (11) & FAIL & 0.6787 (3) \\
+AP75 Quadrant & 0.1593 (11) & 0.0000 (11) & FAIL & 0.5846 (1) \\
+AR Quadrant & 0.5957 (11) & 0.0000 (11) & FAIL & 0.7539 (4) \\
+AP Enumeration & 0.0538 (11) & 0.0000 (11) & FAIL & 0.3535 (1) \\
+AP50 Enumeration & 0.0976 (11) & 0.0000 (11) & FAIL & 0.5106 (1) \\
+AP75 Enumeration & 0.0522 (11) & 0.0000 (11) & FAIL & 0.4207 (1) \\
+AR Enumeration & 0.3708 (11) & 0.0000 (11) & FAIL & 0.6819 (4) \\
+AP Diagnosis & 0.0486 (11) & 0.0000 (11) & FAIL & 0.3706 (5) \\
+AP50 Diagnosis & 0.0814 (11) & 0.0000 (11) & FAIL & 0.5431 (7) \\
+AP75 Diagnosis & 0.0542 (11) & 0.0000 (11) & FAIL & 0.4477 (5) \\
+AR Diagnosis & 0.3647 (11) & 0.0000 (11) & FAIL & 0.6760 (4) \\
+\midrule
+Mean Rank & 11.0 & 11.0 & FAIL & 3.0 \\
+Percentile & 0.0\% & 0.0\% & FAIL & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across ISLES'22 challenge.}
+\vspace{3pt} \label{tab:isles22}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Dice & 0.0418 (11) & 0.0165 (11) & 0.0232 (11) & 0.7852 (2) \\
+Lesion F1 & 0.0510 (11) & 0.0598 (11) & 0.6617 (11) & 0.8196 (2) \\
+Lesion Count Difference & 59.4600 (11) & 9.7800 (11) & 55.4600 (11) & 2.1200 (4) \\
+Absolute Volume Difference & 24.3939 (11) & 12.3190 (11) & 884.5870 (11) & 5.0713 (6) \\
+\midrule
+Mean Rank & 11.0 & 11.0 & 11.0 & 3.5 \\
+Percentile & 0.0\% & 0.0\% & 0.0\% & 100.0\% \\
+Overall & 11.0 & 11.0 & 11.0 & 2.0 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across LDCT-IQA challenge.}
+\vspace{3pt} \label{tab:ldct-iqa}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+PLCC & 0.9244 & 0.9404 & 0.9116 & N/A \\
+SROCC & 0.9243 & 0.9358 & 0.9085 & N/A \\
+KROCC & 0.7761 & 0.7883 & 0.7371 & N/A \\
+Score & 2.6248 (5) & 2.6645 (4) & 2.5572 (7) & 2.7427 (1) \\
+\midrule
+Mean Rank & 5.0 & 4.0 & 7.0 & 1.0 \\
+Percentile & 33.3\% & 50.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across PANTHER Task 1 challenge.}
+\vspace{3pt} \label{tab:panther-task1}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+DSC & 0.3301 (11) & 0.1628 (11) & 0.0931 (11) & 0.7265 (1) \\
+MSD & 0.4593 (11) & 0.2066 (11) & 0.1285 (11) & 0.9204 (1) \\
+HD95 & 33.3998 (7) & 88.0805 (11) & 90.9336 (11) & 8.5993 (1) \\
+MASD & 18.9004 (7) & 20.6307 (7) & 23.6032 (7) & 1.6730 (1) \\
+RMSE & 25134.9312 (11) & 72218.6646 (11) & 89116.6851 (11) & 9338.0637 (1) \\
+\midrule
+Mean Rank & 9.4 & 10.2 & 10.2 & 1.0 \\
+Percentile & 16.0\% & 8.0\% & 8.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across PANTHER Task 2 challenge.}
+\vspace{3pt} \label{tab:panther-task2}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+DSC & 0.0950 (10) & 0.2844 (9) & 0.1359 (10) & 0.5289 (1) \\
+MSD & 0.1363 (10) & 0.4458 (9) & 0.1804 (10) & 0.6999 (1) \\
+HD95 & 103.8332 (10) & 21.7672 (1) & 55.7279 (9) & 23.0110 (1) \\
+MASD & 31.3357 (9) & 9.3905 (6) & 16.7189 (9) & 5.1319 (1) \\
+RMSE & 131723.8810 (11) & 12778.1561 (1) & 122993.8884 (11) & 17163.5753 (4) \\
+\midrule
+Mean Rank & 10.0 & 5.2 & 9.8 & 1.6 \\
+Percentile & 10.0\% & 58.0\% & 12.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across PUMA-T1-Seg challenge.}
+\vspace{3pt} \label{tab:puma-track1-task1}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Dice & FAIL & 0.0000 (11) & 0.0000 (11) & 0.7832 (1) \\
+\midrule
+Mean Rank & FAIL & 11.0 & 11.0 & 1.0 \\
+Percentile & FAIL & 0.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across PUMA-T1-Det challenge.}
+\vspace{3pt} \label{tab:puma-track1-task2}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Macro F1 & 0.0179 (11) & 0.0568 (11) & 0.0143 (11) & 0.6585 (1) \\
+F1 Other & 0.0537 & 0.0186 & 0.0038 & N/A \\
+F1 TILs & 0.0000 & 0.0000 & 0.0000 & N/A \\
+F1 Tumor & 0.0000 & 0.1519 & 0.0392 & N/A \\
+\midrule
+Mean Rank & 11.0 & 11.0 & 11.0 & 1.0 \\
+Percentile & 0.0\% & 0.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across PUMA-T2-Seg challenge.}
+\vspace{3pt} \label{tab:puma-track2-task1}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Dice & 0.0000 (11) & 0.0000 (11) & 0.0000 (11) & 0.7823 (1) \\
+\midrule
+Mean Rank & 11.0 & 11.0 & 11.0 & 1.0 \\
+Percentile & 0.0\% & 0.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across PUMA-T2-Det challenge.}
+\vspace{3pt} \label{tab:puma-track2-task2}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+F1 & FAIL & 0.0130 (11) & 0.0000 (11) & 0.2707 (1) \\
+F1 Epithelium & FAIL & 0.0000 & 0.0000 & N/A \\
+F1 Lymphocytes & FAIL & 0.1278 & 0.0000 & N/A \\
+F1 Histiocytes & FAIL & 0.0000 & 0.0000 & N/A \\
+F1 Tumor & FAIL & 0.0000 & 0.0000 & N/A \\
+F1 Melanophages & FAIL & 0.0000 & 0.0000 & N/A \\
+F1 Stromal Cells & FAIL & 0.0022 & 0.0000 & N/A \\
+F1 Neutrophils & FAIL & 0.0004 & 0.0000 & N/A \\
+F1 Plasma Cells & FAIL & 0.0000 & 0.0000 & N/A \\
+F1 Apoptotic Cells & FAIL & 0.0000 & 0.0000 & N/A \\
+F1 Endothelium & FAIL & 0.0000 & 0.0000 & N/A \\
+\midrule
+Mean Rank & FAIL & 11.0 & 11.0 & 1.0 \\
+Percentile & FAIL & 0.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across SEG.A challenge.}
+\vspace{3pt} \label{tab:seg_a}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+HD 50th Percentile & 354.3906 (11) & 828.4886 (11) & 142.8951 (11) & 2.6125 (1) \\
+DSC 50th Percentile & 0.0154 (11) & 0.0000 (11) & 0.7238 (11) & 0.9234 (2) \\
+\midrule
+Mean Rank & 11.0 & 11.0 & 11.0 & 1.5 \\
+Percentile & 0.0\% & 0.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopBrain-CTA challenge.}
+\vspace{3pt} \label{tab:topbrain-track1}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Dice & 0.0289 (11) & 0.0767 (11) & 0.0444 (11) & 0.7910 (1) \\
+clDice & 0.0219 (11) & 0.0476 (11) & 0.0366 (11) & 0.8330 (1) \\
+B0 Error & 22.7525 (11) & 38.4442 (11) & 6.7149 (10) & 0.7680 (2) \\
+HD95 & 236.2618 (11) & 242.6999 (11) & 263.3116 (11) & 19.7770 (2) \\
+Neighbor Error & 0.7863 (10) & 1.2344 (10) & 0.0000 (1) & 0.0000 (1) \\
+F1 Side Road & 0.0000 (11) & 0.0000 (11) & 0.0000 (11) & 0.6780 (1) \\
+\midrule
+Mean Rank & 10.83 & 10.83 & 9.17 & 1.33 \\
+Percentile & 1.7\% & 1.7\% & 18.3\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopBrain-MRA challenge.}
+\vspace{3pt} \label{tab:topbrain-track2}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Dice & 0.0138 (11) & 0.5016 (11) & 0.0000 (11) & 0.8140 (2) \\
+clDice & 0.0172 (11) & 0.5686 (11) & 0.0000 (11) & 0.8630 (1) \\
+B0 Error & 2.8767 (10) & 1097.5648 (11) & 1.3343 (5) & 0.7650 (2) \\
+HD95 & 275.2090 (11) & 43.8033 (11) & 285.2634 (11) & 13.7830 (1) \\
+Neighbor Error & 0.1107 (6) & 6.9057 (11) & 0.0000 (1) & 0.0000 (1) \\
+F1 Side Road & 0.0000 (11) & 0.5009 (11) & 0.0000 (11) & 0.8530 (1) \\
+\midrule
+Mean Rank & 10.0 & 11.0 & 8.33 & 1.33 \\
+Percentile & 10.0\% & 0.0\% & 26.7\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopCoW-CTA-Seg challenge.}
+\vspace{3pt} \label{tab:topcow-track1-task1}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Dice & 0.0865 (11) & 0.4933 (11) & 0.1246 (11) & 0.8700 (2) \\
+clDice & 0.1997 (11) & 0.6769 (11) & 0.5138 (11) & 0.9900 (1) \\
+B0 Error & 95.0882 (11) & 5.2585 (11) & 10.9041 (11) & 0.0400 (1) \\
+HD95 & 84.7932 (11) & 43.0855 (11) & 44.5605 (11) & 3.2200 (3) \\
+F1 GRP2 & 0.0000 (11) & 0.2217 (11) & 0.0000 (11) & 0.8600 (1) \\
+Anterior Graph Accuracy & 0.0000 (11) & 0.3600 (11) & 0.0000 (11) & 0.8700 (3) \\
+Posterior Graph Accuracy & 0.0000 (11) & 0.0400 (11) & 0.0000 (11) & 0.6800 (4) \\
+Anterior Topology & 0.0000 (11) & 0.3600 (9) & 0.0000 (11) & 0.7900 (1) \\
+Posterior Topology & 0.0000 (11) & 0.0400 (11) & 0.0000 (11) & 0.5800 (3) \\
+\midrule
+Mean Rank & 11.0 & 10.78 & 11.0 & 2.11 \\
+Percentile & 0.0\% & 2.2\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopCoW-CTA-Det challenge.}
+\vspace{3pt} \label{tab:topcow-track1-task2}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Boundary IoU & 0.6110 (5) & 0.6518 (2) & 0.0056 (9) & 0.6900 (1) \\
+IoU & 0.6707 (7) & 0.6999 (7) & 0.0408 (9) & 0.7900 (1) \\
+\midrule
+Mean Rank & 6.0 & 4.5 & 9.0 & 1.0 \\
+Percentile & 37.5\% & 56.3\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopCoW-CTA-Cls challenge.}
+\vspace{3pt} \label{tab:topcow-track1-task3}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Anterior Accuracy & 0.3333 (4) & 0.2778 (4) & 0.0185 (7) & 0.7300 (2) \\
+Posterior Accuracy & 0.1667 (6) & 0.1917 (4) & 0.1250 (7) & 0.8700 (1) \\
+\midrule
+Mean Rank & 5.0 & 4.0 & 7.0 & 1.5 \\
+Percentile & 33.3\% & 50.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopCoW-MRA-Seg challenge.}
+\vspace{3pt} \label{tab:topcow-track2-task1}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Dice & 0.1146 (11) & 0.7284 (11) & 0.2799 (11) & 0.8800 (4) \\
+clDice & 0.0610 (11) & 0.7903 (11) & 0.6904 (11) & 0.9900 (1) \\
+B0 Error & 229.7508 (11) & 5.4828 (11) & 11.2614 (11) & 0.0500 (2) \\
+HD95 & 91.1558 (11) & 25.2004 (11) & 18.3693 (11) & 1.5000 (1) \\
+F1 GRP2 & 0.0000 (11) & 0.5898 (10) & 0.0000 (11) & 0.9200 (1) \\
+Anterior Graph Accuracy & 0.0000 (11) & 0.0800 (11) & 0.0000 (11) & 0.8900 (2) \\
+Posterior Graph Accuracy & 0.0000 (11) & 0.2800 (11) & 0.0000 (11) & 0.7700 (2) \\
+Anterior Topology & 0.0000 (11) & 0.0800 (10) & 0.0000 (11) & 0.6000 (1) \\
+Posterior Topology & 0.0000 (11) & 0.2800 (10) & 0.0000 (11) & 0.6000 (2) \\
+\midrule
+Mean Rank & 11.0 & 10.67 & 11.0 & 1.78 \\
+Percentile & 0.0\% & 3.3\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopCoW-MRA-Det challenge.}
+\vspace{3pt} \label{tab:topcow-track2-task2}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Boundary IoU & 0.5993 (7) & 0.1126 (7) & 0.6229 (7) & 0.7700 (1) \\
+IoU & 0.6587 (7) & 0.1867 (7) & 0.6707 (7) & 0.8500 (1) \\
+\midrule
+Mean Rank & 7.0 & 7.0 & 7.0 & 1.0 \\
+Percentile & 14.3\% & 14.3\% & 14.3\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\small
+\caption{Agent performance across TopCoW-MRA-Cls challenge.}
+\vspace{3pt} \label{tab:topcow-track2-task3}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+Anterior Accuracy & 0.3333 (4) & 0.0926 (7) & 0.0000 (7) & 0.8900 (1) \\
+Posterior Accuracy & 0.0714 (7) & 0.0556 (7) & 0.0000 (7) & 0.7500 (1) \\
+\midrule
+Mean Rank & 5.5 & 7.0 & 7.0 & 1.0 \\
+Percentile & 25.0\% & 0.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!t]
+\centering
+\small
+\caption{Agent performance across USEnhance challenge.}
+\vspace{3pt} \label{tab:usenhance}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+LNCC & 0.1092 (11) & FAIL & 0.1399 (11) & 0.9080 (1) \\
+SSIM & 0.2866 (11) & FAIL & 0.3536 (11) & 0.7439 (2) \\
+PSNR & 15.8771 (11) & FAIL & 16.2113 (11) & 30.7268 (1) \\
+\midrule
+Mean Rank & 11.0 & FAIL & 11.0 & 1.33 \\
+Percentile & 0.0\% & FAIL & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!t]
+\centering
+\small
+\caption{Agent performance across NeurIPS-CellSeg challenge.}
+\vspace{3pt} \label{tab:neurips-cellseg}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Metric} & \textbf{AIDE} & \textbf{RD-Agent} & \textbf{ML-Master} & \textbf{Winner} \\
+\midrule
+F1 @ 0.5 & 0.0362 (11) & 0.3631 (11) & 0.2625 (11) & 0.8770 (1) \\
+F1 @ 0.6 & 0.0189 (11) & 0.3232 (11) & 0.2268 (11) & 0.8464 (1) \\
+F1 @ 0.7 & 0.0077 (11) & 0.2769 (11) & 0.1882 (11) & 0.8051 (1) \\
+F1 @ 0.8 & 0.0023 (11) & 0.1979 (11) & 0.1371 (11) & 0.7048 (1) \\
+F1 @ 0.9 & 0.0001 (11) & 0.0779 (11) & 0.0688 (11) & 0.3901 (3) \\
+\midrule
+Mean Rank & 11.0 & 11.0 & 11.0 & 1.4 \\
+Percentile & 0.0\% & 0.0\% & 0.0\% & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\clearpage 
+
+\section{Automated Capability Analysis Pipeline}
+\vspace{3pt} \label{appendix:capability-analysis}
+
+To investigate the underlying causes of the performance gaps observed in Medical MLE-Bench, we conducted a structured analysis of the process-level behavior of each agent. Rather than relying solely on outcome metrics, we examined the execution traces generated during each challenge, following the 13 ``Winning Strategies'' identified by Eisenmann et al.~\cite{eisenmann2023winner}. Given the size of our benchmark, 60 execution traces across 20 challenges, manual annotation was impractical. We therefore developed an automated LLM-as-a-judge pipeline powered by a state-of-the-art large language model (GPT-5), which evaluates each strategy in a consistent, reproducible manner. 
+
+\subsection{Overview of the LLM-as-a-judge Procedure}
+For every agent, challenge pair, the LLM receives the full execution log, including: natural-language reasoning traces produced by the agent,  shell commands and their outputs, Python code snippets and error messages, training logs, and intermediate analyses. The LLM is instructed to assign a binary score for each of the 13 strategies: \textbf{1} if there is \emph{explicit, verifiable evidence} that the agent implemented the strategy and \textbf{0} if the evidence is ambiguous, missing, or only planned but not executed.
+
+This evaluation produces a structured record of observed capabilities, which we aggregate  across all tasks to produce the capability profiles shown in Figure~\ref{fig:capabilities}. The method ensures high consistency across agents and challenges while isolating the specific scientific practices that current autonomous ML agents fail to use in practice.
+Below we provide the exact template used in our implementation.
+
+\subsection{System Prompt}
+
+\begin{verbatim}
+You are an expert adjudicator evaluating the execution logs of an 
+autonomous AI agent on a medical imaging task. Your objective is to 
+determine whether the agent implemented specific technical strategies 
+based on explicit evidence in the logs.
+
+INSTRUCTIONS:
+1. Review the provided Log Content deeply.
+2. For EACH Strategy Definition, decide if there is explicit evidence 
+   of execution.
+3. Score 1 ONLY if there is explicit evidence of execution (code execution, 
+   specific library calls, distinct file outputs).
+4. Score 0 if the strategy is ambiguous, merely planned but not executed, 
+   or absent.
+5. Return a raw JSON object (no Markdown) with a `results` list of objects 
+   containing `id`, `strategy`, `score`, and `evidence`.
+
+Output Format:
+{"results":[{"id":1, "strategy":"...", "score":0, "evidence":"..."}]}
+\end{verbatim}
+
+\subsection{Strategy Prompt Structure}
+
+Each strategy is defined in a JSON file as an object with three fields:
+\begin{verbatim}
+{
+  "id": <integer>,
+  "name": "<strategy name>",
+  "criteria": "<description of explicit evidence required>"
+}
+\end{verbatim}
+
+During evaluation, each strategy is rendered into the following prompt block:
+\begin{verbatim}
+TARGET STRATEGY: <name>
+<criteria>
+\end{verbatim}
+
+The LLM receives all 13 strategies concatenated into a single message, followed by:
+\begin{verbatim}
+Log section (<label>):
+<log content>
+
+Return JSON with key 'results' containing one object per strategy.
+\end{verbatim}
+
+\subsection{List of Strategies Used}
+Below we include the complete strategy list used in our evaluation, along with the
+corresponding criteria defining what constitutes explicit evidence of implementation.
+
+\begin{enumerate}
+    \item \textbf{Analyzing and handling failure cases} \\
+    Explicit evidence includes inspection of errors or bad predictions (stack traces,
+    broken samples, metric failures), identification of root causes, and application
+    of code or data fixes to resolve them.
+
+    \item \textbf{Knowing the state of the art} \\
+    References to, or usage of, medical-imaging–specific state-of-the-art architectures,
+    benchmarks, or literature (e.g., UNet variants, SAM, Swin Transformers), going
+    beyond default or generic ML models.
+
+    \item \textbf{Reflecting metrics in method design} \\
+    Evidence that losses, thresholds, or postprocessing are explicitly tailored to the
+    target metric (e.g., Dice/IoU), including metric-aware tuning or threshold sweeps.
+
+    \item \textbf{Having domain knowledge} \\
+    Use of modality-specific preprocessing or reasoning steps (e.g., HU windowing for CT,
+    isotropic resampling, spacing or anisotropy correction, organ-specific priors).
+
+    \item \textbf{Rapid experiment iteration pipeline} \\
+    Creation of automation for fast iteration (e.g., structured configs, training scripts,
+    logging, checkpointing, or hyperparameter sweeps) as opposed to ad-hoc single runs.
+
+    \item \textbf{Optimizing the augmentation method} \\
+    Use or tuning of augmentation frameworks (e.g., Albumentations, MONAI), ablations
+    of augmentation choices, or explicit optimization of augmentation parameters.
+
+    \item \textbf{Incorporating domain expert priors} \\
+    Inclusion of expert-inspired rules or anatomical/clinical heuristics (e.g., viable
+    shape constraints, plausible value ranges, organ-specific filtering) in training or
+    postprocessing.
+
+    \item \textbf{Data curation and cleaning} \\
+    Evidence of detecting and repairing problematic data (e.g., corrupt or missing files,
+    mismatched labels, inconsistent headers, class imbalance handling, filtering).
+
+    \item \textbf{Postprocessing results} \\
+    Explicit postprocessing applied to predictions, such as connected-component filtering,
+    morphological operations, hole filling, box/score filtering, or test-time augmentation fusion.
+
+    \item \textbf{Ensembling heterogeneous models} \\
+    Combining multiple different architectures or checkpoints into a unified prediction
+    (e.g., averaging, weighted fusion, majority voting).
+
+    \item \textbf{Leveraging external data} \\
+    Use of datasets or pretrained weights beyond the provided training set (e.g., ImageNet,
+    public domain medical data, pretrained segmentation backbones).
+
+    \item \textbf{Ensembling via seeds/folds} \\
+    Training multiple seeds or cross-validation folds and merging predictions during
+    inference.
+
+    \item \textbf{Optimizing hyperparameters systematically} \\
+    Structured hyperparameter search using grid/random/Bayesian/Optuna-based
+    sweeps, or scripted comparisons with logged results.
+\end{enumerate}
