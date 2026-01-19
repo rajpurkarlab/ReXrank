@@ -117,12 +117,9 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 <li><a href="./ReXGroundingCT/index.html">ReXGroundingCT</a></li>
               </ul>
             </li>
-            <!-- <li>
-              <a href="./explore/vote_example.html" style="font-size: 18px;">Arena</a>
-            </li>
             <li>
-              <a href="./explore/login.html" style="font-size: 18px;">Login</a>
-            </li> -->
+              <a href="./ReX-MLE/index.html" style="font-size: 18px;">ReX-MLE</a>
+            </li>
           </ul>
         </div>
       </div>
