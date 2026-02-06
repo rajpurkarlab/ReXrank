@@ -28,3 +28,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 27,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.229,0.483,0.498,0.21,1.116,0.535,0.428
 28,2025,zzy-RGv1-8b,Individual,,0.206,0.432,0.505,0.217,1.037,0.593,0.493
 29,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.181,0.424,0.454,0.167,0.917,0.574,0.499
+30,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.19,0.37,0.5,0.238,0.957,0.61,0.542

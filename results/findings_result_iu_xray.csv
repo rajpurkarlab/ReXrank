@@ -28,3 +28,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 27,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.205,0.489,0.603,0.232,1.328,0.662,0.644
 28,2025,zzy-RGv1-8b,Individual,,0.213,0.459,0.601,0.227,1.231,0.629,0.588
 29,2025,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research,0.214,0.43,0.521,0.23,1.068,0.589,0.548
+30,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.208,0.457,0.641,0.271,1.385,0.675,0.706
