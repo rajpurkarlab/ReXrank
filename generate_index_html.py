@@ -106,9 +106,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav navbar-right">
-            <li>
-              <a href="./" style="font-size: 18px;">Home</a>
-            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
                 ReXrankCT <span class="caret"></span>
