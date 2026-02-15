@@ -23,4 +23,9 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 22,2025,RadPhi3.5Vision,Microsoft,https://github.com/MercyPrasanna/rexrank,0.223,0.386,0.431,0.207,0.888,0.534,0.294,0.356
 23,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.154,0.348,0.402,0.182,0.801,0.505,0.301,0.361
 24,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.165,0.346,0.339,0.159,0.744,0.549,0.293,0.349
-25,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.248,0.493,0.487,0.265,1.217,0.596,0.352
+25,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.262,0.492,0.496,0.269,1.233,0.602,0.36
+26,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.218,0.461,0.455,0.235,1.06,0.519,0.314
+27,2025,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research,0.234,0.444,0.439,0.251,1.033,0.584,0.351
+28,2025,zzy-RGv1-8b,Individual,,0.213,0.432,0.455,0.253,1.031,0.579,0.339
+29,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.15,0.385,0.319,0.174,0.782,0.543,0.267
+30,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.113,0.24,0.355,0.18,0.678,0.565,0.284

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<!--Author: Xiaoman Zhang 2024 -->
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>
+    ReX-MLE
+  </title>
+  <meta name="description" content="ReX-MLE: The autonomous agent benchmark for medical imaging challenges."/>
+  <meta name="keywords" content="ReX-MLE, medical imaging, benchmark, autonomous agent"/>
+  <meta property="og:title" content="ReX-MLE: Autonomous Agent Benchmark"/>
+  <meta property="og:description" content="A suite of medical imaging challenges for evaluating autonomous ML agents."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/rexmle/"/>
+  <meta property="og:type" content="website"/>
+  <html lang="en"></html>
+  <meta content="ReX-MLE is a benchmark of medical imaging competitions used to evaluate autonomous ML agents." name="description"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="/logo.png" property="og:image"/>
+  <link href="../logo.png" rel="image_src" type="image/png"/>
+  <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../stylesheets/layout.css" rel="stylesheet"/>
+  <link href="../stylesheets/index.css" rel="stylesheet"/>
+  <script src="../javascripts/analytics.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../javascripts/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href="../stylesheets/theme.default.min.css">
+
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+
+  <style>
+    .fixed-height-table {
+      height: 200px;
+      overflow-y: scroll;
+      display: block;
+    }
+    .fixed-height-table thead {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      z-index: 1;
+    }
+    .fixed-height-table th, .fixed-height-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .justified-text {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .challenge-carousel {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .challenge-window {
+      flex: 1;
+      overflow: hidden;
+    }
+    .challenge-card {
+      border: 1px solid #eee;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-bottom: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+    }
+    .challenge-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .challenge-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+    .challenge-card .card-body {
+      padding: 12px 14px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .challenge-card h4 {
+      margin: 0 0 6px 0;
+      font-weight: 700;
+      font-size: 1.05em;
+      color: #333;
+    }
+    .challenge-card a {
+      word-break: break-word;
+    }
+    .carousel-btn {
+      border: none;
+      background: #a41034;
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3em;
+      transition: opacity 0.2s ease;
+    }
+    .carousel-btn:hover {
+      opacity: 0.9;
+    }
+    .example-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .example-btn {
+      background: #a41034;
+      border-color: #a41034;
+      color: #fff;
+      font-weight: 600;
+    }
+    .example-btn:hover,
+    .example-btn:focus {
+      background: #8d0d2d;
+      border-color: #8d0d2d;
+      color: #fff;
+    }
+    @media (max-width: 768px) {
+      .challenge-card img { height: 160px; }
+      .carousel-btn { width: 34px; height: 34px; }
+    }
+    .result-card {
+      border: 1px solid #eee;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 14px 16px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: #fff;
+    }
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .result-header h4 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.05em;
+      color: #2c2c2c;
+    }
+    .result-metric {
+      color: #666;
+      font-size: 0.95em;
+      white-space: nowrap;
+    }
+    .result-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95em;
+      color: #333;
+    }
+    .result-row .model-name {
+      font-weight: 700;
+    }
+    .result-row .model-value {
+      font-variant-numeric: tabular-nums;
+      color: #444;
+    }
+    .human-row {
+      border-top: 1px solid #eee;
+      padding-top: 6px;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="../index.html" style="font-size: 18px;">Home</a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
+                ReXrankCT <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="../ReXGroundingCT/index.html">ReXGroundingCT</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="./index.html" style="font-size: 18px;">ReX-MLE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="../index.html">ReXrank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="topCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="appTitle">ReX-MLE</h1>
+          <h2 id="appSubtitle">Autonomous Agent Benchmark for Medical Imaging Challenges</h2>
+          <h3 id="helpLink"><a href="https://arxiv.org/pdf/2512.17838" target="_blank" rel="noopener noreferrer">Read the Paper</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="contentCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="infoCard">
+            <div class="infoBody justified-text">
+              <div class="infoHeadline">
+                <h2>What is ReX-MLE?</h2>
+              </div>
+              <p>ReX-MLE is a benchmark of 20 tasks drawn from high-impact medical imaging competitions spanning segmentation, detection, classification, image quality assessment, and generative enhancement. Each challenge pairs standardized data-preparation scripts and official evaluation code with end-to-end agent runs, enabling reproducible measurement of autonomous ML systems under realistic constraints. </p>  
+              <p>Please refer to the <a href="http://github.com/rajpurkarlab/rex-mle" target="_blank" rel="noopener noreferrer">Github repository</a> for more details.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="infoCard">
+            <div class="infoBody">
+              <div class="infoHeadline">
+                <h2>ReX-MLE Leaderboard</h2>
+              </div>
+              <!-- <p>Overall benchmark standing (higher ReX-MLE percentile is better).</p> -->
+              <div class="table-responsive fixed-height-table">
+                <table class="table performanceTable tablesorter">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Model</th>
+                      <th>ReX-MLE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td style="word-break:break-word;">
+                        <a class="link" href="https://arxiv.org/pdf/2505.14738" target="_blank" rel="noopener noreferrer">R&amp;D-Agent</a>
+                        <p class="institution">Microsoft</p>
+                      </td>
+                      <td><b>12.15%</b></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td style="word-break:break-word;">
+                        <a class="link" href="https://arxiv.org/pdf/2502.13138" target="_blank" rel="noopener noreferrer">AIDE</a>
+                        <p class="institution">Weco AI</p>
+                      </td>
+                      <td>9.05%</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td style="word-break:break-word;">
+                        <a class="link" href="https://arxiv.org/pdf/2506.16499" target="_blank" rel="noopener noreferrer">ML-Master</a>
+                        <p class="institution">SJTU</p>
+                      </td>
+                      <td>4.53%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="infoCard">
+            <div class="infoBody justified-text">
+              <div class="infoHeadline">
+                <h2>Performance Overview</h2>
+              </div>
+              <p>Average performance across task categories (segmentation, detection, classification, and image quality/enhancement). Values correspond to the primary metric for each challenge (failures shown as zero).</p>
+              <div class="text-center">
+                <img src="./figure1.png" alt="Average performance by category" style="max-width:100%; height:auto; border:1px solid #eee; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+              </div>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Example Overview</h2>
+              </div>
+              <p>Browse example AIDE agent runs from the ISLES'22 task.</p>
+              <div class="example-buttons">
+                <a class="btn btn-default example-btn" href="./aide_examples/isles22_gpt5.html">ISLES'22 - GPT-5</a>
+                <a class="btn btn-default example-btn" href="./aide_examples/isles22_gemini.html">ISLES'22 - Gemini</a>
+                <a class="btn btn-default example-btn" href="./aide_examples/iseles22_claude.html">ISLES'22 - Claude</a>
+              </div>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Leaderboard</h2>
+              </div>
+              <p>Agent performance across the ReX-MLE suite with primary metric values and percentile ranks (Competition Rank) separated.</p>
+              <div class="table-responsive">
+                <table class="table performanceTable tablesorter" id="challengeLeaderboard">
+                  <thead>
+                    <tr>
+                      <th>Challenge</th>
+                      <th>Metric (&uarr;)</th>
+                      <th colspan="2">AIDE</th>
+                      <th colspan="2">ML-Master</th>
+                      <th colspan="2">R&amp;D-Agent</th>
+                      <th>Human</th>
+                    </tr>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>Value</th><th>Rank</th>
+                      <th>Value</th><th>Rank</th>
+                      <th>Value</th><th>Rank</th>
+                      <th>Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="active"><td colspan="9"><strong>Segmentation Tasks</strong></td></tr>
+                    <tr><td>ISLES'22</td><td>Dice</td><td>0.04</td><td>0%</td><td>0.00</td><td>0%</td><td>0.02</td><td>0%</td><td>0.79</td></tr>
+                    <tr><td>NeurIPS-CellSeg</td><td>F1</td><td>0.04</td><td>0%</td><td>0.04</td><td>0%</td><td>0.36</td><td>0%</td><td>0.88</td></tr>
+                    <tr><td>PANTHER-T1</td><td>Dice</td><td>0.33</td><td>16%</td><td>0.13</td><td>8%</td><td>0.16</td><td>8%</td><td>0.73</td></tr>
+                    <tr><td>PANTHER-T2</td><td>Dice</td><td>0.09</td><td>10%</td><td>0.05</td><td>8%</td><td>0.28</td><td>58%</td><td>0.53</td></tr>
+                    <tr><td>PUMA-T1-Seg</td><td>Dice</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.78</td></tr>
+                    <tr><td>PUMA-T2-Seg</td><td>Dice</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.78</td></tr>
+                    <tr><td>SEG.A</td><td>Dice</td><td>0.02</td><td>0%</td><td>0.02</td><td>0%</td><td>0.00</td><td>0%</td><td>0.92</td></tr>
+                    <tr><td>TopBrain-CTA</td><td>Mean Dice</td><td>0.03</td><td>2%</td><td>0.26</td><td>3%</td><td>0.08</td><td>2%</td><td>0.79</td></tr>
+                    <tr><td>TopBrain-MRA</td><td>Mean Dice</td><td>0.01</td><td>10%</td><td>0.26</td><td>0%</td><td>0.50</td><td>0%</td><td>0.81</td></tr>
+                    <tr><td>TopCoW-CTA-Seg</td><td>Mean Dice</td><td>0.09</td><td>0%</td><td>0.25</td><td>3%</td><td>0.49</td><td>2%</td><td>0.87</td></tr>
+                    <tr><td>TopCoW-MRA-Seg</td><td>Mean Dice</td><td>0.11</td><td>0%</td><td>0.48</td><td>0%</td><td>0.73</td><td>3%</td><td>0.88</td></tr>
+                    <tr class="active"><td colspan="9"><strong>Detection Tasks</strong></td></tr>
+                    <tr><td>DENTEX</td><td>AP</td><td>0.09</td><td>0%</td><td>0.08</td><td>0%</td><td>0.09</td><td>0%</td><td>0.40</td></tr>
+                    <tr><td>PUMA-T1-Det</td><td>F1</td><td>0.02</td><td>0%</td><td>0.08</td><td>0%</td><td>0.06</td><td>0%</td><td>0.66</td></tr>
+                    <tr><td>PUMA-T2-Det</td><td>F1</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.00</td><td>0%</td><td>0.01</td><td>0%</td><td>0.27</td></tr>
+                    <tr><td>TopCoW-CTA-Det</td><td>IoU</td><td>0.67</td><td>38%</td><td>0.65</td><td>25%</td><td>0.70</td><td>56%</td><td>0.79</td></tr>
+                    <tr><td>TopCoW-MRA-Det</td><td>IoU</td><td>0.66</td><td>14%</td><td>0.69</td><td>14%</td><td>0.19</td><td>14%</td><td>0.85</td></tr>
+                    <tr class="active"><td colspan="9"><strong>Classification Tasks</strong></td></tr>
+                    <tr><td>TopCoW-CTA-Cls</td><td>Accuracy</td><td>0.33</td><td>33%</td><td>0.10</td><td>0%</td><td>0.28</td><td>50%</td><td>0.73</td></tr>
+                    <tr><td>TopCoW-MRA-Cls</td><td>Accuracy</td><td>0.33</td><td>25%</td><td>0.33</td><td>25%</td><td>0.09</td><td>0%</td><td>0.89</td></tr>
+                    <tr class="active"><td colspan="9"><strong>Image Quality &amp; Enhancement Tasks</strong></td></tr>
+                    <tr><td>LDCT-IQA</td><td>Score</td><td>2.62</td><td>33%</td><td>2.50</td><td>0%</td><td>2.66</td><td>50%</td><td>2.74</td></tr>
+                    <tr><td>USenhance</td><td>LNCC</td><td>0.11</td><td>0%</td><td>0.13</td><td>0%</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.91</td></tr>
+                    <tr class="active"><td colspan="9"><strong>Overall</strong></td></tr>
+                    <tr><td>Overall Mean Percentile</td><td>--</td><td>--</td><td>9.05%</td><td>--</td><td>4.53%</td><td>--</td><td><strong>12.15%</strong></td><td>--</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Challenge Descriptions</h2>
+              </div>
+              <div class="challenge-carousel">
+                <button class="carousel-btn" id="prevChallenges" aria-label="Previous challenges">&#8249;</button>
+                <div class="challenge-window">
+                  <div class="row" id="challengeContainer"></div>
+                </div>
+                <button class="carousel-btn" id="nextChallenges" aria-label="Next challenges">&#8250;</button>
+              </div>
+              <div id="challengeStatus" style="margin-top:8px; font-weight:600; color:#555;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var fallbackImage = "data:image/svg+xml;utf8," + encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='800' height='480'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='#a41034' offset='0%'/><stop stop-color='#e05c82' offset='100%'/></linearGradient></defs><rect width='800' height='480' fill='url(#g)'/><text x='50%' y='50%' fill='#ffffff' font-family='Arial' font-size='38' font-weight='bold' text-anchor='middle' dominant-baseline='middle'>ReX-MLE</text></svg>");
+
+    var challenges = [
+      { name: 'USenhance', url: 'https://ultrasoundenhance2023.grand-challenge.org/ultrasoundenhance2023/', image: './challenges/USenhance.avif' },
+      { name: 'LDCTIQA2023', url: 'https://ldctiqac2023.grand-challenge.org/ldctiqac2023/', image: './challenges/LDCTIQA2023.avif' },
+      { name: 'PANTHER', url: 'https://panther.grand-challenge.org/', image: './challenges/PANTHER.avif' },
+      { name: 'SEG.A', url: 'https://multicenteraorta.grand-challenge.org/', image: './challenges/SEG.A.avif' },
+      { name: 'DENTEX', url: 'https://dentex.grand-challenge.org/dentex/', image: './challenges/DENTEX.avif' },
+      { name: 'TopCoW', url: 'https://topcow24.grand-challenge.org/data/', image: './challenges/TopCoW.avif' },
+      { name: 'PUMA', url: 'https://puma.grand-challenge.org/', image: './challenges/PUMA.avif' },
+      { name: 'ISLES22', url: 'https://isles22.grand-challenge.org/', image: './challenges/ISLES22.avif' },
+      { name: 'Cell Segmentation Challenge', url: 'https://neurips22-cellseg.grand-challenge.org/neurips22-cellseg/', image: './challenges/Cell_Segmentation_Challenge.avif' },
+      { name: 'TopBrain', url: 'https://topbrain2025.grand-challenge.org/data/', image: './challenges/TopBrain.avif' }
+    ];
+
+    var startIndex = 0;
+    var visibleCount = 4;
+
+    function parseAppendixTables(tex) {
+      var tables = [];
+      var tableRegex = /\\caption\\{Agent performance across ([^}]+?)\\}[\\s\\S]*?\\begin{tabular}{[^}]+}([\\s\\S]*?)\\end{tabular}/g;
+      var match;
+
+      while ((match = tableRegex.exec(tex)) !== null) {
+        var rawTitle = match[1].trim();
+        var challengeName = rawTitle.replace(/ challenge\\.?$/i, '');
+        var body = match[2];
+        var firstMidrule = body.indexOf('\\midrule');
+        if (firstMidrule === -1) {
+          continue;
+        }
+        var rowsSection = body.substring(firstMidrule + '\\midrule'.length);
+        var lines = rowsSection.split(/\\\\/);
+        var rows = [];
+
+        lines.forEach(function(line) {
+          var clean = line.replace(/\\midrule/g, '').trim();
+          if (!clean || clean === '\\bottomrule') {
+            return;
+          }
+          var cols = clean.split('&').map(function(part) { return part.trim(); });
+          if (cols.length < 5) {
+            return;
+          }
+          rows.push({
+            metric: cols[0],
+            aide: cols[1],
+            rd: cols[2],
+            ml: cols[3],
+            winner: cols[4]
+          });
+        });
+
+        if (rows.length) {
+          tables.push({ name: challengeName, rows: rows });
+        }
+      }
+      return tables;
+    }
+
+    function renderChallengeResultsFromAppendix(tex) {
+      var container = $('#challengeResultsGrid');
+      container.empty();
+      var tables = parseAppendixTables(tex);
+
+      if (!tables.length) {
+        container.append('<div class="col-xs-12"><p style="color:#a41034;">No challenge metrics available.</p></div>');
+        return;
+      }
+
+      tables.forEach(function(table) {
+        var col = $('<div class="col-xs-12"></div>');
+        var card = $('<div class="result-card"></div>');
+        var header = $('<div class="result-header"></div>');
+        header.append($('<h4></h4>').text(table.name));
+        header.append($('<span class="result-metric"></span>').text('Metrics'));
+        card.append(header);
+
+        var tableWrapper = $('<div class="table-responsive"></div>');
+        var t = $('<table class="table table-condensed performanceTable"></table>');
+        var thead = $('<thead><tr><th>Metric</th><th>AIDE</th><th>R&D-Agent</th><th>ML-Master</th><th>Winner</th></tr></thead>');
+        var tbody = $('<tbody></tbody>');
+
+        table.rows.forEach(function(row) {
+          var tr = $('<tr></tr>');
+          tr.append($('<td></td>').text(row.metric));
+          tr.append($('<td></td>').text(row.aide));
+          tr.append($('<td></td>').text(row.rd));
+          tr.append($('<td></td>').text(row.ml));
+          tr.append($('<td></td>').text(row.winner));
+          tbody.append(tr);
+        });
+
+        t.append(thead);
+        t.append(tbody);
+        tableWrapper.append(t);
+        card.append(tableWrapper);
+        col.append(card);
+        container.append(col);
+      });
+    }
+
+    function renderChallenges() {
+      var container = $('#challengeContainer');
+      container.empty();
+      for (var i = 0; i < visibleCount; i++) {
+        var idx = (startIndex + i) % challenges.length;
+        var c = challenges[idx];
+
+        var col = $('<div class="col-xs-12 col-sm-6 col-md-3"></div>');
+        var card = $('<div class="challenge-card"></div>');
+        var img = $('<img>', { src: c.image, alt: c.name, loading: 'lazy' });
+        img.on('error', function() {
+          $(this).off('error');
+          this.src = fallbackImage;
+        });
+
+        var link = $('<a></a>').attr({ href: c.url, target: '_blank', rel: 'noopener noreferrer', 'aria-label': c.name });
+        link.append(img);
+
+        var body = $('<div class="card-body"></div>');
+        var titleLink = $('<a></a>').attr({ href: c.url, target: '_blank', rel: 'noopener noreferrer' }).text(c.name);
+        body.append($('<h4></h4>').append(titleLink));
+
+        card.append(link);
+        card.append(body);
+        col.append(card);
+        container.append(col);
+      }
+      $('#challengeStatus').text('Showing ' + (startIndex + 1) + '–' + (startIndex + visibleCount > challenges.length ? challenges.length : startIndex + visibleCount) + ' of ' + challenges.length + ' challenges');
+    }
+
+    $('#prevChallenges').on('click', function() {
+      startIndex = (startIndex - visibleCount + challenges.length) % challenges.length;
+      renderChallenges();
+    });
+
+    $('#nextChallenges').on('click', function() {
+      startIndex = (startIndex + visibleCount) % challenges.length;
+      renderChallenges();
+    });
+
+    $(document).ready(function() {
+      renderChallenges();
+      $.get('./appendix.tex')
+        .done(function(tex) {
+          renderChallengeResultsFromAppendix(tex);
+        })
+        .fail(function() {
+          $('#challengeResultsGrid').append('<div class="col-xs-12"><p style="color:#a41034;">Failed to load appendix metrics.</p></div>');
+        });
+    });
+  </script>
+</body>
+</html>

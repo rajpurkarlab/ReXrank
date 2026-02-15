@@ -70,6 +70,29 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     .performanceTable th {
       cursor: pointer;
     }
+    /* Dropdown hover functionality */
+    .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .navbar-nav .dropdown-menu {
+      margin-top: 0;
+      background-color: #fff !important;
+    }
+    /* Fix dropdown menu colors - need !important to override navbar styles */
+    #topNavbar .navbar-nav .dropdown-menu > li > a,
+    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
+    #topNavbar .navbar-right .dropdown-menu > li > a,
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-right .dropdown-menu > li > a:focus {
+      color: #333 !important;
+      background-color: #fff !important;
+    }
+    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover {
+      background-color: #f5f5f5 !important;
+      color: #a41034 !important;
+    }
   </style>
 </head>
 <body>
@@ -86,12 +109,17 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             <li>
               <a href="./" style="font-size: 18px;">Home</a>
             </li>
-            <!-- <li>
-              <a href="./explore/vote_example.html" style="font-size: 18px;">Arena</a>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
+                ReXrankCT <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="./ReXGroundingCT/index.html">ReXGroundingCT</a></li>
+              </ul>
             </li>
             <li>
-              <a href="./explore/login.html" style="font-size: 18px;">Login</a>
-            </li> -->
+              <a href="./ReX-MLE/index.html" style="font-size: 18px;">ReX-MLE</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -108,7 +136,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         <div class="col-md-12">
           <h1 id="appTitle">ReXrank</h1>
           <h2 id="appSubtitle">Chest X-ray Interpretation Leaderboard</h2>
-          <h3 id="helpLink"><a href="https://github.com/rajpurkarlab/ReXrank/blob/main/example_files/submission_tutorial_round2.md" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank</a></h3>
+          <h3 id="helpLink"><a href="./explore/submission_guideline.html" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrank</a></h3>
           <!-- <p><a href="https://forms.gle/qNUXgXpmDnhUprjF8" target="_blank" rel="noopener noreferrer">Wanna help us?</a></p> -->
         </div>
       </div>
