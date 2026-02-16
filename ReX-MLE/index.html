@@ -188,64 +188,9 @@
       margin-top: 2px;
     }
   </style>
-  <style>
-    /* Dropdown hover functionality */
-    .navbar-nav .dropdown:hover .dropdown-menu {
-      display: block;
-    }
-    .navbar-nav .dropdown-menu {
-      margin-top: 0;
-      background-color: #fff !important;
-    }
-    /* Fix dropdown menu colors - need !important to override navbar styles */
-    #topNavbar .navbar-nav .dropdown-menu > li > a,
-    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
-    #topNavbar .navbar-right .dropdown-menu > li > a,
-    #topNavbar .navbar-right .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:focus {
-      color: #333 !important;
-      background-color: #fff !important;
-    }
-    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:hover {
-      background-color: #f5f5f5 !important;
-      color: #a41034 !important;
-    }
-  </style>
+  <script src="../javascripts/header-loader.js" defer></script>
 </head>
 <body>
-  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
-    <div class="container clearfix" id="navContainer">
-      <div class="rightNav">
-        <div class="collapseDiv">
-          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
-          </button>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
-                ReXrankCT <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="../ReXGroundingCT/index.html">ReXGroundingCT</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="./index.html" style="font-size: 18px;">ReX-MLE</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="leftNav">
-        <div class="brandDiv">
-          <a class="navbar-brand" href="../index.html">ReXrank</a>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="cover" id="topCover">
     <div class="container">
       <div class="row">
