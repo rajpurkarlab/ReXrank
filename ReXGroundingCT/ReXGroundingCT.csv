@@ -1,5 +1,5 @@
 Model,Institution,Global Dice,Global HIT Rate,Instance Precision,Instance Recall,Instance F1
-DAGG,Gachon University,0.231,0.451,0.163,0.250,0.197
+DAGG,,0.231,0.451,0.163,0.250,0.197
 SAT-FT,SJTU,0.209,0.473,0.074,0.369,0.123
 BiomedParseV2,Microsoft,0.025,0.066,0.007,0.072,0.012
 SegVol,SJTU & BAAI,0,0,0,0,0
