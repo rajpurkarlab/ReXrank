@@ -1,4 +1,58 @@
-<!DOCTYPE html>
+import pandas as pd
+import math
+
+
+def generate_rexgroundingct_html(csv_path, output_path):
+    df = pd.read_csv(csv_path)
+
+    # Build table rows from CSV
+    rows_html = ''
+    for _, row in df.iterrows():
+        model_name = str(row['Model'])
+        model_url = str(row.get('Model URL', ''))
+        institution = str(row.get('Institution', ''))
+
+        # Model cell: link if URL exists, plain text otherwise
+        if model_url and model_url != 'nan' and model_url.strip():
+            model_cell = f'<a href="{model_url}" target="_blank">{model_name}</a>'
+        else:
+            model_cell = model_name
+
+        # Institution line
+        if institution and institution != 'nan' and institution.strip():
+            institution_html = f'<p class="institution">{institution}</p>'
+        else:
+            institution_html = '<p class="institution"></p>'
+
+        # Format metric values
+        def fmt(val):
+            if pd.isna(val) or (isinstance(val, float) and math.isnan(val)):
+                return '0'
+            v = float(val)
+            if v == 0:
+                return '0'
+            return str(v)
+
+        global_dice = fmt(row['Global Dice'])
+        global_hit = fmt(row['Global HIT Rate'])
+        inst_prec = fmt(row['Instance Precision'])
+        inst_rec = fmt(row['Instance Recall'])
+        inst_f1 = fmt(row['Instance F1'])
+
+        rows_html += f'''                  <tr>
+                    <td style="word-break:break-word;">
+                      {model_cell}
+                      {institution_html}
+                    </td>
+                    <td><b>{global_dice}</b></td>
+                    <td><b>{global_hit}</b></td>
+                    <td><b>{inst_prec}</b></td>
+                    <td><b>{inst_rec}</b></td>
+                    <td><b>{inst_f1}</b></td>
+                  </tr>
+'''
+
+    html = f'''<!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
 <html>
 <head>
@@ -31,56 +85,56 @@
   <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
 
   <style>
-    .fixed-height-table {
+    .fixed-height-table {{
       height: 300px; /* Fixed height, adjust as needed */
       overflow-y: scroll;
       display: block;
-    }
-    .fixed-height-table thead {
+    }}
+    .fixed-height-table thead {{
       position: sticky;
       top: 0;
       background-color: white; /* Table header background color */
       z-index: 1;
-    }
-    .fixed-height-table th, .fixed-height-table td {
+    }}
+    .fixed-height-table th, .fixed-height-table td {{
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
-    }
-    .justified-text {
+    }}
+    .justified-text {{
       text-align: justify;
       text-justify: inter-word;
-    }
+    }}
   </style>
   <style>
-    .performanceTable th {
+    .performanceTable th {{
       cursor: pointer;
-    }
+    }}
   </style>
   <style>
     /* Dropdown hover functionality */
-    .navbar-nav .dropdown:hover .dropdown-menu {
+    .navbar-nav .dropdown:hover .dropdown-menu {{
       display: block;
-    }
-    .navbar-nav .dropdown-menu {
+    }}
+    .navbar-nav .dropdown-menu {{
       margin-top: 0;
       background-color: #fff !important;
-    }
+    }}
     /* Fix dropdown menu colors */
     #topNavbar .navbar-nav .dropdown-menu > li > a,
     #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
     #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
     #topNavbar .navbar-right .dropdown-menu > li > a,
     #topNavbar .navbar-right .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:focus {
+    #topNavbar .navbar-right .dropdown-menu > li > a:focus {{
       color: #333 !important;
       background-color: #fff !important;
-    }
+    }}
     #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:hover {
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover {{
       background-color: #f5f5f5 !important;
       color: #a41034 !important;
-    }
+    }}
   </style>
 </head>
 <body>
@@ -161,62 +215,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td style="word-break:break-word;">
-                      DAGG
-                      <p class="institution"></p>
-                    </td>
-                    <td><b>0.253</b></td>
-                    <td><b>0.517</b></td>
-                    <td><b>0.235</b></td>
-                    <td><b>0.292</b></td>
-                    <td><b>0.26</b></td>
-                  </tr>
-                  <tr>
-                    <td style="word-break:break-word;">
-                      <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT-FT</a>
-                      <p class="institution">SJTU</p>
-                    </td>
-                    <td><b>0.209</b></td>
-                    <td><b>0.473</b></td>
-                    <td><b>0.074</b></td>
-                    <td><b>0.369</b></td>
-                    <td><b>0.123</b></td>
-                  </tr>
-                  <tr>
-                    <td style="word-break:break-word;">
-                      <a href="https://github.com/microsoft/BiomedParse/tree/v2" target="_blank">BiomedParseV2</a>
-                      <p class="institution">Microsoft</p>
-                    </td>
-                    <td><b>0.025</b></td>
-                    <td><b>0.066</b></td>
-                    <td><b>0.007</b></td>
-                    <td><b>0.072</b></td>
-                    <td><b>0.012</b></td>
-                  </tr>
-                  <tr>
-                    <td style="word-break:break-word;">
-                      <a href="https://arxiv.org/abs/2311.13385" target="_blank">SegVol</a>
-                      <p class="institution">SJTU & BAAI</p>
-                    </td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                  </tr>
-                  <tr>
-                    <td style="word-break:break-word;">
-                      <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT</a>
-                      <p class="institution">SJTU</p>
-                    </td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                  </tr>
-                </tbody>
+{rows_html}                </tbody>
               </table>
             </div>
           </div>
@@ -226,11 +225,23 @@
   </div>
 
   <script>
-    $(document).ready(function() {
-      $(".performanceTable").tablesorter({
+    $(document).ready(function() {{
+      $(".performanceTable").tablesorter({{
         sortList: [[2, 1]]
-      });
-    });
+      }});
+    }});
   </script>
 </body>
 </html>
+'''
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+    print(f'Generated {output_path} from {csv_path}')
+
+
+if __name__ == '__main__':
+    generate_rexgroundingct_html(
+        './ReXGroundingCT/ReXGroundingCT.csv',
+        './ReXGroundingCT/index.html'
+    )
