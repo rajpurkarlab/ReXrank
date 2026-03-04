@@ -56,6 +56,90 @@
     .performanceTable th {
       cursor: pointer;
     }
+    /* Version selector styles */
+    .version-selector {
+      position: relative;
+      display: inline-block;
+      margin-top: 4px;
+    }
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 2px 10px;
+      background: linear-gradient(135deg, #f7f7f9, #eef0f3);
+      border: 1px solid #d0d3d9;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #555;
+      white-space: nowrap;
+      user-select: none;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .version-badge:hover {
+      background: linear-gradient(135deg, #eef0f3, #e2e5ea);
+      border-color: #a41034;
+      color: #a41034;
+      box-shadow: 0 1px 3px rgba(164,16,52,0.12);
+    }
+    .version-caret-icon {
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .version-selector:hover .version-caret-icon {
+      transform: rotate(180deg);
+    }
+    .version-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 100;
+      background: #fff;
+      border: 1px solid #d0d3d9;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 70px;
+      padding: 4px 0;
+      animation: versionDropIn 0.15s ease;
+    }
+    /* Invisible bridge so mouse doesn't lose hover between badge and dropdown */
+    .version-dropdown::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 0;
+      right: 0;
+      height: 6px;
+    }
+    @keyframes versionDropIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .version-selector:hover .version-dropdown {
+      display: block;
+    }
+    .version-option {
+      display: block;
+      padding: 5px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #444;
+      white-space: nowrap;
+      transition: all 0.12s ease;
+      border-left: 2px solid transparent;
+    }
+    .version-option:hover {
+      background: #fdf2f4;
+      color: #a41034;
+      border-left-color: #a41034;
+    }
+    .version-option.active {
+      font-weight: 600;
+    }
   </style>
   <style>
     /* Dropdown hover functionality */
@@ -161,60 +245,65 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0.231&quot;, &quot;hit&quot;: &quot;0.451&quot;, &quot;prec&quot;: &quot;0.163&quot;, &quot;rec&quot;: &quot;0.25&quot;, &quot;f1&quot;: &quot;0.197&quot;}, {&quot;version&quot;: &quot;v2&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.235&quot;, &quot;rec&quot;: &quot;0.292&quot;, &quot;f1&quot;: &quot;0.26&quot;}]' data-current-version="1">
                     <td style="word-break:break-word;">
                       DAGG
                       <p class="institution"></p>
+                      <div class="version-selector" data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0.231&quot;, &quot;hit&quot;: &quot;0.451&quot;, &quot;prec&quot;: &quot;0.163&quot;, &quot;rec&quot;: &quot;0.25&quot;, &quot;f1&quot;: &quot;0.197&quot;}, {&quot;version&quot;: &quot;v2&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.235&quot;, &quot;rec&quot;: &quot;0.292&quot;, &quot;f1&quot;: &quot;0.26&quot;}]'><span class="version-badge"><span class="version-label">v2</span><svg class="version-caret-icon" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="version-dropdown"><div class="version-option" data-index="0">v1</div><div class="version-option active" data-index="1">v2</div></div></div>
                     </td>
-                    <td><b>0.253</b></td>
-                    <td><b>0.517</b></td>
-                    <td><b>0.235</b></td>
-                    <td><b>0.292</b></td>
-                    <td><b>0.26</b></td>
+                    <td class="metric-dice"><b>0.253</b></td>
+                    <td class="metric-hit"><b>0.517</b></td>
+                    <td class="metric-prec"><b>0.235</b></td>
+                    <td class="metric-rec"><b>0.292</b></td>
+                    <td class="metric-f1"><b>0.26</b></td>
                   </tr>
-                  <tr>
+                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0.209&quot;, &quot;hit&quot;: &quot;0.473&quot;, &quot;prec&quot;: &quot;0.074&quot;, &quot;rec&quot;: &quot;0.369&quot;, &quot;f1&quot;: &quot;0.123&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT-FT</a>
                       <p class="institution">SJTU</p>
+                      
                     </td>
-                    <td><b>0.209</b></td>
-                    <td><b>0.473</b></td>
-                    <td><b>0.074</b></td>
-                    <td><b>0.369</b></td>
-                    <td><b>0.123</b></td>
+                    <td class="metric-dice"><b>0.209</b></td>
+                    <td class="metric-hit"><b>0.473</b></td>
+                    <td class="metric-prec"><b>0.074</b></td>
+                    <td class="metric-rec"><b>0.369</b></td>
+                    <td class="metric-f1"><b>0.123</b></td>
                   </tr>
-                  <tr>
+                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0.025&quot;, &quot;hit&quot;: &quot;0.066&quot;, &quot;prec&quot;: &quot;0.007&quot;, &quot;rec&quot;: &quot;0.072&quot;, &quot;f1&quot;: &quot;0.012&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://github.com/microsoft/BiomedParse/tree/v2" target="_blank">BiomedParseV2</a>
                       <p class="institution">Microsoft</p>
+                      
                     </td>
-                    <td><b>0.025</b></td>
-                    <td><b>0.066</b></td>
-                    <td><b>0.007</b></td>
-                    <td><b>0.072</b></td>
-                    <td><b>0.012</b></td>
+                    <td class="metric-dice"><b>0.025</b></td>
+                    <td class="metric-hit"><b>0.066</b></td>
+                    <td class="metric-prec"><b>0.007</b></td>
+                    <td class="metric-rec"><b>0.072</b></td>
+                    <td class="metric-f1"><b>0.012</b></td>
                   </tr>
-                  <tr>
+                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0&quot;, &quot;hit&quot;: &quot;0&quot;, &quot;prec&quot;: &quot;0&quot;, &quot;rec&quot;: &quot;0&quot;, &quot;f1&quot;: &quot;0&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://arxiv.org/abs/2311.13385" target="_blank">SegVol</a>
                       <p class="institution">SJTU & BAAI</p>
+                      
                     </td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
+                    <td class="metric-dice"><b>0</b></td>
+                    <td class="metric-hit"><b>0</b></td>
+                    <td class="metric-prec"><b>0</b></td>
+                    <td class="metric-rec"><b>0</b></td>
+                    <td class="metric-f1"><b>0</b></td>
                   </tr>
-                  <tr>
+                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0&quot;, &quot;hit&quot;: &quot;0&quot;, &quot;prec&quot;: &quot;0&quot;, &quot;rec&quot;: &quot;0&quot;, &quot;f1&quot;: &quot;0&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT</a>
                       <p class="institution">SJTU</p>
+                      
                     </td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
-                    <td><b>0</b></td>
+                    <td class="metric-dice"><b>0</b></td>
+                    <td class="metric-hit"><b>0</b></td>
+                    <td class="metric-prec"><b>0</b></td>
+                    <td class="metric-rec"><b>0</b></td>
+                    <td class="metric-f1"><b>0</b></td>
                   </tr>
                 </tbody>
               </table>
@@ -229,6 +318,61 @@
     $(document).ready(function() {
       $(".performanceTable").tablesorter({
         sortList: [[2, 1]]
+      });
+
+      // Custom sort handler: always start descending on a new column,
+      // only toggle if clicking the same column consecutively
+      var lastCol = 2;
+      var lastDir = 1; // 1 = desc, 0 = asc
+
+      // Remove tablesorter's default click handlers on headers
+      $(".performanceTable thead th").off("click mousedown");
+
+      $(".performanceTable thead th").on("click", function(e) {
+        e.stopPropagation();
+        var col = $(this).index();
+        var dir;
+        if (col === lastCol) {
+          dir = lastDir === 1 ? 0 : 1; // toggle
+        } else {
+          dir = 1; // always descending for a new column
+        }
+        lastCol = col;
+        lastDir = dir;
+        $(".performanceTable").trigger("sorton", [[[col, dir]]]);
+      });
+
+      // Version switching logic
+      $(document).on('click', '.version-option', function(e) {
+        e.stopPropagation();
+        var $option = $(this);
+        var versionIndex = parseInt($option.data('index'));
+        var $row = $option.closest('tr');
+        var versions = $row.data('versions');
+
+        if (!versions || versionIndex >= versions.length) return;
+
+        var selected = versions[versionIndex];
+
+        // Update scores
+        $row.find('.metric-dice b').text(selected.dice);
+        $row.find('.metric-hit b').text(selected.hit);
+        $row.find('.metric-prec b').text(selected.prec);
+        $row.find('.metric-rec b').text(selected.rec);
+        $row.find('.metric-f1 b').text(selected.f1);
+
+        // Update active state
+        $option.siblings().removeClass('active');
+        $option.addClass('active');
+
+        // Update badge label
+        $row.find('.version-label').text(selected.version);
+
+        // Store current version
+        $row.attr('data-current-version', versionIndex);
+
+        // Re-trigger tablesorter update
+        $(".performanceTable").trigger("update");
       });
     });
   </script>

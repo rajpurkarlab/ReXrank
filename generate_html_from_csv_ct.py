@@ -1,16 +1,38 @@
 import pandas as pd
 import math
+import json
+import html as html_module
 
 
 def generate_rexgroundingct_html(csv_path, output_path):
     df = pd.read_csv(csv_path)
 
-    # Build table rows from CSV
-    rows_html = ''
+    # Format metric values
+    def fmt(val):
+        if pd.isna(val) or (isinstance(val, float) and math.isnan(val)):
+            return '0'
+        v = float(val)
+        if v == 0:
+            return '0'
+        return str(v)
+
+    # Group rows by model name to support multiple submission versions
+    # Preserve insertion order: first occurrence determines display order
+    from collections import OrderedDict
+    model_groups = OrderedDict()
     for _, row in df.iterrows():
         model_name = str(row['Model'])
-        model_url = str(row.get('Model URL', ''))
-        institution = str(row.get('Institution', ''))
+        if model_name not in model_groups:
+            model_groups[model_name] = []
+        model_groups[model_name].append(row)
+
+    # Build table rows from grouped models
+    rows_html = ''
+    for model_name, versions in model_groups.items():
+        # Use the first version as the default displayed row
+        default = versions[0]
+        model_url = str(default.get('Model URL', ''))
+        institution = str(default.get('Institution', ''))
 
         # Model cell: link if URL exists, plain text otherwise
         if model_url and model_url != 'nan' and model_url.strip():
@@ -24,31 +46,48 @@ def generate_rexgroundingct_html(csv_path, output_path):
         else:
             institution_html = '<p class="institution"></p>'
 
-        # Format metric values
-        def fmt(val):
-            if pd.isna(val) or (isinstance(val, float) and math.isnan(val)):
-                return '0'
-            v = float(val)
-            if v == 0:
-                return '0'
-            return str(v)
+        # Build version data for JS
+        versions_data = []
+        for v_row in versions:
+            version_label = str(v_row.get('Version', 'v1'))
+            if version_label == 'nan':
+                version_label = 'v1'
+            versions_data.append({
+                'version': version_label,
+                'dice': fmt(v_row['Global Dice']),
+                'hit': fmt(v_row['Global HIT Rate']),
+                'prec': fmt(v_row['Instance Precision']),
+                'rec': fmt(v_row['Instance Recall']),
+                'f1': fmt(v_row['Instance F1']),
+            })
 
-        global_dice = fmt(row['Global Dice'])
-        global_hit = fmt(row['Global HIT Rate'])
-        inst_prec = fmt(row['Instance Precision'])
-        inst_rec = fmt(row['Instance Recall'])
-        inst_f1 = fmt(row['Instance F1'])
+        default_index = len(versions_data) - 1
+        default_version = versions_data[default_index]
+        has_multiple = len(versions_data) > 1
 
-        rows_html += f'''                  <tr>
+        # Version selector HTML (only if multiple versions exist)
+        if has_multiple:
+            version_selector = f'<div class="version-selector" data-versions=\'{html_module.escape(json.dumps(versions_data), quote=True)}\'>'
+            version_selector += f'<span class="version-badge"><span class="version-label">{default_version["version"]}</span><svg class="version-caret-icon" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>'
+            version_selector += '<div class="version-dropdown">'
+            for i, vd in enumerate(versions_data):
+                active_cls = ' active' if i == default_index else ''
+                version_selector += f'<div class="version-option{active_cls}" data-index="{i}">{vd["version"]}</div>'
+            version_selector += '</div></div>'
+        else:
+            version_selector = ''
+
+        rows_html += f'''                  <tr data-versions='{html_module.escape(json.dumps(versions_data), quote=True)}' data-current-version="{default_index}">
                     <td style="word-break:break-word;">
                       {model_cell}
                       {institution_html}
+                      {version_selector}
                     </td>
-                    <td><b>{global_dice}</b></td>
-                    <td><b>{global_hit}</b></td>
-                    <td><b>{inst_prec}</b></td>
-                    <td><b>{inst_rec}</b></td>
-                    <td><b>{inst_f1}</b></td>
+                    <td class="metric-dice"><b>{default_version["dice"]}</b></td>
+                    <td class="metric-hit"><b>{default_version["hit"]}</b></td>
+                    <td class="metric-prec"><b>{default_version["prec"]}</b></td>
+                    <td class="metric-rec"><b>{default_version["rec"]}</b></td>
+                    <td class="metric-f1"><b>{default_version["f1"]}</b></td>
                   </tr>
 '''
 
@@ -109,6 +148,90 @@ def generate_rexgroundingct_html(csv_path, output_path):
   <style>
     .performanceTable th {{
       cursor: pointer;
+    }}
+    /* Version selector styles */
+    .version-selector {{
+      position: relative;
+      display: inline-block;
+      margin-top: 4px;
+    }}
+    .version-badge {{
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 2px 10px;
+      background: linear-gradient(135deg, #f7f7f9, #eef0f3);
+      border: 1px solid #d0d3d9;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #555;
+      white-space: nowrap;
+      user-select: none;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }}
+    .version-badge:hover {{
+      background: linear-gradient(135deg, #eef0f3, #e2e5ea);
+      border-color: #a41034;
+      color: #a41034;
+      box-shadow: 0 1px 3px rgba(164,16,52,0.12);
+    }}
+    .version-caret-icon {{
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }}
+    .version-selector:hover .version-caret-icon {{
+      transform: rotate(180deg);
+    }}
+    .version-dropdown {{
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 100;
+      background: #fff;
+      border: 1px solid #d0d3d9;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 70px;
+      padding: 4px 0;
+      animation: versionDropIn 0.15s ease;
+    }}
+    /* Invisible bridge so mouse doesn't lose hover between badge and dropdown */
+    .version-dropdown::before {{
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 0;
+      right: 0;
+      height: 6px;
+    }}
+    @keyframes versionDropIn {{
+      from {{ opacity: 0; transform: translateY(-4px); }}
+      to {{ opacity: 1; transform: translateY(0); }}
+    }}
+    .version-selector:hover .version-dropdown {{
+      display: block;
+    }}
+    .version-option {{
+      display: block;
+      padding: 5px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #444;
+      white-space: nowrap;
+      transition: all 0.12s ease;
+      border-left: 2px solid transparent;
+    }}
+    .version-option:hover {{
+      background: #fdf2f4;
+      color: #a41034;
+      border-left-color: #a41034;
+    }}
+    .version-option.active {{
+      font-weight: 600;
     }}
   </style>
   <style>
@@ -228,6 +351,61 @@ def generate_rexgroundingct_html(csv_path, output_path):
     $(document).ready(function() {{
       $(".performanceTable").tablesorter({{
         sortList: [[2, 1]]
+      }});
+
+      // Custom sort handler: always start descending on a new column,
+      // only toggle if clicking the same column consecutively
+      var lastCol = 2;
+      var lastDir = 1; // 1 = desc, 0 = asc
+
+      // Remove tablesorter's default click handlers on headers
+      $(".performanceTable thead th").off("click mousedown");
+
+      $(".performanceTable thead th").on("click", function(e) {{
+        e.stopPropagation();
+        var col = $(this).index();
+        var dir;
+        if (col === lastCol) {{
+          dir = lastDir === 1 ? 0 : 1; // toggle
+        }} else {{
+          dir = 1; // always descending for a new column
+        }}
+        lastCol = col;
+        lastDir = dir;
+        $(".performanceTable").trigger("sorton", [[[col, dir]]]);
+      }});
+
+      // Version switching logic
+      $(document).on('click', '.version-option', function(e) {{
+        e.stopPropagation();
+        var $option = $(this);
+        var versionIndex = parseInt($option.data('index'));
+        var $row = $option.closest('tr');
+        var versions = $row.data('versions');
+
+        if (!versions || versionIndex >= versions.length) return;
+
+        var selected = versions[versionIndex];
+
+        // Update scores
+        $row.find('.metric-dice b').text(selected.dice);
+        $row.find('.metric-hit b').text(selected.hit);
+        $row.find('.metric-prec b').text(selected.prec);
+        $row.find('.metric-rec b').text(selected.rec);
+        $row.find('.metric-f1 b').text(selected.f1);
+
+        // Update active state
+        $option.siblings().removeClass('active');
+        $option.addClass('active');
+
+        // Update badge label
+        $row.find('.version-label').text(selected.version);
+
+        // Store current version
+        $row.attr('data-current-version', versionIndex);
+
+        // Re-trigger tablesorter update
+        $(".performanceTable").trigger("update");
       }});
     }});
   </script>

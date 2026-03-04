@@ -1,6 +1,7 @@
-Model,Model URL,Institution,Global Dice,Global HIT Rate,Instance Precision,Instance Recall,Instance F1
-DAGG,,,0.253,0.517,0.235,0.292,0.260
-SAT-FT,https://arxiv.org/abs/2312.17183,SJTU,0.209,0.473,0.074,0.369,0.123
-BiomedParseV2,https://github.com/microsoft/BiomedParse/tree/v2,Microsoft,0.025,0.066,0.007,0.072,0.012
-SegVol,https://arxiv.org/abs/2311.13385,SJTU & BAAI,0,0,0,0,0
-SAT,https://arxiv.org/abs/2312.17183,SJTU,0,0,0,0,0
+Model,Model URL,Institution,Version,Global Dice,Global HIT Rate,Instance Precision,Instance Recall,Instance F1
+DAGG,,,v1,0.231,0.451,0.163,0.250,0.197
+DAGG,,,v2,0.253,0.517,0.235,0.292,0.260
+SAT-FT,https://arxiv.org/abs/2312.17183,SJTU,v1,0.209,0.473,0.074,0.369,0.123
+BiomedParseV2,https://github.com/microsoft/BiomedParse/tree/v2,Microsoft,v1,0.025,0.066,0.007,0.072,0.012
+SegVol,https://arxiv.org/abs/2311.13385,SJTU & BAAI,v1,0,0,0,0,0
+SAT,https://arxiv.org/abs/2312.17183,SJTU,v1,0,0,0,0,0
