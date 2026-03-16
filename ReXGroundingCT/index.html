@@ -56,6 +56,24 @@
     .performanceTable th {
       cursor: pointer;
     }
+    .category-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .category-control-item {
+      min-width: 220px;
+    }
+    .category-control-item label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .categoryTable th {
+      font-weight: 700;
+    }
     /* Version selector styles */
     .version-selector {
       position: relative;
@@ -245,31 +263,31 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr data-versions='[{&quot;version&quot;: &quot;Submission 1&quot;, &quot;dice&quot;: &quot;0.231&quot;, &quot;hit&quot;: &quot;0.451&quot;, &quot;prec&quot;: &quot;0.163&quot;, &quot;rec&quot;: &quot;0.25&quot;, &quot;f1&quot;: &quot;0.197&quot;}, {&quot;version&quot;: &quot;Submission 2&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.235&quot;, &quot;rec&quot;: &quot;0.292&quot;, &quot;f1&quot;: &quot;0.26&quot;}]' data-current-version="1">
+                  <tr data-model="DAGG" data-versions='[{&quot;version&quot;: &quot;Submission 1&quot;, &quot;dice&quot;: &quot;0.233&quot;, &quot;hit&quot;: &quot;0.460&quot;, &quot;prec&quot;: &quot;0.140&quot;, &quot;rec&quot;: &quot;0.260&quot;, &quot;f1&quot;: &quot;0.182&quot;}, {&quot;version&quot;: &quot;Submission 2&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.211&quot;, &quot;rec&quot;: &quot;0.299&quot;, &quot;f1&quot;: &quot;0.247&quot;}]' data-current-version="1">
                     <td style="word-break:break-word;">
                       DAGG
                       <p class="institution"></p>
-                      <div class="version-selector" data-versions='[{&quot;version&quot;: &quot;Submission 1&quot;, &quot;dice&quot;: &quot;0.231&quot;, &quot;hit&quot;: &quot;0.451&quot;, &quot;prec&quot;: &quot;0.163&quot;, &quot;rec&quot;: &quot;0.25&quot;, &quot;f1&quot;: &quot;0.197&quot;}, {&quot;version&quot;: &quot;Submission 2&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.235&quot;, &quot;rec&quot;: &quot;0.292&quot;, &quot;f1&quot;: &quot;0.26&quot;}]'><span class="version-badge"><span class="version-label">Submission 2</span><svg class="version-caret-icon" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="version-dropdown"><div class="version-option" data-index="0">Submission 1</div><div class="version-option active" data-index="1">Submission 2</div></div></div>
+                      <div class="version-selector" data-versions='[{&quot;version&quot;: &quot;Submission 1&quot;, &quot;dice&quot;: &quot;0.233&quot;, &quot;hit&quot;: &quot;0.460&quot;, &quot;prec&quot;: &quot;0.140&quot;, &quot;rec&quot;: &quot;0.260&quot;, &quot;f1&quot;: &quot;0.182&quot;}, {&quot;version&quot;: &quot;Submission 2&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.211&quot;, &quot;rec&quot;: &quot;0.299&quot;, &quot;f1&quot;: &quot;0.247&quot;}]'><span class="version-badge"><span class="version-label">Submission 2</span><svg class="version-caret-icon" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div class="version-dropdown"><div class="version-option" data-index="0">Submission 1</div><div class="version-option active" data-index="1">Submission 2</div></div></div>
                     </td>
                     <td class="metric-dice"><b>0.253</b></td>
                     <td class="metric-hit"><b>0.517</b></td>
-                    <td class="metric-prec"><b>0.235</b></td>
-                    <td class="metric-rec"><b>0.292</b></td>
-                    <td class="metric-f1"><b>0.26</b></td>
+                    <td class="metric-prec"><b>0.211</b></td>
+                    <td class="metric-rec"><b>0.299</b></td>
+                    <td class="metric-f1"><b>0.247</b></td>
                   </tr>
-                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0.209&quot;, &quot;hit&quot;: &quot;0.473&quot;, &quot;prec&quot;: &quot;0.074&quot;, &quot;rec&quot;: &quot;0.369&quot;, &quot;f1&quot;: &quot;0.123&quot;}]' data-current-version="0">
+                  <tr data-model="SAT-FT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.205&quot;, &quot;hit&quot;: &quot;0.473&quot;, &quot;prec&quot;: &quot;0.062&quot;, &quot;rec&quot;: &quot;0.383&quot;, &quot;f1&quot;: &quot;0.107&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT-FT</a>
                       <p class="institution">SJTU</p>
                       
                     </td>
-                    <td class="metric-dice"><b>0.209</b></td>
+                    <td class="metric-dice"><b>0.205</b></td>
                     <td class="metric-hit"><b>0.473</b></td>
-                    <td class="metric-prec"><b>0.074</b></td>
-                    <td class="metric-rec"><b>0.369</b></td>
-                    <td class="metric-f1"><b>0.123</b></td>
+                    <td class="metric-prec"><b>0.062</b></td>
+                    <td class="metric-rec"><b>0.383</b></td>
+                    <td class="metric-f1"><b>0.107</b></td>
                   </tr>
-                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0.025&quot;, &quot;hit&quot;: &quot;0.066&quot;, &quot;prec&quot;: &quot;0.007&quot;, &quot;rec&quot;: &quot;0.072&quot;, &quot;f1&quot;: &quot;0.012&quot;}]' data-current-version="0">
+                  <tr data-model="BiomedParseV2" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.025&quot;, &quot;hit&quot;: &quot;0.066&quot;, &quot;prec&quot;: &quot;0.006&quot;, &quot;rec&quot;: &quot;0.071&quot;, &quot;f1&quot;: &quot;0.012&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://github.com/microsoft/BiomedParse/tree/v2" target="_blank">BiomedParseV2</a>
                       <p class="institution">Microsoft</p>
@@ -277,36 +295,64 @@
                     </td>
                     <td class="metric-dice"><b>0.025</b></td>
                     <td class="metric-hit"><b>0.066</b></td>
-                    <td class="metric-prec"><b>0.007</b></td>
-                    <td class="metric-rec"><b>0.072</b></td>
+                    <td class="metric-prec"><b>0.006</b></td>
+                    <td class="metric-rec"><b>0.071</b></td>
                     <td class="metric-f1"><b>0.012</b></td>
                   </tr>
-                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0&quot;, &quot;hit&quot;: &quot;0&quot;, &quot;prec&quot;: &quot;0&quot;, &quot;rec&quot;: &quot;0&quot;, &quot;f1&quot;: &quot;0&quot;}]' data-current-version="0">
+                  <tr data-model="SegVol" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.000&quot;, &quot;hit&quot;: &quot;0.000&quot;, &quot;prec&quot;: &quot;0.000&quot;, &quot;rec&quot;: &quot;0.000&quot;, &quot;f1&quot;: &quot;0.000&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://arxiv.org/abs/2311.13385" target="_blank">SegVol</a>
                       <p class="institution">SJTU & BAAI</p>
                       
                     </td>
-                    <td class="metric-dice"><b>0</b></td>
-                    <td class="metric-hit"><b>0</b></td>
-                    <td class="metric-prec"><b>0</b></td>
-                    <td class="metric-rec"><b>0</b></td>
-                    <td class="metric-f1"><b>0</b></td>
+                    <td class="metric-dice"><b>0.000</b></td>
+                    <td class="metric-hit"><b>0.000</b></td>
+                    <td class="metric-prec"><b>0.000</b></td>
+                    <td class="metric-rec"><b>0.000</b></td>
+                    <td class="metric-f1"><b>0.000</b></td>
                   </tr>
-                  <tr data-versions='[{&quot;version&quot;: &quot;v1&quot;, &quot;dice&quot;: &quot;0&quot;, &quot;hit&quot;: &quot;0&quot;, &quot;prec&quot;: &quot;0&quot;, &quot;rec&quot;: &quot;0&quot;, &quot;f1&quot;: &quot;0&quot;}]' data-current-version="0">
+                  <tr data-model="SAT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.000&quot;, &quot;hit&quot;: &quot;0.000&quot;, &quot;prec&quot;: &quot;0.000&quot;, &quot;rec&quot;: &quot;0.000&quot;, &quot;f1&quot;: &quot;0.000&quot;}]' data-current-version="0">
                     <td style="word-break:break-word;">
                       <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT</a>
                       <p class="institution">SJTU</p>
                       
                     </td>
-                    <td class="metric-dice"><b>0</b></td>
-                    <td class="metric-hit"><b>0</b></td>
-                    <td class="metric-prec"><b>0</b></td>
-                    <td class="metric-rec"><b>0</b></td>
-                    <td class="metric-f1"><b>0</b></td>
+                    <td class="metric-dice"><b>0.000</b></td>
+                    <td class="metric-hit"><b>0.000</b></td>
+                    <td class="metric-prec"><b>0.000</b></td>
+                    <td class="metric-rec"><b>0.000</b></td>
+                    <td class="metric-f1"><b>0.000</b></td>
                   </tr>
                 </tbody>
               </table>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Per-Category Results</h2>
+              </div>
+              <div class="category-controls">
+                <div class="category-control-item">
+                  <label for="categoryModelSelect">Model</label>
+                  <select id="categoryModelSelect" class="form-control">
+                    <option value="DAGG">DAGG</option><option value="SAT-FT">SAT-FT</option><option value="BiomedParseV2">BiomedParseV2</option><option value="SegVol">SegVol</option><option value="SAT">SAT</option>
+                  </select>
+                </div>
+                <div class="category-control-item" id="categorySubmissionControl">
+                  <label for="categorySubmissionSelect">Submission</label>
+                  <select id="categorySubmissionSelect" class="form-control"></select>
+                </div>
+              </div>
+              <table class="table categoryTable">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>n</th>
+                    <th>Dice</th>
+                    <th>Hit Rate</th>
+                  </tr>
+                </thead>
+                <tbody id="categoryTableBody"></tbody>
+              </table>
+              <p><strong>Legend:</strong> Category codes starting with <strong>1</strong> are typically non-focal lung/airway/pleural abnormalities; codes starting with <strong>2</strong> are typically focal lung/airway/pleural opacities.</p>
             </div>
           </div>
         </div>
@@ -318,6 +364,79 @@
     $(document).ready(function() {
       $(".performanceTable").tablesorter({
         sortList: [[2, 1]]
+      });
+
+      var modelVersions = {"DAGG": ["Submission 1", "Submission 2"], "SAT-FT": [""], "BiomedParseV2": [""], "SegVol": [""], "SAT": [""]};
+      var categoryOrder = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2c", "2d", "2e", "2f", "2g", "2h"];
+      var categoryLabels = {"1a": "Bronchial wall thickening", "1b": "Bronchiectasis", "1c": "Emphysema (including Centrilobular, Paraseptal, Bullous)", "1d": "Septal thickening (including Interlobular, Reticulation)", "1e": "Micronodules (including Centrilobular, Tree-in-bud, Perilymphatic)", "1f": "Other", "2a": "Linear (including subsegmental atelectasis, scarring, fibrosis)", "2b": "Atelectasis, consolidation", "2c": "Groundglass opacity", "2d": "Pulmonary nodules/masses", "2e": "Pleural effusion or thickening", "2f": "Honeycombing", "2g": "Pneumothorax", "2h": "Other"};
+      var perCategoryLookup = {"DAGG|||Submission 1": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.020", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.197", "hit": "0.352"}, "1d": {"n": 6, "dice": "0.032", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.114", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.045", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.102", "hit": "0.346"}, "2b": {"n": 36, "dice": "0.270", "hit": "0.555"}, "2c": {"n": 36, "dice": "0.196", "hit": "0.444"}, "2d": {"n": 58, "dice": "0.295", "hit": "0.603"}, "2e": {"n": 7, "dice": "0.212", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.186", "hit": "1.000"}, "2h": {"n": 1, "dice": "0.463", "hit": "1.000"}}, "DAGG|||Submission 2": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.040", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.246", "hit": "0.529"}, "1d": {"n": 6, "dice": "0.049", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.109", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.009", "hit": "0.000"}, "2a": {"n": 49, "dice": "0.191", "hit": "0.530"}, "2b": {"n": 36, "dice": "0.290", "hit": "0.583"}, "2c": {"n": 36, "dice": "0.224", "hit": "0.472"}, "2d": {"n": 58, "dice": "0.287", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.140", "hit": "0.285"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.058", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.433", "hit": "1.000"}}, "SAT-FT|||": {"1a": {"n": 1, "dice": "0.051", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.035", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.010", "hit": "0.058"}, "1d": {"n": 6, "dice": "0.052", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.152", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.132", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.119", "hit": "0.387"}, "2b": {"n": 36, "dice": "0.249", "hit": "0.583"}, "2c": {"n": 36, "dice": "0.280", "hit": "0.555"}, "2d": {"n": 58, "dice": "0.191", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.135", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.064", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.282", "hit": "1.000"}}, "BiomedParseV2|||": {"1a": {"n": 1, "dice": "0.030", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.000", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.002", "hit": "0.000"}, "1d": {"n": 6, "dice": "0.009", "hit": "0.000"}, "1e": {"n": 7, "dice": "0.000", "hit": "0.000"}, "1f": {"n": 3, "dice": "0.139", "hit": "0.666"}, "2a": {"n": 49, "dice": "0.006", "hit": "0.000"}, "2b": {"n": 36, "dice": "0.039", "hit": "0.111"}, "2c": {"n": 36, "dice": "0.059", "hit": "0.194"}, "2d": {"n": 58, "dice": "0.000", "hit": "0.000"}, "2e": {"n": 7, "dice": "0.046", "hit": "0.142"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.081", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.132", "hit": "1.000"}}, "SegVol|||": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.000", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.000", "hit": "0.000"}, "1d": {"n": 6, "dice": "0.000", "hit": "0.000"}, "1e": {"n": 7, "dice": "0.000", "hit": "0.000"}, "1f": {"n": 3, "dice": "0.000", "hit": "0.000"}, "2a": {"n": 49, "dice": "0.000", "hit": "0.000"}, "2b": {"n": 36, "dice": "0.000", "hit": "0.000"}, "2c": {"n": 36, "dice": "0.000", "hit": "0.000"}, "2d": {"n": 58, "dice": "0.000", "hit": "0.000"}, "2e": {"n": 7, "dice": "0.000", "hit": "0.000"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.001", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.000", "hit": "0.000"}}, "SAT|||": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.000", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.000", "hit": "0.000"}, "1d": {"n": 6, "dice": "0.000", "hit": "0.000"}, "1e": {"n": 7, "dice": "0.000", "hit": "0.000"}, "1f": {"n": 3, "dice": "0.000", "hit": "0.000"}, "2a": {"n": 49, "dice": "0.000", "hit": "0.000"}, "2b": {"n": 36, "dice": "0.000", "hit": "0.000"}, "2c": {"n": 36, "dice": "0.000", "hit": "0.000"}, "2d": {"n": 58, "dice": "0.000", "hit": "0.000"}, "2e": {"n": 7, "dice": "0.000", "hit": "0.000"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.001", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.000", "hit": "0.000"}}};
+      var defaultCategoryModel = "DAGG";
+
+      function renderCategorySubmissionOptions(modelName, preferredVersion) {
+        var versions = modelVersions[modelName] || [];
+        var $submissionSelect = $("#categorySubmissionSelect");
+        var $submissionControl = $("#categorySubmissionControl");
+        $submissionSelect.empty();
+
+        if (versions.length <= 1) {
+          $submissionControl.hide();
+        } else {
+          $submissionControl.show();
+        }
+
+        versions.forEach(function(versionLabel) {
+          $submissionSelect.append(
+            $("<option></option>").val(versionLabel).text(versionLabel)
+          );
+        });
+
+        var selectedVersion = '';
+        if (preferredVersion && versions.indexOf(preferredVersion) !== -1) {
+          selectedVersion = preferredVersion;
+        } else if (versions.length > 0) {
+          selectedVersion = versions[versions.length - 1];
+        }
+
+        $submissionSelect.val(selectedVersion);
+        return selectedVersion;
+      }
+
+      function renderCategoryTable(modelName, versionLabel) {
+        var key = modelName + "|||" + versionLabel;
+        var categoryData = perCategoryLookup[key] || {};
+        var rows = '';
+
+        categoryOrder.forEach(function(categoryCode) {
+          var item = categoryData[categoryCode] || { n: 0, dice: '0.000', hit: '0.000' };
+          var categoryLabel = categoryLabels[categoryCode] || '';
+          var categoryCell = '<b>' + categoryCode + '</b>' + (categoryLabel ? ' — ' + categoryLabel : '');
+          rows += '<tr>' +
+            '<td>' + categoryCell + '</td>' +
+            '<td>' + item.n + '</td>' +
+            '<td>' + item.dice + '</td>' +
+            '<td>' + item.hit + '</td>' +
+            '</tr>';
+        });
+
+        $("#categoryTableBody").html(rows);
+      }
+
+      if (defaultCategoryModel) {
+        $("#categoryModelSelect").val(defaultCategoryModel);
+        var initialSubmission = renderCategorySubmissionOptions(defaultCategoryModel);
+        renderCategoryTable(defaultCategoryModel, initialSubmission);
+      }
+
+      $("#categoryModelSelect").on("change", function() {
+        var selectedModel = $(this).val();
+        var selectedSubmission = renderCategorySubmissionOptions(selectedModel);
+        renderCategoryTable(selectedModel, selectedSubmission);
+      });
+
+      $("#categorySubmissionSelect").on("change", function() {
+        var selectedModel = $("#categoryModelSelect").val();
+        var selectedSubmission = $(this).val();
+        renderCategoryTable(selectedModel, selectedSubmission);
       });
 
       // Custom sort handler: always start descending on a new column,
@@ -370,6 +489,14 @@
 
         // Store current version
         $row.attr('data-current-version', versionIndex);
+
+        // Sync per-category viewer if this model is selected there
+        var currentModelInViewer = $("#categoryModelSelect").val();
+        var rowModel = String($row.data('model') || '');
+        if (currentModelInViewer === rowModel) {
+          $("#categorySubmissionSelect").val(selected.version);
+          renderCategoryTable(rowModel, selected.version);
+        }
 
         // Re-trigger tablesorter update
         $(".performanceTable").trigger("update");

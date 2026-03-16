@@ -2,19 +2,21 @@ import pandas as pd
 import math
 import json
 import html as html_module
+import os
+from decimal import Decimal, ROUND_DOWN
 
 
-def generate_rexgroundingct_html(csv_path, output_path):
+def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=None):
     df = pd.read_csv(csv_path)
+    if per_category_csv_path is None:
+        per_category_csv_path = os.path.join(os.path.dirname(csv_path), 'per_category_results.csv')
 
     # Format metric values
     def fmt(val):
         if pd.isna(val) or (isinstance(val, float) and math.isnan(val)):
-            return '0'
-        v = float(val)
-        if v == 0:
-            return '0'
-        return str(v)
+            return '0.000'
+        truncated = Decimal(str(float(val))).quantize(Decimal('0.000'), rounding=ROUND_DOWN)
+        return f'{truncated:.3f}'
 
     # Group rows by model name to support multiple submission versions
     # Preserve insertion order: first occurrence determines display order
@@ -49,10 +51,10 @@ def generate_rexgroundingct_html(csv_path, output_path):
         # Build version data for JS
         versions_data = []
         for v_row in versions:
-            version_label = str(v_row.get('Version', 'v1'))
-            if version_label == 'nan':
-                version_label = 'v1'
-            versions_data.append({
+          version_label = str(v_row.get('Version', '')).strip()
+          if version_label == 'nan':
+            version_label = ''
+          versions_data.append({
                 'version': version_label,
                 'dice': fmt(v_row['Global Dice']),
                 'hit': fmt(v_row['Global HIT Rate']),
@@ -77,7 +79,7 @@ def generate_rexgroundingct_html(csv_path, output_path):
         else:
             version_selector = ''
 
-        rows_html += f'''                  <tr data-versions='{html_module.escape(json.dumps(versions_data), quote=True)}' data-current-version="{default_index}">
+        rows_html += f'''                  <tr data-model="{html_module.escape(model_name, quote=True)}" data-versions='{html_module.escape(json.dumps(versions_data), quote=True)}' data-current-version="{default_index}">
                     <td style="word-break:break-word;">
                       {model_cell}
                       {institution_html}
@@ -90,6 +92,78 @@ def generate_rexgroundingct_html(csv_path, output_path):
                     <td class="metric-f1"><b>{default_version["f1"]}</b></td>
                   </tr>
 '''
+
+    # Per-category data (DAGG Submission 2 provided; all others default to 0 for now)
+    category_order = [
+        '1a', '1b', '1c', '1d', '1e', '1f',
+      '2a', '2b', '2c', '2d', '2e', '2f', '2g', '2h'
+    ]
+
+    category_labels = {
+      '1a': 'Bronchial wall thickening',
+      '1b': 'Bronchiectasis',
+      '1c': 'Emphysema (including Centrilobular, Paraseptal, Bullous)',
+      '1d': 'Septal thickening (including Interlobular, Reticulation)',
+      '1e': 'Micronodules (including Centrilobular, Tree-in-bud, Perilymphatic)',
+      '1f': 'Other',
+      '2a': 'Linear (including subsegmental atelectasis, scarring, fibrosis)',
+      '2b': 'Atelectasis, consolidation',
+      '2c': 'Groundglass opacity',
+      '2d': 'Pulmonary nodules/masses',
+      '2e': 'Pleural effusion or thickening',
+      '2f': 'Honeycombing',
+      '2g': 'Pneumothorax',
+      '2h': 'Other',
+    }
+
+    model_versions = {}
+    for model_name, versions in model_groups.items():
+        labels = []
+        for v_row in versions:
+            version_label = str(v_row.get('Version', '')).strip()
+            if version_label == 'nan':
+                version_label = ''
+            if version_label not in labels:
+                labels.append(version_label)
+        model_versions[model_name] = labels
+
+    per_category_lookup = {}
+    for model_name, labels in model_versions.items():
+        for label in labels:
+            key = f'{model_name}|||{label}'
+            per_category_lookup[key] = {
+                cat: {'n': 0, 'dice': '0.000', 'hit': '0.000'}
+                for cat in category_order
+            }
+
+    if os.path.exists(per_category_csv_path):
+      per_category_df = pd.read_csv(per_category_csv_path)
+      required_cols = {'Model', 'Version', 'Category', 'n', 'Dice', 'Hit Rate'}
+      if required_cols.issubset(set(per_category_df.columns)):
+        for _, row in per_category_df.iterrows():
+          model_name = str(row.get('Model', '')).strip()
+          version_label = str(row.get('Version', '')).strip()
+          if version_label == 'nan':
+            version_label = ''
+          category_code = str(row.get('Category', '')).strip()
+          key = f'{model_name}|||{version_label}'
+          if key in per_category_lookup and category_code in per_category_lookup[key]:
+            try:
+              n_value = int(float(row.get('n', 0)))
+            except Exception:
+              n_value = 0
+            per_category_lookup[key][category_code] = {
+              'n': n_value,
+              'dice': fmt(row.get('Dice', 0)),
+              'hit': fmt(row.get('Hit Rate', 0)),
+            }
+
+    model_options_html = ''
+    for model_name in model_versions.keys():
+        escaped_name = html_module.escape(model_name)
+        model_options_html += f'<option value="{escaped_name}">{escaped_name}</option>'
+
+    default_category_model = 'DAGG' if 'DAGG' in model_versions else next(iter(model_versions), '')
 
     html = f'''<!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
@@ -148,6 +222,24 @@ def generate_rexgroundingct_html(csv_path, output_path):
   <style>
     .performanceTable th {{
       cursor: pointer;
+    }}
+    .category-controls {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }}
+    .category-control-item {{
+      min-width: 220px;
+    }}
+    .category-control-item label {{
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 13px;
+    }}
+    .categoryTable th {{
+      font-weight: 700;
     }}
     /* Version selector styles */
     .version-selector {{
@@ -340,6 +432,34 @@ def generate_rexgroundingct_html(csv_path, output_path):
                 <tbody>
 {rows_html}                </tbody>
               </table>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Per-Category Results</h2>
+              </div>
+              <div class="category-controls">
+                <div class="category-control-item">
+                  <label for="categoryModelSelect">Model</label>
+                  <select id="categoryModelSelect" class="form-control">
+                    {model_options_html}
+                  </select>
+                </div>
+                <div class="category-control-item" id="categorySubmissionControl">
+                  <label for="categorySubmissionSelect">Submission</label>
+                  <select id="categorySubmissionSelect" class="form-control"></select>
+                </div>
+              </div>
+              <table class="table categoryTable">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>n</th>
+                    <th>Dice</th>
+                    <th>Hit Rate</th>
+                  </tr>
+                </thead>
+                <tbody id="categoryTableBody"></tbody>
+              </table>
+              <p><strong>Legend:</strong> Category codes starting with <strong>1</strong> are typically non-focal lung/airway/pleural abnormalities; codes starting with <strong>2</strong> are typically focal lung/airway/pleural opacities.</p>
             </div>
           </div>
         </div>
@@ -351,6 +471,79 @@ def generate_rexgroundingct_html(csv_path, output_path):
     $(document).ready(function() {{
       $(".performanceTable").tablesorter({{
         sortList: [[2, 1]]
+      }});
+
+      var modelVersions = {json.dumps(model_versions)};
+      var categoryOrder = {json.dumps(category_order)};
+      var categoryLabels = {json.dumps(category_labels)};
+      var perCategoryLookup = {json.dumps(per_category_lookup)};
+      var defaultCategoryModel = {json.dumps(default_category_model)};
+
+      function renderCategorySubmissionOptions(modelName, preferredVersion) {{
+        var versions = modelVersions[modelName] || [];
+        var $submissionSelect = $("#categorySubmissionSelect");
+        var $submissionControl = $("#categorySubmissionControl");
+        $submissionSelect.empty();
+
+        if (versions.length <= 1) {{
+          $submissionControl.hide();
+        }} else {{
+          $submissionControl.show();
+        }}
+
+        versions.forEach(function(versionLabel) {{
+          $submissionSelect.append(
+            $("<option></option>").val(versionLabel).text(versionLabel)
+          );
+        }});
+
+        var selectedVersion = '';
+        if (preferredVersion && versions.indexOf(preferredVersion) !== -1) {{
+          selectedVersion = preferredVersion;
+        }} else if (versions.length > 0) {{
+          selectedVersion = versions[versions.length - 1];
+        }}
+
+        $submissionSelect.val(selectedVersion);
+        return selectedVersion;
+      }}
+
+      function renderCategoryTable(modelName, versionLabel) {{
+        var key = modelName + "|||" + versionLabel;
+        var categoryData = perCategoryLookup[key] || {{}};
+        var rows = '';
+
+        categoryOrder.forEach(function(categoryCode) {{
+          var item = categoryData[categoryCode] || {{ n: 0, dice: '0.000', hit: '0.000' }};
+          var categoryLabel = categoryLabels[categoryCode] || '';
+          var categoryCell = '<b>' + categoryCode + '</b>' + (categoryLabel ? ' — ' + categoryLabel : '');
+          rows += '<tr>' +
+            '<td>' + categoryCell + '</td>' +
+            '<td>' + item.n + '</td>' +
+            '<td>' + item.dice + '</td>' +
+            '<td>' + item.hit + '</td>' +
+            '</tr>';
+        }});
+
+        $("#categoryTableBody").html(rows);
+      }}
+
+      if (defaultCategoryModel) {{
+        $("#categoryModelSelect").val(defaultCategoryModel);
+        var initialSubmission = renderCategorySubmissionOptions(defaultCategoryModel);
+        renderCategoryTable(defaultCategoryModel, initialSubmission);
+      }}
+
+      $("#categoryModelSelect").on("change", function() {{
+        var selectedModel = $(this).val();
+        var selectedSubmission = renderCategorySubmissionOptions(selectedModel);
+        renderCategoryTable(selectedModel, selectedSubmission);
+      }});
+
+      $("#categorySubmissionSelect").on("change", function() {{
+        var selectedModel = $("#categoryModelSelect").val();
+        var selectedSubmission = $(this).val();
+        renderCategoryTable(selectedModel, selectedSubmission);
       }});
 
       // Custom sort handler: always start descending on a new column,
@@ -404,6 +597,14 @@ def generate_rexgroundingct_html(csv_path, output_path):
         // Store current version
         $row.attr('data-current-version', versionIndex);
 
+        // Sync per-category viewer if this model is selected there
+        var currentModelInViewer = $("#categoryModelSelect").val();
+        var rowModel = String($row.data('model') || '');
+        if (currentModelInViewer === rowModel) {{
+          $("#categorySubmissionSelect").val(selected.version);
+          renderCategoryTable(rowModel, selected.version);
+        }}
+
         // Re-trigger tablesorter update
         $(".performanceTable").trigger("update");
       }});
@@ -421,5 +622,6 @@ def generate_rexgroundingct_html(csv_path, output_path):
 if __name__ == '__main__':
     generate_rexgroundingct_html(
         './ReXGroundingCT/ReXGroundingCT.csv',
-        './ReXGroundingCT/index.html'
+    './ReXGroundingCT/index.html',
+    './ReXGroundingCT/per_category_results.csv'
     )
