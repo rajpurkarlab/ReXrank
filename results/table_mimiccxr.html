@@ -3,9 +3,9 @@
           <div class="infoCard">
             <div class="infoBody">
               <div class="infoHeadline">
-                <h2>ReXrank Challenge V1.0 - RRG Performance on MIMIC-CXR</h2>
+                <h2>Leaderboard on MIMIC-CXR Dataset</h2>
               </div>
-              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments.</p>
+              <div><p> <a class="link" href="https://physionet.org/content/mimic-cxr/2.0.0/">MIMIC-CXR </a> contains 377,110 images corresponding to 227,835 radiographic studies performed at the Beth Israel Deaconess Medical Center in Boston, MA. We follow the official split of MIMIC-CXR in the following experiments. * denotes the model was trained on this dataset.</p>
               </div>
               <div>
                 <button id="testBtnMIMIC" class="btn btn-black">Findings</button>
@@ -16,13 +16,14 @@
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
-                    <th>1/RadCliQ-v1</th>
-                    <th>BLEU</th>
-                    <th>BertScore</th>
-                    <th>SembScore</th>
-                    <th>RadGraph</th>
-                    <th>RaTEScore</th>
-                    <th>GREEN</th>
+                    <th>1/RadCliQ-v1 <b>↑</b></th>
+                    <th>BLEU <b>↑</b></th>
+                    <th>BertScore <b>↑</b></th>
+                    <th>SembScore <b>↑</b></th>
+                    <th>RadGraph <b>↑</b></th>
+                    <th>RaTEScore <b>↑</b></th>
+                    <th>GREEN <b>↑</b></th>
+                    <th>1/FineRadScore <b>↑</b></th>
                   </tr>
                 </thead>
                 <tbody id="testResultsMIMIC">
@@ -43,6 +44,7 @@
                 <td><b>0.148</b></td>
                 <td><b>0.474</b></td>
                 <td><b>0.257</b></td>
+                <td><b>0.355</b></td>
               </tr>
         
               <tr>
@@ -61,6 +63,7 @@
                 <td><b>0.17</b></td>
                 <td><b>0.485</b></td>
                 <td><b>0.311</b></td>
+                <td><b>0.363</b></td>
               </tr>
         
               <tr>
@@ -79,6 +82,7 @@
                 <td><b>0.142</b></td>
                 <td><b>0.469</b></td>
                 <td><b>0.225</b></td>
+                <td><b>0.351</b></td>
               </tr>
         
               <tr>
@@ -97,6 +101,7 @@
                 <td><b>0.181</b></td>
                 <td><b>0.49</b></td>
                 <td><b>0.305</b></td>
+                <td><b>0.363</b></td>
               </tr>
         
               <tr>
@@ -115,6 +120,7 @@
                 <td><b>0.149</b></td>
                 <td><b>0.432</b></td>
                 <td><b>0.268</b></td>
+                <td><b>0.362</b></td>
               </tr>
         
               <tr>
@@ -133,6 +139,7 @@
                 <td><b>0.103</b></td>
                 <td><b>0.448</b></td>
                 <td><b>0.164</b></td>
+                <td><b>0.347</b></td>
               </tr>
         
               <tr>
@@ -151,6 +158,7 @@
                 <td><b>0.273</b></td>
                 <td><b>0.55</b></td>
                 <td><b>0.374</b></td>
+                <td><b>0.365</b></td>
               </tr>
         
               <tr>
@@ -169,6 +177,7 @@
                 <td><b>0.109</b></td>
                 <td><b>0.45</b></td>
                 <td><b>0.185</b></td>
+                <td><b>0.351</b></td>
               </tr>
         
               <tr>
@@ -187,6 +196,7 @@
                 <td><b>0.172</b></td>
                 <td><b>0.485</b></td>
                 <td><b>0.273</b></td>
+                <td><b>0.359</b></td>
               </tr>
         
               <tr>
@@ -205,6 +215,7 @@
                 <td><b>0.168</b></td>
                 <td><b>0.491</b></td>
                 <td><b>0.273</b></td>
+                <td><b>0.352</b></td>
               </tr>
         
               <tr>
@@ -223,6 +234,7 @@
                 <td><b>0.14</b></td>
                 <td><b>0.45</b></td>
                 <td><b>0.256</b></td>
+                <td><b>0.357</b></td>
               </tr>
         
               <tr>
@@ -241,6 +253,7 @@
                 <td><b>0.109</b></td>
                 <td><b>0.449</b></td>
                 <td><b>0.21</b></td>
+                <td><b>0.347</b></td>
               </tr>
         
               <tr>
@@ -259,6 +272,7 @@
                 <td><b>0.046</b></td>
                 <td><b>0.341</b></td>
                 <td><b>0.043</b></td>
+                <td><b>0.307</b></td>
               </tr>
         
               <tr>
@@ -277,6 +291,7 @@
                 <td><b>0.084</b></td>
                 <td><b>0.423</b></td>
                 <td><b>0.161</b></td>
+                <td><b>0.343</b></td>
               </tr>
         
               <tr>
@@ -295,6 +310,7 @@
                 <td><b>0.059</b></td>
                 <td><b>0.36</b></td>
                 <td><b>0.123</b></td>
+                <td><b>0.341</b></td>
               </tr>
         
               <tr>
@@ -313,6 +329,7 @@
                 <td><b>0.131</b></td>
                 <td><b>0.517</b></td>
                 <td><b>0.224</b></td>
+                <td><b>0.359</b></td>
               </tr>
         
               <tr>
@@ -331,6 +348,7 @@
                 <td><b>0.223</b></td>
                 <td><b>0.531</b></td>
                 <td><b>0.327</b></td>
+                <td><b>0.358</b></td>
               </tr>
         
               <tr>
@@ -349,6 +367,7 @@
                 <td><b>0.22</b></td>
                 <td><b>0.521</b></td>
                 <td><b>0.338</b></td>
+                <td><b>0.359</b></td>
               </tr>
         
               <tr>
@@ -367,6 +386,7 @@
                 <td><b>0.218</b></td>
                 <td><b>0.523</b></td>
                 <td><b>0.356</b></td>
+                <td><b>0.362</b></td>
               </tr>
         
               <tr>
@@ -385,6 +405,7 @@
                 <td><b>0.122</b></td>
                 <td><b>0.455</b></td>
                 <td><b>0.174</b></td>
+                <td><b>0.347</b></td>
               </tr>
         
               <tr>
@@ -403,6 +424,7 @@
                 <td><b>0.143</b></td>
                 <td><b>0.465</b></td>
                 <td><b>0.24</b></td>
+                <td><b>0.354</b></td>
               </tr>
         
               <tr>
@@ -421,6 +443,7 @@
                 <td><b>0.207</b></td>
                 <td><b>0.534</b></td>
                 <td><b>0.294</b></td>
+                <td><b>0.356</b></td>
               </tr>
         
               <tr>
@@ -439,6 +462,7 @@
                 <td><b>0.182</b></td>
                 <td><b>0.505</b></td>
                 <td><b>0.301</b></td>
+                <td><b>0.361</b></td>
               </tr>
         
               <tr>
@@ -457,6 +481,7 @@
                 <td><b>0.159</b></td>
                 <td><b>0.549</b></td>
                 <td><b>0.293</b></td>
+                <td><b>0.349</b></td>
               </tr>
         
               <tr>
@@ -475,6 +500,7 @@
                 <td><b>0.269</b></td>
                 <td><b>0.602</b></td>
                 <td><b>0.36</b></td>
+                <td><b>nan</b></td>
               </tr>
         
               <tr>
@@ -493,6 +519,7 @@
                 <td><b>0.235</b></td>
                 <td><b>0.519</b></td>
                 <td><b>0.314</b></td>
+                <td><b>nan</b></td>
               </tr>
         
               <tr>
@@ -511,6 +538,7 @@
                 <td><b>0.251</b></td>
                 <td><b>0.584</b></td>
                 <td><b>0.351</b></td>
+                <td><b>nan</b></td>
               </tr>
         
               <tr>
@@ -529,6 +557,7 @@
                 <td><b>0.253</b></td>
                 <td><b>0.579</b></td>
                 <td><b>0.339</b></td>
+                <td><b>nan</b></td>
               </tr>
         
               <tr>
@@ -547,6 +576,7 @@
                 <td><b>0.174</b></td>
                 <td><b>0.543</b></td>
                 <td><b>0.267</b></td>
+                <td><b>nan</b></td>
               </tr>
         
               <tr>
@@ -565,6 +595,26 @@
                 <td><b>0.18</b></td>
                 <td><b>0.565</b></td>
                 <td><b>0.284</b></td>
+                <td><b>nan</b></td>
+              </tr>
+        
+              <tr>
+                <td>
+                  <p>31</p>
+                  <span class="date label label-default">2025</span>
+                </td>
+                <td style="word-break:break-word;">
+                  <a class="link" href="nan">zzy-RGv2-2b</a>
+                  <p class="institution">Individual</p>
+                </td>
+                <td><b>1.267</b></td>
+                <td><b>0.237</b></td>
+                <td><b>0.488</b></td>
+                <td><b>0.495</b></td>
+                <td><b>0.292</b></td>
+                <td><b>0.603</b></td>
+                <td><b>0.366</b></td>
+                <td><b>nan</b></td>
               </tr>
         
             </tbody>
@@ -586,6 +636,7 @@
                 <td><b>0.193</b></td>
                 <td><b>0.511</b></td>
                 <td><b>0.377</b></td>
+                <td><b>0.365</b></td>
               </tr>
         
               <tr>
@@ -604,6 +655,7 @@
                 <td><b>0.173</b></td>
                 <td><b>0.51</b></td>
                 <td><b>0.302</b></td>
+                <td><b>0.355</b></td>
               </tr>
         
               <tr>
@@ -622,6 +674,7 @@
                 <td><b>0.203</b></td>
                 <td><b>0.52</b></td>
                 <td><b>0.367</b></td>
+                <td><b>0.365</b></td>
               </tr>
         
               <tr>
@@ -640,6 +693,7 @@
                 <td><b>0.273</b></td>
                 <td><b>0.554</b></td>
                 <td><b>0.421</b></td>
+                <td><b>0.361</b></td>
               </tr>
         
               <tr>
@@ -658,6 +712,7 @@
                 <td><b>0.111</b></td>
                 <td><b>0.448</b></td>
                 <td><b>0.214</b></td>
+                <td><b>0.346</b></td>
               </tr>
         
               <tr>
@@ -676,6 +731,7 @@
                 <td><b>0.085</b></td>
                 <td><b>0.429</b></td>
                 <td><b>0.127</b></td>
+                <td><b>0.331</b></td>
               </tr>
         
               <tr>
@@ -694,6 +750,7 @@
                 <td><b>0.266</b></td>
                 <td><b>0.615</b></td>
                 <td><b>0.365</b></td>
+                <td><b>nan</b></td>
               </tr>
         
               <tr>
@@ -712,6 +769,7 @@
                 <td><b>0.233</b></td>
                 <td><b>0.528</b></td>
                 <td><b>0.349</b></td>
+                <td><b>nan</b></td>
               </tr>
         
               <tr>
@@ -730,6 +788,7 @@
                 <td><b>0.195</b></td>
                 <td><b>0.578</b></td>
                 <td><b>0.303</b></td>
+                <td><b>nan</b></td>
               </tr>
         
             </tbody>
