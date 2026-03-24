@@ -387,12 +387,27 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             // Update ranks on page load
             updateRanksPrivate();
 
+            function toggleCrimsonColumn(tableId, show) {
+              var crimsonColIndex = 10;
+              var displayValue = show ? '' : 'none';
+              $(tableId + ' thead th:nth-child(' + crimsonColIndex + ')').css('display', displayValue);
+              $(tableId + ' tbody tr').each(function() {
+                $(this).find('td:nth-child(' + crimsonColIndex + ')').css('display', displayValue);
+              });
+            }
+
+            toggleCrimsonColumn("#modelTableIU", true);
+            toggleCrimsonColumn("#modelTablePrivate", true);
+            toggleCrimsonColumn("#modelTableCheXpert", true);
+            toggleCrimsonColumn("#modelTableTest", true);
+
             // Switch to test results
             $("#testBtnIU").click(function() {
                 $("#testResultsIU").show();
                 $("#validResultsIU").hide();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnIU").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableIU", true);
                 updateRanksIU(); // Update ranks after switching
             });
             $("#testBtnPrivate").click(function() {
@@ -400,6 +415,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validResultsPrivate").hide();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTablePrivate", true);
                 updateRanksPrivate(); // Update ranks after switching
             });
             $("#testBtnCheXpert").click(function() {
@@ -407,6 +423,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validResultsCheXpert").hide();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableCheXpert", true);
                 updateRanksCheXpert(); // Update ranks after switching
             });
             $("#testBtnMIMIC").click(function() {
@@ -414,6 +431,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validResultsMIMIC").hide();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableTest", true);
                 updateRankTest(); // Update ranks after switching
             });
     
@@ -423,6 +441,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validResultsIU").show();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnIU").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableIU", false);
                 updateRanksIU(); // Update ranks after switching
             });
             $("#validBtnPrivate").click(function() {
@@ -430,6 +449,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validResultsPrivate").show();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTablePrivate", false);
                 updateRanksPrivate(); // Update ranks after switching
             });
             $("#validBtnCheXpert").click(function() {
@@ -437,6 +457,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validResultsCheXpert").show();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableCheXpert", false);
                 updateRanksCheXpert(); // Update ranks after switching
             });
             $("#validBtnMIMIC").click(function() {
@@ -444,6 +465,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#validResultsMIMIC").show();
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableTest", false);
                 updateRankTest(); // Update ranks after switching
             });
           });
@@ -497,12 +519,12 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     '''
     return_html = head_html + mid_html + tail_html
     # save the html
-    with open(save_html_path, 'w') as f:
+    with open(save_html_path, 'w', encoding='utf-8') as f:
         f.write(return_html)
 
 
 def get_html_content(input_html):
-    with open(input_html, 'r') as f:
+  with open(input_html, 'r', encoding='utf-8') as f:
         return f.read()
 
 

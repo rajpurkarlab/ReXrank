@@ -1,13 +1,14 @@
 import pandas as pd
 
+HIDDEN_MODELS = {'zzy-RGv1-8b'}
 
 
 def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_path):
-    # 读取CSV文件
+    # 读取 CSV 文件
     df_test = pd.read_csv(test_csv_path)
     df_valid = pd.read_csv(valid_csv_path)
     
-    # HTML开头部分
+    # HTML 开头部分
     html_string = '''
     <div class="col-md-12">
           <div class="infoCard">
@@ -33,6 +34,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                     <th>RadGraph</th>
                     <th>RaTEScore</th>
                     <th>GREEN</th>
+                    <th>CRIMSON</th>
                   </tr>
                 </thead>
                 <tbody id="testResultsMIMIC">
@@ -40,6 +42,8 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
     
     # 生成测试集表格内容
     for _, row in df_test.iterrows():
+        if row['Model Name'] in HIDDEN_MODELS:
+            continue
         html_string += f'''
               <tr>
                 <td>
@@ -57,6 +61,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     
@@ -84,10 +89,11 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b></b></td>
               </tr>
         '''
     
-    # HTML结尾部分
+    # HTML 结尾部分
     html_string += '''
             </tbody>
           </table>
@@ -96,18 +102,18 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
     </div>
     '''
     
-    # 写入HTML文件
+    # 写入 HTML 文件
     with open(output_path, 'w') as file:
         file.write(html_string)
 
 
 def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, output_path):
-    # 读取CSV文件
+    # 读取 CSV 文件
     df_test = pd.read_csv(test_csv_path)
     df_valid = pd.read_csv(valid_csv_path)
     
     
-    # HTML开头部分
+    # HTML 开头部分
     html_string = '''
     <div class="col-md-12">
     <div class="infoCard">
@@ -134,6 +140,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
               <th>RadGraph</th>
               <th>RaTEScore</th>
               <th>GREEN</th>
+              <th>CRIMSON</th>
             </tr>
           </thead>
           <tbody id="testResultsPrivate">
@@ -141,6 +148,8 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
     
     # 生成表格内容
     for _, row in df_test.iterrows():
+        if row['Model Name'] in HIDDEN_MODELS:
+            continue
         html_string += f'''
               <tr>
                 <td>
@@ -158,6 +167,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     
@@ -184,10 +194,11 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b></b></td>
               </tr>
         '''
 
-    # HTML结尾部分
+    # HTML 结尾部分
     html_string += '''
             </tbody>
           </table>
@@ -196,19 +207,19 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
     </div>
     '''
     
-    # 写入HTML文件
+    # 写入 HTML 文件
     with open(output_path, 'w') as file:
         file.write(html_string)
 
 
 
 def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output_path):
-    # 读取CSV文件
+    # 读取 CSV 文件
     df_test = pd.read_csv(test_csv_path)
     df_valid = pd.read_csv(valid_csv_path)
     
     
-    # HTML开头部分
+    # HTML 开头部分
     html_string = '''
     <div class="col-md-12">
     <div class="infoCard">
@@ -235,6 +246,7 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
               <th>RadGraph</th>
               <th>RaTEScore</th>
               <th>GREEN</th>
+              <th>CRIMSON</th>
             </tr>
           </thead>
           <tbody id="testResultsCheXpert">
@@ -242,6 +254,8 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
     
     # 生成表格内容
     for _, row in df_test.iterrows():
+        if row['Model Name'] in HIDDEN_MODELS:
+            continue
         html_string += f'''
               <tr>
                 <td>
@@ -259,6 +273,7 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     html_string += '''
@@ -285,10 +300,11 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b></b></td>
               </tr>
         ''' 
     
-    # HTML结尾部分
+    # HTML 结尾部分
     html_string += '''
             </tbody>
           </table>
@@ -297,16 +313,16 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
     </div>
     '''
     
-    # 写入HTML文件
+    # 写入 HTML 文件
     with open(output_path, 'w') as file:
         file.write(html_string)
 
 def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path):
-    # 读取CSV文件
+    # 读取 CSV 文件
     df_test = pd.read_csv(test_csv_path)
     df_valid = pd.read_csv(valid_csv_path)
     
-    # HTML开头部分
+    # HTML 开头部分
     html_string = '''
     <div class="col-md-12">
       <div class="infoCard">
@@ -333,6 +349,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                     <th>RadGraph</th>
                     <th>RaTEScore</th>
                     <th>GREEN</th>
+                    <th>CRIMSON</th>
                   </tr>
                 </thead>
             <tbody id="testResultsIU">
@@ -340,6 +357,8 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
     
     # 生成测试集表格内容
     for _, row in df_test.iterrows():
+        if row['Model Name'] in HIDDEN_MODELS:
+            continue
         html_string += f'''
               <tr>
                 <td>
@@ -357,6 +376,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     
@@ -384,10 +404,11 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
+                <td><b></b></td>
               </tr>
         '''
     
-    # HTML结尾部分
+    # HTML 结尾部分
     html_string += '''
             </tbody>
           </table>
@@ -396,7 +417,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
     </div>
     '''
     
-    # 写入HTML文件
+    # 写入 HTML 文件
     with open(output_path, 'w') as file:
         file.write(html_string)
 
