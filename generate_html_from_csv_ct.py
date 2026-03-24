@@ -6,10 +6,12 @@ import os
 from decimal import Decimal, ROUND_DOWN
 
 
-def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=None):
+def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=None, category_counts_csv_path=None):
     df = pd.read_csv(csv_path)
     if per_category_csv_path is None:
         per_category_csv_path = os.path.join(os.path.dirname(csv_path), 'per_category_results.csv')
+    if category_counts_csv_path is None:
+        category_counts_csv_path = os.path.join(os.path.dirname(csv_path), 'category_counts.csv')
 
     # Format metric values
     def fmt(val):
@@ -42,9 +44,11 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
         else:
             model_cell = model_name
 
-        # Institution line
+        # Institution line (split onto new lines when multiple institutions are separated by '&')
         if institution and institution != 'nan' and institution.strip():
-            institution_html = f'<p class="institution">{institution}</p>'
+          institution_parts = [html_module.escape(part.strip()) for part in institution.split('&') if part.strip()]
+          institution_display = '<br/>'.join(institution_parts)
+          institution_html = f'<p class="institution">{institution_display}</p>'
         else:
             institution_html = '<p class="institution"></p>'
 
@@ -127,18 +131,31 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
                 labels.append(version_label)
         model_versions[model_name] = labels
 
+    category_counts = {cat: 0 for cat in category_order}
+    if os.path.exists(category_counts_csv_path):
+      category_counts_df = pd.read_csv(category_counts_csv_path)
+      required_count_cols = {'Category', 'n'}
+      if required_count_cols.issubset(set(category_counts_df.columns)):
+        for _, row in category_counts_df.iterrows():
+          category_code = str(row.get('Category', '')).strip()
+          if category_code in category_counts:
+            try:
+              category_counts[category_code] = int(float(row.get('n', 0)))
+            except Exception:
+              category_counts[category_code] = 0
+
     per_category_lookup = {}
     for model_name, labels in model_versions.items():
         for label in labels:
             key = f'{model_name}|||{label}'
             per_category_lookup[key] = {
-                cat: {'n': 0, 'dice': '0.000', 'hit': '0.000'}
+                cat: {'n': category_counts.get(cat, 0), 'dice': '0.000', 'hit': '0.000'}
                 for cat in category_order
             }
 
     if os.path.exists(per_category_csv_path):
       per_category_df = pd.read_csv(per_category_csv_path)
-      required_cols = {'Model', 'Version', 'Category', 'n', 'Dice', 'Hit Rate'}
+      required_cols = {'Model', 'Version', 'Category', 'Dice', 'Hit Rate'}
       if required_cols.issubset(set(per_category_df.columns)):
         for _, row in per_category_df.iterrows():
           model_name = str(row.get('Model', '')).strip()
@@ -148,22 +165,29 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
           category_code = str(row.get('Category', '')).strip()
           key = f'{model_name}|||{version_label}'
           if key in per_category_lookup and category_code in per_category_lookup[key]:
-            try:
-              n_value = int(float(row.get('n', 0)))
-            except Exception:
-              n_value = 0
             per_category_lookup[key][category_code] = {
-              'n': n_value,
+              'n': per_category_lookup[key][category_code]['n'],
               'dice': fmt(row.get('Dice', 0)),
               'hit': fmt(row.get('Hit Rate', 0)),
             }
 
+    # Sort models by hit rate (highest first); find max hit rate across all versions
+    model_hit_rates = []
+    for model_name, versions in model_groups.items():
+        max_hit_rate = 0
+        for v_row in versions:
+            hit_rate = float(v_row.get('Global HIT Rate', 0))
+            if hit_rate > max_hit_rate:
+                max_hit_rate = hit_rate
+        model_hit_rates.append((model_name, max_hit_rate))
+    model_hit_rates.sort(key=lambda x: x[1], reverse=True)
+
     model_options_html = ''
-    for model_name in model_versions.keys():
+    for model_name, _ in model_hit_rates:
         escaped_name = html_module.escape(model_name)
         model_options_html += f'<option value="{escaped_name}">{escaped_name}</option>'
 
-    default_category_model = 'DAGG' if 'DAGG' in model_versions else next(iter(model_versions), '')
+    default_category_model = model_hit_rates[0][0] if model_hit_rates else 'DAGG'
 
     html = f'''<!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
@@ -222,6 +246,19 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
   <style>
     .performanceTable th {{
       cursor: pointer;
+    }}
+    #contentCover .performanceTable th,
+    #contentCover .performanceTable td,
+    #contentCover .performanceTable.tablesorter td,
+    #contentCover .performanceTable.tablesorter th,
+    #contentCover .categoryTable th,
+    #contentCover .categoryTable td {{
+      text-align: center !important;
+      vertical-align: middle !important;
+    }}
+    #contentCover .categoryTable td:first-child,
+    #contentCover .categoryTable th:first-child {{
+      text-align: left !important;
     }}
     .category-controls {{
       display: flex;
