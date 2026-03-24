@@ -73,28 +73,28 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
   </style>
   <style>
     /* Dropdown hover functionality */
-    .navbar-nav .dropdown:hover .dropdown-menu {{
+    .navbar-nav .dropdown:hover .dropdown-menu {
       display: block;
-    }}
-    .navbar-nav .dropdown-menu {{
+    }
+    .navbar-nav .dropdown-menu {
       margin-top: 0;
       background-color: #fff !important;
-    }}
+    }
     /* Fix dropdown menu colors */
     #topNavbar .navbar-nav .dropdown-menu > li > a,
     #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
     #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
     #topNavbar .navbar-right .dropdown-menu > li > a,
     #topNavbar .navbar-right .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:focus {{
+    #topNavbar .navbar-right .dropdown-menu > li > a:focus {
       color: #333 !important;
       background-color: #fff !important;
-    }}
+    }
     #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:hover {{
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover {
       background-color: #f5f5f5 !important;
       color: #a41034 !important;
-    }}
+    }
   </style>
 </head>
 <body>

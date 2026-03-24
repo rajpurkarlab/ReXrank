@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_html, table_private_html, table_rank_v1_html, table_rank_v2_html, table_vqa_html, save_html_path):
+    head_html = '''<!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
 <html>
 <head>
@@ -72,28 +73,28 @@
   </style>
   <style>
     /* Dropdown hover functionality */
-    .navbar-nav .dropdown:hover .dropdown-menu {{
+    .navbar-nav .dropdown:hover .dropdown-menu {
       display: block;
-    }}
-    .navbar-nav .dropdown-menu {{
+    }
+    .navbar-nav .dropdown-menu {
       margin-top: 0;
       background-color: #fff !important;
-    }}
+    }
     /* Fix dropdown menu colors */
     #topNavbar .navbar-nav .dropdown-menu > li > a,
     #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
     #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
     #topNavbar .navbar-right .dropdown-menu > li > a,
     #topNavbar .navbar-right .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:focus {{
+    #topNavbar .navbar-right .dropdown-menu > li > a:focus {
       color: #333 !important;
       background-color: #fff !important;
-    }}
+    }
     #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
-    #topNavbar .navbar-right .dropdown-menu > li > a:hover {{
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover {
       background-color: #f5f5f5 !important;
       color: #a41034 !important;
-    }}
+    }
   </style>
 </head>
 <body>
@@ -160,384 +161,383 @@
               <p><a href="https://huggingface.co/datasets/rajpurkarlab/ReXVQA" target="_blank">ReXVQA</a> is the largest and most comprehensive benchmark for VQA in chest radiology, comprising 653834 questions paired with 160,000 radiological studies. The dataset is constructed from ReXGradient-160K.</p>
               </div>
             </div>
+        </div>'''
+    mid_html = '''{table_rank_v1_html} {table_rank_v2_html} {table_private_html} {table_mimiccxr_html} {table_iuxray_html} {table_chexpertplus_html} {table_vqa_html}  '''.format(table_chexpertplus_html=table_chexpertplus_html, table_iuxray_html=table_iuxray_html, table_mimiccxr_html=table_mimiccxr_html, table_private_html= table_private_html, table_rank_v1_html=table_rank_v1_html, table_rank_v2_html=table_rank_v2_html, table_vqa_html=table_vqa_html)
+    tail_html = '''
         </div>
-    <div class="col-md-7 right-column">
-      <div class="infoCard">
-        <div class="infoBody">
-          <div class="infoHeadline">
-            <h2>ReXrank Challenge V1.0 Leaderboard (RRG)</h2>
-          </div>
-          <div class="fixed-height-table">
-            <table class="table performanceTable">
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>ReXGradient</th>
-                  <th>MIMIC-CXR</th>
-                  <th>IU-Xray</th>
-                  <th>CheXpert Plus</th>
-                </tr>
-              </thead>
-              <tbody>
-    <tr><td><p>1</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://www.microsoft.com/en-us/research/group/real-world-evidence/">UniRG-CXR</a>
-              <p class="institution">Microsoft Research</p>
-            </td>
+        </div>
+    </div>
+    <nav class="navbar navbar-default navbar-static-bottom footer">
+        <div class="container clearfix">
+        <div class="rightNav">
+            <div>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                <a href="/ReXrank/">ReXrank</a>
+                </li>
+                <li>
+                <a href="https://www.rajpurkarlab.hms.harvard.edu/">Harvard Rajpurkar Lab</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+        </div>
+    </nav>
+    <script src="/ReXrank/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/ReXrank/javascripts/jquery.tablesorter.min.js"></script>
+    <script src="/ReXrank/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+     <script>
+        $(document).ready(function() {
+            // Initialize tablesorter
+            $("#modelTableTest").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRankTest() {
+                $("#modelTableTest tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
             
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv2-2b</a>
-              <p class="institution">Individual</p>
-            </td>
+            // Function to sort table based on custom order for clicked column
+            function customSortTest(columnIndex) {
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableTest").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableTest th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第 2 列及之后的列进行排序
+                    customSortTest(columnIndex);
+                }
+            });
+
+            // Update ranks after table sort ends
+            $("#modelTableTest").bind("sortEnd", function() {
+              updateRankTest();
+            });
+    
+            // Update ranks on page load
+            updateRankTest();
             
-            <td style="word-break:break-word;">
-              <a class="link" href="https://www.microsoft.com/en-us/research/group/real-world-evidence/">UniRG-CXR</a>
-              <p class="institution">Microsoft Research</p>
-            </td>
+            // Initialize tablesorter
+            $("#modelTableVQA").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRankVQA() {
+                $("#modelTableVQA tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
             
-            <td style="word-break:break-word;">
-              <a class="link" href="https://www.microsoft.com/en-us/research/group/real-world-evidence/">UniRG-CXR</a>
-              <p class="institution">Microsoft Research</p>
-            </td>
-            </tr><tr><td><p>2</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv2-2b</a>
-              <p class="institution">Individual</p>
-            </td>
+            // Function to sort table based on custom order for clicked column
+            function customSortTest(columnIndex) {
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableVQA").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableVQA th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第 2 列及之后的列进行排序
+                    customSortTest(columnIndex);
+                }
+            });
+
+            // Update ranks after table sort ends
+            $("#modelTableVQA").bind("sortEnd", function() {
+              updateRankVQA();
+            });
+    
+            // Update ranks on page load
+            updateRankVQA();
+
+
+            // Initialize tablesorter
+            $("#modelTableIU").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRanksIU() {
+                $("#modelTableIU tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
+
+            // Function to sort table based on custom order for clicked column
+            function customSortIU(columnIndex) {
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableIU").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableIU th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第 2 列及之后的列进行排序
+                  customSortIU(columnIndex);
+                }
+            });
+    
+            // Update ranks after table sort ends
+            $("#modelTableIU").bind("sortEnd", function() {
+            updateRanksIU();
+            });
+    
+            // Update ranks on page load
+            updateRanksIU();
             
-            <td style="word-break:break-word;">
-              <a class="link" href="https://www.microsoft.com/en-us/research/group/real-world-evidence/">UniRG-CXR</a>
-              <p class="institution">Microsoft Research</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv2-2b</a>
-              <p class="institution">Individual</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv2-2b</a>
-              <p class="institution">Individual</p>
-            </td>
-            </tr><tr><td><p>3</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://www.microsoft.com/en-us/research">RadPhi4VisionCXR</a>
-              <p class="institution">Microsoft Research</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
-              <p class="institution">Harvard</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
-              <p class="institution">IIT Madras</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/YBZh/CheXOne-R1">CheXOne-R1</a>
-              <p class="institution">Stanford</p>
-            </td>
-            </tr><tr><td><p>4</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/YBZh/CheXOne-R1">CheXOne-R1</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/YBZh/CheXOne-R1">CheXOne-R1</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/YBZh/CheXOne-R1">CheXOne-R1</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
-              <p class="institution">Microsoft</p>
-            </td>
-            </tr><tr><td><p>5</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv1-8b</a>
-              <p class="institution">Individual</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://www.microsoft.com/en-us/research">RadPhi4VisionCXR</a>
-              <p class="institution">Microsoft Research</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
-              <p class="institution">Harvard</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://www.microsoft.com/en-us/research">RadPhi4VisionCXR</a>
-              <p class="institution">Microsoft Research</p>
-            </td>
-            </tr><tr><td><p>6</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/gssriram/MoERad">MoERad-IU</a>
-              <p class="institution">IIT Madras</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv1-8b</a>
-              <p class="institution">Individual</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv1-8b</a>
-              <p class="institution">Individual</p>
-            </td>
-            </tr><tr><td><p>7</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa/tree/main">MedVersa</a>
-              <p class="institution">Harvard</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
-              <p class="institution">University of Glasgow</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://deepmind.google/models/gemma/medgemma/">MedGemma 1.5 4B</a>
-              <p class="institution"> Google</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
-              <p class="institution">Stanford</p>
-            </td>
-            </tr><tr><td><p>8</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
-              <p class="institution">Google</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
-              <p class="institution">Microsoft</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
-              <p class="institution">SYSU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            </tr><tr><td><p>9</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2</a>
-              <p class="institution">Microsoft</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
-              <p class="institution">Google</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2</a>
-              <p class="institution">Microsoft</p>
-            </td>
-            </tr><tr><td><p>10</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://deepmind.google/models/gemma/medgemma/">MedGemma 1.5 4B</a>
-              <p class="institution"> Google</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/aehrc/cxrmate-rrg24">CXRMate-RRG24</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://arxiv.org/pdf/2508.03733">CX-Mind</a>
-              <p class="institution">SJTU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX</a>
-              <p class="institution">Stanford</p>
-            </td>
-            </tr><tr><td><p>11</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://arxiv.org/pdf/2508.03733">CX-Mind</a>
-              <p class="institution">SJTU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/microsoft/maira-2">MAIRA-2</a>
-              <p class="institution">Microsoft</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
-              <p class="institution">SNUH</p>
-            </td>
-            </tr><tr><td><p>12</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/WissingChen/VLCI">VLCI-IU</a>
-              <p class="institution">SYSU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
-              <p class="institution">SNUH</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/aehrc/cvt2distilgpt2">Cvt2distilgpt2-IU</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            </tr><tr><td><p>13</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/MercyPrasanna/rexrank">RadPhi3.5Vision</a>
-              <p class="institution">Microsoft</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
-              <p class="institution">TUM</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="nan">zzy-RGv1-8b</a>
-              <p class="institution">Individual</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/hyzhou/MedVersa-Internal/tree/main">MedVersa</a>
-              <p class="institution">Harvard</p>
-            </td>
-            </tr><tr><td><p>14</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
-              <p class="institution">TUM</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
-              <p class="institution">University of Glasgow</p>
-            </td>
-            </tr><tr><td><p>15</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
-              <p class="institution">SNUH</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://arxiv.org/pdf/2508.03733">CX-Mind</a>
-              <p class="institution">SJTU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Gavroche11/rexrank-submission">DD-LLaVA-X</a>
-              <p class="institution">SNUH</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
-              <p class="institution">TUM</p>
-            </td>
-            </tr><tr><td><p>16</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
-              <p class="institution">University of Glasgow</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
-              <p class="institution">TUM</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/chaoyi-wu/RadFM">RadFM</a>
-              <p class="institution">SJTU</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
-              <p class="institution">Google</p>
-            </td>
-            </tr><tr><td><p>17</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ChantalMP/RaDialog">RaDialog</a>
-              <p class="institution">TUM</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/google/medgemma-4b-it">MedGemma</a>
-              <p class="institution">Google</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-CheX-MIMIC</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/ttanida/rgrg">RGRG</a>
-              <p class="institution">TUM</p>
-            </td>
-            </tr><tr><td><p>18</p></td>
-            <td style="word-break:break-word;">
-              <a class="link" href="https://huggingface.co/aehrc/cxrmate-ed">CXRMate-ED</a>
-              <p class="institution">CSIRO</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/CheXagent">CheXagent</a>
-              <p class="institution">Stanford</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/X-iZhang/Libra">Libra</a>
-              <p class="institution">University of Glasgow</p>
-            </td>
-            
-            <td style="word-break:break-word;">
-              <a class="link" href="https://github.com/Stanford-AIMI/chexpert-plus">CheXpertPlus-MIMIC</a>
-              <p class="institution">Stanford</p>
+            // Initialize tablesorter
+            $("#modelTableCheXpert").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRanksCheXpert() {
+                $("#modelTableCheXpert tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
+    
+            // Function to sort table based on custom order for clicked column
+            function customSortCheXpert(columnIndex) {
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTableCheXpert").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTableCheXpert th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第 2 列及之后的列进行排序
+                  customSortCheXpert(columnIndex);
+                }
+            });
+            // Update ranks after table sort ends
+            $("#modelTableCheXpert").bind("sortEnd", function() {
+                updateRanksCheXpert();
+            });
+    
+            // Update ranks on page load
+            updateRanksCheXpert();
+
+            // Initialize tablesorter
+            $("#modelTablePrivate").tablesorter({
+                theme: 'default',
+                headers: {
+                    0: { sorter: false }, // Rank column
+                    1: { sorter: false }  // Model column
+                },
+                sortList: [[2, 1]] // Default sort by RadCliQ-v1 ascending
+            });
+    
+            // Update ranks after sorting
+            function updateRanksPrivate() {
+                $("#modelTablePrivate tbody:visible tr").each(function(index) {
+                    $(this).find("td:eq(0) p").text(index + 1);
+                });
+            }
+    
+            // Function to sort table based on custom order for clicked column
+            function customSortPrivate(columnIndex) {
+                var sortOrder = [1,1,1,1,1,1,1,1]; // 示例排序顺序数组
+                var sortDirection = sortOrder[columnIndex - 2]; // 获取点击列对应的排序方向
+                $("#modelTablePrivate").trigger("sorton", [[[columnIndex, sortDirection]]]);
+            }
+
+            // Detect column header click and apply custom sort
+            $("#modelTablePrivate th").click(function() {
+                var columnIndex = $(this).index();
+                if (columnIndex > 1) { // 只对第 2 列及之后的列进行排序
+                  customSortPrivate(columnIndex);
+                }
+            });
+            // Update ranks after table sort ends
+            $("#modelTablePrivate").bind("sortEnd", function() {
+                updateRanksPrivate();
+            });
+    
+            // Update ranks on page load
+            updateRanksPrivate();
+
+            function toggleCrimsonColumn(tableId, show) {
+              var crimsonColIndex = 10;
+              var displayValue = show ? '' : 'none';
+              $(tableId + ' thead th:nth-child(' + crimsonColIndex + ')').css('display', displayValue);
+              $(tableId + ' tbody tr').each(function() {
+                $(this).find('td:nth-child(' + crimsonColIndex + ')').css('display', displayValue);
+              });
+            }
+
+            toggleCrimsonColumn("#modelTableIU", true);
+            toggleCrimsonColumn("#modelTablePrivate", true);
+            toggleCrimsonColumn("#modelTableCheXpert", true);
+            toggleCrimsonColumn("#modelTableTest", true);
+
+            // Switch to test results
+            $("#testBtnIU").click(function() {
+                $("#testResultsIU").show();
+                $("#validResultsIU").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnIU").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableIU", true);
+                updateRanksIU(); // Update ranks after switching
+            });
+            $("#testBtnPrivate").click(function() {
+                $("#testResultsPrivate").show();
+                $("#validResultsPrivate").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTablePrivate", true);
+                updateRanksPrivate(); // Update ranks after switching
+            });
+            $("#testBtnCheXpert").click(function() {
+                $("#testResultsCheXpert").show();
+                $("#validResultsCheXpert").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableCheXpert", true);
+                updateRanksCheXpert(); // Update ranks after switching
+            });
+            $("#testBtnMIMIC").click(function() {
+                $("#testResultsMIMIC").show();
+                $("#validResultsMIMIC").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#validBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableTest", true);
+                updateRankTest(); // Update ranks after switching
+            });
+    
+            // Switch to valid results
+            $("#validBtnIU").click(function() {
+                $("#testResultsIU").hide();
+                $("#validResultsIU").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnIU").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableIU", false);
+                updateRanksIU(); // Update ranks after switching
+            });
+            $("#validBtnPrivate").click(function() {
+                $("#testResultsPrivate").hide();
+                $("#validResultsPrivate").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnPrivate").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTablePrivate", false);
+                updateRanksPrivate(); // Update ranks after switching
+            });
+            $("#validBtnCheXpert").click(function() {
+                $("#testResultsCheXpert").hide();
+                $("#validResultsCheXpert").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableCheXpert", false);
+                updateRanksCheXpert(); // Update ranks after switching
+            });
+            $("#validBtnMIMIC").click(function() {
+                $("#testResultsMIMIC").hide();
+                $("#validResultsMIMIC").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#testBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
+              toggleCrimsonColumn("#modelTableTest", false);
+                updateRankTest(); // Update ranks after switching
+            });
+          });
+          document.addEventListener('DOMContentLoaded', function() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const message = urlParams.get('message');
+          if (message === 'verified' || message === 'already-verified') {
+              window.location.href = '/explore/login.html?message=' + message;
+          }
+        });
+    </script>
+    
+    <style>
+        /* .btn {
+            margin: 10px;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        */
+        .btn-black {
+        background-color: #a41034;
+        color: #fff !important;
+        border: 2px solid #a41034;
+        }
+        .btn-gray {
+        background-color: #fff;
+        color: #a41034 !important;
+        border: 2px solid #a41034;
+        }
+
+        .btn-black:hover, .btn-gray:hover {
+        color: #fff !important;
+        } 
+
+        /* .btn-black {
+            background-color: black;
+        }
+    
+        .btn-gray {
+            background-color: gray;
+        }
+        
+        .btn-black:hover, .btn-gray:hover {
+            opacity: 0.8;
+        } */
+    </style>
+    </body>
+    </html>
+    '''
+    return_html = head_html + mid_html + tail_html
+    # save the html
+    with open(save_html_path, 'w', encoding='utf-8') as f:
+        f.write(return_html)
+
+
+def get_html_content(input_html):
+  with open(input_html, 'r', encoding='utf-8') as f:
+        return f.read()
+
+
+
+table_chexpertplus_html = './results/table_chexpertplus.html'
+table_iuxray_html = './results/table_iuxray.html'
+table_mimiccxr_html = './results/table_mimiccxr.html'
+table_private_html = './results/table_gradienthealth.html'
+table_rank_v1_html = './results/table_rank_v1.html'
+table_rank_v2_html = './results/table_rank_v2.html'
+table_vqa_html = './vqa_results/vqa_results.html'
+
+generate_html(get_html_content(table_chexpertplus_html), get_html_content(table_iuxray_html), get_html_content(table_mimiccxr_html), get_html_content(table_private_html), get_html_content(table_rank_v1_html), get_html_content(table_rank_v2_html), get_html_content(table_vqa_html), save_html_path='./index.html')
             </td>
             </tr><tr><td><p>19</p></td>
             <td style="word-break:break-word;">
