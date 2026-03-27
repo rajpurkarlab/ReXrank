@@ -58,8 +58,12 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
           version_label = str(v_row.get('Version', '')).strip()
           if version_label == 'nan':
             version_label = ''
+          date_val = str(v_row.get('Date', '')) if pd.notna(v_row.get('Date', '')) else ''
+          if date_val == 'nan':
+              date_val = ''
           versions_data.append({
                 'version': version_label,
+                'date': date_val,
                 'dice': fmt(v_row['Global Dice']),
                 'hit': fmt(v_row['Global HIT Rate']),
                 'prec': fmt(v_row['Instance Precision']),
@@ -83,11 +87,13 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
         else:
             version_selector = ''
 
+        default_date = default_version.get('date', '')
+        date_html = f'<span class="date label label-default model-date">{default_date}</span>' if default_date else '<span class="model-date"></span>'
         rows_html += f'''                  <tr data-model="{html_module.escape(model_name, quote=True)}" data-versions='{html_module.escape(json.dumps(versions_data), quote=True)}' data-current-version="{default_index}">
                     <td style="word-break:break-word;">
                       {model_cell}
                       {institution_html}
-                      {version_selector}
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;">{date_html}{version_selector}</div>
                     </td>
                     <td class="metric-dice"><b>{default_version["dice"]}</b></td>
                     <td class="metric-hit"><b>{default_version["hit"]}</b></td>
@@ -283,6 +289,9 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
       position: relative;
       display: inline-block;
       margin-top: 4px;
+    }}
+    .model-date {{
+      margin-top: 0;
     }}
     .version-badge {{
       display: inline-flex;
@@ -623,6 +632,14 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
         $row.find('.metric-prec b').text(selected.prec);
         $row.find('.metric-rec b').text(selected.rec);
         $row.find('.metric-f1 b').text(selected.f1);
+
+        // Update date
+        var $dateSpan = $row.find('.model-date');
+        if (selected.date) {{
+          $dateSpan.text(selected.date).addClass('date label label-default');
+        }} else {{
+          $dateSpan.text('').removeClass('date label label-default');
+        }}
 
         // Update active state
         $option.siblings().removeClass('active');
