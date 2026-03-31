@@ -20,13 +20,12 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 19,2024,Libra,University of Glasgow,https://github.com/X-iZhang/Libra,0.165,0.385,0.474,0.168,0.881,0.544,0.555,0.344
 20,2025,MoERad-IU,IIT Madras,https://github.com/gssriram/MoERad,0.227,0.434,0.446,0.247,1.018,0.575,0.494,0.363
 21,2025,MoERad-MIMIC,IIT Madras,https://github.com/gssriram/MoERad,0.145,0.351,0.406,0.116,0.756,0.508,0.431,0.249
-22,2025,RadPhi3.5Vision,Microsoft,https://github.com/MercyPrasanna/rexrank,0.209,0.383,0.488,0.169,0.891,0.544,0.453,0.314
-23,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.166,0.387,0.469,0.174,0.886,0.542,0.504,0.316
-24,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.2,0.427,0.479,0.223,1.008,0.617,0.566,0.282
-25,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.291,0.538,0.576,0.298,1.622,0.618,0.469,0.315
-26,2026,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research,0.3,0.512,0.563,0.323,1.556,0.653,0.506,0.448
-27,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.229,0.483,0.498,0.21,1.116,0.535,0.428,0.127
-28,2025,zzy-RGv1-8b,Individual,,0.206,0.432,0.505,0.217,1.037,0.593,0.493,0.363
-29,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.181,0.424,0.454,0.167,0.917,0.574,0.499,0.339
-30,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.19,0.37,0.5,0.238,0.957,0.61,0.542,0.288
-31,2025,zzy-RGv2-2b,Individual,,0.284,0.53,0.556,0.284,1.496,0.627,0.515,0.417
+22,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.166,0.387,0.469,0.174,0.886,0.542,0.504,0.316
+23,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.2,0.427,0.479,0.223,1.008,0.617,0.566,0.282
+24,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.291,0.538,0.576,0.298,1.622,0.618,0.469,0.315
+25,2026,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research,0.3,0.512,0.563,0.323,1.556,0.653,0.506,0.448
+26,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.229,0.483,0.498,0.21,1.116,0.535,0.428,0.127
+27,2025,zzy-RGv1-8b,Individual,,0.206,0.432,0.505,0.217,1.037,0.593,0.493,0.363
+28,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.181,0.424,0.454,0.167,0.917,0.574,0.499,0.339
+29,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.19,0.37,0.5,0.238,0.957,0.61,0.542,0.288
+30,2025,zzy-RGv2-2b,Individual,,0.284,0.53,0.556,0.284,1.496,0.627,0.515,0.417
