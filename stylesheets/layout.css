@@ -136,6 +136,31 @@
 .alert-dismissible .close {
   position: static;
 }
+.challenge-banner {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 1029;
+  background: #f0ad4e;
+  color: #333;
+  text-align: center;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.challenge-banner a {
+  color: #333;
+  text-decoration: underline;
+  margin-left: 6px;
+}
+.challenge-banner a:hover {
+  color: #a41034;
+}
+body.has-banner {
+  padding-top: 88px;
+}
 .cover {
   min-height: 100%;
   background: #eee;

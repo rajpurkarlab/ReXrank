@@ -97,7 +97,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     }
   </style>
 </head>
-<body>
+<body class="has-banner">
   <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
     <div class="container clearfix" id="navContainer">
       <div class="rightNav">
@@ -128,6 +128,9 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
         </div>
       </div>
     </div>
+  </div>
+  <div class="challenge-banner">
+    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> — Pre-registration is open! <a href="./ReXGroundingCT/challenge.html">Learn More &rarr;</a>
   </div>
   <div class="cover" id="topCover">
     <div class="container">

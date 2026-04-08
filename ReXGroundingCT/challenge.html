@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<!--Author: Xiaoman Zhang 2024 -->
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>ReXGroundingCT Challenge @ MICCAI 2026</title>
+  <meta name="description" content="ReXGroundingCT Challenge at MICCAI 2026: Segmentation of findings from free-text radiology reports in 3D chest CT scans."/>
+  <meta name="keywords" content="ReXGroundingCT, MICCAI 2026, challenge, radiology, chest CT, segmentation, medical imaging"/>
+  <meta property="og:title" content="ReXGroundingCT Challenge @ MICCAI 2026"/>
+  <meta property="og:description" content="Segmentation of findings from free-text radiology reports in 3D chest CT — a MICCAI 2026 challenge."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/ReXGroundingCT/challenge.html"/>
+  <meta property="og:type" content="website"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="/logo.png" property="og:image"/>
+  <link href="../logo.png" rel="image_src" type="image/png"/>
+  <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../stylesheets/layout.css" rel="stylesheet"/>
+  <link href="../stylesheets/index.css" rel="stylesheet"/>
+  <script src="../javascripts/analytics.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <link rel="stylesheet" href="../stylesheets/theme.default.min.css">
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+
+  <style>
+    .justified-text {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    /* Dropdown hover functionality */
+    .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .navbar-nav .dropdown-menu {
+      margin-top: 0;
+      background-color: #fff !important;
+    }
+    #topNavbar .navbar-nav .dropdown-menu > li > a,
+    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
+    #topNavbar .navbar-right .dropdown-menu > li > a,
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-right .dropdown-menu > li > a:focus {
+      color: #333 !important;
+      background-color: #fff !important;
+    }
+    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover {
+      background-color: #f5f5f5 !important;
+      color: #a41034 !important;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #a41034;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 70px;
+      margin-bottom: 28px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 4px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: #a41034;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #a41034;
+    }
+    .timeline-item.upcoming::before {
+      background: #fff;
+    }
+    .timeline-date {
+      font-weight: 700;
+      color: #a41034;
+      font-size: 15px;
+    }
+    .timeline-label {
+      font-size: 16px;
+      color: #333;
+      margin-top: 2px;
+    }
+
+    .preregister-form {
+      background: #f7f7f9;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 30px;
+      max-width: 500px;
+      margin: 20px auto 0 auto;
+    }
+    .preregister-form input {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+    .preregister-form input:focus {
+      border-color: #a41034;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(164,16,52,0.15);
+    }
+    .preregister-form button {
+      width: 100%;
+      padding: 12px;
+      background: #a41034;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .preregister-form button:hover {
+      background: #7a0c28;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: #2e7d32;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .challenge-section {
+      margin-bottom: 35px;
+    }
+    .challenge-section h3 {
+      color: #a41034;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1.5em;
+    }
+    .challenge-section p, .challenge-section li {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .challenge-section ul {
+      padding-left: 20px;
+    }
+    .challenge-section ul li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
+                ReXrankCT <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="../ReXGroundingCT/index.html">ReXGroundingCT</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="../ReX-MLE/index.html" style="font-size: 18px;">ReX-MLE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="../">ReXrank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover" id="topCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="appTitle" style="font-size:4em;">ReXGrounding Challenge</h1>
+          <h2 id="appSubtitle">MICCAI 2026</h2>
+          <h3 id="helpLink">Grounding Free-Text Findings to 3D CT Segmentations</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover" id="contentCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="infoCard">
+            <div class="infoBody justified-text">
+
+              <div class="challenge-section">
+                <h3>🏆 About the Challenge</h3>
+                <p>The <strong>ReXGrounding Challenge</strong> is a <a href="https://conferences.miccai.org/2026/" target="_blank">MICCAI 2026</a> challenge designed to evaluate models on localizing unconstrained radiology findings described in natural language to precise 3D segmentation masks in volumetric chest CT.</p>
+                <p style="margin-top:10px;">Unlike prior challenges that focus on category-level lesion or organ segmentation, this benchmark requires models to interpret diverse clinical language — including anatomical descriptors, spatial relations, and morphological attributes — and ground it accurately in volumetric space. The dataset includes both focal and diffuse abnormalities, spans a wide range of radiological patterns, and reflects real-world reporting variability.</p>
+                <p style="margin-top:10px;">The challenge is built upon <strong>CT-RATE</strong>, a large-scale dataset of non-contrast chest CT scans paired with free-text radiology reports, and is further extended with expert-verified, pixel-level 3D segmentations corresponding to individual report findings. The challenge is hosted on the <a href="./index.html">ReXrank leaderboard</a>.</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>🔬 Task</h3>
+                <p>Participants are evaluated on one primary task: <strong>free-text finding grounding</strong>. A model receives a CT volume and a natural-language finding from a radiology report and must output a 3D segmentation mask corresponding to that description.</p>
+                <p style="margin-top:10px;">Findings span <strong>14 categories</strong> covering both typically non-focal abnormalities (bronchial wall thickening, bronchiectasis, emphysema, septal thickening, micronodules, and other diffuse abnormalities) and typically focal abnormalities (linear opacities, atelectasis/consolidation, ground-glass opacities, pulmonary nodules/masses, pleural effusion/thickening, honeycombing, pneumothorax, and other focal findings).</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📦 Dataset</h3>
+                <table class="table" style="margin-top:10px;">
+                  <thead><tr><th>Split</th><th>Cases</th><th>Annotations</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Training</strong></td><td>2,992 CT scans</td><td>Partial-instance (up to 3 instances per finding)</td></tr>
+                    <tr><td><strong>Validation</strong></td><td>200 CT scans</td><td>Exhaustive (all instances segmented by radiologists)</td></tr>
+                    <tr><td><strong>Test</strong></td><td>300 CT scans</td><td>Exhaustive (all instances segmented by radiologists)</td></tr>
+                  </tbody>
+                </table>
+                <p>All annotations are pixel-level 3D segmentation masks linked to free-text findings extracted from radiology reports. Validation and test sets are annotated exclusively by board-certified radiologists.</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📅 Timeline</h3>
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-date">Now — May 2026</div>
+                    <div class="timeline-label">Pre-registration open — training data already publicly available</div>
+                  </div>
+                  <div class="timeline-item upcoming">
+                    <div class="timeline-date">June 2026</div>
+                    <div class="timeline-label">Challenge launch — registration opens, validation set released</div>
+                  </div>
+                  <div class="timeline-item upcoming">
+                    <div class="timeline-date">June — September 2026</div>
+                    <div class="timeline-label">Development phase — evaluate on validation set, submit multiple runs</div>
+                  </div>
+                  <div class="timeline-item upcoming">
+                    <div class="timeline-date">September 2026</div>
+                    <div class="timeline-label">Submission deadline — final submission evaluated on held-out test set</div>
+                  </div>
+                  <div class="timeline-item upcoming">
+                    <div class="timeline-date">Late September 2026</div>
+                    <div class="timeline-label">Results announced &amp; challenge session at MICCAI 2026</div>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📊 Evaluation Metrics</h3>
+                <p><strong>Ranking metric:</strong> Average Dice Similarity Coefficient (DSC) per finding per case.</p>
+                <p style="margin-top:12px;"><strong>Overlap-based metrics:</strong></p>
+                <ul>
+                  <li><strong>Dice (primary):</strong> Average DSC computed per finding per case</li>
+                  <li><strong>Hit Rate:</strong> Proportion of findings where overall Dice ≥ 0.1</li>
+                  <li><strong>Instance Precision:</strong> TP / (TP + FP), where TP is a predicted instance with Dice ≥ 0.2</li>
+                  <li><strong>Instance Recall:</strong> TP / (TP + FN)</li>
+                  <li><strong>Instance F1:</strong> Harmonic mean of Instance Precision and Recall</li>
+                </ul>
+                <p style="margin-top:12px;"><strong>Distance-based metrics:</strong></p>
+                <ul>
+                  <li><strong>Distance Precision:</strong> TP / (TP + FP), where TP is a predicted instance with ASSD (non-focal) or centroid distance (focal) ≤ 2× max voxel spacing</li>
+                  <li><strong>Distance Recall:</strong> TP / (TP + FN), using the same distance matching criterion</li>
+                  <li><strong>Distance F1:</strong> Harmonic mean of Distance Precision and Recall</li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📝 How to Participate</h3>
+                <ul>
+                  <li><strong>Pre-register now</strong> using the form below to receive updates when the challenge officially opens in June 2026.</li>
+                  <li>Training data is already publicly available — you can start developing your method now.</li>
+                  <li>Any publicly available or private training data, including pre-trained models and external datasets, may be used. All external data sources must be described in the method submission.</li>
+                  <li>All predictions on the test set must be <strong>fully automatic</strong> — no manual intervention, post-hoc editing, or case-specific tuning allowed.</li>
+                  <li>During the development phase, you can evaluate on the validation set and submit multiple runs. Only the final submission before the deadline is officially ranked.</li>
+                  <li>See the <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> for format details.</li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>🏅 Awards &amp; Publication</h3>
+                <ul>
+                  <li>Top 3 performing teams will receive <strong>certificates</strong> and invited <strong>oral/spotlight presentations</strong> at the challenge session.</li>
+                  <li>Top 3 teams will be recognized on the public leaderboard and in the post-challenge publication.</li>
+                  <li>Members of the top 3 teams qualify for <strong>co-authorship</strong> on the challenge publication (up to 8 authors per team).</li>
+                  <li>All teams are free to publish their own results independently with <strong>no embargo period</strong>.</li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section" id="preregister">
+                <h3>📬 Pre-Register</h3>
+                <p>Sign up to be notified when the challenge officially opens in June 2026.</p>
+                <div class="preregister-form" id="preregForm">
+                  <input type="text" id="regName" placeholder="Full Name" required />
+                  <input type="email" id="regEmail" placeholder="Email Address" required />
+                  <input type="text" id="regAffiliation" placeholder="Affiliation (optional)" />
+                  <button type="button" id="regSubmitBtn">Pre-Register</button>
+                </div>
+                <div class="form-success" id="formSuccess">
+                  ✅ Thank you! You've been pre-registered. We'll notify you when the challenge opens.
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>👥 Organizers</h3>
+                <ul>
+                  <li>Mohammed Baharoon — Harvard Medical School, USA</li>
+                  <li>Pranav Rajpurkar — Harvard Medical School, USA</li>
+                  <li>Luyang Luo — Harvard Medical School, USA</li>
+                  <li>Xiaoman Zhang — Harvard Medical School, USA</li>
+                  <li>Mahmoud Hussain Alabbad — King Fahad Hospital, Saudi Arabia</li>
+                  <li>Sungeun Kim — Harvard Medical School, USA</li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📄 Resources</h3>
+                <ul>
+                  <li><a href="./index.html">ReXGroundingCT Leaderboard</a></li>
+                  <li><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT" target="_blank">Dataset on HuggingFace</a></li>
+                  <li><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT/blob/main/rexrank_eval.py" target="_blank">Evaluation Code</a></li>
+                  <li><a href="../explore/submission_guideline_ct.html" target="_blank">Submission Guidelines</a></li>
+                  <li><a href="https://arxiv.org/abs/2507.22030" target="_blank">ReXGroundingCT Paper</a></li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📧 Contact</h3>
+                <p>For questions about the challenge, please contact <a href="mailto:MohammedSalimAB@outlook.com">Mohammed Baharoon</a>.</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📚 References</h3>
+                <p style="margin-bottom:12px;"><strong>ReXGroundingCT:</strong></p>
+                <pre style="background:#f7f7f9;padding:14px;border-radius:4px;font-size:13px;overflow-x:auto;white-space:pre-wrap;">@article{baharoon2025rexgroundingct,
+  title={ReXGroundingCT: A 3D Chest CT Dataset for Segmentation of Findings from Free-Text Reports},
+  author={Baharoon, Mohammed and Luo, Luyang and Moritz, Michael and Kumar, Abhinav and Kim, Sung Eun and Zhang, Xiaoman and Zhu, Miao and Alabbad, Mahmoud Hussain and Alhazmi, Maha Sbayel and Mistry, Neel P and others},
+  journal={arXiv preprint arXiv:2507.22030},
+  year={2025}
+}</pre>
+                <p style="margin-top:16px;margin-bottom:12px;"><strong>CT-RATE:</strong></p>
+                <pre style="background:#f7f7f9;padding:14px;border-radius:4px;font-size:13px;overflow-x:auto;white-space:pre-wrap;">@article{hamamci2026generalist,
+  title={Generalist foundation models from a multimodal dataset for 3D computed tomography},
+  author={Hamamci, Ibrahim Ethem and Er, Sezgin and Wang, Chenyu and Almas, Furkan and Simsek, Ayse Gulnihan and Esirgun, Sevval Nil and Dogan, Irem and Durugol, Omer Faruk and Hou, Benjamin and Shit, Suprosanna and others},
+  journal={Nature Biomedical Engineering},
+  pages={1--19},
+  year={2026},
+  publisher={Nature Publishing Group UK London}
+}</pre>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-default navbar-static-bottom footer">
+    <div class="container clearfix">
+      <div class="rightNav">
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../">ReXrank</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwlPqptO0GI4m37MiXT8u3IsRy0RmZBY3hLDYRgyZvUav5fK3oH51KHbkUIN71hvhqU/exec';
+
+      $('#regSubmitBtn').on('click', function() {
+        var name = $.trim($('#regName').val());
+        var email = $.trim($('#regEmail').val());
+        var affiliation = $.trim($('#regAffiliation').val());
+
+        if (!name) { alert('Please enter your name.'); return; }
+        if (!email || email.indexOf('@') === -1) { alert('Please enter a valid email address.'); return; }
+
+        var $btn = $(this);
+        $btn.prop('disabled', true).text('Submitting...');
+
+        // Use hidden iframe + form to avoid CORS issues with Apps Script
+        var iframeName = 'reg_iframe_' + Date.now();
+        var $iframe = $('<iframe name="' + iframeName + '" style="display:none;"></iframe>').appendTo('body');
+        var $form = $('<form></form>').attr({
+          method: 'POST',
+          action: SHEETS_URL,
+          target: iframeName
+        }).css('display', 'none');
+
+        $form.append($('<input>').attr({ name: 'name', value: name }));
+        $form.append($('<input>').attr({ name: 'email', value: email }));
+        $form.append($('<input>').attr({ name: 'affiliation', value: affiliation }));
+        $form.append($('<input>').attr({ name: 'date', value: new Date().toISOString() }));
+        $form.appendTo('body').submit();
+
+        // Show success after a short delay (form submits into hidden iframe)
+        setTimeout(function() {
+          $('#preregForm').fadeOut(200, function() {
+            $('#formSuccess').fadeIn(300);
+          });
+          $iframe.remove();
+          $form.remove();
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>

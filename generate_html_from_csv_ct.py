@@ -398,7 +398,7 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
     }}
   </style>
 </head>
-<body>
+<body class="has-banner">
   <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
     <div class="container clearfix" id="navContainer">
       <div class="rightNav">
@@ -429,6 +429,9 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
         </div>
       </div>
     </div>
+  </div>
+  <div class="challenge-banner">
+    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> — Pre-registration is open! <a href="../ReXGroundingCT/challenge.html">Learn More &rarr;</a>
   </div>
   <div class="cover" id="topCover">
     <div class="container">
