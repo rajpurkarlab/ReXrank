@@ -22,7 +22,7 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 21,2025,MoERad-MIMIC,IIT Madras,https://github.com/gssriram/MoERad,0.163,0.341,0.334,0.143,0.726,0.465,0.24,-0.016
 22,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.154,0.348,0.402,0.182,0.801,0.505,0.301,0.114
 23,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.165,0.346,0.339,0.159,0.744,0.549,0.293,0.082
-24,2025,UniRG-CXR,Microsoft Research,https://www.microsoft.com/en-us/research/group/real-world-evidence/,0.262,0.492,0.496,0.269,1.233,0.602,0.36,0.181
+24,2025,UniRG-CXR,Microsoft Research,https://arxiv.org/abs/2601.17151,0.262,0.492,0.496,0.269,1.233,0.602,0.36,0.181
 25,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.218,0.461,0.455,0.235,1.06,0.519,0.314,0.08
 26,2026,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research,0.262,0.477,0.468,0.283,1.183,0.607,0.388,0.236
 27,2025,zzy-RGv1-8b,Individual,,0.213,0.432,0.455,0.253,1.031,0.579,0.339,0.209
