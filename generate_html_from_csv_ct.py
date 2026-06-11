@@ -177,23 +177,23 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
               'hit': fmt(row.get('Hit Rate', 0)),
             }
 
-    # Sort models by hit rate (highest first); find max hit rate across all versions
-    model_hit_rates = []
+    # Sort models by Global Dice (highest first); find max dice across all versions
+    model_dice_scores = []
     for model_name, versions in model_groups.items():
-        max_hit_rate = 0
+        max_dice = 0
         for v_row in versions:
-            hit_rate = float(v_row.get('Global HIT Rate', 0))
-            if hit_rate > max_hit_rate:
-                max_hit_rate = hit_rate
-        model_hit_rates.append((model_name, max_hit_rate))
-    model_hit_rates.sort(key=lambda x: x[1], reverse=True)
+            dice = float(v_row.get('Global Dice', 0))
+            if dice > max_dice:
+                max_dice = dice
+        model_dice_scores.append((model_name, max_dice))
+    model_dice_scores.sort(key=lambda x: x[1], reverse=True)
 
     model_options_html = ''
-    for model_name, _ in model_hit_rates:
+    for model_name, _ in model_dice_scores:
         escaped_name = html_module.escape(model_name)
         model_options_html += f'<option value="{escaped_name}">{escaped_name}</option>'
 
-    default_category_model = model_hit_rates[0][0] if model_hit_rates else 'DAGG'
+    default_category_model = model_dice_scores[0][0] if model_dice_scores else 'DAGG'
 
     html = f'''<!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
@@ -519,7 +519,7 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
   <script>
     $(document).ready(function() {{
       $(".performanceTable").tablesorter({{
-        sortList: [[2, 1]]
+        sortList: [[1, 1]]
       }});
 
       var modelVersions = {json.dumps(model_versions)};

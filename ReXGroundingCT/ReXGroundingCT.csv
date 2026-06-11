@@ -6,3 +6,4 @@ SAT-FT,https://arxiv.org/abs/2312.17183,Shanghai Jiao Tong University,,,0.205,0.
 BiomedParseV2,https://github.com/microsoft/BiomedParse/tree/v2,Microsoft,,,0.025,0.066,0.006,0.071,0.012
 SegVol,https://arxiv.org/abs/2311.13385,Shanghai Jiao Tong University & Beijing Academy of Artificial Intelligence,,,0.000,0.000,0.000,0.000,0.000
 SAT,https://arxiv.org/abs/2312.17183,Shanghai Jiao Tong University,,,0.000,0.000,0.000,0.000,0.000
+MedCompose-CT,,Microsoft Research,,6/4/2026,0.297,0.601,0.127,0.304,0.179
