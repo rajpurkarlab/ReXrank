@@ -214,6 +214,62 @@
           <div class="infoCard">
             <div class="infoBody justified-text">
 
+              <div class="challenge-section" id="register">
+                <h3>🚀 Register &amp; Submit</h3>
+                <p>Registration is <strong>open</strong>. Create an account, register your team, then submit your predictions as a Google Drive link. Please review the <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> for the required prediction format before submitting.</p>
+
+                <!-- Account panel (login / create account) -->
+                <div class="preregister-form" id="authPanel">
+                  <div style="display:flex;gap:10px;margin-bottom:18px;">
+                    <button type="button" id="tabLogin" style="flex:1;background:#a41034;">Log In</button>
+                    <button type="button" id="tabSignup" style="flex:1;background:#888;">Create Account</button>
+                  </div>
+                  <div id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Email" />
+                    <input type="password" id="loginPass" placeholder="Password" />
+                    <button type="button" id="loginBtn">Log In</button>
+                  </div>
+                  <div id="signupForm" style="display:none;">
+                    <input type="text" id="suName" placeholder="Your name (optional)" />
+                    <input type="email" id="suEmail" placeholder="Email" />
+                    <input type="password" id="suPass" placeholder="Password (min 6 characters)" />
+                    <button type="button" id="signupBtn">Create Account</button>
+                    <p style="font-size:13px;color:#666;margin-top:8px;">You'll get a verification email — <strong>check your spam/junk folder</strong> if it's not in your inbox — verify it before logging in.</p>
+                  </div>
+                  <div id="authMsg" style="margin-top:12px;font-size:14px;"></div>
+                </div>
+
+                <!-- Member panel (team registration + submission, after login) -->
+                <div id="memberPanel" style="display:none;">
+                  <p style="text-align:right;font-size:13px;color:#666;">Signed in as <span id="whoami"></span> · <a href="#" id="logoutBtn">Log out</a></p>
+
+                  <div class="preregister-form" id="teamForm">
+                    <h4 style="margin-top:0;color:#a41034;">Register your team</h4>
+                    <input type="text" id="teamName" placeholder="Team name" />
+                    <input type="email" id="teamEmail" placeholder="Contact email" />
+                    <label style="display:block;font-size:13px;color:#666;margin-bottom:6px;">Members (name &amp; affiliation):</label>
+                    <div id="memberRows"></div>
+                    <button type="button" id="addMemberBtn" style="background:#888;margin-bottom:12px;">+ Add member</button>
+                    <button type="button" id="teamSubmitBtn">Register Team</button>
+                  </div>
+
+                  <div class="preregister-form" id="submitForm" style="display:none;">
+                    <h4 style="margin-top:0;color:#a41034;">Team: <span id="teamLabel"></span></h4>
+                    <input type="hidden" id="subPhase" value="validation" />
+                    <p style="font-size:13px;color:#666;margin-bottom:10px;">Phase: <strong>Validation</strong> — the test phase opens before the September deadline.</p>
+                    <input type="text" id="subMethod" placeholder="Method / run name (optional)" />
+                    <input type="url" id="subLink" placeholder="Google Drive link to your predictions" />
+                    <textarea id="subNotes" placeholder="Notes (optional)" rows="2" style="width:100%;padding:10px 14px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px;font-size:15px;"></textarea>
+                    <button type="button" id="subSubmitBtn">Submit Predictions</button>
+                    <div id="subList" style="margin-top:16px;font-size:13px;"></div>
+                  </div>
+
+                  <div id="memberMsg" style="margin-top:12px;font-size:14px;"></div>
+                </div>
+              </div>
+
+              <hr>
+
               <div class="challenge-section">
                 <h3>🏆 About the Challenge</h3>
                 <p>The <strong>ReXGrounding Challenge</strong> is a <a href="https://conferences.miccai.org/2026/" target="_blank">MICCAI 2026</a> challenge designed to evaluate models on localizing unconstrained radiology findings described in natural language to precise 3D segmentation masks in volumetric chest CT.</p>
@@ -250,12 +306,12 @@
                 <h3>📅 Timeline</h3>
                 <div class="timeline">
                   <div class="timeline-item">
-                    <div class="timeline-date">Now — May 2026</div>
-                    <div class="timeline-label">Pre-registration open — training data already publicly available</div>
+                    <div class="timeline-date">Until June 2026</div>
+                    <div class="timeline-label">Pre-registration — training data publicly available</div>
                   </div>
-                  <div class="timeline-item upcoming">
-                    <div class="timeline-date">June 2026</div>
-                    <div class="timeline-label">Challenge launch — registration opens, validation set released</div>
+                  <div class="timeline-item">
+                    <div class="timeline-date">June 2026 — now open</div>
+                    <div class="timeline-label">Challenge launched — registration open, validation set released</div>
                   </div>
                   <div class="timeline-item upcoming">
                     <div class="timeline-date">June — September 2026</div>
@@ -298,8 +354,8 @@
               <div class="challenge-section">
                 <h3>📝 How to Participate</h3>
                 <ul>
-                  <li><strong>Pre-register now</strong> using the form below to receive updates when the challenge officially opens in June 2026.</li>
-                  <li>Training data is already publicly available — you can start developing your method now.</li>
+                  <li><strong>Registration is open</strong> — create an account and register your team using the form below to participate.</li>
+                  <li>Training and validation data are publicly available — you can start developing and evaluating your method now.</li>
                   <li>Any publicly available or private training data, including pre-trained models and external datasets, may be used. All external data sources must be described in the method submission.</li>
                   <li>All predictions on the test set must be <strong>fully automatic</strong> — no manual intervention, post-hoc editing, or case-specific tuning allowed.</li>
                   <li>During the development phase, you can evaluate on the validation set and submit multiple runs. Only the final submission before the deadline is officially ranked.</li>
@@ -319,21 +375,6 @@
                 </ul>
               </div>
 
-              <hr>
-
-              <div class="challenge-section" id="preregister">
-                <h3>📬 Pre-Register</h3>
-                <p>Sign up to be notified when the challenge officially opens in June 2026.</p>
-                <div class="preregister-form" id="preregForm">
-                  <input type="text" id="regName" placeholder="Full Name" required />
-                  <input type="email" id="regEmail" placeholder="Email Address" required />
-                  <input type="text" id="regAffiliation" placeholder="Affiliation (optional)" />
-                  <button type="button" id="regSubmitBtn">Pre-Register</button>
-                </div>
-                <div class="form-success" id="formSuccess">
-                  ✅ Thank you! You've been pre-registered. We'll notify you when the challenge opens.
-                </div>
-              </div>
 
               <hr>
 
@@ -411,45 +452,149 @@
   </nav>
 
   <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Firebase (Auth + Firestore) — client-side, works on static GitHub Pages -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
   <script>
     $(document).ready(function() {
-      var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwlPqptO0GI4m37MiXT8u3IsRy0RmZBY3hLDYRgyZvUav5fK3oH51KHbkUIN71hvhqU/exec';
+      // ===== Firebase config — paste yours from Firebase console (Project settings > General > Your apps > Web). =====
+      var firebaseConfig = {
+        apiKey: "AIzaSyDb-itWou3m4IvOvS1etcQaP0D_Kkac3b0",
+        authDomain: "rexgrounding-challenge.firebaseapp.com",
+        projectId: "rexgrounding-challenge",
+        storageBucket: "rexgrounding-challenge.firebasestorage.app",
+        messagingSenderId: "711353076921",
+        appId: "1:711353076921:web:67053eaef29ca01600df68",
+        measurementId: "G-2SMYVCG6VS"
+      };
+      firebase.initializeApp(firebaseConfig);
+      var auth = firebase.auth();
+      var db = firebase.firestore();
+      var FV = firebase.firestore.FieldValue;
 
-      $('#regSubmitBtn').on('click', function() {
-        var name = $.trim($('#regName').val());
-        var email = $.trim($('#regEmail').val());
-        var affiliation = $.trim($('#regAffiliation').val());
+      function msg(sel, color, text) { $(sel).css('color', color).text(text); }
 
-        if (!name) { alert('Please enter your name.'); return; }
-        if (!email || email.indexOf('@') === -1) { alert('Please enter a valid email address.'); return; }
+      // --- account tabs ---
+      $('#tabLogin').on('click', function() { $('#loginForm').show(); $('#signupForm').hide(); $('#authMsg').text(''); });
+      $('#tabSignup').on('click', function() { $('#signupForm').show(); $('#loginForm').hide(); $('#authMsg').text(''); });
 
-        var $btn = $(this);
-        $btn.prop('disabled', true).text('Submitting...');
-
-        // Use hidden iframe + form to avoid CORS issues with Apps Script
-        var iframeName = 'reg_iframe_' + Date.now();
-        var $iframe = $('<iframe name="' + iframeName + '" style="display:none;"></iframe>').appendTo('body');
-        var $form = $('<form></form>').attr({
-          method: 'POST',
-          action: SHEETS_URL,
-          target: iframeName
-        }).css('display', 'none');
-
-        $form.append($('<input>').attr({ name: 'name', value: name }));
-        $form.append($('<input>').attr({ name: 'email', value: email }));
-        $form.append($('<input>').attr({ name: 'affiliation', value: affiliation }));
-        $form.append($('<input>').attr({ name: 'date', value: new Date().toISOString() }));
-        $form.appendTo('body').submit();
-
-        // Show success after a short delay (form submits into hidden iframe)
-        setTimeout(function() {
-          $('#preregForm').fadeOut(200, function() {
-            $('#formSuccess').fadeIn(300);
-          });
-          $iframe.remove();
-          $form.remove();
-        }, 1500);
+      // --- create account (email/password + verification email) ---
+      $('#signupBtn').on('click', function() {
+        var email = $.trim($('#suEmail').val()), pass = $('#suPass').val(), name = $.trim($('#suName').val());
+        if (!email || pass.length < 6) { msg('#authMsg', '#c00', 'Enter an email and a password of at least 6 characters.'); return; }
+        var self = this; $(self).prop('disabled', true).text('Creating...');
+        auth.createUserWithEmailAndPassword(email, pass)
+          .then(function(cred) {
+            var p = name ? cred.user.updateProfile({ displayName: name }) : Promise.resolve();
+            return p.then(function() { return cred.user.sendEmailVerification(); });
+          })
+          .then(function() { return auth.signOut(); })
+          .then(function() { msg('#authMsg', '#2e7d32', 'Account created! Check your email (and spam/junk folder) to verify, then log in.'); })
+          .catch(function(e) { msg('#authMsg', '#c00', e.message); })
+          .then(function() { $(self).prop('disabled', false).text('Create Account'); });
       });
+
+      // --- login ---
+      $('#loginBtn').on('click', function() {
+        var email = $.trim($('#loginEmail').val()), pass = $('#loginPass').val();
+        var self = this; $(self).prop('disabled', true).text('Logging in...');
+        auth.signInWithEmailAndPassword(email, pass)
+          .then(function(cred) {
+            if (!cred.user.emailVerified) { auth.signOut(); msg('#authMsg', '#c00', 'Please verify your email first (check your inbox).'); }
+          })
+          .catch(function(e) { msg('#authMsg', '#c00', e.message); })
+          .then(function() { $(self).prop('disabled', false).text('Log In'); });
+      });
+
+      $('#logoutBtn').on('click', function(e) { e.preventDefault(); auth.signOut(); });
+
+      // --- auth state drives which panel shows ---
+      auth.onAuthStateChanged(function(user) {
+        if (user && user.emailVerified) {
+          $('#authPanel').hide(); $('#memberPanel').show();
+          $('#whoami').text(user.displayName || user.email);
+          loadTeam(user);
+        } else {
+          $('#memberPanel').hide(); $('#authPanel').show();
+        }
+      });
+
+      // --- team member rows ---
+      function addMemberRow(name, aff) {
+        var row = $('<div class="member-row" style="display:flex;gap:8px;"></div>');
+        row.append($('<input type="text" placeholder="Member name">').addClass('m-name').val(name || ''));
+        row.append($('<input type="text" placeholder="Affiliation">').addClass('m-aff').val(aff || ''));
+        $('#memberRows').append(row);
+      }
+      $('#addMemberBtn').on('click', function() { addMemberRow(); });
+
+      function loadTeam(user) {
+        db.collection('teams').doc(user.uid).get().then(function(doc) {
+          if (doc.exists) {
+            $('#teamForm').hide(); $('#submitForm').show(); $('#teamLabel').text(doc.data().teamName); loadSubs(user);
+          } else {
+            $('#teamForm').show(); $('#submitForm').hide();
+            if ($('#memberRows').children().length === 0) addMemberRow();
+          }
+        });
+      }
+
+      // --- register team (one team doc per user, id = uid) ---
+      $('#teamSubmitBtn').on('click', function() {
+        var user = auth.currentUser; if (!user) return;
+        var teamName = $.trim($('#teamName').val()), email = $.trim($('#teamEmail').val()) || user.email;
+        if (!teamName) { msg('#memberMsg', '#c00', 'Enter a team name.'); return; }
+        var members = [];
+        $('#memberRows .member-row').each(function() {
+          var n = $.trim($(this).find('.m-name').val()), a = $.trim($(this).find('.m-aff').val());
+          if (n && a) members.push({ name: n, affiliation: a });
+        });
+        if (!members.length) { msg('#memberMsg', '#c00', 'Add at least one member (name + affiliation).'); return; }
+        var self = this; $(self).prop('disabled', true).text('Saving...');
+        db.collection('teams').where('teamName', '==', teamName).get().then(function(qs) {
+          var taken = false; qs.forEach(function(d) { if (d.id !== user.uid) taken = true; });
+          if (taken) { msg('#memberMsg', '#c00', 'Team name already taken.'); return Promise.reject('dup'); }
+          return db.collection('teams').doc(user.uid).set({
+            teamName: teamName, contactEmail: email, members: members,
+            ownerUid: user.uid, createdAt: FV.serverTimestamp()
+          });
+        }).then(function() { msg('#memberMsg', '#2e7d32', 'Team registered!'); loadTeam(user); })
+          .catch(function(e) { if (e !== 'dup') msg('#memberMsg', '#c00', e.message || 'Failed'); })
+          .then(function() { $(self).prop('disabled', false).text('Register Team'); });
+      });
+
+      // --- submit prediction ---
+      $('#subSubmitBtn').on('click', function() {
+        var user = auth.currentUser; if (!user) return;
+        var link = $.trim($('#subLink').val());
+        if (!/^https?:\/\/(drive|docs)\.google\.com\//.test(link)) { msg('#memberMsg', '#c00', 'Enter a valid Google Drive link.'); return; }
+        var self = this; $(self).prop('disabled', true).text('Submitting...');
+        db.collection('teams').doc(user.uid).get().then(function(doc) {
+          return db.collection('submissions').add({
+            ownerUid: user.uid, teamName: doc.exists ? doc.data().teamName : '',
+            driveLink: link, phase: $('#subPhase').val(),
+            methodName: $.trim($('#subMethod').val()), notes: $.trim($('#subNotes').val()),
+            status: 'submitted', createdAt: FV.serverTimestamp()
+          });
+        }).then(function() { msg('#memberMsg', '#2e7d32', 'Submission received!'); $('#subLink').val(''); loadSubs(user); })
+          .catch(function(e) { msg('#memberMsg', '#c00', e.message || 'Failed'); })
+          .then(function() { $(self).prop('disabled', false).text('Submit Predictions'); });
+      });
+
+      function loadSubs(user) {
+        db.collection('submissions').where('ownerUid', '==', user.uid).get().then(function(qs) {
+          if (qs.empty) { $('#subList').html(''); return; }
+          var rows = []; qs.forEach(function(d) { rows.push(d.data()); });
+          rows.sort(function(a, b) { return ((b.createdAt && b.createdAt.seconds) || 0) - ((a.createdAt && a.createdAt.seconds) || 0); });
+          var html = '<strong>Your submissions:</strong><ul style="padding-left:18px;">';
+          rows.forEach(function(s) {
+            var t = (s.createdAt && s.createdAt.toDate) ? s.createdAt.toDate().toLocaleString() : '';
+            html += '<li>[' + s.phase + '] ' + (s.methodName || '(run)') + ' — ' + (s.status || 'submitted') + ' — ' + t + '</li>';
+          });
+          $('#subList').html(html + '</ul>');
+        });
+      }
     });
   </script>
 </body>
