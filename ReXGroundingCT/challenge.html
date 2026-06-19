@@ -160,6 +160,33 @@
     .challenge-section ul li {
       margin-bottom: 6px;
     }
+
+    /* Team member rows (name + affiliation + remove button) */
+    .member-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .member-row input {
+      flex: 1 1 0;
+      width: auto;        /* override .preregister-form input { width:100% } */
+      margin-bottom: 0;
+      min-width: 0;
+    }
+    .member-row .remove-member {
+      flex: 0 0 auto;
+      width: auto;        /* override .preregister-form button { width:100% } */
+      padding: 9px 14px;
+      background: #ddd;
+      color: #333;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .member-row .remove-member:hover {
+      background: #c9c9c9;
+    }
   </style>
 </head>
 <body>
@@ -244,7 +271,7 @@
                   <p style="text-align:right;font-size:13px;color:#666;">Signed in as <span id="whoami"></span> · <a href="#" id="logoutBtn">Log out</a></p>
 
                   <div class="preregister-form" id="teamForm">
-                    <h4 style="margin-top:0;color:#a41034;">Register your team</h4>
+                    <h4 id="teamFormTitle" style="margin-top:0;color:#a41034;">Register your team</h4>
                     <input type="text" id="teamName" placeholder="Team name" />
                     <input type="email" id="teamEmail" placeholder="Contact email" />
                     <label style="display:block;font-size:13px;color:#666;margin-bottom:6px;">Members (name &amp; affiliation):</label>
@@ -265,6 +292,20 @@
                   </div>
 
                   <div id="memberMsg" style="margin-top:12px;font-size:14px;"></div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section" id="leaderboard">
+                <h3>📊 Leaderboard</h3>
+                <p>Validation-phase standings, ranked by mean Dice. Updated as submissions are evaluated.</p>
+                <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
+                <div style="overflow-x:auto;">
+                  <table class="table" id="lbTable" style="display:none;margin-top:10px;">
+                    <thead><tr><th>#</th><th>Team</th><th>Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
+                    <tbody id="lbBody"></tbody>
+                  </table>
                 </div>
               </div>
 
@@ -475,6 +516,11 @@
 
       function msg(sel, color, text) { $(sel).css('color', color).text(text); }
 
+      // Email-notification hook (Google Apps Script web app) — see submission_notify_apps_script.gs.
+      var EMAIL_HOOK_URL = 'https://script.google.com/macros/s/AKfycbycetaIf0E-jCdiIcTIgeTyvuBtU9_n5Z7-PbHchMiOj15QF_jPhFZB-HNMllxcxQ3B/exec';
+
+      loadLeaderboard();  // public; runs regardless of login state
+
       // --- account tabs ---
       $('#tabLogin').on('click', function() { $('#loginForm').show(); $('#signupForm').hide(); $('#authMsg').text(''); });
       $('#tabSignup').on('click', function() { $('#signupForm').show(); $('#loginForm').hide(); $('#authMsg').text(''); });
@@ -522,25 +568,41 @@
 
       // --- team member rows ---
       function addMemberRow(name, aff) {
-        var row = $('<div class="member-row" style="display:flex;gap:8px;"></div>');
+        var row = $('<div class="member-row"></div>');
         row.append($('<input type="text" placeholder="Member name">').addClass('m-name').val(name || ''));
         row.append($('<input type="text" placeholder="Affiliation">').addClass('m-aff').val(aff || ''));
+        var rm = $('<button type="button" class="remove-member" title="Remove member">&times;</button>');
+        rm.on('click', function() { row.remove(); });
+        row.append(rm);
         $('#memberRows').append(row);
       }
       $('#addMemberBtn').on('click', function() { addMemberRow(); });
 
       function loadTeam(user) {
         db.collection('teams').doc(user.uid).get().then(function(doc) {
+          $('#memberRows').empty();
           if (doc.exists) {
-            $('#teamForm').hide(); $('#submitForm').show(); $('#teamLabel').text(doc.data().teamName); loadSubs(user);
+            var d = doc.data();
+            $('#teamName').val(d.teamName || '');
+            $('#teamEmail').val(d.contactEmail || '');
+            (d.members || []).forEach(function(m) { addMemberRow(m.name, m.affiliation); });
+            if (!$('#memberRows').children().length) addMemberRow();
+            $('#teamFormTitle').text('Your team');
+            $('#teamSubmitBtn').text('Save changes');
+            $('#submitForm').show(); $('#teamLabel').text(d.teamName || '');
+            loadSubs(user);
           } else {
-            $('#teamForm').show(); $('#submitForm').hide();
-            if ($('#memberRows').children().length === 0) addMemberRow();
+            $('#teamName').val(''); $('#teamEmail').val('');
+            addMemberRow();
+            $('#teamFormTitle').text('Register your team');
+            $('#teamSubmitBtn').text('Register Team');
+            $('#submitForm').hide();
           }
+          $('#teamForm').show();
         });
       }
 
-      // --- register team (one team doc per user, id = uid) ---
+      // --- register / update team (one team doc per user, id = uid) ---
       $('#teamSubmitBtn').on('click', function() {
         var user = auth.currentUser; if (!user) return;
         var teamName = $.trim($('#teamName').val()), email = $.trim($('#teamEmail').val()) || user.email;
@@ -551,17 +613,18 @@
           if (n && a) members.push({ name: n, affiliation: a });
         });
         if (!members.length) { msg('#memberMsg', '#c00', 'Add at least one member (name + affiliation).'); return; }
-        var self = this; $(self).prop('disabled', true).text('Saving...');
+        var self = this, origText = $(self).text(); $(self).prop('disabled', true).text('Saving...');
         db.collection('teams').where('teamName', '==', teamName).get().then(function(qs) {
           var taken = false; qs.forEach(function(d) { if (d.id !== user.uid) taken = true; });
           if (taken) { msg('#memberMsg', '#c00', 'Team name already taken.'); return Promise.reject('dup'); }
-          return db.collection('teams').doc(user.uid).set({
-            teamName: teamName, contactEmail: email, members: members,
-            ownerUid: user.uid, createdAt: FV.serverTimestamp()
-          });
-        }).then(function() { msg('#memberMsg', '#2e7d32', 'Team registered!'); loadTeam(user); })
+          return db.collection('teams').doc(user.uid).get();
+        }).then(function(existing) {
+          var data = { teamName: teamName, contactEmail: email, members: members, ownerUid: user.uid, updatedAt: FV.serverTimestamp() };
+          if (!existing.exists) data.createdAt = FV.serverTimestamp();
+          return db.collection('teams').doc(user.uid).set(data, { merge: true });
+        }).then(function() { msg('#memberMsg', '#2e7d32', 'Team saved!'); loadTeam(user); })
           .catch(function(e) { if (e !== 'dup') msg('#memberMsg', '#c00', e.message || 'Failed'); })
-          .then(function() { $(self).prop('disabled', false).text('Register Team'); });
+          .then(function() { $(self).prop('disabled', false).text(origText); });
       });
 
       // --- submit prediction ---
@@ -570,12 +633,14 @@
         var link = $.trim($('#subLink').val());
         if (!/^https?:\/\/(drive|docs)\.google\.com\//.test(link)) { msg('#memberMsg', '#c00', 'Enter a valid Google Drive link.'); return; }
         var self = this; $(self).prop('disabled', true).text('Submitting...');
+        var phase = $('#subPhase').val(), methodName = $.trim($('#subMethod').val()), notes = $.trim($('#subNotes').val());
         db.collection('teams').doc(user.uid).get().then(function(doc) {
+          var teamName = doc.exists ? doc.data().teamName : '';
           return db.collection('submissions').add({
-            ownerUid: user.uid, teamName: doc.exists ? doc.data().teamName : '',
-            driveLink: link, phase: $('#subPhase').val(),
-            methodName: $.trim($('#subMethod').val()), notes: $.trim($('#subNotes').val()),
-            status: 'submitted', createdAt: FV.serverTimestamp()
+            ownerUid: user.uid, teamName: teamName, driveLink: link, phase: phase,
+            methodName: methodName, notes: notes, status: 'submitted', createdAt: FV.serverTimestamp()
+          }).then(function() {
+            notifySubmission({ team: teamName, email: user.email, phase: phase, method: methodName, driveLink: link, date: new Date().toISOString() });
           });
         }).then(function() { msg('#memberMsg', '#2e7d32', 'Submission received!'); $('#subLink').val(''); loadSubs(user); })
           .catch(function(e) { msg('#memberMsg', '#c00', e.message || 'Failed'); })
@@ -594,6 +659,33 @@
           });
           $('#subList').html(html + '</ul>');
         });
+      }
+
+      // --- public leaderboard (read-only; organizers populate the `leaderboard` collection) ---
+      function loadLeaderboard() {
+        db.collection('leaderboard').get().then(function(qs) {
+          if (qs.empty) { $('#lbStatus').text('No results yet — submissions are evaluated periodically during the development phase.'); return; }
+          var rows = []; qs.forEach(function(d) { rows.push(d.data()); });
+          rows.sort(function(a, b) { return (b.dice || 0) - (a.dice || 0); });
+          function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
+          var html = '';
+          rows.forEach(function(r, i) {
+            html += '<tr><td>' + (i + 1) + '</td><td>' + (r.team || '') + '</td><td>' + fmt(r.dice) +
+                    '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>';
+          });
+          $('#lbBody').html(html); $('#lbStatus').hide(); $('#lbTable').show();
+        }).catch(function() { $('#lbStatus').text('Could not load the leaderboard right now.'); });
+      }
+
+      // --- notify organizer by email on each submission (fire-and-forget; no-op until EMAIL_HOOK_URL is set) ---
+      function notifySubmission(data) {
+        if (!EMAIL_HOOK_URL || EMAIL_HOOK_URL.indexOf('PASTE_') === 0) return;
+        var iframeName = 'notif_' + Date.now();
+        var $iframe = $('<iframe name="' + iframeName + '" style="display:none;"></iframe>').appendTo('body');
+        var $form = $('<form></form>').attr({ method: 'POST', action: EMAIL_HOOK_URL, target: iframeName }).css('display', 'none');
+        Object.keys(data).forEach(function(k) { $form.append($('<input>').attr({ name: k, value: data[k] })); });
+        $form.appendTo('body').submit();
+        setTimeout(function() { $iframe.remove(); $form.remove(); }, 2000);
       }
     });
   </script>
