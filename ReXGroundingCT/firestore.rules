@@ -22,5 +22,13 @@ service cloud.firestore {
       allow read:   if request.auth != null && resource.data.ownerUid == request.auth.uid;
       allow update, delete: if false;
     }
+
+    // Leaderboard: public, read-only. Organizers populate it from the Firebase
+    // console / Admin SDK (those bypass rules) with only public-safe fields
+    // (team name + scores) after evaluating submissions.
+    match /leaderboard/{entryId} {
+      allow read: if true;
+      allow write: if false;
+    }
   }
 }

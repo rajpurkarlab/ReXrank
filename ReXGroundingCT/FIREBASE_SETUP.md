@@ -33,6 +33,22 @@ Push `challenge.html` to `gh-pages` and registration is live. No server, no data
 ## Running the challenge (organizer side)
 - **See registrations:** Firestore → `teams` collection.
 - **See submissions:** Firestore → `submissions` collection (team, driveLink, phase, status).
-- **Evaluate:** download a submission's Drive folder → run `rexrank_eval.py` → update the
-  leaderboard CSV → push. You can update a submission's `status`/`scores` from the console,
-  or use the Firebase Admin SDK for a script.
+- **Evaluate:** download a submission's Drive folder → run `rexrank_eval.py` → record scores
+  (below). You can update a submission's `status` from the console or via the Admin SDK.
+
+## Leaderboard
+The page shows a live leaderboard read from a public `leaderboard` collection.
+- The security rules make `leaderboard` **world-readable but client-write-disabled**, so only
+  you (via the Firebase console or Admin SDK) can publish results — participants can't write to it.
+- To add/update an entry: Firestore → `leaderboard` → add a document with fields:
+  `team` (string), `dice` (number), `hitRate` (number), `instanceF1` (number).
+  The page sorts by `dice` (descending) and renders rows automatically.
+- Republish the rules (`firestore.rules`) so the `leaderboard` block is active.
+
+## Email notification on each submission
+After a submission is saved, the page pings a Google Apps Script that emails you.
+- Set it up via `submission_notify_apps_script.gs` (instructions in that file): deploy it as a
+  web app, then paste its URL into `challenge.html` as `var EMAIL_HOOK_URL = '...'`.
+- Until that URL is set, submissions still work — the email step is simply skipped.
+- This is a best-effort, browser-triggered notification. For a tamper-proof server-side trigger,
+  use the Firebase **"Trigger Email"** extension instead (requires upgrading to the Blaze plan).
