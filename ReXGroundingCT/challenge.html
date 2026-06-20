@@ -264,6 +264,7 @@
                     <p style="font-size:13px;color:#666;margin-top:8px;">You'll get a verification email — <strong>check your spam/junk folder</strong> if it's not in your inbox — verify it before logging in.</p>
                   </div>
                   <div id="authMsg" style="margin-top:12px;font-size:14px;"></div>
+                  <button type="button" id="resendBtn" style="display:none;background:#888;margin-top:10px;">Resend verification email</button>
                 </div>
 
                 <!-- Member panel (team registration + submission, after login) -->
@@ -522,8 +523,8 @@
       loadLeaderboard();  // public; runs regardless of login state
 
       // --- account tabs ---
-      $('#tabLogin').on('click', function() { $('#loginForm').show(); $('#signupForm').hide(); $('#authMsg').text(''); });
-      $('#tabSignup').on('click', function() { $('#signupForm').show(); $('#loginForm').hide(); $('#authMsg').text(''); });
+      $('#tabLogin').on('click', function() { $('#loginForm').show(); $('#signupForm').hide(); $('#authMsg').text(''); $('#resendBtn').hide(); });
+      $('#tabSignup').on('click', function() { $('#signupForm').show(); $('#loginForm').hide(); $('#authMsg').text(''); $('#resendBtn').hide(); });
 
       // --- create account (email/password + verification email) ---
       $('#signupBtn').on('click', function() {
@@ -535,8 +536,11 @@
             var p = name ? cred.user.updateProfile({ displayName: name }) : Promise.resolve();
             return p.then(function() { return cred.user.sendEmailVerification(); });
           })
-          .then(function() { return auth.signOut(); })
-          .then(function() { msg('#authMsg', '#2e7d32', 'Account created! Check your email (and spam/junk folder) to verify, then log in.'); })
+          // keep the (unverified) user signed in so the Resend button works
+          .then(function() {
+            msg('#authMsg', '#2e7d32', 'Account created! Check your email (and spam/junk folder) to verify, then log in.');
+            $('#resendBtn').show(); startResendCooldown();
+          })
           .catch(function(e) { msg('#authMsg', '#c00', e.message); })
           .then(function() { $(self).prop('disabled', false).text('Create Account'); });
       });
@@ -547,13 +551,34 @@
         var self = this; $(self).prop('disabled', true).text('Logging in...');
         auth.signInWithEmailAndPassword(email, pass)
           .then(function(cred) {
-            if (!cred.user.emailVerified) { auth.signOut(); msg('#authMsg', '#c00', 'Please verify your email first (check your inbox).'); }
+            if (!cred.user.emailVerified) { msg('#authMsg', '#c00', "Your email isn't verified yet — check your inbox/spam, or resend below."); $('#resendBtn').show(); }
           })
           .catch(function(e) { msg('#authMsg', '#c00', e.message); })
           .then(function() { $(self).prop('disabled', false).text('Log In'); });
       });
 
-      $('#logoutBtn').on('click', function(e) { e.preventDefault(); auth.signOut(); });
+      $('#logoutBtn').on('click', function(e) { e.preventDefault(); $('#resendBtn').hide(); auth.signOut(); });
+
+      // --- resend verification email (uses the signed-in-but-unverified user) ---
+      var RESEND_COOLDOWN = 60, resendTimer = null;
+      function startResendCooldown() {
+        var btn = $('#resendBtn'), left = RESEND_COOLDOWN;
+        clearInterval(resendTimer);
+        btn.prop('disabled', true).text('Resend available in ' + left + 's');
+        resendTimer = setInterval(function() {
+          left -= 1;
+          if (left <= 0) { clearInterval(resendTimer); btn.prop('disabled', false).text('Resend verification email'); }
+          else { btn.text('Resend available in ' + left + 's'); }
+        }, 1000);
+      }
+      $('#resendBtn').on('click', function() {
+        var u = auth.currentUser;
+        if (!u) { msg('#authMsg', '#c00', 'Log in first, then resend.'); return; }
+        $('#resendBtn').prop('disabled', true).text('Sending...');
+        u.sendEmailVerification()
+          .then(function() { msg('#authMsg', '#2e7d32', 'Verification email re-sent to ' + u.email + '. Check your inbox/spam.'); startResendCooldown(); })
+          .catch(function(e) { msg('#authMsg', '#c00', e.message); $('#resendBtn').prop('disabled', false).text('Resend verification email'); });
+      });
 
       // --- auth state drives which panel shows ---
       auth.onAuthStateChanged(function(user) {
@@ -563,6 +588,12 @@
           loadTeam(user);
         } else {
           $('#memberPanel').hide(); $('#authPanel').show();
+          if (user && !user.emailVerified) {
+            msg('#authMsg', '#c00', "Your email isn't verified yet — check your inbox/spam, or resend below.");
+            $('#resendBtn').show();
+          } else {
+            $('#resendBtn').hide();
+          }
         }
       });
 
