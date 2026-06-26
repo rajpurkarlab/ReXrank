@@ -7,3 +7,4 @@ BiomedParseV2,https://github.com/microsoft/BiomedParse/tree/v2,Microsoft,,,0.025
 SegVol,https://arxiv.org/abs/2311.13385,Shanghai Jiao Tong University & Beijing Academy of Artificial Intelligence,,,0.000,0.000,0.000,0.000,0.000
 SAT,https://arxiv.org/abs/2312.17183,Shanghai Jiao Tong University,,,0.000,0.000,0.000,0.000,0.000
 MedCompose-CT,,Microsoft Research,,6/4/2026,0.297,0.601,0.127,0.304,0.179
+VoxTell-FT,,HBKU,,6/24/2026,0.162,0.371,0.031,0.277,0.056
