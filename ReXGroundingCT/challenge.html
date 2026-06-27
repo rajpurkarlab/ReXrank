@@ -187,6 +187,17 @@
     .member-row .remove-member:hover {
       background: #c9c9c9;
     }
+
+    /* Highlight the Dice column as the official ranking metric */
+    #lbTable th.rank-metric, #lbTable td.rank-metric {
+      background: #fbeef1;
+      color: #a41034;
+      font-weight: 700;
+      box-shadow: inset 1px 0 0 #e7c3cc, inset -1px 0 0 #e7c3cc;
+    }
+    #lbTable th.rank-metric {
+      border-top: 2px solid #a41034;
+    }
   </style>
 </head>
 <body>
@@ -306,7 +317,7 @@
                 <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
                 <div style="overflow-x:auto;">
                   <table class="table" id="lbTable" style="display:none;margin-top:10px;">
-                    <thead><tr><th>#</th><th>Team</th><th>Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
+                    <thead><tr><th>#</th><th>Team</th><th>Submitter</th><th>Institution</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
                     <tbody id="lbBody"></tbody>
                   </table>
                 </div>
@@ -715,7 +726,8 @@
           function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
           var html = '';
           rows.forEach(function(r, i) {
-            html += '<tr><td>' + (i + 1) + '</td><td>' + (r.team || '') + '</td><td>' + fmt(r.dice) +
+            html += '<tr><td>' + (i + 1) + '</td><td>' + (r.team || '') + '</td><td>' + (r.submitter || '—') +
+                    '</td><td>' + (r.institution || '—') + '</td><td class="rank-metric">' + fmt(r.dice) +
                     '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>';
           });
           $('#lbBody').html(html); $('#lbStatus').hide(); $('#lbTable').show();
