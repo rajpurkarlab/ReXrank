@@ -187,6 +187,17 @@
     .member-row .remove-member:hover {
       background: #c9c9c9;
     }
+
+    /* Highlight the Dice column as the official ranking metric */
+    #lbTable th.rank-metric, #lbTable td.rank-metric {
+      background: #fbeef1;
+      color: #a41034;
+      font-weight: 700;
+      box-shadow: inset 1px 0 0 #e7c3cc, inset -1px 0 0 #e7c3cc;
+    }
+    #lbTable th.rank-metric {
+      border-top: 2px solid #a41034;
+    }
   </style>
 </head>
 <body>
@@ -243,7 +254,8 @@
 
               <div class="challenge-section" id="register">
                 <h3>🚀 Register &amp; Submit</h3>
-                <p>Registration is <strong>open</strong>. Create an account, register your team, then submit your predictions as a Google Drive link. Please review the <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> for the required prediction format before submitting.</p>
+                <p>Registration is <strong>open</strong>. <strong>All submissions are made here, through the Register &amp; Submit form below</strong> — create an account, register your team, then submit your predictions as a Google Drive link. This is the only submission channel.</p>
+                <p style="font-size:14px;color:#666;">The <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> are a reference for the required prediction <em>format</em> only — they are not a separate way to submit. Review them so your predictions are formatted correctly, then submit through the form below.</p>
 
                 <!-- Account panel (login / create account) -->
                 <div class="preregister-form" id="authPanel">
@@ -255,6 +267,7 @@
                     <input type="email" id="loginEmail" placeholder="Email" />
                     <input type="password" id="loginPass" placeholder="Password" />
                     <button type="button" id="loginBtn">Log In</button>
+                    <p style="font-size:13px;margin-top:10px;text-align:right;"><a href="#" id="forgotBtn">Forgot password?</a></p>
                   </div>
                   <div id="signupForm" style="display:none;">
                     <input type="text" id="suName" placeholder="Your name (optional)" />
@@ -285,7 +298,7 @@
                     <h4 style="margin-top:0;color:#a41034;">Team: <span id="teamLabel"></span></h4>
                     <input type="hidden" id="subPhase" value="validation" />
                     <p style="font-size:13px;color:#666;margin-bottom:10px;">Phase: <strong>Validation</strong> — the test phase opens before the September deadline.</p>
-                    <input type="text" id="subMethod" placeholder="Method / run name (optional)" />
+                    <input type="text" id="subMethod" placeholder="Model name (required)" required />
                     <input type="url" id="subLink" placeholder="Google Drive link to your predictions" />
                     <textarea id="subNotes" placeholder="Notes (optional)" rows="2" style="width:100%;padding:10px 14px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px;font-size:15px;"></textarea>
                     <button type="button" id="subSubmitBtn">Submit Predictions</button>
@@ -304,7 +317,7 @@
                 <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
                 <div style="overflow-x:auto;">
                   <table class="table" id="lbTable" style="display:none;margin-top:10px;">
-                    <thead><tr><th>#</th><th>Team</th><th>Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
+                    <thead><tr><th>#</th><th>Team</th><th>Submitter</th><th>Institution</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
                     <tbody id="lbBody"></tbody>
                   </table>
                 </div>
@@ -557,6 +570,16 @@
           .then(function() { $(self).prop('disabled', false).text('Log In'); });
       });
 
+      // --- reset password (sends a Firebase password-reset email) ---
+      $('#forgotBtn').on('click', function(e) {
+        e.preventDefault();
+        var email = $.trim($('#loginEmail').val());
+        if (!email) { msg('#authMsg', '#c00', 'Enter your email above, then click "Forgot password?".'); return; }
+        auth.sendPasswordResetEmail(email)
+          .then(function() { msg('#authMsg', '#2e7d32', 'Password-reset email sent to ' + email + '. Check your inbox/spam.'); })
+          .catch(function(e) { msg('#authMsg', '#c00', e.message); });
+      });
+
       $('#logoutBtn').on('click', function(e) { e.preventDefault(); $('#resendBtn').hide(); auth.signOut(); });
 
       // --- resend verification email (uses the signed-in-but-unverified user) ---
@@ -661,10 +684,12 @@
       // --- submit prediction ---
       $('#subSubmitBtn').on('click', function() {
         var user = auth.currentUser; if (!user) return;
+        var methodName = $.trim($('#subMethod').val());
+        if (!methodName) { msg('#memberMsg', '#c00', 'Enter a model name.'); return; }
         var link = $.trim($('#subLink').val());
         if (!/^https?:\/\/(drive|docs)\.google\.com\//.test(link)) { msg('#memberMsg', '#c00', 'Enter a valid Google Drive link.'); return; }
         var self = this; $(self).prop('disabled', true).text('Submitting...');
-        var phase = $('#subPhase').val(), methodName = $.trim($('#subMethod').val()), notes = $.trim($('#subNotes').val());
+        var phase = $('#subPhase').val(), notes = $.trim($('#subNotes').val());
         db.collection('teams').doc(user.uid).get().then(function(doc) {
           var teamName = doc.exists ? doc.data().teamName : '';
           return db.collection('submissions').add({
@@ -673,7 +698,7 @@
           }).then(function() {
             notifySubmission({ team: teamName, email: user.email, phase: phase, method: methodName, driveLink: link, date: new Date().toISOString() });
           });
-        }).then(function() { msg('#memberMsg', '#2e7d32', 'Submission received!'); $('#subLink').val(''); loadSubs(user); })
+        }).then(function() { msg('#memberMsg', '#2e7d32', 'Submission received!'); $('#subLink').val(''); $('#subMethod').val(''); loadSubs(user); })
           .catch(function(e) { msg('#memberMsg', '#c00', e.message || 'Failed'); })
           .then(function() { $(self).prop('disabled', false).text('Submit Predictions'); });
       });
@@ -701,7 +726,8 @@
           function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
           var html = '';
           rows.forEach(function(r, i) {
-            html += '<tr><td>' + (i + 1) + '</td><td>' + (r.team || '') + '</td><td>' + fmt(r.dice) +
+            html += '<tr><td>' + (i + 1) + '</td><td>' + (r.team || '') + '</td><td>' + (r.submitter || '—') +
+                    '</td><td>' + (r.institution || '—') + '</td><td class="rank-metric">' + fmt(r.dice) +
                     '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>';
           });
           $('#lbBody').html(html); $('#lbStatus').hide(); $('#lbTable').show();
