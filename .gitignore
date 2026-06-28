@@ -7,3 +7,4 @@ __pycache__/
 # Admin-only scripts — keep local, not on the public site repo
 ReXGroundingCT/set_password.py
 ReXGroundingCT/update_leaderboard.py
+ReXGroundingCT/auto/

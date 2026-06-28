@@ -24,15 +24,23 @@ var ORGANIZER_EMAIL = 'MohammedSalimAB@outlook.com';
 
 function doPost(e) {
   var p = (e && e.parameter) ? e.parameter : {};
-  var subject = 'New ReXGrounding submission — ' + (p.team || '(unknown team)');
-  var body =
-      'A new submission was received for the ReXGroundingCT challenge.\n\n' +
-      'Team:        ' + (p.team || '') + '\n' +
-      'Submitter:   ' + (p.email || '') + '\n' +
-      'Phase:       ' + (p.phase || '') + '\n' +
-      'Method/run:  ' + (p.method || '') + '\n' +
-      'Drive link:  ' + (p.driveLink || '') + '\n' +
-      'Time:        ' + (p.date || '') + '\n';
+  var subject, body;
+  if (p.message) {
+    // Generic notification (e.g. the automated evaluation pipeline digest).
+    subject = p.subject || 'ReXGroundingCT notification';
+    body = p.message;
+  } else {
+    // New-submission notification (posted by challenge.html).
+    subject = 'New ReXGrounding submission — ' + (p.team || '(unknown team)');
+    body =
+        'A new submission was received for the ReXGroundingCT challenge.\n\n' +
+        'Team:        ' + (p.team || '') + '\n' +
+        'Submitter:   ' + (p.email || '') + '\n' +
+        'Phase:       ' + (p.phase || '') + '\n' +
+        'Method/run:  ' + (p.method || '') + '\n' +
+        'Drive link:  ' + (p.driveLink || '') + '\n' +
+        'Time:        ' + (p.date || '') + '\n';
+  }
   MailApp.sendEmail(ORGANIZER_EMAIL, subject, body);
   return ContentService.createTextOutput('ok');
 }
