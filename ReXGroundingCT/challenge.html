@@ -188,16 +188,25 @@
       background: #c9c9c9;
     }
 
-    /* Highlight the Dice column as the official ranking metric */
-    #lbTable th.rank-metric, #lbTable td.rank-metric {
-      background: #fbeef1;
-      color: #a41034;
-      font-weight: 700;
-      box-shadow: inset 1px 0 0 #e7c3cc, inset -1px 0 0 #e7c3cc;
-    }
-    #lbTable th.rank-metric {
-      border-top: 2px solid #a41034;
-    }
+    /* Dice = the official ranking metric: keep it emphasized (bold), no longer red */
+    #lbTable th.rank-metric, #lbTable td.rank-metric { font-weight: 700; }
+    #lbTable th.rank-metric { border-bottom: 2px solid #a41034; }
+
+    /* Medal backgrounds for the top 3 (gold / silver / bronze) */
+    #lbTable tr.rank-1 td { background: #faf1c6 !important; }
+    #lbTable tr.rank-2 td { background: #ebedf0 !important; }
+    #lbTable tr.rank-3 td { background: #f6e6d2 !important; }
+    #lbTable tr.rank-1 td:first-child { border-left: 4px solid #d4af37; }
+    #lbTable tr.rank-2 td:first-child { border-left: 4px solid #9aa0a6; }
+    #lbTable tr.rank-3 td:first-child { border-left: 4px solid #cd7f32; }
+
+    /* Extra (non-best) submissions from the same submitter — shown, but not ranked */
+    #lbTable tr.secondary td { color: #999; font-style: italic; }
+
+    /* Rows currently being evaluated */
+    #lbTable tr.evaluating td { background: #fffdf5 !important; color: #7a6a00; }
+    .eval-badge { color: #a41034; font-weight: 600; animation: evalPulse 1.2s ease-in-out infinite; }
+    @keyframes evalPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
   </style>
 </head>
 <body>
@@ -296,12 +305,13 @@
 
                   <div class="preregister-form" id="submitForm" style="display:none;">
                     <h4 style="margin-top:0;color:#a41034;">Team: <span id="teamLabel"></span></h4>
-                    <input type="hidden" id="subPhase" value="validation" />
-                    <p style="font-size:13px;color:#666;margin-bottom:10px;">Phase: <strong>Validation</strong> — the test phase opens before the September deadline.</p>
+                    <input type="hidden" id="subPhase" value="test" />
+                    <p style="font-size:13px;color:#666;margin-bottom:10px;">Your predictions are evaluated on the <strong>held-out test set</strong> and appear on the leaderboard as official results.</p>
                     <input type="text" id="subMethod" placeholder="Model name (required)" required />
                     <input type="url" id="subLink" placeholder="Google Drive link to a single .zip of your predictions" />
                     <p style="font-size:13px;color:#a41034;margin:-8px 0 12px;"><strong>⚠️ Submit a single <code>.zip</code> file</strong> (not a folder), containing your 300 prediction <code>.nii.gz</code> files. <strong>Set sharing to "Anyone with the link"</strong> before submitting — restricted links, folders, and access-requested links cannot be evaluated automatically.</p>
                     <textarea id="subNotes" placeholder="Notes (optional)" rows="2" style="width:100%;padding:10px 14px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px;font-size:15px;"></textarea>
+                    <p style="font-size:13px;color:#333;background:#f7f7f9;border:1px solid #e0e0e0;border-radius:4px;padding:10px 12px;margin-bottom:14px;">⏱️ Evaluation runs automatically — <strong>expect your result on the leaderboard within 12 hours</strong>. Your entry will show as <em>“⏳ Evaluating…”</em> while it runs. Please <strong>do not submit again until you receive your result.</strong></p>
                     <button type="button" id="subSubmitBtn">Submit Predictions</button>
                     <div id="subList" style="margin-top:16px;font-size:13px;"></div>
                   </div>
@@ -314,11 +324,11 @@
 
               <div class="challenge-section" id="leaderboard">
                 <h3>📊 Leaderboard</h3>
-                <p>Validation-phase standings, ranked by mean Dice. Updated as submissions are evaluated.</p>
+                <p>Standings on the held-out <strong>test set</strong>, ranked by mean Dice. <strong>These are the official, final competition results.</strong> Each submitter is ranked by their single best submission. <strong>Click any row for its per-category breakdown.</strong> Updated automatically as submissions are evaluated.</p>
                 <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
                 <div style="overflow-x:auto;">
                   <table class="table" id="lbTable" style="display:none;margin-top:10px;">
-                    <thead><tr><th>#</th><th>Submission</th><th>Submitter</th><th>Institution</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
+                    <thead><tr><th>#</th><th>Submission</th><th>Team</th><th>Submitter</th><th>Institution</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
                     <tbody id="lbBody"></tbody>
                   </table>
                 </div>
@@ -366,16 +376,16 @@
                     <div class="timeline-label">Pre-registration — training data publicly available</div>
                   </div>
                   <div class="timeline-item">
-                    <div class="timeline-date">June 2026 — now open</div>
-                    <div class="timeline-label">Challenge launched — registration open, validation set released</div>
+                    <div class="timeline-date">June 2026</div>
+                    <div class="timeline-label">Challenge launched — registration open, test set released</div>
                   </div>
-                  <div class="timeline-item upcoming">
-                    <div class="timeline-date">June — September 2026</div>
-                    <div class="timeline-label">Development phase — evaluate on validation set, submit multiple runs</div>
+                  <div class="timeline-item">
+                    <div class="timeline-date">June — September 2026 — in progress</div>
+                    <div class="timeline-label">Submission phase (open now) — submit multiple runs; each is evaluated on the held-out test set and appears on the leaderboard</div>
                   </div>
                   <div class="timeline-item upcoming">
                     <div class="timeline-date">September 2026</div>
-                    <div class="timeline-label">Submission deadline — final submission evaluated on held-out test set</div>
+                    <div class="timeline-label">Submission deadline — final leaderboard standings locked as the official results</div>
                   </div>
                   <div class="timeline-item upcoming">
                     <div class="timeline-date">Late September 2026</div>
@@ -414,7 +424,7 @@
                   <li>Training and validation data are publicly available — you can start developing and evaluating your method now.</li>
                   <li>Any publicly available or private training data, including pre-trained models and external datasets, may be used. All external data sources must be described in the method submission.</li>
                   <li>All predictions on the test set must be <strong>fully automatic</strong> — no manual intervention, post-hoc editing, or case-specific tuning allowed.</li>
-                  <li>During the development phase, you can evaluate on the validation set and submit multiple runs. Only the final submission before the deadline is officially ranked.</li>
+                  <li>You can submit multiple runs; each is evaluated on the held-out test set and shown on the leaderboard. Your best submission before the deadline is your official result.</li>
                   <li>See the <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> for format details.</li>
                 </ul>
               </div>
@@ -719,19 +729,57 @@
       }
 
       // --- public leaderboard (read-only; organizers populate the `leaderboard` collection) ---
+      var LB_CAT_ORDER = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2c", "2d", "2e", "2f", "2g", "2h"];
+      var LB_CAT_LABELS = {"1a": "Bronchial wall thickening", "1b": "Bronchiectasis", "1c": "Emphysema (incl. Centrilobular, Paraseptal, Bullous)", "1d": "Septal thickening (incl. Interlobular, Reticulation)", "1e": "Micronodules (incl. Centrilobular, Tree-in-bud, Perilymphatic)", "1f": "Other (non-focal)", "2a": "Linear (incl. subsegmental atelectasis, scarring, fibrosis)", "2b": "Atelectasis, consolidation", "2c": "Groundglass opacity", "2d": "Pulmonary nodules/masses", "2e": "Pleural effusion or thickening", "2f": "Honeycombing", "2g": "Pneumothorax", "2h": "Other (focal)"};
       function loadLeaderboard() {
         db.collection('leaderboard').get().then(function(qs) {
           if (qs.empty) { $('#lbStatus').text('No results yet — submissions are evaluated periodically during the development phase.'); return; }
-          var rows = []; qs.forEach(function(d) { rows.push(d.data()); });
-          rows.sort(function(a, b) { return (b.dice || 0) - (a.dice || 0); });
+          var all = []; qs.forEach(function(d) { all.push(d.data()); });
+          var evaluating = all.filter(function(r) { return r.status === 'evaluating'; });
+          var scored = all.filter(function(r) { return r.status !== 'evaluating' && typeof r.dice === 'number'; });
+          scored.sort(function(a, b) { return (b.dice || 0) - (a.dice || 0); });
           function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
+          function idcols(r) {
+            return '<td>' + (r.team || '') + '</td><td>' + (r.registeredTeam || '—') +
+                   '</td><td>' + (r.submitter || '—') + '</td><td>' + (r.institution || '—') + '</td>';
+          }
+          function catDetail(r) {
+            if (!r.perCategory) return '<div style="padding:8px 4px;color:#888;">Per-category results not available for this submission.</div>';
+            var pc = r.perCategory, order = LB_CAT_ORDER.slice();
+            Object.keys(pc).forEach(function(k) { if (order.indexOf(k) === -1) order.push(k); });
+            var body = '';
+            order.forEach(function(c) {
+              var it = pc[c]; if (!it) return;
+              var lab = LB_CAT_LABELS[c] || (c === 'unknown' ? 'Uncategorized' : '');
+              body += '<tr><td style="text-align:left;"><b>' + c + '</b>' + (lab ? ' — ' + lab : '') +
+                      '</td><td>' + (it.n != null ? it.n : 0) + '</td><td>' + fmt(it.dice) + '</td><td>' + fmt(it.hit) + '</td></tr>';
+            });
+            return '<table class="table" style="margin:4px 0;background:#fff;"><thead><tr>' +
+                   '<th style="text-align:left;">Category</th><th>n</th><th>Dice</th><th>Hit Rate</th></tr></thead><tbody>' +
+                   body + '</tbody></table>';
+          }
+          var medal = ['rank-1', 'rank-2', 'rank-3'];
+          var seen = {}, rank = 0, idx = 0;   // rank by submitter's BEST entry, so one person can't hold two places
           var html = '';
-          rows.forEach(function(r, i) {
-            html += '<tr><td>' + (i + 1) + '</td><td>' + (r.team || '') + '</td><td>' + (r.submitter || '—') +
-                    '</td><td>' + (r.institution || '—') + '</td><td class="rank-metric">' + fmt(r.dice) +
-                    '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>';
+          function emit(r, cls, rankCell) {
+            var id = idx++;
+            html += '<tr class="row-toggle' + (cls ? ' ' + cls : '') + '" data-idx="' + id + '"><td>' + rankCell + '</td>' + idcols(r) +
+                    '<td class="rank-metric">' + fmt(r.dice) + '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>' +
+                    '<tr class="cat-detail" data-for="' + id + '" style="display:none;"><td colspan="8" style="background:#fafafa;">' + catDetail(r) + '</td></tr>';
+          }
+          scored.forEach(function(r) {
+            var key = (r.submitterEmail || r.submitter || r.team || '').toLowerCase();
+            if (!seen[key]) { seen[key] = true; rank += 1; emit(r, medal[rank - 1] || '', rank); }  // best submission
+            else { emit(r, 'secondary', '—'); }                                                     // same submitter, not ranked
+          });
+          evaluating.forEach(function(r) {
+            html += '<tr class="evaluating"><td>•</td>' + idcols(r) +
+                    '<td colspan="3"><span class="eval-badge">⏳ Evaluating…</span></td></tr>';
           });
           $('#lbBody').html(html); $('#lbStatus').hide(); $('#lbTable').show();
+          $('#lbBody tr.row-toggle').css('cursor', 'pointer').attr('title', 'Click to see per-category results').on('click', function() {
+            $('#lbBody tr.cat-detail[data-for="' + $(this).data('idx') + '"]').toggle();
+          });
         }).catch(function() { $('#lbStatus').text('Could not load the leaderboard right now.'); });
       }
 
