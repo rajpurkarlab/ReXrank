@@ -261,6 +261,20 @@
           <div class="infoCard">
             <div class="infoBody justified-text">
 
+              <div class="challenge-section" id="leaderboard">
+                <h3>📊 Leaderboard</h3>
+                <p>Standings on the held-out <strong>test set</strong>, ranked by mean Dice. <strong>These are the official, final competition results.</strong> Each submitter is ranked by their single best submission. <strong>Click any row for its per-category breakdown.</strong> Updated automatically as submissions are evaluated.</p>
+                <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
+                <div style="overflow-x:auto;">
+                  <table class="table" id="lbTable" style="display:none;margin-top:10px;">
+                    <thead><tr><th>#</th><th>Submission</th><th>Team</th><th>Submitter</th><th>Institution</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
+                    <tbody id="lbBody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <hr>
+
               <div class="challenge-section" id="register">
                 <h3>🚀 Register &amp; Submit</h3>
                 <p>Registration is <strong>open</strong>. <strong>All submissions are made here, through the Register &amp; Submit form below</strong> — create an account, register your team, then submit your predictions as a Google Drive link. This is the only submission channel.</p>
@@ -317,20 +331,6 @@
                   </div>
 
                   <div id="memberMsg" style="margin-top:12px;font-size:14px;"></div>
-                </div>
-              </div>
-
-              <hr>
-
-              <div class="challenge-section" id="leaderboard">
-                <h3>📊 Leaderboard</h3>
-                <p>Standings on the held-out <strong>test set</strong>, ranked by mean Dice. <strong>These are the official, final competition results.</strong> Each submitter is ranked by their single best submission. <strong>Click any row for its per-category breakdown.</strong> Updated automatically as submissions are evaluated.</p>
-                <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
-                <div style="overflow-x:auto;">
-                  <table class="table" id="lbTable" style="display:none;margin-top:10px;">
-                    <thead><tr><th>#</th><th>Submission</th><th>Team</th><th>Submitter</th><th>Institution</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
-                    <tbody id="lbBody"></tbody>
-                  </table>
                 </div>
               </div>
 
