@@ -325,7 +325,7 @@
                     <input type="url" id="subLink" placeholder="Google Drive link to a single .zip of your predictions" />
                     <p style="font-size:13px;color:#a41034;margin:-8px 0 12px;"><strong>⚠️ Submit a single <code>.zip</code> file</strong> (not a folder), containing your 300 prediction <code>.nii.gz</code> files. <strong>Set sharing to "Anyone with the link"</strong> before submitting — restricted links, folders, and access-requested links cannot be evaluated automatically.</p>
                     <textarea id="subNotes" placeholder="Notes (optional)" rows="2" style="width:100%;padding:10px 14px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px;font-size:15px;"></textarea>
-                    <p style="font-size:13px;color:#333;background:#f7f7f9;border:1px solid #e0e0e0;border-radius:4px;padding:10px 12px;margin-bottom:14px;">⏱️ Evaluation runs automatically — <strong>expect your result on the leaderboard within 12 hours</strong>. Your entry will show as <em>“⏳ Evaluating…”</em> while it runs. Please <strong>do not submit again until you receive your result.</strong></p>
+                    <p style="font-size:13px;color:#333;background:#f7f7f9;border:1px solid #e0e0e0;border-radius:4px;padding:10px 12px;margin-bottom:14px;">⏱️ Evaluation runs automatically — <strong>expect your result on the leaderboard within ~2 hours (max)</strong>. Your entry will show as <em>“⏳ Evaluating…”</em> while it runs. Please <strong>do not submit again until you receive your result.</strong></p>
                     <button type="button" id="subSubmitBtn">Submit Predictions</button>
                     <div id="subList" style="margin-top:16px;font-size:13px;"></div>
                   </div>
@@ -347,7 +347,7 @@
 
               <div class="challenge-section">
                 <h3>🔬 Task</h3>
-                <p>Participants are evaluated on one primary task: <strong>free-text finding grounding</strong>. A model receives a CT volume and a natural-language finding from a radiology report and must output a 3D segmentation mask corresponding to that description.</p>
+                <p>Participants are evaluated on one primary task: <strong>free-text finding grounding</strong>. A model receives a CT volume and a natural-language finding from a radiology report and must output a 3D segmentation mask corresponding to that description. <strong>Models must consume the free-text prompts exactly as provided;</strong> methods that instead perform fixed-category (class-based) segmentation are out of scope and will be <strong>disqualified</strong>.</p>
                 <p style="margin-top:10px;">Findings span <strong>14 categories</strong> covering both typically non-focal abnormalities (bronchial wall thickening, bronchiectasis, emphysema, septal thickening, micronodules, and other diffuse abnormalities) and typically focal abnormalities (linear opacities, atelectasis/consolidation, ground-glass opacities, pulmonary nodules/masses, pleural effusion/thickening, honeycombing, pneumothorax, and other focal findings).</p>
               </div>
 
@@ -424,6 +424,7 @@
                   <li>Training and validation data are publicly available — you can start developing and evaluating your method now.</li>
                   <li>Any publicly available or private training data, including pre-trained models and external datasets, may be used. All external data sources must be described in the method submission.</li>
                   <li>All predictions on the test set must be <strong>fully automatic</strong> — no manual intervention, post-hoc editing, or case-specific tuning allowed.</li>
+                  <li><strong>Free-text grounding only — categorical segmentation is disqualified.</strong> Your model must take each test finding's <strong>free-text prompt exactly as provided (as-is)</strong> and segment the specific finding that text describes. Methods that ignore, rewrite, or map the prompts to a fixed set of classes — i.e. that perform category-based segmentation rather than grounding the free text — will be <strong>disqualified</strong> if determined to do so.</li>
                   <li>You can submit multiple runs; each is evaluated on the held-out test set and shown on the leaderboard. Your best submission before the deadline is your official result.</li>
                   <li>See the <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> for format details.</li>
                 </ul>
