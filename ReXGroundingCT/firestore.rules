@@ -24,11 +24,18 @@ service cloud.firestore {
     }
 
     // Leaderboard: public, read-only. Organizers populate it from the Firebase
-    // console / Admin SDK (those bypass rules) with only public-safe fields
-    // (team name + scores) after evaluating submissions.
+    // console / Admin SDK (those bypass rules) with ONLY public-safe fields
+    // (team, submitter name, institution, public-split scores). NEVER write emails
+    // or withheld full-set scores here — every field is world-readable.
     match /leaderboard/{entryId} {
       allow read: if true;
       allow write: if false;
+    }
+
+    // Private leaderboard data: withheld full-set scores (for the MICCAI reveal) and
+    // submitter emails. NO client access — organizers read via the Admin SDK only.
+    match /leaderboard_private/{entryId} {
+      allow read, write: if false;
     }
   }
 }

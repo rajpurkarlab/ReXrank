@@ -769,7 +769,7 @@
                     '<tr class="cat-detail" data-for="' + id + '" style="display:none;"><td colspan="8" style="background:#fafafa;">' + catDetail(r) + '</td></tr>';
           }
           scored.forEach(function(r) {
-            var key = (r.submitterEmail || r.submitter || r.team || '').toLowerCase();
+            var key = (r.submitterKey || r.submitter || r.team || '').toLowerCase();
             if (!seen[key]) { seen[key] = true; rank += 1; emit(r, medal[rank - 1] || '', rank); }  // best submission
             else { emit(r, 'secondary', '—'); }                                                     // same submitter, not ranked
           });
