@@ -680,7 +680,8 @@
         });
         if (!members.length) { msg('#memberMsg', '#c00', 'Add at least one member (name + affiliation).'); return; }
         var self = this, origText = $(self).text(); $(self).prop('disabled', true).text('Saving...');
-        db.collection('teams').where('teamName', '==', teamName).get().then(function(qs) {
+        // Uniqueness check reads the PII-free team_names index (NOT /teams, which is owner-read-only).
+        db.collection('team_names').where('teamName', '==', teamName).get().then(function(qs) {
           var taken = false; qs.forEach(function(d) { if (d.id !== user.uid) taken = true; });
           if (taken) { msg('#memberMsg', '#c00', 'Team name already taken.'); return Promise.reject('dup'); }
           return db.collection('teams').doc(user.uid).get();
@@ -688,6 +689,9 @@
           var data = { teamName: teamName, contactEmail: email, members: members, ownerUid: user.uid, updatedAt: FV.serverTimestamp() };
           if (!existing.exists) data.createdAt = FV.serverTimestamp();
           return db.collection('teams').doc(user.uid).set(data, { merge: true });
+        }).then(function() {
+          // Mirror the name into the public, PII-free index used for uniqueness checks.
+          return db.collection('team_names').doc(user.uid).set({ teamName: teamName, ownerUid: user.uid, updatedAt: FV.serverTimestamp() });
         }).then(function() { msg('#memberMsg', '#2e7d32', 'Team saved!'); loadTeam(user); })
           .catch(function(e) { if (e !== 'dup') msg('#memberMsg', '#c00', e.message || 'Failed'); })
           .then(function() { $(self).prop('disabled', false).text(origText); });

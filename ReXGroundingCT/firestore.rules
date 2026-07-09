@@ -2,14 +2,25 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Teams: one doc per user, doc id == the owner's auth uid.
-    // Any signed-in user can read (needed for team-name uniqueness check / public team list).
-    // Only the verified owner can create/update their own team doc.
+    // Teams: one doc per user, doc id == the owner's auth uid. Holds PII (contact
+    // email, member names/affiliations), so it is OWNER-READ-ONLY. The registration
+    // uniqueness check uses the PII-free /team_names index instead.
     match /teams/{uid} {
-      allow read: if request.auth != null;
+      allow read: if request.auth != null && request.auth.uid == uid;
       allow write: if request.auth != null
                    && request.auth.uid == uid
                    && request.auth.token.email_verified == true;
+    }
+
+    // Team names: PII-free index (team name + owner uid) for the registration
+    // uniqueness check only. Readable by signed-in users; each user writes only
+    // their own doc. Real team details stay in /teams (owner-read-only above).
+    match /team_names/{uid} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+                   && request.auth.uid == uid
+                   && request.auth.token.email_verified == true
+                   && request.resource.data.ownerUid == request.auth.uid;
     }
 
     // Submissions: a verified user may create submissions they own, and read only their own.
