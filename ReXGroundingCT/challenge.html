@@ -556,6 +556,7 @@
         var email = $.trim($('#suEmail').val()), pass = $('#suPass').val(), name = $.trim($('#suName').val());
         if (!email || pass.length < 6) { msg('#authMsg', '#c00', 'Enter an email and a password of at least 6 characters.'); return; }
         var self = this; $(self).prop('disabled', true).text('Creating...');
+        function done() { $(self).prop('disabled', false).text('Create Account'); }
         auth.createUserWithEmailAndPassword(email, pass)
           .then(function(cred) {
             var p = name ? cred.user.updateProfile({ displayName: name }) : Promise.resolve();
@@ -564,10 +565,30 @@
           // keep the (unverified) user signed in so the Resend button works
           .then(function() {
             msg('#authMsg', '#2e7d32', 'Account created! Check your email (and spam/junk folder) to verify, then log in.');
-            $('#resendBtn').show(); startResendCooldown();
+            $('#resendBtn').show(); startResendCooldown(); done();
           })
-          .catch(function(e) { msg('#authMsg', '#c00', e.message); })
-          .then(function() { $(self).prop('disabled', false).text('Create Account'); });
+          .catch(function(e) {
+            // Common case: they started signing up before but never verified. Don't dead-end them —
+            // if the password matches (it's their account), sign in and re-send verification.
+            if (e && e.code === 'auth/email-already-in-use') {
+              auth.signInWithEmailAndPassword(email, pass)
+                .then(function(cred) {
+                  if (!cred.user.emailVerified) {
+                    return cred.user.sendEmailVerification().then(function() {
+                      msg('#authMsg', '#2e7d32', "You already started signing up with this email but haven't verified it yet. We've re-sent the verification email — check your inbox/spam (then log in).");
+                      $('#resendBtn').show(); startResendCooldown();
+                    });
+                  }
+                  msg('#authMsg', '#2e7d32', "This email already has a verified account — you're now signed in.");
+                })
+                .catch(function() {
+                  msg('#authMsg', '#c00', 'This email is already registered. Please use Log In above — and "Forgot password?" if you don\'t remember your password.');
+                })
+                .then(done);
+            } else {
+              msg('#authMsg', '#c00', e.message); done();
+            }
+          });
       });
 
       // --- login ---
