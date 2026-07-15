@@ -431,7 +431,8 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
     </div>
   </div>
   <div class="challenge-banner">
-    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> — Pre-registration is open! <a href="../ReXGroundingCT/challenge.html">Learn More &rarr;</a>
+    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> — submit your model &amp; see the live leaderboard!
+    <a href="../ReXGroundingCT/challenge.html" style="display:inline-block;margin-left:10px;padding:4px 18px;background:#a41034;color:#fff;border-radius:4px;font-weight:700;text-decoration:none;">Go to the Challenge &rarr;</a>
   </div>
   <div class="cover" id="topCover">
     <div class="container">
@@ -439,7 +440,7 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
         <div class="col-md-12">
           <h1 id="appTitle">ReXGroundingCT</h1>
           <h2 id="appSubtitle">Segmentation of Findings from Free-Text Reports</h2>
-          <h3 id="helpLink"><a href="../explore/submission_guideline_ct.html" target="_blank" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrankCT</a></h3>
+          <h3 id="helpLink"><a href="../ReXGroundingCT/challenge.html#register" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrankCT</a></h3>
           <h3 id="helpLink"><a href="https://arxiv.org/abs/2507.22030" target="_blank" rel="noopener noreferrer">Read the Paper</a></h3>
         </div>
       </div>
