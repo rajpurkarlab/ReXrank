@@ -6,3 +6,4 @@ SAT-FT,https://arxiv.org/abs/2312.17183,Shanghai Jiao Tong University,,,0.205,0.
 BiomedParseV2,https://github.com/microsoft/BiomedParse/tree/v2,Microsoft,,,0.025,0.066,0.006,0.071,0.012
 MedCompose-CT,,Microsoft Research,,6/4/2026,0.297,0.601,0.127,0.304,0.179
 VoxTell-FT,,HBKU,,6/24/2026,0.162,0.371,0.031,0.277,0.056
+DVSM,,Gachon University,,7/13/2026,0.322,0.642,0.215,0.359,0.269
