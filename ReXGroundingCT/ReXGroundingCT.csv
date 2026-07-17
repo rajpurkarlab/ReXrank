@@ -1,6 +1,5 @@
 Model,Model URL,Institution,Version,Date,Global Dice,Global HIT Rate,Instance Precision,Instance Recall,Instance F1
-DAGG,,,Submission 1,2/14/2026,0.233,0.460,0.140,0.260,0.182
-DAGG,,,Submission 2,2/23/2026,0.253,0.517,0.211,0.299,0.247
+DAGG,https://arxiv.org/abs/2607.12602,Gachon University,,2/23/2026,0.253,0.517,0.211,0.299,0.247
 VoxTell,https://arxiv.org/abs/2511.11450,German Cancer Research Center (DKFZ) & Heidelberg University,,3/24/2026,0.285,0.615,0.185,0.294,0.227
 SAT-FT,https://arxiv.org/abs/2312.17183,Shanghai Jiao Tong University,,,0.205,0.473,0.062,0.383,0.107
 BiomedParseV2,https://github.com/microsoft/BiomedParse/tree/v2,Microsoft,,,0.025,0.066,0.006,0.071,0.012
