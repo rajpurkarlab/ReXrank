@@ -347,8 +347,38 @@
 
               <div class="challenge-section">
                 <h3>🔬 Task</h3>
-                <p>Participants are evaluated on one primary task: <strong>free-text finding grounding</strong>. A model receives a CT volume and a natural-language finding from a radiology report and must output a 3D segmentation mask corresponding to that description. <strong>Models must consume the free-text prompts exactly as provided;</strong> methods that instead perform fixed-category (class-based) segmentation are out of scope and will be <strong>disqualified</strong>.</p>
+                <p>Participants are evaluated on <strong>free-text finding grounding</strong>: a model receives a CT volume and a natural-language finding from a radiology report and must output a 3D segmentation mask corresponding to that description. The challenge is organized into two tracks: a <em>Main track</em> that consumes the free-text finding directly, and a more general <em>Overall track</em> (see <a href="#tracks">Challenge Tracks</a> below). In both tracks, fixed-category (class-based) segmentation that cannot separate two findings in different locations is out of scope and will be disqualified.</p>
                 <p style="margin-top:10px;">Findings span <strong>14 categories</strong> covering both typically non-focal abnormalities (bronchial wall thickening, bronchiectasis, emphysema, septal thickening, micronodules, and other diffuse abnormalities) and typically focal abnormalities (linear opacities, atelectasis/consolidation, ground-glass opacities, pulmonary nodules/masses, pleural effusion/thickening, honeycombing, pneumothorax, and other focal findings).</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section" id="tracks">
+                <h3>🎯 Challenge Tracks</h3>
+                <p>The challenge is structured around two tracks, each with its own set of winners. Every eligible <em>Main-track</em> submission is automatically considered for the <em>Overall track</em> as well, so a strong free-text method can place in both.</p>
+
+                <p style="margin-top:16px;"><strong style="color:#a41034;">1. Main Track: Free-Text Grounding.</strong> Methods in this track must consume the exact free-text finding as provided, conditioning the segmentation directly on that text (e.g., as a text embedding). The raw prompt is not rewritten into a structured representation before it reaches the model. This is the original goal of the challenge: flexible models that ground free-text findings natively.</p>
+
+                <p style="margin-top:16px;"><strong style="color:#a41034;">2. Overall Track: Free-Text &amp; Structured.</strong> This more general track admits both free-text methods and methods that transform the free-text finding into a structured representation (for example, parsing out location, morphology, or size with an LLM or text parser) and condition on that structured form. Every eligible Main-track submission is automatically considered here too, so a strong free-text method can place in both.</p>
+
+                <p style="margin-top:10px;">In both tracks, a model must take in more than just the finding itself as a prompt (a prompt cannot simply be “nodule”), and must be able to produce distinct segmentation masks for two findings in separate locations.</p>
+
+                <p style="margin-top:18px;"><strong>Category information (both tracks).</strong> Using a finding's category as an auxiliary signal is permitted in either track, whether the category is provided as part of the official test input or inferred from the free-text prompt (e.g., via a prompt-to-category classifier). For the Main track, the only requirement is that the exact free-text finding is still consumed directly by the model; the category supplements it rather than replaces it.</p>
+
+                <p style="margin-top:16px;"><strong>Also permitted (both tracks).</strong></p>
+                <ul>
+                  <li>Anatomical segmentations (lobes, lung, pleura, etc.) as additional input channels or spatial constraints for a text-grounded prediction.</li>
+                  <li>Post-processing of a text-grounded prediction, such as restricting the mask to the anatomical region named in the finding.</li>
+                </ul>
+
+                <p style="margin-top:16px;"><strong>A quick illustration.</strong></p>
+                <ul>
+                  <li><strong style="color:#2e7d32;">Allowed (Main track):</strong> encode “small nodule in the right upper lobe” as a text embedding, condition the segmentation on it, optionally add the inferred category “nodule” as an auxiliary input, and constrain the output to the right upper lobe.</li>
+                  <li><strong style="color:#2e7d32;">Allowed (Overall track only):</strong> parse the same finding into <code>{location: right upper lobe, morphology: nodular, size: small}</code> and condition on those structured fields instead of the raw text embedding.</li>
+                  <li><strong style="color:#a41034;">Out of scope (both tracks):</strong> output a fixed set of class masks and select “nodule” by label, with no way to separate two nodules in different locations.</li>
+                </ul>
+
+                <p style="margin-top:16px;">There will be three winners across the two tracks. Because Main-track methods are also considered for the Overall track, all three could end up being the same methods.</p>
               </div>
 
               <hr>
@@ -435,9 +465,10 @@
               <div class="challenge-section">
                 <h3>🏅 Awards &amp; Publication</h3>
                 <ul>
-                  <li>Top 3 performing teams will receive <strong>certificates</strong> and invited <strong>oral/spotlight presentations</strong> at the challenge session.</li>
-                  <li>Top 3 teams will be recognized on the public leaderboard and in the post-challenge publication.</li>
-                  <li>Members of the top 3 teams qualify for <strong>co-authorship</strong> on the challenge publication (up to 8 authors per team).</li>
+                  <li>The challenge has two tracks (Main and Overall), each with its own winners; every Main-track submission is automatically eligible for the Overall track (see <a href="#tracks">Challenge Tracks</a>).</li>
+                  <li>Top performing teams in each track will receive <strong>certificates</strong> and invited <strong>oral/spotlight presentations</strong> at the challenge session.</li>
+                  <li>Winning teams will be recognized on the public leaderboard and in the post-challenge publication.</li>
+                  <li>Members of the winning teams qualify for <strong>co-authorship</strong> on the challenge publication (up to 8 authors per team).</li>
                   <li>All teams are free to publish their own results independently with <strong>no embargo period</strong>.</li>
                 </ul>
               </div>
