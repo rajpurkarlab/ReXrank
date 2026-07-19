@@ -294,13 +294,21 @@
                     <tr>
                       <td>1</td>
                       <td style="word-break:break-word;">
-                        <a class="link" href="https://arxiv.org/pdf/2505.14738" target="_blank" rel="noopener noreferrer">R&amp;D-Agent</a>
-                        <p class="institution">Microsoft</p>
+                        <span class="link">AMID</span>
+                        <p class="institution">Codex + GPT-5.5</p>
                       </td>
-                      <td><b>12.15%</b></td>
+                      <td><b>34.57%</b></td>
                     </tr>
                     <tr>
                       <td>2</td>
+                      <td style="word-break:break-word;">
+                        <a class="link" href="https://arxiv.org/pdf/2505.14738" target="_blank" rel="noopener noreferrer">R&amp;D-Agent</a>
+                        <p class="institution">Microsoft</p>
+                      </td>
+                      <td>12.15%</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
                       <td style="word-break:break-word;">
                         <a class="link" href="https://arxiv.org/pdf/2502.13138" target="_blank" rel="noopener noreferrer">AIDE</a>
                         <p class="institution">Weco AI</p>
@@ -308,7 +316,7 @@
                       <td>9.05%</td>
                     </tr>
                     <tr>
-                      <td>3</td>
+                      <td>4</td>
                       <td style="word-break:break-word;">
                         <a class="link" href="https://arxiv.org/pdf/2506.16499" target="_blank" rel="noopener noreferrer">ML-Master</a>
                         <p class="institution">SJTU</p>
@@ -357,6 +365,7 @@
                       <th colspan="2">AIDE</th>
                       <th colspan="2">ML-Master</th>
                       <th colspan="2">R&amp;D-Agent</th>
+                      <th colspan="2">AMID</th>
                       <th>Human</th>
                     </tr>
                     <tr>
@@ -365,39 +374,41 @@
                       <th>Value</th><th>Rank</th>
                       <th>Value</th><th>Rank</th>
                       <th>Value</th><th>Rank</th>
+                      <th>Value</th><th>Rank</th>
                       <th>Value</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="active"><td colspan="9"><strong>Segmentation Tasks</strong></td></tr>
-                    <tr><td>ISLES'22</td><td>Dice</td><td>0.04</td><td>0%</td><td>0.00</td><td>0%</td><td>0.02</td><td>0%</td><td>0.79</td></tr>
-                    <tr><td>NeurIPS-CellSeg</td><td>F1</td><td>0.04</td><td>0%</td><td>0.04</td><td>0%</td><td>0.36</td><td>0%</td><td>0.88</td></tr>
-                    <tr><td>PANTHER-T1</td><td>Dice</td><td>0.33</td><td>16%</td><td>0.13</td><td>8%</td><td>0.16</td><td>8%</td><td>0.73</td></tr>
-                    <tr><td>PANTHER-T2</td><td>Dice</td><td>0.09</td><td>10%</td><td>0.05</td><td>8%</td><td>0.28</td><td>58%</td><td>0.53</td></tr>
-                    <tr><td>PUMA-T1-Seg</td><td>Dice</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.78</td></tr>
-                    <tr><td>PUMA-T2-Seg</td><td>Dice</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.78</td></tr>
-                    <tr><td>SEG.A</td><td>Dice</td><td>0.02</td><td>0%</td><td>0.02</td><td>0%</td><td>0.00</td><td>0%</td><td>0.92</td></tr>
-                    <tr><td>TopBrain-CTA</td><td>Mean Dice</td><td>0.03</td><td>2%</td><td>0.26</td><td>3%</td><td>0.08</td><td>2%</td><td>0.79</td></tr>
-                    <tr><td>TopBrain-MRA</td><td>Mean Dice</td><td>0.01</td><td>10%</td><td>0.26</td><td>0%</td><td>0.50</td><td>0%</td><td>0.81</td></tr>
-                    <tr><td>TopCoW-CTA-Seg</td><td>Mean Dice</td><td>0.09</td><td>0%</td><td>0.25</td><td>3%</td><td>0.49</td><td>2%</td><td>0.87</td></tr>
-                    <tr><td>TopCoW-MRA-Seg</td><td>Mean Dice</td><td>0.11</td><td>0%</td><td>0.48</td><td>0%</td><td>0.73</td><td>3%</td><td>0.88</td></tr>
-                    <tr class="active"><td colspan="9"><strong>Detection Tasks</strong></td></tr>
-                    <tr><td>DENTEX</td><td>AP</td><td>0.09</td><td>0%</td><td>0.08</td><td>0%</td><td>0.09</td><td>0%</td><td>0.40</td></tr>
-                    <tr><td>PUMA-T1-Det</td><td>F1</td><td>0.02</td><td>0%</td><td>0.08</td><td>0%</td><td>0.06</td><td>0%</td><td>0.66</td></tr>
-                    <tr><td>PUMA-T2-Det</td><td>F1</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.00</td><td>0%</td><td>0.01</td><td>0%</td><td>0.27</td></tr>
-                    <tr><td>TopCoW-CTA-Det</td><td>IoU</td><td>0.67</td><td>38%</td><td>0.65</td><td>25%</td><td>0.70</td><td>56%</td><td>0.79</td></tr>
-                    <tr><td>TopCoW-MRA-Det</td><td>IoU</td><td>0.66</td><td>14%</td><td>0.69</td><td>14%</td><td>0.19</td><td>14%</td><td>0.85</td></tr>
-                    <tr class="active"><td colspan="9"><strong>Classification Tasks</strong></td></tr>
-                    <tr><td>TopCoW-CTA-Cls</td><td>Accuracy</td><td>0.33</td><td>33%</td><td>0.10</td><td>0%</td><td>0.28</td><td>50%</td><td>0.73</td></tr>
-                    <tr><td>TopCoW-MRA-Cls</td><td>Accuracy</td><td>0.33</td><td>25%</td><td>0.33</td><td>25%</td><td>0.09</td><td>0%</td><td>0.89</td></tr>
-                    <tr class="active"><td colspan="9"><strong>Image Quality &amp; Enhancement Tasks</strong></td></tr>
-                    <tr><td>LDCT-IQA</td><td>Score</td><td>2.62</td><td>33%</td><td>2.50</td><td>0%</td><td>2.66</td><td>50%</td><td>2.74</td></tr>
-                    <tr><td>USenhance</td><td>LNCC</td><td>0.11</td><td>0%</td><td>0.13</td><td>0%</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.91</td></tr>
-                    <tr class="active"><td colspan="9"><strong>Overall</strong></td></tr>
-                    <tr><td>Overall Mean Percentile</td><td>--</td><td>--</td><td>9.05%</td><td>--</td><td>4.53%</td><td>--</td><td><strong>12.15%</strong></td><td>--</td></tr>
+                    <tr class="active"><td colspan="11"><strong>Segmentation Tasks</strong></td></tr>
+                    <tr><td>ISLES'22</td><td>Dice</td><td>0.04</td><td>0%</td><td>0.00</td><td>0%</td><td>0.02</td><td>0%</td><td>0.71</td><td title="Reported percentile">0%</td><td>0.79</td></tr>
+                    <tr><td>NeurIPS-CellSeg</td><td>F1</td><td>0.04</td><td>0%</td><td>0.04</td><td>0%</td><td>0.36</td><td>0%</td><td>0.90</td><td title="Reported percentile">94%</td><td>0.88</td></tr>
+                    <tr><td>PANTHER-T1</td><td>Dice</td><td>0.33</td><td>16%</td><td>0.13</td><td>8%</td><td>0.16</td><td>8%</td><td>0.42</td><td title="Reported percentile">16%</td><td>0.73</td></tr>
+                    <tr><td>PANTHER-T2</td><td>Dice</td><td>0.09</td><td>10%</td><td>0.05</td><td>8%</td><td>0.28</td><td>58%</td><td>0.31</td><td title="Reported percentile">14%</td><td>0.53</td></tr>
+                    <tr><td>PUMA-T1-Seg</td><td>Dice</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.56</td><td title="Reported percentile">20%</td><td>0.78</td></tr>
+                    <tr><td>PUMA-T2-Seg</td><td>Dice</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.00</td><td>0%</td><td>0.56</td><td title="Reported percentile">20%</td><td>0.78</td></tr>
+                    <tr><td>SEG.A</td><td>Dice</td><td>0.02</td><td>0%</td><td>0.02</td><td>0%</td><td>0.00</td><td>0%</td><td>0.91</td><td title="Reported percentile">15%</td><td>0.92</td></tr>
+                    <tr><td>TopBrain-CTA</td><td>Mean Dice</td><td>0.03</td><td>2%</td><td>0.26</td><td>3%</td><td>0.08</td><td>2%</td><td>0.59</td><td title="Derived from mean position 6.0">50%</td><td>0.79</td></tr>
+                    <tr><td>TopBrain-MRA</td><td>Mean Dice</td><td>0.01</td><td>10%</td><td>0.26</td><td>0%</td><td>0.50</td><td>0%</td><td>0.64</td><td title="Derived from mean position 9.5">15%</td><td>0.81</td></tr>
+                    <tr><td>TopCoW-CTA-Seg</td><td>Mean Dice</td><td>0.09</td><td>0%</td><td>0.25</td><td>3%</td><td>0.49</td><td>2%</td><td>0.63</td><td title="Derived from mean position 10.33333">6.7%</td><td>0.87</td></tr>
+                    <tr><td>TopCoW-MRA-Seg</td><td>Mean Dice</td><td>0.11</td><td>0%</td><td>0.48</td><td>0%</td><td>0.73</td><td>3%</td><td>0.76</td><td title="Derived from mean position 9.22222">17.8%</td><td>0.88</td></tr>
+                    <tr class="active"><td colspan="11"><strong>Detection Tasks</strong></td></tr>
+                    <tr><td>DENTEX</td><td>AP</td><td>0.09</td><td>0%</td><td>0.08</td><td>0%</td><td>0.09</td><td>0%</td><td>0.49</td><td title="Reported percentile">75%</td><td>0.40</td></tr>
+                    <tr><td>PUMA-T1-Det</td><td>F1</td><td>0.02</td><td>0%</td><td>0.08</td><td>0%</td><td>0.06</td><td>0%</td><td>0.54</td><td title="Derived from mean position 11">0%</td><td>0.66</td></tr>
+                    <tr><td>PUMA-T2-Det</td><td>F1</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.00</td><td>0%</td><td>0.01</td><td>0%</td><td>0.28</td><td title="Derived from mean position 1">100%</td><td>0.27</td></tr>
+                    <tr><td>TopCoW-CTA-Det</td><td>IoU</td><td>0.67</td><td>38%</td><td>0.65</td><td>25%</td><td>0.70</td><td>56%</td><td>0.71</td><td title="Derived from mean position 4.5">56.3%</td><td>0.79</td></tr>
+                    <tr><td>TopCoW-MRA-Det</td><td>IoU</td><td>0.66</td><td>14%</td><td>0.69</td><td>14%</td><td>0.19</td><td>14%</td><td>0.74</td><td title="Reported percentile">50%</td><td>0.85</td></tr>
+                    <tr class="active"><td colspan="11"><strong>Classification Tasks</strong></td></tr>
+                    <tr><td>TopCoW-CTA-Cls</td><td>Accuracy</td><td>0.33</td><td>33%</td><td>0.10</td><td>0%</td><td>0.28</td><td>50%</td><td>0.33</td><td title="Derived from mean position 5.5">25%</td><td>0.73</td></tr>
+                    <tr><td>TopCoW-MRA-Cls</td><td>Accuracy</td><td>0.33</td><td>25%</td><td>0.33</td><td>25%</td><td>0.09</td><td>0%</td><td>0.46</td><td title="Reported percentile">33.3%</td><td>0.89</td></tr>
+                    <tr class="active"><td colspan="11"><strong>Image Quality &amp; Enhancement Tasks</strong></td></tr>
+                    <tr><td>LDCT-IQA</td><td>Score</td><td>2.62</td><td>33%</td><td>2.50</td><td>0%</td><td>2.66</td><td>50%</td><td>2.74</td><td title="Reported percentile">83.3%</td><td>2.74</td></tr>
+                    <tr><td>USenhance</td><td>LNCC</td><td>0.11</td><td>0%</td><td>0.13</td><td>0%</td><td><span class="text-danger">FAIL</span></td><td>--</td><td>0.19</td><td title="Reported percentile">0%</td><td>0.91</td></tr>
+                    <tr class="active"><td colspan="11"><strong>Overall</strong></td></tr>
+                    <tr><td>Overall Mean Percentile</td><td>--</td><td>--</td><td>9.05%</td><td>--</td><td>4.53%</td><td>--</td><td>12.15%</td><td>--</td><td><strong>34.57%</strong></td><td>--</td></tr>
                   </tbody>
                 </table>
               </div>
+              <p><small>AMID uses Codex + GPT-5.5. Hover over AMID rank values for percentile provenance; the complete results are available in <a href="./amid_rex_mle_results.csv">CSV format</a>.</small></p>
               <hr>
               <div class="infoHeadline">
                 <h2>Challenge Descriptions</h2>

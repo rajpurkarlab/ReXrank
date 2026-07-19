@@ -1,0 +1,23 @@
+challenge,category,primary_metric,AMID_value,competition_percentile_pct,percentile_source
+ISLES'22,Segmentation,Dice,0.71,0.0,reported
+NeurIPS-CellSeg,Segmentation,F1,0.90,94.0,reported
+PANTHER-T1,Segmentation,Dice,0.42,16.0,reported
+PANTHER-T2,Segmentation,Dice,0.31,14.0,reported
+PUMA-T1-Seg,Segmentation,Dice,0.56,20.0,reported
+PUMA-T2-Seg,Segmentation,Dice,0.56,20.0,reported
+SEG.A,Segmentation,Dice,0.91,15.0,reported
+TopBrain-CTA,Segmentation,Mean Dice,0.59,50.0,derived from mean position 6.0
+TopBrain-MRA,Segmentation,Mean Dice,0.64,15.0,derived from mean position 9.5
+TopCoW-CTA-Seg,Segmentation,Mean Dice,0.63,6.7,derived from mean position 10.33333
+TopCoW-MRA-Seg,Segmentation,Mean Dice,0.76,17.8,derived from mean position 9.22222
+DENTEX,Detection,AP,0.49,75.0,reported
+PUMA-T1-Det,Detection,F1,0.54,0.0,derived from mean position 11
+PUMA-T2-Det,Detection,F1,0.28,100.0,derived from mean position 1
+TopCoW-CTA-Det,Detection,IoU,0.71,56.3,derived from mean position 4.5
+TopCoW-MRA-Det,Detection,IoU,0.74,50.0,reported
+TopCoW-CTA-Cls,Classification,Accuracy,0.33,25.0,derived from mean position 5.5
+TopCoW-MRA-Cls,Classification,Accuracy,0.46,33.3,reported
+LDCT-IQA,Image quality,Score,2.74,83.3,reported
+USenhance,Enhancement,LNCC,0.19,0.0,reported
+
+OVERALL,,mean percentile across 20 tasks,,34.57,ReX-MLE aggregate
