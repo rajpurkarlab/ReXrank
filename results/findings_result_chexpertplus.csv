@@ -24,7 +24,7 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 23,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.147,0.328,0.325,0.137,0.706,0.511,0.246,0.111
 24,2025,UniRG-CXR,Microsoft Research,https://arxiv.org/abs/2601.17151,0.217,0.445,0.527,0.262,1.156,0.581,0.306,0.192
 25,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.18,0.43,0.487,0.243,1.048,0.522,0.25,0.094
-26,2026,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research,0.205,0.397,0.418,0.247,0.934,0.579,0.306,0.266
+26,2026,CARE-X,Microsoft Research,https://www.microsoft.com/en-us/research,0.205,0.397,0.418,0.247,0.934,0.579,0.306,0.266
 27,2025,zzy-RGv1-8b,Individual,,0.141,0.356,0.42,0.213,0.848,0.544,0.264,0.27
 28,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.112,0.317,0.238,0.132,0.656,0.498,0.179,0.033
 29,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.1,0.201,0.362,0.142,0.632,0.524,0.273,0.063

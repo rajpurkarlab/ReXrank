@@ -19,8 +19,8 @@ model_dict = {
         "Institution": "Stanford",
         "Model URL": "https://github.com/YBZh/CheXOne-R1",
     },
-    "RadPhi4VisionCXR": {
-        "Model Name": "RadPhi4VisionCXR",
+    "CARE-X": {
+        "Model Name": "CARE-X",
         "Date": "2025-11-17",
         "Institution": "Microsoft Research",
         "Model URL": "https://www.microsoft.com/en-us/research/",

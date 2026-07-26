@@ -1,5 +1,5 @@
 Rank,Model Name,Institution,Model URL,Overall Accuracy,Differential Diagnosis,Geometric Information Assessment,Location and Distribution Assessment,Negation Assessment,Presence Assessment
-1,RadPhi4VisionCXR,Microsoft Research,https://www.microsoft.com/en-us/research/,0.940,0.933,0.749,0.883,0.965,0.931
+1,CARE-X,Microsoft Research,https://www.microsoft.com/en-us/research/,0.9083,0.8975,0.7598,0.8193,0.9493,0.8887
 2,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.8803,0.8447,0.7374,0.8038,0.911,0.8799
 3,MedGemma-4B-it,Google,https://huggingface.co/google/medgemma-4b-it,0.8344,0.819,0.6872,0.7504,0.8979,0.7935
 4,Eagle2-9B,NVIDIA,https://huggingface.co/nvidia/Eagle2-9B,0.6939,0.7212,0.5084,0.5761,0.8568,0.5403

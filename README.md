@@ -13,4 +13,4 @@ Join us in shaping the future of AI-assisted radiology. Develop your models, sub
 [Visit ReXrank](https://rajpurkarlab.github.io/ReXrank/)
 
 ## Contact
-For any questions or suggestions, please open an issue or reach out to us at xiaomanzhang.zxm@gmail.com
+For any questions or suggestions, please open an issue or reach out to us at MohammedSalimAB@outlook.com

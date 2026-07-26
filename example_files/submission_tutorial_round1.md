@@ -18,9 +18,8 @@ Your model submission should include the following:
 
 4. **Evaluation Result:** Include the evaluation result on the MIMIC-CXR test set.
 
-Please send an email to Xiaoman Zhang xiaomanzhang.zxm@gmail.com with all the required information. Use the email title format: [ReXrank Submission] + Name_of_model. 
+Please send an email to Mohammed Baharoon MohammedSalimAB@outlook.com with all the required information. Use the email title format: [ReXrank Submission] + Name_of_model.
 
 ## Removing Your Models from the Leaderboard
 
 If you decide you no longer want your model's score on the leaderboard, you can send an email to us. When the leaderboard updates, your model will no longer appear.
-
