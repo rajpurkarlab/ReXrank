@@ -23,7 +23,7 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 22,2025,DD-LLaVA-X,SNUH,https://github.com/Gavroche11/rexrank-submission,0.166,0.387,0.469,0.174,0.886,0.542,0.504,0.316
 23,2025,MedGemma,Google,https://huggingface.co/google/medgemma-4b-it,0.2,0.427,0.479,0.223,1.008,0.617,0.566,0.282
 24,2025,UniRG-CXR,Microsoft Research,https://arxiv.org/abs/2601.17151,0.291,0.538,0.576,0.298,1.622,0.618,0.469,0.315
-25,2026,CARE-X,Microsoft Research,https://www.microsoft.com/en-us/research,0.3,0.512,0.563,0.323,1.556,0.653,0.506,0.448
+25,2026,CARE-X,Microsoft Research,https://www.microsoft.com/en-us/research,0.3,0.512,0.563,0.323,1.556,0.653,0.506,0.438
 26,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.229,0.483,0.498,0.21,1.116,0.535,0.428,0.127
 27,2025,zzy-RGv1-8b,Individual,,0.206,0.432,0.505,0.217,1.037,0.593,0.493,0.363
 28,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.181,0.424,0.454,0.167,0.917,0.574,0.499,0.339
