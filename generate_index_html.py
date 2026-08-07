@@ -80,6 +80,12 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
       font-weight: 700;
       background-color: rgba(164, 16, 52, 0.08);
     }
+    /* Keep the CRIMSON column unchanged on row hover (tablesorter theme forces white otherwise). */
+    .performanceTable tbody > tr:hover > td.crimson-col,
+    .performanceTable tbody > tr.hover > td.crimson-col {
+      background-color: rgba(164, 16, 52, 0.08) !important;
+      color: #a41034 !important;
+    }
   </style>
   <style>
     /* Dropdown hover functionality */
