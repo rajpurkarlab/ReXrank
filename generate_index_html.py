@@ -70,6 +70,16 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     .performanceTable th {
       cursor: pointer;
     }
+    /* CRIMSON is the primary ReXrank metric — highlight its column in Harvard crimson. */
+    .performanceTable th.crimson-col {
+      background-color: #a41034 !important;
+      color: #fff !important;
+    }
+    .performanceTable td.crimson-col {
+      color: #a41034;
+      font-weight: 700;
+      background-color: rgba(164, 16, 52, 0.08);
+    }
   </style>
   <style>
     /* Dropdown hover functionality */
@@ -391,7 +401,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             updateRanksPrivate();
 
             function toggleCrimsonColumn(tableId, show) {
-              var crimsonColIndex = 10;
+              var crimsonColIndex = 3;
               var displayValue = show ? '' : 'none';
               $(tableId + ' thead th:nth-child(' + crimsonColIndex + ')').css('display', displayValue);
               $(tableId + ' tbody tr').each(function() {

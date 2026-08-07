@@ -27,6 +27,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
+                    <th class="crimson-col">CRIMSON</th>
                     <th>1/RadCliQ-v1</th>
                     <th>BLEU</th>
                     <th>BertScore</th>
@@ -34,7 +35,6 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                     <th>RadGraph</th>
                     <th>RaTEScore</th>
                     <th>GREEN</th>
-                    <th>CRIMSON</th>
                   </tr>
                 </thead>
                 <tbody id="testResultsMIMIC">
@@ -54,6 +54,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+                <td class="crimson-col"><b>{row['CRIMSON']}</b></td>
                 <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -61,7 +62,6 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     
@@ -82,6 +82,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+               <td class="crimson-col"><b></b></td>
                <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -89,7 +90,6 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b></b></td>
               </tr>
         '''
     
@@ -133,6 +133,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
             <tr>
               <th>Rank</th>
               <th>Model</th>
+              <th class="crimson-col">CRIMSON</th>
               <th>1/RadCliQ-v1</th>
               <th>BLEU</th>
               <th>BertScore</th>
@@ -140,7 +141,6 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
               <th>RadGraph</th>
               <th>RaTEScore</th>
               <th>GREEN</th>
-              <th>CRIMSON</th>
             </tr>
           </thead>
           <tbody id="testResultsPrivate">
@@ -160,6 +160,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+                <td class="crimson-col"><b>{row['CRIMSON']}</b></td>
                 <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -167,7 +168,6 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     
@@ -187,6 +187,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+                <td class="crimson-col"><b></b></td>
                 <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -194,7 +195,6 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b></b></td>
               </tr>
         '''
 
@@ -239,6 +239,7 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
             <tr>
               <th>Rank</th>
               <th>Model</th>
+              <th class="crimson-col">CRIMSON</th>
               <th>1/RadCliQ-v1</th>
               <th>BLEU</th>
               <th>BertScore</th>
@@ -246,7 +247,6 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
               <th>RadGraph</th>
               <th>RaTEScore</th>
               <th>GREEN</th>
-              <th>CRIMSON</th>
             </tr>
           </thead>
           <tbody id="testResultsCheXpert">
@@ -266,6 +266,7 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+                <td class="crimson-col"><b>{row['CRIMSON']}</b></td>
                 <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -273,7 +274,6 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     html_string += '''
@@ -293,6 +293,7 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+                <td class="crimson-col"><b></b></td>
                 <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -300,7 +301,6 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b></b></td>
               </tr>
         ''' 
     
@@ -342,6 +342,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <tr>
                     <th>Rank</th>
                     <th>Model</th>
+                    <th class="crimson-col">CRIMSON</th>
                     <th>1/RadCliQ-v1</th>
                     <th>BLEU</th>
                     <th>BertScore</th>
@@ -349,7 +350,6 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                     <th>RadGraph</th>
                     <th>RaTEScore</th>
                     <th>GREEN</th>
-                    <th>CRIMSON</th>
                   </tr>
                 </thead>
             <tbody id="testResultsIU">
@@ -369,6 +369,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+                <td class="crimson-col"><b>{row['CRIMSON']}</b></td>
                 <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -376,7 +377,6 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b>{row['CRIMSON']}</b></td>
               </tr>
         '''
     
@@ -397,6 +397,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                   <a class="link" href="{row['Model URL']}">{row['Model Name']}</a>
                   <p class="institution">{row['Institution']}</p>
                 </td>
+                <td class="crimson-col"><b></b></td>
                 <td><b>{row['1/RadCliQ-v1']}</b></td>
                 <td><b>{row['BLEU']}</b></td>
                 <td><b>{row['BertScore']}</b></td>
@@ -404,7 +405,6 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
                 <td><b>{row['RadGraph']}</b></td>
                 <td><b>{row['RaTEScore']}</b></td>
                 <td><b>{row['GREEN']}</b></td>
-                <td><b></b></td>
               </tr>
         '''
     
