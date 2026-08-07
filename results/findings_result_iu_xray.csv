@@ -28,5 +28,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 27,2025,zzy-RGv1-8b,Individual,,0.216,0.467,0.609,0.225,1.262,0.629,0.588,0.601
 28,2026,CARE-X,Microsoft Research,https://www.microsoft.com/en-us/research,0.279,0.552,0.662,0.301,1.976,0.702,0.63,0.661
 29,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.214,0.446,0.643,0.263,1.339,0.675,0.706,0.561
-30,2025,zzy-RGv2-2b,Individual,,0.295,0.549,0.66,0.336,2.134,0.684,0.632,0.615
-31,2026,Deepwise-RG,Deepwise,https://www.deepwise.com/,0.316,0.552,0.668,0.337,2.198,0.684,0.64,0.641
+30,2026,Deepwise-RG,Deepwise,https://www.deepwise.com/,0.316,0.552,0.668,0.337,2.198,0.684,0.64,0.641

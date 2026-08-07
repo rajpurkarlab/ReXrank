@@ -28,5 +28,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 27,2025,zzy-RGv1-8b,Individual,,0.144,0.363,0.421,0.211,0.855,0.544,0.264,0.27
 28,2025,CX-Mind,SJTU,https://arxiv.org/pdf/2508.03733,0.114,0.325,0.244,0.133,0.664,0.498,0.179,0.033
 29,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.104,0.18,0.36,0.118,0.607,0.524,0.273,0.063
-30,2025,zzy-RGv2-2b,Individual,,0.175,0.401,0.507,0.263,1.046,0.57,0.297,0.352
-31,2026,Deepwise-RG,Deepwise,https://www.deepwise.com/,0.217,0.42,0.495,0.287,1.102,0.575,0.328,0.335
+30,2026,Deepwise-RG,Deepwise,https://www.deepwise.com/,0.217,0.42,0.495,0.287,1.102,0.575,0.328,0.335
