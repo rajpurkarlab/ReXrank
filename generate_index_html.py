@@ -17,7 +17,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
   <html lang="en"></html>
   <meta content="ReXrank is an open-source leaderboard for AI-powered radiology report generation from chest x-ray images." name="description"/>
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <meta content="/logo.png" property="og:image"/>
   <link href="./logo.png" rel="image_src" type="image/png"/>
   <link href="./favicon.ico" rel="shortcut icon" type="image/x-icon"/>
@@ -110,6 +110,19 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     #topNavbar .navbar-right .dropdown-menu > li > a:hover {
       background-color: #f5f5f5 !important;
       color: #a41034 !important;
+    }
+  </style>
+  <style>
+    /* ===== Mobile responsiveness (added) ===== */
+    .fixed-height-table { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    @media (max-width: 768px) {
+      .performanceTable th, .performanceTable td,
+      .fixed-height-table th, .fixed-height-table td { padding: 4px 6px; font-size: 12px; }
+      .fixed-height-table { height: auto; max-height: 60vh; }
+      .btn-black, .btn-gray { min-height: 44px; padding: 10px 16px; margin: 0 6px 6px 0; }
+    }
+    @media (max-width: 480px) {
+      .btn-black, .btn-gray { display: block; width: 100%; margin: 0 0 8px 0; }
     }
   </style>
 </head>

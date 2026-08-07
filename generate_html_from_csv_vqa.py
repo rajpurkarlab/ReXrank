@@ -21,7 +21,7 @@ def generate_html_from_csv(csv_path, output_path):
         <div>
           <p>Performance comparison of various vision-language models on medical VQA tasks. </p>
         </div>
-        <table class="table performanceTable tablesorter" id="modelTableVQA">
+        <div class="table-scroll"><table class="table performanceTable tablesorter" id="modelTableVQA">
           <thead>
             <tr>
               <th>Rank</th>
@@ -58,7 +58,7 @@ def generate_html_from_csv(csv_path, output_path):
     # HTML footer
     html_string += '''
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>

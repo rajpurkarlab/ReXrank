@@ -22,7 +22,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
                 <button id="testBtnMIMIC" class="btn btn-black">Findings</button>
                 <button id="validBtnMIMIC" class="btn btn-gray">Findings + Impression</button>
               </div>
-              <table class="table performanceTable tablesorter" id="modelTableTest">
+              <div class="table-scroll"><table class="table performanceTable tablesorter" id="modelTableTest">
                 <thead>
                   <tr>
                     <th>Rank</th>
@@ -96,7 +96,7 @@ def generate_leaderboard_html_mimiccxr(test_csv_path, valid_csv_path, output_pat
     # HTML 结尾部分
     html_string += '''
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
           <button id="testBtnPrivate" class="btn btn-black">Findings</button>
           <button id="validBtnPrivate" class="btn btn-gray">Findings + Impression</button>
         </div>
-        <table class="table performanceTable tablesorter" id="modelTablePrivate">
+        <div class="table-scroll"><table class="table performanceTable tablesorter" id="modelTablePrivate">
           <thead>
             <tr>
               <th>Rank</th>
@@ -201,7 +201,7 @@ def generate_leaderboard_html_gradienthealth(test_csv_path, valid_csv_path, outp
     # HTML 结尾部分
     html_string += '''
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
@@ -234,7 +234,7 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
           <button id="testBtnCheXpert" class="btn btn-black">Findings</button>
           <button id="validBtnCheXpert" class="btn btn-gray">Findings + Impression</button>
         </div>
-        <table class="table performanceTable tablesorter" id="modelTableCheXpert">
+        <div class="table-scroll"><table class="table performanceTable tablesorter" id="modelTableCheXpert">
           <thead>
             <tr>
               <th>Rank</th>
@@ -307,7 +307,7 @@ def generate_leaderboard_html_chexpertplus(test_csv_path, valid_csv_path, output
     # HTML 结尾部分
     html_string += '''
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>
@@ -337,7 +337,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
             <button id="testBtnIU" class="btn btn-black">Findings</button>
             <button id="validBtnIU" class="btn btn-gray">Findings + Impression</button>
           </div>
-          <table class="table performanceTable tablesorter" id="modelTableIU">
+          <div class="table-scroll"><table class="table performanceTable tablesorter" id="modelTableIU">
             <thead>
                   <tr>
                     <th>Rank</th>
@@ -411,7 +411,7 @@ def generate_leaderboard_html_iu_xray(test_csv_path, valid_csv_path, output_path
     # HTML 结尾部分
     html_string += '''
             </tbody>
-          </table>
+          </table></div>
         </div>
       </div>
     </div>

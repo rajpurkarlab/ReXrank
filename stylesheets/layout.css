@@ -417,7 +417,7 @@ button:focus {
 
 @media (max-width: 768px) {
   #topCover #appTitle {
-    font-size: 6em;
+    font-size: 4em;
   }
 }
 
@@ -518,6 +518,25 @@ hr {
 }
 @media (max-width: 768px) {
   [class*='col-'] {
-    padding: 0px 0px;
+    padding: 0px 10px;
   }
+}
+
+/* ===== Mobile responsiveness (added) ===== */
+/* C1: wide leaderboard tables scroll horizontally inside their own box, not the page */
+.table-scroll { width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* M2: title wraps + smaller on narrow phones */
+#topCover #appTitle { overflow-wrap: break-word; word-break: break-word; }
+@media (max-width: 480px) {
+  #topCover #appTitle { font-size: 3em; }
+  #topCover #appSubtitle { font-size: 1.4em; }
+}
+@media (max-width: 360px) { #topCover #appTitle { font-size: 2.4em; } }
+
+@media (max-width: 768px) {
+  /* M1: challenge banner flows in-document instead of floating/overlapping */
+  .challenge-banner { position: static; top: auto; width: 100%; }
+  /* m2: recover horizontal space inside cards */
+  .infoCard .infoBody { padding: 16px 12px; }
 }
