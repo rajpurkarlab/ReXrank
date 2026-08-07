@@ -232,12 +232,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             }
 
             // Detect column header click and apply custom sort
-            $("#modelTableTest th").click(function() {
-                var columnIndex = $(this).index();
-                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
-                    customSortTest(columnIndex);
-                }
-            });
 
             // Update ranks after table sort ends
             $("#modelTableTest").bind("sortEnd", function() {
@@ -313,12 +307,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             }
 
             // Detect column header click and apply custom sort
-            $("#modelTableIU th").click(function() {
-                var columnIndex = $(this).index();
-                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
-                  customSortIU(columnIndex);
-                }
-            });
     
             // Update ranks after table sort ends
             $("#modelTableIU").bind("sortEnd", function() {
@@ -353,12 +341,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             }
 
             // Detect column header click and apply custom sort
-            $("#modelTableCheXpert th").click(function() {
-                var columnIndex = $(this).index();
-                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
-                  customSortCheXpert(columnIndex);
-                }
-            });
             // Update ranks after table sort ends
             $("#modelTableCheXpert").bind("sortEnd", function() {
                 updateRanksCheXpert();
@@ -392,12 +374,6 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
             }
 
             // Detect column header click and apply custom sort
-            $("#modelTablePrivate th").click(function() {
-                var columnIndex = $(this).index();
-                if (columnIndex > 1) { // 只对第2列及之后的列进行排序
-                  customSortPrivate(columnIndex);
-                }
-            });
             // Update ranks after table sort ends
             $("#modelTablePrivate").bind("sortEnd", function() {
                 updateRanksPrivate();
