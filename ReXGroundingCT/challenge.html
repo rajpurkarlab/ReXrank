@@ -207,6 +207,14 @@
     #lbTable tr.evaluating td { background: #fffdf5 !important; color: #7a6a00; }
     .eval-badge { color: #a41034; font-weight: 600; animation: evalPulse 1.2s ease-in-out infinite; }
     @keyframes evalPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* Give the content (esp. the 8-column leaderboard) more room so metric columns
+       aren't pushed off-screen and names like "Kwang-Hyun Uhm" don't wrap. */
+    @media (min-width: 992px) {
+      #contentCover .container, #topCover .container { width: 94%; max-width: 1320px; }
+    }
+    /* Keep leaderboard cells on one line; the wrapper scrolls horizontally if needed. */
+    #lbTable th, #lbTable td { white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -257,7 +265,7 @@
   <div class="cover" id="contentCover">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
           <div class="infoCard">
             <div class="infoBody justified-text">
 
