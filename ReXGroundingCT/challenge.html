@@ -584,7 +584,9 @@
       function msg(sel, color, text) { $(sel).css('color', color).text(text); }
 
       // Email-notification hook (Google Apps Script web app) — see submission_notify_apps_script.gs.
-      var EMAIL_HOOK_URL = 'https://script.google.com/macros/s/AKfycbycetaIf0E-jCdiIcTIgeTyvuBtU9_n5Z7-PbHchMiOj15QF_jPhFZB-HNMllxcxQ3B/exec';
+      // Organizer submission-notification email DISABLED on request (2026-08-30).
+      // To re-enable, restore: 'https://script.google.com/macros/s/AKfycbycetaIf0E-jCdiIcTIgeTyvuBtU9_n5Z7-PbHchMiOj15QF_jPhFZB-HNMllxcxQ3B/exec'
+      var EMAIL_HOOK_URL = '';   // blank -> notify function returns immediately (no email)
 
       loadLeaderboard();  // public; runs regardless of login state
 
