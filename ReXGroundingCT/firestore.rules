@@ -27,9 +27,13 @@ service cloud.firestore {
     // Organizers read ALL submissions via the Firebase console or Admin SDK (those bypass rules).
     // Submissions are immutable from the client (no edit/delete) to preserve integrity.
     match /submissions/{subId} {
+      // Submission window CLOSES at the challenge deadline:
+      // 2026-09-14 11:59 PM America/New_York (EDT = UTC-4)  ==  2026-09-15 04:00 UTC.
+      // Enforced server-side so the cutoff cannot be bypassed by calling Firestore directly.
       allow create: if request.auth != null
                     && request.auth.token.email_verified == true
-                    && request.resource.data.ownerUid == request.auth.uid;
+                    && request.resource.data.ownerUid == request.auth.uid
+                    && request.time < timestamp.date(2026, 9, 15) + duration.value(4, 'h');
       allow read:   if request.auth != null && resource.data.ownerUid == request.auth.uid;
       allow update, delete: if false;
     }

@@ -588,6 +588,19 @@
       // To re-enable, restore: 'https://script.google.com/macros/s/AKfycbycetaIf0E-jCdiIcTIgeTyvuBtU9_n5Z7-PbHchMiOj15QF_jPhFZB-HNMllxcxQ3B/exec'
       var EMAIL_HOOK_URL = '';   // blank -> notify function returns immediately (no email)
 
+      // --- Submission deadline: Sep 14, 2026, 11:59 PM Boston/Eastern (EDT = UTC-4) ---
+      // Same instant the Firestore rules enforce server-side, so the UI matches the real lock.
+      var SUBMISSION_DEADLINE = new Date('2026-09-15T04:00:00Z');
+      function submissionsClosed() { return new Date() >= SUBMISSION_DEADLINE; }
+      function applyDeadlineState() {
+        if (!submissionsClosed()) return;
+        $('#subSubmitBtn').prop('disabled', true).text('Submissions closed');
+        $('#subMethod, #subLink, #subNotes').prop('disabled', true);
+        if (!$('#subClosedNote').length) {
+          $('#subSubmitBtn').before('<p id="subClosedNote" style="color:#a41034;font-weight:600;margin-bottom:12px;">Submissions are closed. The deadline (September 14, 2026, 11:59 PM ET) has passed and the leaderboard standings are final.</p>');
+        }
+      }
+
       loadLeaderboard();  // public; runs regardless of login state
 
       // --- account tabs ---
@@ -719,7 +732,7 @@
             if (!$('#memberRows').children().length) addMemberRow();
             $('#teamFormTitle').text('Your team');
             $('#teamSubmitBtn').text('Save changes');
-            $('#submitForm').show(); $('#teamLabel').text(d.teamName || '');
+            $('#submitForm').show(); $('#teamLabel').text(d.teamName || ''); applyDeadlineState();
             loadSubs(user);
           } else {
             $('#teamName').val(''); $('#teamEmail').val('');
@@ -764,6 +777,11 @@
       // --- submit prediction ---
       $('#subSubmitBtn').on('click', function() {
         var user = auth.currentUser; if (!user) return;
+        if (submissionsClosed()) {
+          applyDeadlineState();
+          msg('#memberMsg', '#c00', 'Submissions are closed — the deadline (September 14, 2026, 11:59 PM ET) has passed.');
+          return;
+        }
         var methodName = $.trim($('#subMethod').val());
         if (!methodName) { msg('#memberMsg', '#c00', 'Enter a model name.'); return; }
         var link = $.trim($('#subLink').val());
