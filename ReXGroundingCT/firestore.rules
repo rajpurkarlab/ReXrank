@@ -27,29 +27,33 @@ service cloud.firestore {
     // Organizers read ALL submissions via the Firebase console or Admin SDK (those bypass rules).
     // Submissions are immutable from the client (no edit/delete) to preserve integrity.
     match /submissions/{subId} {
-      // Submission window CLOSES at the challenge deadline:
-      // 2026-09-14 11:59 PM America/New_York (EDT = UTC-4)  ==  2026-09-15 04:00 UTC.
-      // Enforced server-side so the cutoff cannot be bypassed by calling Firestore directly.
+      // Open for the ongoing post-challenge leaderboard (the MICCAI 2026 challenge window
+      // closed 2026-09-15 04:00 UTC; that deadline condition was lifted on 2026-09-28).
       allow create: if request.auth != null
                     && request.auth.token.email_verified == true
-                    && request.resource.data.ownerUid == request.auth.uid
-                    && request.time < timestamp.date(2026, 9, 15) + duration.value(4, 'h');
+                    && request.resource.data.ownerUid == request.auth.uid;
       allow read:   if request.auth != null && resource.data.ownerUid == request.auth.uid;
       allow update, delete: if false;
     }
 
-    // Leaderboard: public, read-only. Organizers populate it from the Firebase
-    // console / Admin SDK (those bypass rules) with ONLY public-safe fields
-    // (team, submitter name, institution, public-split scores). NEVER write emails
-    // or withheld full-set scores here — every field is world-readable.
+    // Leaderboard: public, read-only. Organizers populate it from the Admin SDK (bypasses
+    // rules) with ONLY the model name, scores and an opaque random group key. Nothing about
+    // WHO submitted (name, team, institution, email, uid, email hash) — every field is
+    // world-readable. That lives in leaderboard_private / competitor_groups below.
     match /leaderboard/{entryId} {
       allow read: if true;
       allow write: if false;
     }
 
-    // Private leaderboard data: withheld full-set scores (for the MICCAI reveal) and
-    // submitter emails. NO client access — organizers read via the Admin SDK only.
+    // Private leaderboard data: submitter name/email/institution/team per entry, plus the
+    // challenge-era public-split scores. NO client access — organizers use the Admin SDK only.
     match /leaderboard_private/{entryId} {
+      allow read, write: if false;
+    }
+
+    // Competitor groups: email -> opaque groupKey used for the public "best entry per
+    // participant" ranking (merged accounts share a key). Admin SDK only.
+    match /competitor_groups/{email} {
       allow read, write: if false;
     }
   }

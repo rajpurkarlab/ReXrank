@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<!--Author: Xiaoman Zhang 2024 -->
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>
+    ReXGroundingCT v1 Leaderboard (Archived)
+  </title>
+  <meta name="description" content="ReXGroundingCT: A large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging."/>
+  <meta name="keywords" content="ReXGroundingCT, radiology, chest CT, segmentation, medical imaging"/>
+  <meta property="og:title" content="ReXGroundingCT: 3D Chest CT Dataset"/>
+  <meta property="og:description" content="A large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/rexgroundingct/"/>
+  <meta property="og:type" content="website"/>
+  <html lang="en"></html>
+  <meta content="ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging." name="description"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  <meta content="/logo.png" property="og:image"/>
+  <link href="../logo.png" rel="image_src" type="image/png"/>
+  <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+  <link href="../favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="../stylesheets/layout.css" rel="stylesheet"/>
+  <link href="../stylesheets/index.css" rel="stylesheet"/>
+  <script src="../javascripts/analytics.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../javascripts/jquery.tablesorter.min.js"></script>
+  <link rel="stylesheet" href="../stylesheets/theme.default.min.css">
+
+  <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
+
+  <style>
+    .fixed-height-table {
+      height: 300px; /* Fixed height, adjust as needed */
+      overflow-y: scroll;
+      display: block;
+    }
+    .fixed-height-table thead {
+      position: sticky;
+      top: 0;
+      background-color: white; /* Table header background color */
+      z-index: 1;
+    }
+    .fixed-height-table th, .fixed-height-table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .justified-text {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+  </style>
+  <style>
+    .performanceTable th {
+      cursor: pointer;
+    }
+    #contentCover .performanceTable th,
+    #contentCover .performanceTable td,
+    #contentCover .performanceTable.tablesorter td,
+    #contentCover .performanceTable.tablesorter th,
+    #contentCover .categoryTable th,
+    #contentCover .categoryTable td {
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+    #contentCover .categoryTable td:first-child,
+    #contentCover .categoryTable th:first-child {
+      text-align: left !important;
+    }
+    .category-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .category-control-item {
+      min-width: 220px;
+    }
+    .category-control-item label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .categoryTable th {
+      font-weight: 700;
+    }
+    /* Version selector styles */
+    .version-selector {
+      position: relative;
+      display: inline-block;
+      margin-top: 4px;
+    }
+    .model-date {
+      margin-top: 0;
+    }
+    .version-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 2px 10px;
+      background: linear-gradient(135deg, #f7f7f9, #eef0f3);
+      border: 1px solid #d0d3d9;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #555;
+      white-space: nowrap;
+      user-select: none;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .version-badge:hover {
+      background: linear-gradient(135deg, #eef0f3, #e2e5ea);
+      border-color: #a41034;
+      color: #a41034;
+      box-shadow: 0 1px 3px rgba(164,16,52,0.12);
+    }
+    .version-caret-icon {
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+    .version-selector:hover .version-caret-icon {
+      transform: rotate(180deg);
+    }
+    .version-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 100;
+      background: #fff;
+      border: 1px solid #d0d3d9;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 70px;
+      padding: 4px 0;
+      animation: versionDropIn 0.15s ease;
+    }
+    /* Invisible bridge so mouse doesn't lose hover between badge and dropdown */
+    .version-dropdown::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 0;
+      right: 0;
+      height: 6px;
+    }
+    @keyframes versionDropIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .version-selector:hover .version-dropdown {
+      display: block;
+    }
+    .version-option {
+      display: block;
+      padding: 5px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #444;
+      white-space: nowrap;
+      transition: all 0.12s ease;
+      border-left: 2px solid transparent;
+    }
+    .version-option:hover {
+      background: #fdf2f4;
+      color: #a41034;
+      border-left-color: #a41034;
+    }
+    .version-option.active {
+      font-weight: 600;
+    }
+  </style>
+  <style>
+    /* Dropdown hover functionality */
+    .navbar-nav .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .navbar-nav .dropdown-menu {
+      margin-top: 0;
+      background-color: #fff !important;
+    }
+    /* Fix dropdown menu colors */
+    #topNavbar .navbar-nav .dropdown-menu > li > a,
+    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
+    #topNavbar .navbar-right .dropdown-menu > li > a,
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-right .dropdown-menu > li > a:focus {
+      color: #333 !important;
+      background-color: #fff !important;
+    }
+    #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
+    #topNavbar .navbar-right .dropdown-menu > li > a:hover {
+      background-color: #f5f5f5 !important;
+      color: #a41034 !important;
+    }
+  </style>
+</head>
+<body class="has-banner">
+  <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
+    <div class="container clearfix" id="navContainer">
+      <div class="rightNav">
+        <div class="collapseDiv">
+          <button aria-controls="navbar" aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 18px;">
+                ReXrankCT <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="../ReXGroundingCT/index.html">ReXGroundingCT</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="../ReX-MLE/index.html" style="font-size: 18px;">ReX-MLE</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="leftNav">
+        <div class="brandDiv">
+          <a class="navbar-brand" href="../">ReXrank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="challenge-banner">
+    📦 <strong>Archived leaderboard.</strong> This is the original ReXGroundingCT leaderboard on the 100-case v1 test set. It is frozen and no longer accepts submissions.
+    <a href="../ReXGroundingCT/index.html" style="display:inline-block;margin-left:10px;padding:4px 18px;background:#a41034;color:#fff;border-radius:4px;font-weight:700;text-decoration:none;">Go to the current leaderboard &rarr;</a>
+  </div>
+  <div class="cover" id="topCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 id="appTitle">ReXGroundingCT</h1>
+          <h2 id="appSubtitle">Original Leaderboard · 100-case v1 Test Set (Archived)</h2>
+          <h3 id="helpLink"><a href="../ReXGroundingCT/index.html#register" rel="noopener noreferrer">⭐@Researchers: Submit to the current leaderboard</a></h3>
+          <h3 id="helpLink"><a href="https://arxiv.org/abs/2507.22030" target="_blank" rel="noopener noreferrer">Read the Paper</a></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cover" id="contentCover">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="infoCard">
+            <div class="infoBody justified-text">
+              <div class="infoHeadline">
+                <h2>About ReXGroundingCT</h2>
+              </div>
+              <p>ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging. It comprises 3,142 non-contrast chest CT scans with 8,028 annotated findings (16,301 entities) from the CT-RATE dataset. ReXGroundingCT enables sentence-level grounding for both focal and non-focal lung and pleural abnormalities across 14 categories. This archived leaderboard reports results on the original 100-case v1 test set, which has exhaustive radiologist annotations for all visible findings. These results are not comparable to the current leaderboard, which uses the 300-case test set.</p>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Performance Metrics</h2>
+              </div>
+              <p><strong>Global Dice:</strong> Average Dice per finding per case</p>
+              <p><strong>Global HIT Rate:</strong> Proportion of findings that have Dice >= 0.1</p>
+              <p><strong>Instance Precision:</strong> TP / (TP + FP), where True Positives are instances that have a Dice >= 0.2</p>
+              <p><strong>Instance Recall:</strong> TP / (TP + FN)</p>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Model Performance</h2>
+              </div>
+              <table class="table performanceTable tablesorter">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Global Dice</th>
+                    <th>Global HIT Rate</th>
+                    <th>Instance Precision</th>
+                    <th>Instance Recall</th>
+                    <th>Instance F1</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-model="DAGG" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;2/23/2026&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.211&quot;, &quot;rec&quot;: &quot;0.299&quot;, &quot;f1&quot;: &quot;0.247&quot;}]' data-current-version="0">
+                    <td style="word-break:break-word;">
+                      <a href="https://arxiv.org/abs/2607.12602" target="_blank">DAGG</a>
+                      <p class="institution">Gachon University</p>
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">2/23/2026</span></div>
+                    </td>
+                    <td class="metric-dice"><b>0.253</b></td>
+                    <td class="metric-hit"><b>0.517</b></td>
+                    <td class="metric-prec"><b>0.211</b></td>
+                    <td class="metric-rec"><b>0.299</b></td>
+                    <td class="metric-f1"><b>0.247</b></td>
+                  </tr>
+                  <tr data-model="VoxTell" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;3/24/2026&quot;, &quot;dice&quot;: &quot;0.285&quot;, &quot;hit&quot;: &quot;0.615&quot;, &quot;prec&quot;: &quot;0.185&quot;, &quot;rec&quot;: &quot;0.294&quot;, &quot;f1&quot;: &quot;0.227&quot;}]' data-current-version="0">
+                    <td style="word-break:break-word;">
+                      <a href="https://arxiv.org/abs/2511.11450" target="_blank">VoxTell</a>
+                      <p class="institution">German Cancer Research Center (DKFZ)<br/>Heidelberg University</p>
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">3/24/2026</span></div>
+                    </td>
+                    <td class="metric-dice"><b>0.285</b></td>
+                    <td class="metric-hit"><b>0.615</b></td>
+                    <td class="metric-prec"><b>0.185</b></td>
+                    <td class="metric-rec"><b>0.294</b></td>
+                    <td class="metric-f1"><b>0.227</b></td>
+                  </tr>
+                  <tr data-model="SAT-FT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.205&quot;, &quot;hit&quot;: &quot;0.473&quot;, &quot;prec&quot;: &quot;0.062&quot;, &quot;rec&quot;: &quot;0.383&quot;, &quot;f1&quot;: &quot;0.107&quot;}]' data-current-version="0">
+                    <td style="word-break:break-word;">
+                      <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT-FT</a>
+                      <p class="institution">Shanghai Jiao Tong University</p>
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="model-date"></span></div>
+                    </td>
+                    <td class="metric-dice"><b>0.205</b></td>
+                    <td class="metric-hit"><b>0.473</b></td>
+                    <td class="metric-prec"><b>0.062</b></td>
+                    <td class="metric-rec"><b>0.383</b></td>
+                    <td class="metric-f1"><b>0.107</b></td>
+                  </tr>
+                  <tr data-model="BiomedParseV2" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.025&quot;, &quot;hit&quot;: &quot;0.066&quot;, &quot;prec&quot;: &quot;0.006&quot;, &quot;rec&quot;: &quot;0.071&quot;, &quot;f1&quot;: &quot;0.012&quot;}]' data-current-version="0">
+                    <td style="word-break:break-word;">
+                      <a href="https://github.com/microsoft/BiomedParse/tree/v2" target="_blank">BiomedParseV2</a>
+                      <p class="institution">Microsoft</p>
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="model-date"></span></div>
+                    </td>
+                    <td class="metric-dice"><b>0.025</b></td>
+                    <td class="metric-hit"><b>0.066</b></td>
+                    <td class="metric-prec"><b>0.006</b></td>
+                    <td class="metric-rec"><b>0.071</b></td>
+                    <td class="metric-f1"><b>0.012</b></td>
+                  </tr>
+                  <tr data-model="CARE-CT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;8/7/2026&quot;, &quot;dice&quot;: &quot;0.323&quot;, &quot;hit&quot;: &quot;0.628&quot;, &quot;prec&quot;: &quot;0.401&quot;, &quot;rec&quot;: &quot;0.306&quot;, &quot;f1&quot;: &quot;0.347&quot;}]' data-current-version="0">
+                    <td style="word-break:break-word;">
+                      CARE-CT
+                      <p class="institution">Microsoft Research</p>
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">8/7/2026</span></div>
+                    </td>
+                    <td class="metric-dice"><b>0.323</b></td>
+                    <td class="metric-hit"><b>0.628</b></td>
+                    <td class="metric-prec"><b>0.401</b></td>
+                    <td class="metric-rec"><b>0.306</b></td>
+                    <td class="metric-f1"><b>0.347</b></td>
+                  </tr>
+                  <tr data-model="VoxTell-FT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;6/24/2026&quot;, &quot;dice&quot;: &quot;0.162&quot;, &quot;hit&quot;: &quot;0.371&quot;, &quot;prec&quot;: &quot;0.031&quot;, &quot;rec&quot;: &quot;0.277&quot;, &quot;f1&quot;: &quot;0.056&quot;}]' data-current-version="0">
+                    <td style="word-break:break-word;">
+                      VoxTell-FT
+                      <p class="institution">HBKU</p>
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">6/24/2026</span></div>
+                    </td>
+                    <td class="metric-dice"><b>0.162</b></td>
+                    <td class="metric-hit"><b>0.371</b></td>
+                    <td class="metric-prec"><b>0.031</b></td>
+                    <td class="metric-rec"><b>0.277</b></td>
+                    <td class="metric-f1"><b>0.056</b></td>
+                  </tr>
+                  <tr data-model="DVSM" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;7/13/2026&quot;, &quot;dice&quot;: &quot;0.322&quot;, &quot;hit&quot;: &quot;0.642&quot;, &quot;prec&quot;: &quot;0.215&quot;, &quot;rec&quot;: &quot;0.359&quot;, &quot;f1&quot;: &quot;0.269&quot;}]' data-current-version="0">
+                    <td style="word-break:break-word;">
+                      DVSM
+                      <p class="institution"></p>
+                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">7/13/2026</span></div>
+                    </td>
+                    <td class="metric-dice"><b>0.322</b></td>
+                    <td class="metric-hit"><b>0.642</b></td>
+                    <td class="metric-prec"><b>0.215</b></td>
+                    <td class="metric-rec"><b>0.359</b></td>
+                    <td class="metric-f1"><b>0.269</b></td>
+                  </tr>
+                </tbody>
+              </table>
+              <hr>
+              <div class="infoHeadline">
+                <h2>Per-Category Results</h2>
+              </div>
+              <div class="category-controls">
+                <div class="category-control-item">
+                  <label for="categoryModelSelect">Model</label>
+                  <select id="categoryModelSelect" class="form-control">
+                    <option value="CARE-CT">CARE-CT</option><option value="DVSM">DVSM</option><option value="VoxTell">VoxTell</option><option value="DAGG">DAGG</option><option value="SAT-FT">SAT-FT</option><option value="VoxTell-FT">VoxTell-FT</option><option value="BiomedParseV2">BiomedParseV2</option>
+                  </select>
+                </div>
+                <div class="category-control-item" id="categorySubmissionControl">
+                  <label for="categorySubmissionSelect">Submission</label>
+                  <select id="categorySubmissionSelect" class="form-control"></select>
+                </div>
+              </div>
+              <table class="table categoryTable">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>n</th>
+                    <th>Dice</th>
+                    <th>Hit Rate</th>
+                  </tr>
+                </thead>
+                <tbody id="categoryTableBody"></tbody>
+              </table>
+              <p><strong>Legend:</strong> Category codes starting with <strong>1</strong> are typically non-focal lung/airway/pleural abnormalities; codes starting with <strong>2</strong> are typically focal lung/airway/pleural opacities.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $(".performanceTable").tablesorter({
+        sortList: [[1, 1]]
+      });
+
+      var modelVersions = {"DAGG": [""], "VoxTell": [""], "SAT-FT": [""], "BiomedParseV2": [""], "CARE-CT": [""], "VoxTell-FT": [""], "DVSM": [""]};
+      var categoryOrder = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2c", "2d", "2e", "2f", "2g", "2h"];
+      var categoryLabels = {"1a": "Bronchial wall thickening", "1b": "Bronchiectasis", "1c": "Emphysema (including Centrilobular, Paraseptal, Bullous)", "1d": "Septal thickening (including Interlobular, Reticulation)", "1e": "Micronodules (including Centrilobular, Tree-in-bud, Perilymphatic)", "1f": "Other", "2a": "Linear (including subsegmental atelectasis, scarring, fibrosis)", "2b": "Atelectasis, consolidation", "2c": "Groundglass opacity", "2d": "Pulmonary nodules/masses", "2e": "Pleural effusion or thickening", "2f": "Honeycombing", "2g": "Pneumothorax", "2h": "Other"};
+      var perCategoryLookup = {"DAGG|||": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.040", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.246", "hit": "0.529"}, "1d": {"n": 6, "dice": "0.049", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.109", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.009", "hit": "0.000"}, "2a": {"n": 49, "dice": "0.191", "hit": "0.530"}, "2b": {"n": 36, "dice": "0.290", "hit": "0.583"}, "2c": {"n": 36, "dice": "0.224", "hit": "0.472"}, "2d": {"n": 58, "dice": "0.287", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.140", "hit": "0.285"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.058", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.433", "hit": "1.000"}}, "VoxTell|||": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.127", "hit": "0.500"}, "1c": {"n": 17, "dice": "0.087", "hit": "0.176"}, "1d": {"n": 6, "dice": "0.026", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.208", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.181", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.236", "hit": "0.673"}, "2b": {"n": 36, "dice": "0.293", "hit": "0.666"}, "2c": {"n": 36, "dice": "0.316", "hit": "0.666"}, "2d": {"n": 58, "dice": "0.299", "hit": "0.741"}, "2e": {"n": 7, "dice": "0.292", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.799", "hit": "1.000"}, "2h": {"n": 1, "dice": "0.559", "hit": "1.000"}}, "SAT-FT|||": {"1a": {"n": 1, "dice": "0.051", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.035", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.010", "hit": "0.058"}, "1d": {"n": 6, "dice": "0.052", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.152", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.132", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.119", "hit": "0.387"}, "2b": {"n": 36, "dice": "0.249", "hit": "0.583"}, "2c": {"n": 36, "dice": "0.280", "hit": "0.555"}, "2d": {"n": 58, "dice": "0.191", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.135", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.064", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.282", "hit": "1.000"}}, "BiomedParseV2|||": {"1a": {"n": 1, "dice": "0.030", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.000", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.002", "hit": "0.000"}, "1d": {"n": 6, "dice": "0.009", "hit": "0.000"}, "1e": {"n": 7, "dice": "0.000", "hit": "0.000"}, "1f": {"n": 3, "dice": "0.139", "hit": "0.666"}, "2a": {"n": 49, "dice": "0.006", "hit": "0.000"}, "2b": {"n": 36, "dice": "0.039", "hit": "0.111"}, "2c": {"n": 36, "dice": "0.059", "hit": "0.194"}, "2d": {"n": 58, "dice": "0.000", "hit": "0.000"}, "2e": {"n": 7, "dice": "0.046", "hit": "0.142"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.081", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.132", "hit": "1.000"}}, "CARE-CT|||": {"1a": {"n": 1, "dice": "0.073", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.095", "hit": "0.500"}, "1c": {"n": 17, "dice": "0.093", "hit": "0.176"}, "1d": {"n": 6, "dice": "0.092", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.246", "hit": "0.571"}, "1f": {"n": 3, "dice": "0.193", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.257", "hit": "0.653"}, "2b": {"n": 36, "dice": "0.316", "hit": "0.611"}, "2c": {"n": 36, "dice": "0.302", "hit": "0.638"}, "2d": {"n": 58, "dice": "0.357", "hit": "0.810"}, "2e": {"n": 7, "dice": "0.308", "hit": "0.714"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.681", "hit": "1.000"}, "2h": {"n": 1, "dice": "0.601", "hit": "1.000"}}, "VoxTell-FT|||": {"1a": {"n": 1, "dice": "0.006", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.008", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.004", "hit": "0.000"}, "1d": {"n": 6, "dice": "0.033", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.107", "hit": "0.285"}, "1f": {"n": 3, "dice": "0.070", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.066", "hit": "0.224"}, "2b": {"n": 36, "dice": "0.133", "hit": "0.416"}, "2c": {"n": 36, "dice": "0.155", "hit": "0.388"}, "2d": {"n": 58, "dice": "0.235", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.129", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.052", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.025", "hit": "0.000"}}, "DVSM|||": {"1a": {"n": 1, "dice": "0.038", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.047", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.084", "hit": "0.235"}, "1d": {"n": 6, "dice": "0.142", "hit": "0.333"}, "1e": {"n": 7, "dice": "0.224", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.200", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.284", "hit": "0.714"}, "2b": {"n": 36, "dice": "0.341", "hit": "0.694"}, "2c": {"n": 36, "dice": "0.304", "hit": "0.694"}, "2d": {"n": 58, "dice": "0.357", "hit": "0.758"}, "2e": {"n": 7, "dice": "0.326", "hit": "0.571"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.638", "hit": "1.000"}, "2h": {"n": 1, "dice": "0.609", "hit": "1.000"}}};
+      var defaultCategoryModel = "CARE-CT";
+
+      function renderCategorySubmissionOptions(modelName, preferredVersion) {
+        var versions = modelVersions[modelName] || [];
+        var $submissionSelect = $("#categorySubmissionSelect");
+        var $submissionControl = $("#categorySubmissionControl");
+        $submissionSelect.empty();
+
+        if (versions.length <= 1) {
+          $submissionControl.hide();
+        } else {
+          $submissionControl.show();
+        }
+
+        versions.forEach(function(versionLabel) {
+          $submissionSelect.append(
+            $("<option></option>").val(versionLabel).text(versionLabel)
+          );
+        });
+
+        var selectedVersion = '';
+        if (preferredVersion && versions.indexOf(preferredVersion) !== -1) {
+          selectedVersion = preferredVersion;
+        } else if (versions.length > 0) {
+          selectedVersion = versions[versions.length - 1];
+        }
+
+        $submissionSelect.val(selectedVersion);
+        return selectedVersion;
+      }
+
+      function renderCategoryTable(modelName, versionLabel) {
+        var key = modelName + "|||" + versionLabel;
+        var categoryData = perCategoryLookup[key] || {};
+        var rows = '';
+
+        categoryOrder.forEach(function(categoryCode) {
+          var item = categoryData[categoryCode] || { n: 0, dice: '0.000', hit: '0.000' };
+          var categoryLabel = categoryLabels[categoryCode] || '';
+          var categoryCell = '<b>' + categoryCode + '</b>' + (categoryLabel ? ' — ' + categoryLabel : '');
+          rows += '<tr>' +
+            '<td>' + categoryCell + '</td>' +
+            '<td>' + item.n + '</td>' +
+            '<td>' + item.dice + '</td>' +
+            '<td>' + item.hit + '</td>' +
+            '</tr>';
+        });
+
+        $("#categoryTableBody").html(rows);
+      }
+
+      if (defaultCategoryModel) {
+        $("#categoryModelSelect").val(defaultCategoryModel);
+        var initialSubmission = renderCategorySubmissionOptions(defaultCategoryModel);
+        renderCategoryTable(defaultCategoryModel, initialSubmission);
+      }
+
+      $("#categoryModelSelect").on("change", function() {
+        var selectedModel = $(this).val();
+        var selectedSubmission = renderCategorySubmissionOptions(selectedModel);
+        renderCategoryTable(selectedModel, selectedSubmission);
+      });
+
+      $("#categorySubmissionSelect").on("change", function() {
+        var selectedModel = $("#categoryModelSelect").val();
+        var selectedSubmission = $(this).val();
+        renderCategoryTable(selectedModel, selectedSubmission);
+      });
+
+      // Custom sort handler: always start descending on a new column,
+      // only toggle if clicking the same column consecutively
+      var lastCol = 2;
+      var lastDir = 1; // 1 = desc, 0 = asc
+
+      // Remove tablesorter's default click handlers on headers
+      $(".performanceTable thead th").off("click mousedown");
+
+      $(".performanceTable thead th").on("click", function(e) {
+        e.stopPropagation();
+        var col = $(this).index();
+        var dir;
+        if (col === lastCol) {
+          dir = lastDir === 1 ? 0 : 1; // toggle
+        } else {
+          dir = 1; // always descending for a new column
+        }
+        lastCol = col;
+        lastDir = dir;
+        $(".performanceTable").trigger("sorton", [[[col, dir]]]);
+      });
+
+      // Version switching logic
+      $(document).on('click', '.version-option', function(e) {
+        e.stopPropagation();
+        var $option = $(this);
+        var versionIndex = parseInt($option.data('index'));
+        var $row = $option.closest('tr');
+        var versions = $row.data('versions');
+
+        if (!versions || versionIndex >= versions.length) return;
+
+        var selected = versions[versionIndex];
+
+        // Update scores
+        $row.find('.metric-dice b').text(selected.dice);
+        $row.find('.metric-hit b').text(selected.hit);
+        $row.find('.metric-prec b').text(selected.prec);
+        $row.find('.metric-rec b').text(selected.rec);
+        $row.find('.metric-f1 b').text(selected.f1);
+
+        // Update date
+        var $dateSpan = $row.find('.model-date');
+        if (selected.date) {
+          $dateSpan.text(selected.date).addClass('date label label-default');
+        } else {
+          $dateSpan.text('').removeClass('date label label-default');
+        }
+
+        // Update active state
+        $option.siblings().removeClass('active');
+        $option.addClass('active');
+
+        // Update badge label
+        $row.find('.version-label').text(selected.version);
+
+        // Store current version
+        $row.attr('data-current-version', versionIndex);
+
+        // Sync per-category viewer if this model is selected there
+        var currentModelInViewer = $("#categoryModelSelect").val();
+        var rowModel = String($row.data('model') || '');
+        if (currentModelInViewer === rowModel) {
+          $("#categorySubmissionSelect").val(selected.version);
+          renderCategoryTable(rowModel, selected.version);
+        }
+
+        // Re-trigger tablesorter update
+        $(".performanceTable").trigger("update");
+      });
+    });
+  </script>
+</body>
+</html>

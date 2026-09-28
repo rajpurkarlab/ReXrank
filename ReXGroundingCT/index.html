@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <!--Author: Xiaoman Zhang 2024 -->
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>
-    ReXGroundingCT
-  </title>
-  <meta name="description" content="ReXGroundingCT: A large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging."/>
-  <meta name="keywords" content="ReXGroundingCT, radiology, chest CT, segmentation, medical imaging"/>
-  <meta property="og:title" content="ReXGroundingCT: 3D Chest CT Dataset"/>
-  <meta property="og:description" content="A large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging."/>
-  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/rexgroundingct/"/>
+  <title>ReXGroundingCT Leaderboard</title>
+  <meta name="description" content="ReXGroundingCT leaderboard: segmentation of findings from free-text radiology reports in 3D chest CT."/>
+  <meta name="keywords" content="ReXGroundingCT, MICCAI 2026, challenge, radiology, chest CT, segmentation, medical imaging"/>
+  <meta property="og:title" content="ReXGroundingCT Leaderboard"/>
+  <meta property="og:description" content="Segmentation of findings from free-text radiology reports in 3D chest CT — a MICCAI 2026 challenge."/>
+  <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/ReXGroundingCT/index.html"/>
   <meta property="og:type" content="website"/>
-  <html lang="en"></html>
-  <meta content="ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging." name="description"/>
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
   <meta content="/logo.png" property="og:image"/>
@@ -25,157 +21,14 @@
   <link href="../stylesheets/index.css" rel="stylesheet"/>
   <script src="../javascripts/analytics.js"></script>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="../javascripts/jquery.tablesorter.min.js"></script>
   <link rel="stylesheet" href="../stylesheets/theme.default.min.css">
-
   <script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
 
   <style>
-    .fixed-height-table {
-      height: 300px; /* Fixed height, adjust as needed */
-      overflow-y: scroll;
-      display: block;
-    }
-    .fixed-height-table thead {
-      position: sticky;
-      top: 0;
-      background-color: white; /* Table header background color */
-      z-index: 1;
-    }
-    .fixed-height-table th, .fixed-height-table td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
     .justified-text {
       text-align: justify;
       text-justify: inter-word;
     }
-  </style>
-  <style>
-    .performanceTable th {
-      cursor: pointer;
-    }
-    #contentCover .performanceTable th,
-    #contentCover .performanceTable td,
-    #contentCover .performanceTable.tablesorter td,
-    #contentCover .performanceTable.tablesorter th,
-    #contentCover .categoryTable th,
-    #contentCover .categoryTable td {
-      text-align: center !important;
-      vertical-align: middle !important;
-    }
-    #contentCover .categoryTable td:first-child,
-    #contentCover .categoryTable th:first-child {
-      text-align: left !important;
-    }
-    .category-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .category-control-item {
-      min-width: 220px;
-    }
-    .category-control-item label {
-      display: block;
-      margin-bottom: 4px;
-      font-weight: 600;
-      font-size: 13px;
-    }
-    .categoryTable th {
-      font-weight: 700;
-    }
-    /* Version selector styles */
-    .version-selector {
-      position: relative;
-      display: inline-block;
-      margin-top: 4px;
-    }
-    .model-date {
-      margin-top: 0;
-    }
-    .version-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      padding: 2px 10px;
-      background: linear-gradient(135deg, #f7f7f9, #eef0f3);
-      border: 1px solid #d0d3d9;
-      border-radius: 4px;
-      cursor: pointer;
-      color: #555;
-      white-space: nowrap;
-      user-select: none;
-      transition: all 0.2s ease;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
-    .version-badge:hover {
-      background: linear-gradient(135deg, #eef0f3, #e2e5ea);
-      border-color: #a41034;
-      color: #a41034;
-      box-shadow: 0 1px 3px rgba(164,16,52,0.12);
-    }
-    .version-caret-icon {
-      flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-    .version-selector:hover .version-caret-icon {
-      transform: rotate(180deg);
-    }
-    .version-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      z-index: 100;
-      background: #fff;
-      border: 1px solid #d0d3d9;
-      border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      min-width: 70px;
-      padding: 4px 0;
-      animation: versionDropIn 0.15s ease;
-    }
-    /* Invisible bridge so mouse doesn't lose hover between badge and dropdown */
-    .version-dropdown::before {
-      content: '';
-      position: absolute;
-      top: -6px;
-      left: 0;
-      right: 0;
-      height: 6px;
-    }
-    @keyframes versionDropIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .version-selector:hover .version-dropdown {
-      display: block;
-    }
-    .version-option {
-      display: block;
-      padding: 5px 14px;
-      font-size: 12px;
-      cursor: pointer;
-      color: #444;
-      white-space: nowrap;
-      transition: all 0.12s ease;
-      border-left: 2px solid transparent;
-    }
-    .version-option:hover {
-      background: #fdf2f4;
-      color: #a41034;
-      border-left-color: #a41034;
-    }
-    .version-option.active {
-      font-weight: 600;
-    }
-  </style>
-  <style>
     /* Dropdown hover functionality */
     .navbar-nav .dropdown:hover .dropdown-menu {
       display: block;
@@ -184,7 +37,6 @@
       margin-top: 0;
       background-color: #fff !important;
     }
-    /* Fix dropdown menu colors */
     #topNavbar .navbar-nav .dropdown-menu > li > a,
     #topNavbar .navbar-nav .dropdown-menu > li > a:hover,
     #topNavbar .navbar-nav .dropdown-menu > li > a:focus,
@@ -199,9 +51,173 @@
       background-color: #f5f5f5 !important;
       color: #a41034 !important;
     }
+
+    .timeline {
+      position: relative;
+      padding: 20px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #a41034;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 70px;
+      margin-bottom: 28px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 4px;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: #a41034;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #a41034;
+    }
+    .timeline-item.upcoming::before {
+      background: #fff;
+    }
+    .timeline-date {
+      font-weight: 700;
+      color: #a41034;
+      font-size: 15px;
+    }
+    .timeline-label {
+      font-size: 16px;
+      color: #333;
+      margin-top: 2px;
+    }
+
+    .preregister-form {
+      background: #f7f7f9;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 30px;
+      max-width: 500px;
+      margin: 20px auto 0 auto;
+    }
+    .preregister-form input {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 15px;
+    }
+    .preregister-form input:focus {
+      border-color: #a41034;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(164,16,52,0.15);
+    }
+    .preregister-form button {
+      width: 100%;
+      padding: 12px;
+      background: #a41034;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .preregister-form button:hover {
+      background: #7a0c28;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      color: #2e7d32;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .challenge-section {
+      margin-bottom: 35px;
+    }
+    .challenge-section h3 {
+      color: #a41034;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-size: 1.5em;
+    }
+    .challenge-section p, .challenge-section li {
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .challenge-section ul {
+      padding-left: 20px;
+    }
+    .challenge-section ul li {
+      margin-bottom: 6px;
+    }
+
+    /* Team member rows (name + affiliation + remove button) */
+    .member-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .member-row input {
+      flex: 1 1 0;
+      width: auto;        /* override .preregister-form input { width:100% } */
+      margin-bottom: 0;
+      min-width: 0;
+    }
+    .member-row .remove-member {
+      flex: 0 0 auto;
+      width: auto;        /* override .preregister-form button { width:100% } */
+      padding: 9px 14px;
+      background: #ddd;
+      color: #333;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .member-row .remove-member:hover {
+      background: #c9c9c9;
+    }
+
+    /* Dice = the official ranking metric: keep it emphasized (bold), no longer red */
+    #lbTable th.rank-metric, #lbTable td.rank-metric { font-weight: 700; }
+    #lbTable th.rank-metric { border-bottom: 2px solid #a41034; }
+
+    /* Medal backgrounds for the top 3 (gold / silver / bronze) */
+    #lbTable tr.rank-1 td { background: #faf1c6 !important; }
+    #lbTable tr.rank-2 td { background: #ebedf0 !important; }
+    #lbTable tr.rank-3 td { background: #f6e6d2 !important; }
+    #lbTable tr.rank-1 td:first-child { border-left: 4px solid #d4af37; }
+    #lbTable tr.rank-2 td:first-child { border-left: 4px solid #9aa0a6; }
+    #lbTable tr.rank-3 td:first-child { border-left: 4px solid #cd7f32; }
+
+    /* Extra (non-best) submissions from the same participant — shown, but not ranked */
+    #lbTable tr.secondary td { color: #999; font-style: italic; }
+
+    /* Rows currently being evaluated */
+    #lbTable tr.evaluating td { background: #fffdf5 !important; color: #7a6a00; }
+    .eval-badge { color: #a41034; font-weight: 600; animation: evalPulse 1.2s ease-in-out infinite; }
+    @keyframes evalPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    /* Give the content (esp. the leaderboard) more room so metric columns
+       aren't pushed off-screen and long names don't wrap. */
+    @media (min-width: 992px) {
+      #contentCover .container, #topCover .container { width: 94%; max-width: 1320px; }
+    }
+    /* Keep leaderboard cells on one line; the wrapper scrolls horizontally if needed. */
+    #lbTable th, #lbTable td { white-space: nowrap; }
   </style>
 </head>
-<body class="has-banner">
+<body>
   <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
     <div class="container clearfix" id="navContainer">
       <div class="rightNav">
@@ -233,170 +249,230 @@
       </div>
     </div>
   </div>
-  <div class="challenge-banner">
-    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> — submit your model &amp; see the live leaderboard!
-    <a href="../ReXGroundingCT/challenge.html" style="display:inline-block;margin-left:10px;padding:4px 18px;background:#a41034;color:#fff;border-radius:4px;font-weight:700;text-decoration:none;">Go to the Challenge &rarr;</a>
-  </div>
+
   <div class="cover" id="topCover">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 id="appTitle">ReXGroundingCT</h1>
+          <h1 id="appTitle" style="font-size:4em;">ReXGroundingCT</h1>
           <h2 id="appSubtitle">Segmentation of Findings from Free-Text Reports</h2>
-          <h3 id="helpLink"><a href="../ReXGroundingCT/challenge.html#register" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrankCT</a></h3>
-          <h3 id="helpLink"><a href="https://arxiv.org/abs/2507.22030" target="_blank" rel="noopener noreferrer">Read the Paper</a></h3>
+          <h3 id="helpLink"><a href="#register">⭐ Submit to the leaderboard</a> · <a href="https://arxiv.org/abs/2507.22030" target="_blank" rel="noopener noreferrer">Read the paper</a></h3>
         </div>
       </div>
     </div>
   </div>
+
   <div class="cover" id="contentCover">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="infoCard">
             <div class="infoBody justified-text">
-              <div class="infoHeadline">
-                <h2>About ReXGroundingCT</h2>
+
+              <div style="background:#fdf2f4;border:1px solid #f0c9d3;border-left:4px solid #a41034;border-radius:4px;padding:14px 18px;margin-bottom:28px;font-size:15px;line-height:1.6;">
+                🏁 <strong>The ReXGroundingCT Challenge @ MICCAI 2026 has concluded.</strong> See the <a href="./challenge.html#leaderboard">official final results</a>. This leaderboard remains open: new submissions are evaluated on the same 300-case test set and ranked alongside the challenge entries.
+                <br><span style="font-size:14px;color:#666;">Looking for the original 100-case leaderboard? It is <a href="./v1_leaderboard.html">archived here</a>.</span>
               </div>
-              <p>ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging. It comprises 3,142 non-contrast chest CT scans with 8,028 annotated findings (16,301 entities) from the CT-RATE dataset. ReXGroundingCT enables sentence-level grounding for both focal and non-focal lung and pleural abnormalities across 14 categories. On ReXrank, we are hosting ReXGroundingCT's testset, which contains 100 CT scans with exhaustive radiologist annotations for all visible findings.</p>
-              <hr>
-              <div class="infoHeadline">
-                <h2>Performance Metrics</h2>
-              </div>
-              <p><strong>Global Dice:</strong> Average Dice per finding per case</p>
-              <p><strong>Global HIT Rate:</strong> Proportion of findings that have Dice >= 0.1</p>
-              <p><strong>Instance Precision:</strong> TP / (TP + FP), where True Positives are instances that have a Dice >= 0.2</p>
-              <p><strong>Instance Recall:</strong> TP / (TP + FN)</p>
-              <hr>
-              <div class="infoHeadline">
-                <h2>Model Performance</h2>
-              </div>
-              <table class="table performanceTable tablesorter">
-                <thead>
-                  <tr>
-                    <th>Model</th>
-                    <th>Global Dice</th>
-                    <th>Global HIT Rate</th>
-                    <th>Instance Precision</th>
-                    <th>Instance Recall</th>
-                    <th>Instance F1</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr data-model="DAGG" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;2/23/2026&quot;, &quot;dice&quot;: &quot;0.253&quot;, &quot;hit&quot;: &quot;0.517&quot;, &quot;prec&quot;: &quot;0.211&quot;, &quot;rec&quot;: &quot;0.299&quot;, &quot;f1&quot;: &quot;0.247&quot;}]' data-current-version="0">
-                    <td style="word-break:break-word;">
-                      <a href="https://arxiv.org/abs/2607.12602" target="_blank">DAGG</a>
-                      <p class="institution">Gachon University</p>
-                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">2/23/2026</span></div>
-                    </td>
-                    <td class="metric-dice"><b>0.253</b></td>
-                    <td class="metric-hit"><b>0.517</b></td>
-                    <td class="metric-prec"><b>0.211</b></td>
-                    <td class="metric-rec"><b>0.299</b></td>
-                    <td class="metric-f1"><b>0.247</b></td>
-                  </tr>
-                  <tr data-model="VoxTell" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;3/24/2026&quot;, &quot;dice&quot;: &quot;0.285&quot;, &quot;hit&quot;: &quot;0.615&quot;, &quot;prec&quot;: &quot;0.185&quot;, &quot;rec&quot;: &quot;0.294&quot;, &quot;f1&quot;: &quot;0.227&quot;}]' data-current-version="0">
-                    <td style="word-break:break-word;">
-                      <a href="https://arxiv.org/abs/2511.11450" target="_blank">VoxTell</a>
-                      <p class="institution">German Cancer Research Center (DKFZ)<br/>Heidelberg University</p>
-                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">3/24/2026</span></div>
-                    </td>
-                    <td class="metric-dice"><b>0.285</b></td>
-                    <td class="metric-hit"><b>0.615</b></td>
-                    <td class="metric-prec"><b>0.185</b></td>
-                    <td class="metric-rec"><b>0.294</b></td>
-                    <td class="metric-f1"><b>0.227</b></td>
-                  </tr>
-                  <tr data-model="SAT-FT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.205&quot;, &quot;hit&quot;: &quot;0.473&quot;, &quot;prec&quot;: &quot;0.062&quot;, &quot;rec&quot;: &quot;0.383&quot;, &quot;f1&quot;: &quot;0.107&quot;}]' data-current-version="0">
-                    <td style="word-break:break-word;">
-                      <a href="https://arxiv.org/abs/2312.17183" target="_blank">SAT-FT</a>
-                      <p class="institution">Shanghai Jiao Tong University</p>
-                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="model-date"></span></div>
-                    </td>
-                    <td class="metric-dice"><b>0.205</b></td>
-                    <td class="metric-hit"><b>0.473</b></td>
-                    <td class="metric-prec"><b>0.062</b></td>
-                    <td class="metric-rec"><b>0.383</b></td>
-                    <td class="metric-f1"><b>0.107</b></td>
-                  </tr>
-                  <tr data-model="BiomedParseV2" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;&quot;, &quot;dice&quot;: &quot;0.025&quot;, &quot;hit&quot;: &quot;0.066&quot;, &quot;prec&quot;: &quot;0.006&quot;, &quot;rec&quot;: &quot;0.071&quot;, &quot;f1&quot;: &quot;0.012&quot;}]' data-current-version="0">
-                    <td style="word-break:break-word;">
-                      <a href="https://github.com/microsoft/BiomedParse/tree/v2" target="_blank">BiomedParseV2</a>
-                      <p class="institution">Microsoft</p>
-                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="model-date"></span></div>
-                    </td>
-                    <td class="metric-dice"><b>0.025</b></td>
-                    <td class="metric-hit"><b>0.066</b></td>
-                    <td class="metric-prec"><b>0.006</b></td>
-                    <td class="metric-rec"><b>0.071</b></td>
-                    <td class="metric-f1"><b>0.012</b></td>
-                  </tr>
-                  <tr data-model="CARE-CT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;8/7/2026&quot;, &quot;dice&quot;: &quot;0.323&quot;, &quot;hit&quot;: &quot;0.628&quot;, &quot;prec&quot;: &quot;0.401&quot;, &quot;rec&quot;: &quot;0.306&quot;, &quot;f1&quot;: &quot;0.347&quot;}]' data-current-version="0">
-                    <td style="word-break:break-word;">
-                      CARE-CT
-                      <p class="institution">Microsoft Research</p>
-                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">8/7/2026</span></div>
-                    </td>
-                    <td class="metric-dice"><b>0.323</b></td>
-                    <td class="metric-hit"><b>0.628</b></td>
-                    <td class="metric-prec"><b>0.401</b></td>
-                    <td class="metric-rec"><b>0.306</b></td>
-                    <td class="metric-f1"><b>0.347</b></td>
-                  </tr>
-                  <tr data-model="VoxTell-FT" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;6/24/2026&quot;, &quot;dice&quot;: &quot;0.162&quot;, &quot;hit&quot;: &quot;0.371&quot;, &quot;prec&quot;: &quot;0.031&quot;, &quot;rec&quot;: &quot;0.277&quot;, &quot;f1&quot;: &quot;0.056&quot;}]' data-current-version="0">
-                    <td style="word-break:break-word;">
-                      VoxTell-FT
-                      <p class="institution">HBKU</p>
-                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">6/24/2026</span></div>
-                    </td>
-                    <td class="metric-dice"><b>0.162</b></td>
-                    <td class="metric-hit"><b>0.371</b></td>
-                    <td class="metric-prec"><b>0.031</b></td>
-                    <td class="metric-rec"><b>0.277</b></td>
-                    <td class="metric-f1"><b>0.056</b></td>
-                  </tr>
-                  <tr data-model="DVSM" data-versions='[{&quot;version&quot;: &quot;&quot;, &quot;date&quot;: &quot;7/13/2026&quot;, &quot;dice&quot;: &quot;0.322&quot;, &quot;hit&quot;: &quot;0.642&quot;, &quot;prec&quot;: &quot;0.215&quot;, &quot;rec&quot;: &quot;0.359&quot;, &quot;f1&quot;: &quot;0.269&quot;}]' data-current-version="0">
-                    <td style="word-break:break-word;">
-                      DVSM
-                      <p class="institution"></p>
-                      <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;"><span class="date label label-default model-date">7/13/2026</span></div>
-                    </td>
-                    <td class="metric-dice"><b>0.322</b></td>
-                    <td class="metric-hit"><b>0.642</b></td>
-                    <td class="metric-prec"><b>0.215</b></td>
-                    <td class="metric-rec"><b>0.359</b></td>
-                    <td class="metric-f1"><b>0.269</b></td>
-                  </tr>
-                </tbody>
-              </table>
-              <hr>
-              <div class="infoHeadline">
-                <h2>Per-Category Results</h2>
-              </div>
-              <div class="category-controls">
-                <div class="category-control-item">
-                  <label for="categoryModelSelect">Model</label>
-                  <select id="categoryModelSelect" class="form-control">
-                    <option value="CARE-CT">CARE-CT</option><option value="DVSM">DVSM</option><option value="VoxTell">VoxTell</option><option value="DAGG">DAGG</option><option value="SAT-FT">SAT-FT</option><option value="VoxTell-FT">VoxTell-FT</option><option value="BiomedParseV2">BiomedParseV2</option>
-                  </select>
-                </div>
-                <div class="category-control-item" id="categorySubmissionControl">
-                  <label for="categorySubmissionSelect">Submission</label>
-                  <select id="categorySubmissionSelect" class="form-control"></select>
+
+              <div class="challenge-section" id="leaderboard">
+                <h3>📊 Leaderboard</h3>
+                <p>Standings on the <strong>full 300-case held-out test set</strong>, ranked by mean Dice per case. Each participant is ranked by their single best submission. <strong>Click any row for its per-category breakdown.</strong> Updated automatically as submissions are evaluated.</p>
+                <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
+                <div style="overflow-x:auto;">
+                  <table class="table" id="lbTable" style="display:none;margin-top:10px;">
+                    <thead><tr><th>#</th><th>Model</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
+                    <tbody id="lbBody"></tbody>
+                  </table>
                 </div>
               </div>
-              <table class="table categoryTable">
-                <thead>
-                  <tr>
-                    <th>Category</th>
-                    <th>n</th>
-                    <th>Dice</th>
-                    <th>Hit Rate</th>
-                  </tr>
-                </thead>
-                <tbody id="categoryTableBody"></tbody>
-              </table>
-              <p><strong>Legend:</strong> Category codes starting with <strong>1</strong> are typically non-focal lung/airway/pleural abnormalities; codes starting with <strong>2</strong> are typically focal lung/airway/pleural opacities.</p>
+
+              <hr>
+
+              <div class="challenge-section" id="register">
+                <h3>🚀 Register &amp; Submit</h3>
+                <p>Registration is <strong>open</strong>. <strong>All submissions are made here, through the Register &amp; Submit form below</strong> — create an account, register your team, then submit your predictions as a Google Drive link. This is the only submission channel.</p>
+                <p style="font-size:14px;color:#666;">The <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> are a reference for the required prediction <em>format</em> only — they are not a separate way to submit. Review them so your predictions are formatted correctly, then submit through the form below.</p>
+
+                <!-- Account panel (login / create account) -->
+                <div class="preregister-form" id="authPanel">
+                  <div style="display:flex;gap:10px;margin-bottom:18px;">
+                    <button type="button" id="tabLogin" style="flex:1;background:#a41034;">Log In</button>
+                    <button type="button" id="tabSignup" style="flex:1;background:#888;">Create Account</button>
+                  </div>
+                  <div id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Email" />
+                    <input type="password" id="loginPass" placeholder="Password" />
+                    <button type="button" id="loginBtn">Log In</button>
+                    <p style="font-size:13px;margin-top:10px;text-align:right;"><a href="#" id="forgotBtn">Forgot password?</a></p>
+                  </div>
+                  <div id="signupForm" style="display:none;">
+                    <input type="text" id="suName" placeholder="Your name (optional)" />
+                    <input type="email" id="suEmail" placeholder="Email" />
+                    <input type="password" id="suPass" placeholder="Password (min 6 characters)" />
+                    <button type="button" id="signupBtn">Create Account</button>
+                    <p style="font-size:13px;color:#666;margin-top:8px;">You'll get a verification email — <strong>check your spam/junk folder</strong> if it's not in your inbox — verify it before logging in.</p>
+                  </div>
+                  <div id="authMsg" style="margin-top:12px;font-size:14px;"></div>
+                  <button type="button" id="resendBtn" style="display:none;background:#888;margin-top:10px;">Resend verification email</button>
+                </div>
+
+                <!-- Member panel (team registration + submission, after login) -->
+                <div id="memberPanel" style="display:none;">
+                  <p style="text-align:right;font-size:13px;color:#666;">Signed in as <span id="whoami"></span> · <a href="#" id="logoutBtn">Log out</a></p>
+
+                  <div class="preregister-form" id="teamForm">
+                    <h4 id="teamFormTitle" style="margin-top:0;color:#a41034;">Register your team</h4>
+                    <input type="text" id="teamName" placeholder="Team name" />
+                    <input type="email" id="teamEmail" placeholder="Contact email" />
+                    <label style="display:block;font-size:13px;color:#666;margin-bottom:6px;">Members (name &amp; affiliation):</label>
+                    <div id="memberRows"></div>
+                    <button type="button" id="addMemberBtn" style="background:#888;margin-bottom:12px;">+ Add member</button>
+                    <button type="button" id="teamSubmitBtn">Register Team</button>
+                  </div>
+
+                  <div class="preregister-form" id="submitForm" style="display:none;">
+                    <h4 style="margin-top:0;color:#a41034;">Team: <span id="teamLabel"></span></h4>
+                    <input type="hidden" id="subPhase" value="test" />
+                    <p style="font-size:13px;color:#666;margin-bottom:10px;">Your predictions are evaluated on the <strong>full 300-case held-out test set</strong> and appear on the leaderboard. The leaderboard shows only the <strong>model name</strong> and scores, never your name, team, institution or email.</p>
+                    <input type="text" id="subMethod" placeholder="Model name, shown publicly (required)" required />
+                    <input type="url" id="subLink" placeholder="Google Drive link to a single .zip of your predictions" />
+                    <p style="font-size:13px;color:#a41034;margin:-8px 0 12px;"><strong>⚠️ Submit a single <code>.zip</code> file</strong> (not a folder), containing your 300 prediction <code>.nii.gz</code> files. <strong>Set sharing to "Anyone with the link"</strong> before submitting — restricted links, folders, and access-requested links cannot be evaluated automatically.</p>
+                    <textarea id="subNotes" placeholder="Notes (optional)" rows="2" style="width:100%;padding:10px 14px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px;font-size:15px;"></textarea>
+                    <p style="font-size:13px;color:#333;background:#f7f7f9;border:1px solid #e0e0e0;border-radius:4px;padding:10px 12px;margin-bottom:14px;">⏱️ Evaluation runs automatically — <strong>expect your result on the leaderboard within ~2 hours (max)</strong>. Your entry will show as <em>“⏳ Evaluating…”</em> while it runs. Please <strong>do not submit again until you receive your result.</strong></p>
+                    <button type="button" id="subSubmitBtn">Submit Predictions</button>
+                    <div id="subList" style="margin-top:16px;font-size:13px;"></div>
+                  </div>
+
+                  <div id="memberMsg" style="margin-top:12px;font-size:14px;"></div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>🏆 About ReXGroundingCT</h3>
+                <p>ReXGroundingCT is a 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations, built on the <strong>CT-RATE</strong> dataset of non-contrast chest CT scans paired with radiology reports. It enables sentence-level grounding for both focal and non-focal lung and pleural abnormalities across 14 categories.</p>
+                <p style="margin-top:10px;">This leaderboard evaluates models that localize a radiology finding described in natural language as a precise 3D segmentation mask. It began as the <a href="./challenge.html">ReXGroundingCT Challenge at MICCAI 2026</a> and remains open as an ongoing benchmark on the same 300-case held-out test set.</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>🔬 Task</h3>
+                <p>Models are evaluated on <strong>free-text finding grounding</strong>: a model receives a CT volume and a natural-language finding from a radiology report and must output a 3D segmentation mask corresponding to that description. Fixed-category (class-based) segmentation that cannot separate two findings in different locations is out of scope.</p>
+                <p style="margin-top:10px;">Findings span <strong>14 categories</strong> covering both typically non-focal abnormalities (bronchial wall thickening, bronchiectasis, emphysema, septal thickening, micronodules, and other diffuse abnormalities) and typically focal abnormalities (linear opacities, atelectasis/consolidation, ground-glass opacities, pulmonary nodules/masses, pleural effusion/thickening, honeycombing, pneumothorax, and other focal findings).</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📦 Dataset</h3>
+                <table class="table" style="margin-top:10px;">
+                  <thead><tr><th>Split</th><th>Cases</th><th>Annotations</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Training</strong></td><td>2,992 CT scans</td><td>Partial-instance (up to 3 instances per finding)</td></tr>
+                    <tr><td><strong>Validation</strong></td><td>200 CT scans</td><td>Exhaustive (all instances segmented by radiologists)</td></tr>
+                    <tr><td><strong>Test</strong></td><td>300 CT scans</td><td>Exhaustive (all instances segmented by radiologists)</td></tr>
+                  </tbody>
+                </table>
+                <p>All annotations are pixel-level 3D segmentation masks linked to free-text findings extracted from radiology reports. Validation and test sets are annotated exclusively by board-certified radiologists.</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📊 Evaluation Metrics</h3>
+                <p><strong>Ranking metric:</strong> mean Dice per case on the full 300-case test set. Each case's findings are averaged first, then cases are averaged with equal weight.</p>
+                <p style="margin-top:12px;"><strong>Overlap-based metrics:</strong></p>
+                <ul>
+                  <li><strong>Dice (primary):</strong> mean Dice per case (findings averaged within each case, then across cases)</li>
+                  <li><strong>Hit Rate:</strong> Proportion of findings where overall Dice ≥ 0.1</li>
+                  <li><strong>Instance Precision:</strong> TP / (TP + FP), where TP is a predicted instance with Dice ≥ 0.2</li>
+                  <li><strong>Instance Recall:</strong> TP / (TP + FN)</li>
+                  <li><strong>Instance F1:</strong> Harmonic mean of Instance Precision and Recall</li>
+                </ul>
+                <p style="margin-top:12px;"><strong>Distance-based metrics:</strong></p>
+                <ul>
+                  <li><strong>Distance Precision:</strong> TP / (TP + FP), where TP is a predicted instance with ASSD (non-focal) or centroid distance (focal) ≤ 2× max voxel spacing</li>
+                  <li><strong>Distance Recall:</strong> TP / (TP + FN), using the same distance matching criterion</li>
+                  <li><strong>Distance F1:</strong> Harmonic mean of Distance Precision and Recall</li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📝 How to Participate</h3>
+                <ul>
+                  <li><strong>Registration is open</strong> — create an account and register your team using the form above.</li>
+                  <li>Training and validation data are publicly available on HuggingFace.</li>
+                  <li>Any publicly available or private training data, including pre-trained models and external datasets, may be used. Please describe all external data sources in your submission notes.</li>
+                  <li>All predictions on the test set must be <strong>fully automatic</strong> — no manual intervention, post-hoc editing, or case-specific tuning.</li>
+                  <li><strong>Free-text grounding.</strong> Methods may condition on the free-text finding directly or on a structured representation parsed from it, but must take in more than the finding category alone and must be able to produce distinct masks for two findings in different locations. Class-based segmentation (a fixed set of class masks selected by label) is out of scope and will be removed.</li>
+                  <li>You can submit multiple runs; each is evaluated on the full 300-case test set, and each participant is ranked by their best submission. Please use the validation set for model selection and avoid excessive resubmission.</li>
+                  <li>See the <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> for format details.</li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>👥 Organizers</h3>
+                <ul>
+                  <li>Mohammed Baharoon — Harvard Medical School, USA</li>
+                  <li>Pranav Rajpurkar — Harvard Medical School, USA</li>
+                  <li>Luyang Luo — Harvard Medical School, USA</li>
+                  <li>Xiaoman Zhang — Harvard Medical School, USA</li>
+                  <li>Mahmoud Hussain Alabbad — King Fahad Hospital, Saudi Arabia</li>
+                  <li>Sungeun Kim — Harvard Medical School, USA</li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📄 Resources</h3>
+                <ul>
+                  <li><a href="./challenge.html">ReXGroundingCT Challenge @ MICCAI 2026 (official final results)</a></li>
+                  <li><a href="./v1_leaderboard.html">Original leaderboard, 100-case v1 test set (archived)</a></li>
+                  <li><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT" target="_blank">Dataset on HuggingFace</a></li>
+                  <li><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT/blob/main/rexrank_eval.py" target="_blank">Evaluation Code</a></li>
+                  <li><a href="../explore/submission_guideline_ct.html" target="_blank">Submission Guidelines</a></li>
+                  <li><a href="https://arxiv.org/abs/2507.22030" target="_blank">ReXGroundingCT Paper</a></li>
+                </ul>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📧 Contact</h3>
+                <p>For questions about the leaderboard, please contact <a href="mailto:MohammedSalimAB@outlook.com">Mohammed Baharoon</a>.</p>
+              </div>
+
+              <hr>
+
+              <div class="challenge-section">
+                <h3>📚 References</h3>
+                <p style="margin-bottom:12px;"><strong>ReXGroundingCT:</strong></p>
+                <pre style="background:#f7f7f9;padding:14px;border-radius:4px;font-size:13px;overflow-x:auto;white-space:pre-wrap;">@article{baharoon2026rexgroundingct,
+  title={ReXGroundingCT: A 3D Chest CT Dataset for Segmentation of Findings from Free-Text Reports},
+  author={Baharoon, Mohammed and Luo, Luyang and Moritz, Michael and Kumar, Abhinav and Kim, Sung Eun and Zhang, Xiaoman and Zhu, Miao and Alabbad, Mahmoud Hussain and Alhazmi, Maha Sbayel and Mistry, Neel P and others},
+  journal={NEJM AI},
+  pages={AIdbp2501220},
+  year={2026},
+  publisher={Massachusetts Medical Society}
+}</pre>
+                <p style="margin-top:16px;margin-bottom:12px;"><strong>CT-RATE:</strong></p>
+                <pre style="background:#f7f7f9;padding:14px;border-radius:4px;font-size:13px;overflow-x:auto;white-space:pre-wrap;">@article{hamamci2026generalist,
+  title={Generalist foundation models from a multimodal dataset for 3D computed tomography},
+  author={Hamamci, Ibrahim Ethem and Er, Sezgin and Wang, Chenyu and Almas, Furkan and Simsek, Ayse Gulnihan and Esirgun, Sevval Nil and Dogan, Irem and Durugol, Omer Faruk and Hou, Benjamin and Shit, Suprosanna and others},
+  journal={Nature Biomedical Engineering},
+  pages={1--19},
+  year={2026},
+  publisher={Nature Publishing Group UK London}
+}</pre>
+              </div>
+
             </div>
           </div>
         </div>
@@ -404,155 +480,321 @@
     </div>
   </div>
 
+  <nav class="navbar navbar-default navbar-static-bottom footer">
+    <div class="container clearfix">
+      <div class="rightNav">
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../">ReXrank</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Firebase (Auth + Firestore) — client-side, works on static GitHub Pages -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
   <script>
     $(document).ready(function() {
-      $(".performanceTable").tablesorter({
-        sortList: [[1, 1]]
+      // ===== Firebase config — paste yours from Firebase console (Project settings > General > Your apps > Web). =====
+      var firebaseConfig = {
+        apiKey: "AIzaSyDb-itWou3m4IvOvS1etcQaP0D_Kkac3b0",
+        authDomain: "rexgrounding-challenge.firebaseapp.com",
+        projectId: "rexgrounding-challenge",
+        storageBucket: "rexgrounding-challenge.firebasestorage.app",
+        messagingSenderId: "711353076921",
+        appId: "1:711353076921:web:67053eaef29ca01600df68",
+        measurementId: "G-2SMYVCG6VS"
+      };
+      firebase.initializeApp(firebaseConfig);
+      var auth = firebase.auth();
+      var db = firebase.firestore();
+      var FV = firebase.firestore.FieldValue;
+
+      function msg(sel, color, text) { $(sel).css('color', color).text(text); }
+
+      // Email-notification hook (Google Apps Script web app) — see submission_notify_apps_script.gs.
+      // Organizer submission-notification email DISABLED on request (2026-08-30).
+      // To re-enable, restore: 'https://script.google.com/macros/s/AKfycbycetaIf0E-jCdiIcTIgeTyvuBtU9_n5Z7-PbHchMiOj15QF_jPhFZB-HNMllxcxQ3B/exec'
+      var EMAIL_HOOK_URL = '';   // blank -> notify function returns immediately (no email)
+
+
+      loadLeaderboard();  // public; runs regardless of login state
+
+      // --- account tabs ---
+      $('#tabLogin').on('click', function() { $('#loginForm').show(); $('#signupForm').hide(); $('#authMsg').text(''); $('#resendBtn').hide(); });
+      $('#tabSignup').on('click', function() { $('#signupForm').show(); $('#loginForm').hide(); $('#authMsg').text(''); $('#resendBtn').hide(); });
+
+      // --- create account (email/password + verification email) ---
+      $('#signupBtn').on('click', function() {
+        var email = $.trim($('#suEmail').val()), pass = $('#suPass').val(), name = $.trim($('#suName').val());
+        if (!email || pass.length < 6) { msg('#authMsg', '#c00', 'Enter an email and a password of at least 6 characters.'); return; }
+        var self = this; $(self).prop('disabled', true).text('Creating...');
+        function done() { $(self).prop('disabled', false).text('Create Account'); }
+        auth.createUserWithEmailAndPassword(email, pass)
+          .then(function(cred) {
+            var p = name ? cred.user.updateProfile({ displayName: name }) : Promise.resolve();
+            return p.then(function() { return cred.user.sendEmailVerification(); });
+          })
+          // keep the (unverified) user signed in so the Resend button works
+          .then(function() {
+            msg('#authMsg', '#2e7d32', 'Account created! Check your email (and spam/junk folder) to verify, then log in.');
+            $('#resendBtn').show(); startResendCooldown(); done();
+          })
+          .catch(function(e) {
+            // Common case: they started signing up before but never verified. Don't dead-end them —
+            // if the password matches (it's their account), sign in and re-send verification.
+            if (e && e.code === 'auth/email-already-in-use') {
+              auth.signInWithEmailAndPassword(email, pass)
+                .then(function(cred) {
+                  if (!cred.user.emailVerified) {
+                    return cred.user.sendEmailVerification().then(function() {
+                      msg('#authMsg', '#2e7d32', "You already started signing up with this email but haven't verified it yet. We've re-sent the verification email — check your inbox/spam (then log in).");
+                      $('#resendBtn').show(); startResendCooldown();
+                    });
+                  }
+                  msg('#authMsg', '#2e7d32', "This email already has a verified account — you're now signed in.");
+                })
+                .catch(function() {
+                  msg('#authMsg', '#c00', 'This email is already registered. Please use Log In above — and "Forgot password?" if you don\'t remember your password.');
+                })
+                .then(done);
+            } else {
+              msg('#authMsg', '#c00', e.message); done();
+            }
+          });
       });
 
-      var modelVersions = {"DAGG": [""], "VoxTell": [""], "SAT-FT": [""], "BiomedParseV2": [""], "CARE-CT": [""], "VoxTell-FT": [""], "DVSM": [""]};
-      var categoryOrder = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2c", "2d", "2e", "2f", "2g", "2h"];
-      var categoryLabels = {"1a": "Bronchial wall thickening", "1b": "Bronchiectasis", "1c": "Emphysema (including Centrilobular, Paraseptal, Bullous)", "1d": "Septal thickening (including Interlobular, Reticulation)", "1e": "Micronodules (including Centrilobular, Tree-in-bud, Perilymphatic)", "1f": "Other", "2a": "Linear (including subsegmental atelectasis, scarring, fibrosis)", "2b": "Atelectasis, consolidation", "2c": "Groundglass opacity", "2d": "Pulmonary nodules/masses", "2e": "Pleural effusion or thickening", "2f": "Honeycombing", "2g": "Pneumothorax", "2h": "Other"};
-      var perCategoryLookup = {"DAGG|||": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.040", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.246", "hit": "0.529"}, "1d": {"n": 6, "dice": "0.049", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.109", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.009", "hit": "0.000"}, "2a": {"n": 49, "dice": "0.191", "hit": "0.530"}, "2b": {"n": 36, "dice": "0.290", "hit": "0.583"}, "2c": {"n": 36, "dice": "0.224", "hit": "0.472"}, "2d": {"n": 58, "dice": "0.287", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.140", "hit": "0.285"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.058", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.433", "hit": "1.000"}}, "VoxTell|||": {"1a": {"n": 1, "dice": "0.000", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.127", "hit": "0.500"}, "1c": {"n": 17, "dice": "0.087", "hit": "0.176"}, "1d": {"n": 6, "dice": "0.026", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.208", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.181", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.236", "hit": "0.673"}, "2b": {"n": 36, "dice": "0.293", "hit": "0.666"}, "2c": {"n": 36, "dice": "0.316", "hit": "0.666"}, "2d": {"n": 58, "dice": "0.299", "hit": "0.741"}, "2e": {"n": 7, "dice": "0.292", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.799", "hit": "1.000"}, "2h": {"n": 1, "dice": "0.559", "hit": "1.000"}}, "SAT-FT|||": {"1a": {"n": 1, "dice": "0.051", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.035", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.010", "hit": "0.058"}, "1d": {"n": 6, "dice": "0.052", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.152", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.132", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.119", "hit": "0.387"}, "2b": {"n": 36, "dice": "0.249", "hit": "0.583"}, "2c": {"n": 36, "dice": "0.280", "hit": "0.555"}, "2d": {"n": 58, "dice": "0.191", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.135", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.064", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.282", "hit": "1.000"}}, "BiomedParseV2|||": {"1a": {"n": 1, "dice": "0.030", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.000", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.002", "hit": "0.000"}, "1d": {"n": 6, "dice": "0.009", "hit": "0.000"}, "1e": {"n": 7, "dice": "0.000", "hit": "0.000"}, "1f": {"n": 3, "dice": "0.139", "hit": "0.666"}, "2a": {"n": 49, "dice": "0.006", "hit": "0.000"}, "2b": {"n": 36, "dice": "0.039", "hit": "0.111"}, "2c": {"n": 36, "dice": "0.059", "hit": "0.194"}, "2d": {"n": 58, "dice": "0.000", "hit": "0.000"}, "2e": {"n": 7, "dice": "0.046", "hit": "0.142"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.081", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.132", "hit": "1.000"}}, "CARE-CT|||": {"1a": {"n": 1, "dice": "0.073", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.095", "hit": "0.500"}, "1c": {"n": 17, "dice": "0.093", "hit": "0.176"}, "1d": {"n": 6, "dice": "0.092", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.246", "hit": "0.571"}, "1f": {"n": 3, "dice": "0.193", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.257", "hit": "0.653"}, "2b": {"n": 36, "dice": "0.316", "hit": "0.611"}, "2c": {"n": 36, "dice": "0.302", "hit": "0.638"}, "2d": {"n": 58, "dice": "0.357", "hit": "0.810"}, "2e": {"n": 7, "dice": "0.308", "hit": "0.714"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.681", "hit": "1.000"}, "2h": {"n": 1, "dice": "0.601", "hit": "1.000"}}, "VoxTell-FT|||": {"1a": {"n": 1, "dice": "0.006", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.008", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.004", "hit": "0.000"}, "1d": {"n": 6, "dice": "0.033", "hit": "0.166"}, "1e": {"n": 7, "dice": "0.107", "hit": "0.285"}, "1f": {"n": 3, "dice": "0.070", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.066", "hit": "0.224"}, "2b": {"n": 36, "dice": "0.133", "hit": "0.416"}, "2c": {"n": 36, "dice": "0.155", "hit": "0.388"}, "2d": {"n": 58, "dice": "0.235", "hit": "0.637"}, "2e": {"n": 7, "dice": "0.129", "hit": "0.428"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.052", "hit": "0.000"}, "2h": {"n": 1, "dice": "0.025", "hit": "0.000"}}, "DVSM|||": {"1a": {"n": 1, "dice": "0.038", "hit": "0.000"}, "1b": {"n": 4, "dice": "0.047", "hit": "0.000"}, "1c": {"n": 17, "dice": "0.084", "hit": "0.235"}, "1d": {"n": 6, "dice": "0.142", "hit": "0.333"}, "1e": {"n": 7, "dice": "0.224", "hit": "0.428"}, "1f": {"n": 3, "dice": "0.200", "hit": "0.333"}, "2a": {"n": 49, "dice": "0.284", "hit": "0.714"}, "2b": {"n": 36, "dice": "0.341", "hit": "0.694"}, "2c": {"n": 36, "dice": "0.304", "hit": "0.694"}, "2d": {"n": 58, "dice": "0.357", "hit": "0.758"}, "2e": {"n": 7, "dice": "0.326", "hit": "0.571"}, "2f": {"n": 0, "dice": "0.000", "hit": "0.000"}, "2g": {"n": 1, "dice": "0.638", "hit": "1.000"}, "2h": {"n": 1, "dice": "0.609", "hit": "1.000"}}};
-      var defaultCategoryModel = "CARE-CT";
+      // --- login ---
+      $('#loginBtn').on('click', function() {
+        var email = $.trim($('#loginEmail').val()), pass = $('#loginPass').val();
+        var self = this; $(self).prop('disabled', true).text('Logging in...');
+        auth.signInWithEmailAndPassword(email, pass)
+          .then(function(cred) {
+            if (!cred.user.emailVerified) { msg('#authMsg', '#c00', "Your email isn't verified yet — check your inbox/spam, or resend below."); $('#resendBtn').show(); }
+          })
+          .catch(function(e) { msg('#authMsg', '#c00', e.message); })
+          .then(function() { $(self).prop('disabled', false).text('Log In'); });
+      });
 
-      function renderCategorySubmissionOptions(modelName, preferredVersion) {
-        var versions = modelVersions[modelName] || [];
-        var $submissionSelect = $("#categorySubmissionSelect");
-        var $submissionControl = $("#categorySubmissionControl");
-        $submissionSelect.empty();
+      // --- reset password (sends a Firebase password-reset email) ---
+      $('#forgotBtn').on('click', function(e) {
+        e.preventDefault();
+        var email = $.trim($('#loginEmail').val());
+        if (!email) { msg('#authMsg', '#c00', 'Enter your email above, then click "Forgot password?".'); return; }
+        auth.sendPasswordResetEmail(email)
+          .then(function() { msg('#authMsg', '#2e7d32', 'Password-reset email sent to ' + email + '. Check your inbox/spam.'); })
+          .catch(function(e) { msg('#authMsg', '#c00', e.message); });
+      });
 
-        if (versions.length <= 1) {
-          $submissionControl.hide();
+      $('#logoutBtn').on('click', function(e) { e.preventDefault(); $('#resendBtn').hide(); auth.signOut(); });
+
+      // --- resend verification email (uses the signed-in-but-unverified user) ---
+      var RESEND_COOLDOWN = 60, resendTimer = null;
+      function startResendCooldown() {
+        var btn = $('#resendBtn'), left = RESEND_COOLDOWN;
+        clearInterval(resendTimer);
+        btn.prop('disabled', true).text('Resend available in ' + left + 's');
+        resendTimer = setInterval(function() {
+          left -= 1;
+          if (left <= 0) { clearInterval(resendTimer); btn.prop('disabled', false).text('Resend verification email'); }
+          else { btn.text('Resend available in ' + left + 's'); }
+        }, 1000);
+      }
+      $('#resendBtn').on('click', function() {
+        var u = auth.currentUser;
+        if (!u) { msg('#authMsg', '#c00', 'Log in first, then resend.'); return; }
+        $('#resendBtn').prop('disabled', true).text('Sending...');
+        u.sendEmailVerification()
+          .then(function() { msg('#authMsg', '#2e7d32', 'Verification email re-sent to ' + u.email + '. Check your inbox/spam.'); startResendCooldown(); })
+          .catch(function(e) { msg('#authMsg', '#c00', e.message); $('#resendBtn').prop('disabled', false).text('Resend verification email'); });
+      });
+
+      // --- auth state drives which panel shows ---
+      auth.onAuthStateChanged(function(user) {
+        if (user && user.emailVerified) {
+          $('#authPanel').hide(); $('#memberPanel').show();
+          $('#whoami').text(user.displayName || user.email);
+          loadTeam(user);
         } else {
-          $submissionControl.show();
+          $('#memberPanel').hide(); $('#authPanel').show();
+          if (user && !user.emailVerified) {
+            msg('#authMsg', '#c00', "Your email isn't verified yet — check your inbox/spam, or resend below.");
+            $('#resendBtn').show();
+          } else {
+            $('#resendBtn').hide();
+          }
         }
+      });
 
-        versions.forEach(function(versionLabel) {
-          $submissionSelect.append(
-            $("<option></option>").val(versionLabel).text(versionLabel)
-          );
+      // --- team member rows ---
+      function addMemberRow(name, aff) {
+        var row = $('<div class="member-row"></div>');
+        row.append($('<input type="text" placeholder="Member name">').addClass('m-name').val(name || ''));
+        row.append($('<input type="text" placeholder="Affiliation">').addClass('m-aff').val(aff || ''));
+        var rm = $('<button type="button" class="remove-member" title="Remove member">&times;</button>');
+        rm.on('click', function() { row.remove(); });
+        row.append(rm);
+        $('#memberRows').append(row);
+      }
+      $('#addMemberBtn').on('click', function() { addMemberRow(); });
+
+      function loadTeam(user) {
+        db.collection('teams').doc(user.uid).get().then(function(doc) {
+          $('#memberRows').empty();
+          if (doc.exists) {
+            var d = doc.data();
+            $('#teamName').val(d.teamName || '');
+            $('#teamEmail').val(d.contactEmail || '');
+            (d.members || []).forEach(function(m) { addMemberRow(m.name, m.affiliation); });
+            if (!$('#memberRows').children().length) addMemberRow();
+            $('#teamFormTitle').text('Your team');
+            $('#teamSubmitBtn').text('Save changes');
+            $('#submitForm').show(); $('#teamLabel').text(d.teamName || '');
+            loadSubs(user);
+          } else {
+            $('#teamName').val(''); $('#teamEmail').val('');
+            addMemberRow();
+            $('#teamFormTitle').text('Register your team');
+            $('#teamSubmitBtn').text('Register Team');
+            $('#submitForm').hide();
+          }
+          $('#teamForm').show();
         });
-
-        var selectedVersion = '';
-        if (preferredVersion && versions.indexOf(preferredVersion) !== -1) {
-          selectedVersion = preferredVersion;
-        } else if (versions.length > 0) {
-          selectedVersion = versions[versions.length - 1];
-        }
-
-        $submissionSelect.val(selectedVersion);
-        return selectedVersion;
       }
 
-      function renderCategoryTable(modelName, versionLabel) {
-        var key = modelName + "|||" + versionLabel;
-        var categoryData = perCategoryLookup[key] || {};
-        var rows = '';
-
-        categoryOrder.forEach(function(categoryCode) {
-          var item = categoryData[categoryCode] || { n: 0, dice: '0.000', hit: '0.000' };
-          var categoryLabel = categoryLabels[categoryCode] || '';
-          var categoryCell = '<b>' + categoryCode + '</b>' + (categoryLabel ? ' — ' + categoryLabel : '');
-          rows += '<tr>' +
-            '<td>' + categoryCell + '</td>' +
-            '<td>' + item.n + '</td>' +
-            '<td>' + item.dice + '</td>' +
-            '<td>' + item.hit + '</td>' +
-            '</tr>';
+      // --- register / update team (one team doc per user, id = uid) ---
+      $('#teamSubmitBtn').on('click', function() {
+        var user = auth.currentUser; if (!user) return;
+        var teamName = $.trim($('#teamName').val()), email = $.trim($('#teamEmail').val()) || user.email;
+        if (!teamName) { msg('#memberMsg', '#c00', 'Enter a team name.'); return; }
+        var members = [];
+        $('#memberRows .member-row').each(function() {
+          var n = $.trim($(this).find('.m-name').val()), a = $.trim($(this).find('.m-aff').val());
+          if (n && a) members.push({ name: n, affiliation: a });
         });
+        if (!members.length) { msg('#memberMsg', '#c00', 'Add at least one member (name + affiliation).'); return; }
+        var self = this, origText = $(self).text(); $(self).prop('disabled', true).text('Saving...');
+        // Uniqueness check reads the PII-free team_names index (NOT /teams, which is owner-read-only).
+        db.collection('team_names').where('teamName', '==', teamName).get().then(function(qs) {
+          var taken = false; qs.forEach(function(d) { if (d.id !== user.uid) taken = true; });
+          if (taken) { msg('#memberMsg', '#c00', 'Team name already taken.'); return Promise.reject('dup'); }
+          return db.collection('teams').doc(user.uid).get();
+        }).then(function(existing) {
+          var data = { teamName: teamName, contactEmail: email, members: members, ownerUid: user.uid, updatedAt: FV.serverTimestamp() };
+          if (!existing.exists) data.createdAt = FV.serverTimestamp();
+          return db.collection('teams').doc(user.uid).set(data, { merge: true });
+        }).then(function() {
+          // Mirror the name into the public, PII-free index used for uniqueness checks.
+          return db.collection('team_names').doc(user.uid).set({ teamName: teamName, ownerUid: user.uid, updatedAt: FV.serverTimestamp() });
+        }).then(function() { msg('#memberMsg', '#2e7d32', 'Team saved!'); loadTeam(user); })
+          .catch(function(e) { if (e !== 'dup') msg('#memberMsg', '#c00', e.message || 'Failed'); })
+          .then(function() { $(self).prop('disabled', false).text(origText); });
+      });
 
-        $("#categoryTableBody").html(rows);
+      // --- submit prediction ---
+      $('#subSubmitBtn').on('click', function() {
+        var user = auth.currentUser; if (!user) return;
+        var methodName = $.trim($('#subMethod').val());
+        if (!methodName) { msg('#memberMsg', '#c00', 'Enter a model name.'); return; }
+        var link = $.trim($('#subLink').val());
+        if (!/^https?:\/\/(drive|docs)\.google\.com\//.test(link)) { msg('#memberMsg', '#c00', 'Enter a valid Google Drive link.'); return; }
+        var self = this; $(self).prop('disabled', true).text('Submitting...');
+        var phase = $('#subPhase').val(), notes = $.trim($('#subNotes').val());
+        db.collection('teams').doc(user.uid).get().then(function(doc) {
+          var teamName = doc.exists ? doc.data().teamName : '';
+          return db.collection('submissions').add({
+            ownerUid: user.uid, teamName: teamName, driveLink: link, phase: phase,
+            methodName: methodName, notes: notes, status: 'submitted', createdAt: FV.serverTimestamp()
+          }).then(function() {
+            notifySubmission({ team: teamName, email: user.email, phase: phase, method: methodName, driveLink: link, date: new Date().toISOString() });
+          });
+        }).then(function() { msg('#memberMsg', '#2e7d32', 'Submission received!'); $('#subLink').val(''); $('#subMethod').val(''); loadSubs(user); })
+          .catch(function(e) { msg('#memberMsg', '#c00', e.message || 'Failed'); })
+          .then(function() { $(self).prop('disabled', false).text('Submit Predictions'); });
+      });
+
+      function loadSubs(user) {
+        db.collection('submissions').where('ownerUid', '==', user.uid).get().then(function(qs) {
+          if (qs.empty) { $('#subList').html(''); return; }
+          var rows = []; qs.forEach(function(d) { rows.push(d.data()); });
+          rows.sort(function(a, b) { return ((b.createdAt && b.createdAt.seconds) || 0) - ((a.createdAt && a.createdAt.seconds) || 0); });
+          var html = '<strong>Your submissions:</strong><ul style="padding-left:18px;">';
+          rows.forEach(function(s) {
+            var t = (s.createdAt && s.createdAt.toDate) ? s.createdAt.toDate().toLocaleString() : '';
+            html += '<li>[' + $('<i>').text(s.phase || '').html() + '] ' + $('<i>').text(s.methodName || '(run)').html() + ' — ' + $('<i>').text(s.status || 'submitted').html() + ' — ' + t + '</li>';
+          });
+          $('#subList').html(html + '</ul>');
+        });
       }
 
-      if (defaultCategoryModel) {
-        $("#categoryModelSelect").val(defaultCategoryModel);
-        var initialSubmission = renderCategorySubmissionOptions(defaultCategoryModel);
-        renderCategoryTable(defaultCategoryModel, initialSubmission);
+      // --- public leaderboard (read-only; organizers populate the `leaderboard` collection) ---
+      var LB_CAT_ORDER = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2c", "2d", "2e", "2f", "2g", "2h"];
+      var LB_CAT_LABELS = {"1a": "Bronchial wall thickening", "1b": "Bronchiectasis", "1c": "Emphysema (incl. Centrilobular, Paraseptal, Bullous)", "1d": "Septal thickening (incl. Interlobular, Reticulation)", "1e": "Micronodules (incl. Centrilobular, Tree-in-bud, Perilymphatic)", "1f": "Other (non-focal)", "2a": "Linear (incl. subsegmental atelectasis, scarring, fibrosis)", "2b": "Atelectasis, consolidation", "2c": "Groundglass opacity", "2d": "Pulmonary nodules/masses", "2e": "Pleural effusion or thickening", "2f": "Honeycombing", "2g": "Pneumothorax", "2h": "Other (focal)"};
+      function loadLeaderboard() {
+        db.collection('leaderboard').get().then(function(qs) {
+          if (qs.empty) { $('#lbStatus').text('No results yet — submissions are evaluated automatically.'); return; }
+          var all = []; qs.forEach(function(d) { all.push(d.data()); });
+          var evaluating = all.filter(function(r) { return r.status === 'evaluating'; });
+          var scored = all.filter(function(r) { return r.status !== 'evaluating' && typeof r.dice === 'number'; });
+          scored.sort(function(a, b) { return (b.dice || 0) - (a.dice || 0); });
+          function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
+          // Model names are typed by participants: escape them, never inject raw HTML.
+          function esc(x) { return String(x == null ? '' : x).replace(/[&<>"']/g, function(c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]; }); }
+          function idcols(r) { return '<td>' + esc(r.team) + '</td>'; }   // model name only; nothing about who submitted
+          function catDetail(r) {
+            if (!r.perCategory) return '<div style="padding:8px 4px;color:#888;">Per-category results not available for this submission.</div>';
+            var pc = r.perCategory, order = LB_CAT_ORDER.slice();
+            Object.keys(pc).forEach(function(k) { if (order.indexOf(k) === -1) order.push(k); });
+            var body = '';
+            order.forEach(function(c) {
+              var it = pc[c]; if (!it) return;
+              var lab = LB_CAT_LABELS[c] || (c === 'unknown' ? 'Uncategorized' : '');
+              body += '<tr><td style="text-align:left;"><b>' + c + '</b>' + (lab ? ' — ' + lab : '') +
+                      '</td><td>' + (it.n != null ? it.n : 0) + '</td><td>' + fmt(it.dice) + '</td><td>' + fmt(it.hit) + '</td></tr>';
+            });
+            return '<table class="table" style="margin:4px 0;background:#fff;"><thead><tr>' +
+                   '<th style="text-align:left;">Category</th><th>n</th><th>Dice</th><th>Hit Rate</th></tr></thead><tbody>' +
+                   body + '</tbody></table>';
+          }
+          var medal = ['rank-1', 'rank-2', 'rank-3'];
+          var seen = {}, rank = 0, idx = 0;   // rank by each participant's BEST entry, so one team can't hold two places
+          var html = '';
+          function emit(r, cls, rankCell) {
+            var id = idx++;
+            html += '<tr class="row-toggle' + (cls ? ' ' + cls : '') + '" data-idx="' + id + '"><td>' + rankCell + '</td>' + idcols(r) +
+                    '<td class="rank-metric">' + fmt(r.dice) + '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>' +
+                    '<tr class="cat-detail" data-for="' + id + '" style="display:none;"><td colspan="5" style="background:#fafafa;">' + catDetail(r) + '</td></tr>';
+          }
+          scored.forEach(function(r) {
+            var key = (r.submitterKey || r.team || '').toLowerCase();   // opaque random group key
+            if (!seen[key]) { seen[key] = true; rank += 1; emit(r, medal[rank - 1] || '', rank); }  // best submission
+            else { emit(r, 'secondary', '—'); }                                                     // same participant, not ranked
+          });
+          evaluating.forEach(function(r) {
+            html += '<tr class="evaluating"><td>•</td>' + idcols(r) +
+                    '<td colspan="3"><span class="eval-badge">⏳ Evaluating…</span></td></tr>';
+          });
+          $('#lbBody').html(html); $('#lbStatus').hide(); $('#lbTable').show();
+          $('#lbBody tr.row-toggle').css('cursor', 'pointer').attr('title', 'Click to see per-category results').on('click', function() {
+            $('#lbBody tr.cat-detail[data-for="' + $(this).data('idx') + '"]').toggle();
+          });
+        }).catch(function() { $('#lbStatus').text('Could not load the leaderboard right now.'); });
       }
 
-      $("#categoryModelSelect").on("change", function() {
-        var selectedModel = $(this).val();
-        var selectedSubmission = renderCategorySubmissionOptions(selectedModel);
-        renderCategoryTable(selectedModel, selectedSubmission);
-      });
-
-      $("#categorySubmissionSelect").on("change", function() {
-        var selectedModel = $("#categoryModelSelect").val();
-        var selectedSubmission = $(this).val();
-        renderCategoryTable(selectedModel, selectedSubmission);
-      });
-
-      // Custom sort handler: always start descending on a new column,
-      // only toggle if clicking the same column consecutively
-      var lastCol = 2;
-      var lastDir = 1; // 1 = desc, 0 = asc
-
-      // Remove tablesorter's default click handlers on headers
-      $(".performanceTable thead th").off("click mousedown");
-
-      $(".performanceTable thead th").on("click", function(e) {
-        e.stopPropagation();
-        var col = $(this).index();
-        var dir;
-        if (col === lastCol) {
-          dir = lastDir === 1 ? 0 : 1; // toggle
-        } else {
-          dir = 1; // always descending for a new column
-        }
-        lastCol = col;
-        lastDir = dir;
-        $(".performanceTable").trigger("sorton", [[[col, dir]]]);
-      });
-
-      // Version switching logic
-      $(document).on('click', '.version-option', function(e) {
-        e.stopPropagation();
-        var $option = $(this);
-        var versionIndex = parseInt($option.data('index'));
-        var $row = $option.closest('tr');
-        var versions = $row.data('versions');
-
-        if (!versions || versionIndex >= versions.length) return;
-
-        var selected = versions[versionIndex];
-
-        // Update scores
-        $row.find('.metric-dice b').text(selected.dice);
-        $row.find('.metric-hit b').text(selected.hit);
-        $row.find('.metric-prec b').text(selected.prec);
-        $row.find('.metric-rec b').text(selected.rec);
-        $row.find('.metric-f1 b').text(selected.f1);
-
-        // Update date
-        var $dateSpan = $row.find('.model-date');
-        if (selected.date) {
-          $dateSpan.text(selected.date).addClass('date label label-default');
-        } else {
-          $dateSpan.text('').removeClass('date label label-default');
-        }
-
-        // Update active state
-        $option.siblings().removeClass('active');
-        $option.addClass('active');
-
-        // Update badge label
-        $row.find('.version-label').text(selected.version);
-
-        // Store current version
-        $row.attr('data-current-version', versionIndex);
-
-        // Sync per-category viewer if this model is selected there
-        var currentModelInViewer = $("#categoryModelSelect").val();
-        var rowModel = String($row.data('model') || '');
-        if (currentModelInViewer === rowModel) {
-          $("#categorySubmissionSelect").val(selected.version);
-          renderCategoryTable(rowModel, selected.version);
-        }
-
-        // Re-trigger tablesorter update
-        $(".performanceTable").trigger("update");
-      });
+      // --- notify organizer by email on each submission (fire-and-forget; no-op until EMAIL_HOOK_URL is set) ---
+      function notifySubmission(data) {
+        if (!EMAIL_HOOK_URL || EMAIL_HOOK_URL.indexOf('PASTE_') === 0) return;
+        var iframeName = 'notif_' + Date.now();
+        var $iframe = $('<iframe name="' + iframeName + '" style="display:none;"></iframe>').appendTo('body');
+        var $form = $('<form></form>').attr({ method: 'POST', action: EMAIL_HOOK_URL, target: iframeName }).css('display', 'none');
+        Object.keys(data).forEach(function(k) { $form.append($('<input>').attr({ name: k, value: data[k] })); });
+        $form.appendTo('body').submit();
+        setTimeout(function() { $iframe.remove(); $form.remove(); }, 2000);
+      }
     });
   </script>
 </body>

@@ -201,7 +201,7 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
 <head>
   <meta charset="utf-8"/>
   <title>
-    ReXGroundingCT
+    ReXGroundingCT v1 Leaderboard (Archived)
   </title>
   <meta name="description" content="ReXGroundingCT: A large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging."/>
   <meta name="keywords" content="ReXGroundingCT, radiology, chest CT, segmentation, medical imaging"/>
@@ -431,16 +431,16 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
     </div>
   </div>
   <div class="challenge-banner">
-    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> — submit your model &amp; see the live leaderboard!
-    <a href="../ReXGroundingCT/challenge.html" style="display:inline-block;margin-left:10px;padding:4px 18px;background:#a41034;color:#fff;border-radius:4px;font-weight:700;text-decoration:none;">Go to the Challenge &rarr;</a>
+    📦 <strong>Archived leaderboard.</strong> This is the original ReXGroundingCT leaderboard on the 100-case v1 test set. It is frozen and no longer accepts submissions.
+    <a href="../ReXGroundingCT/index.html" style="display:inline-block;margin-left:10px;padding:4px 18px;background:#a41034;color:#fff;border-radius:4px;font-weight:700;text-decoration:none;">Go to the current leaderboard &rarr;</a>
   </div>
   <div class="cover" id="topCover">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <h1 id="appTitle">ReXGroundingCT</h1>
-          <h2 id="appSubtitle">Segmentation of Findings from Free-Text Reports</h2>
-          <h3 id="helpLink"><a href="../ReXGroundingCT/challenge.html#register" rel="noopener noreferrer">⭐@Researchers: Submit to ReXrankCT</a></h3>
+          <h2 id="appSubtitle">Original Leaderboard · 100-case v1 Test Set (Archived)</h2>
+          <h3 id="helpLink"><a href="../ReXGroundingCT/index.html#register" rel="noopener noreferrer">⭐@Researchers: Submit to the current leaderboard</a></h3>
           <h3 id="helpLink"><a href="https://arxiv.org/abs/2507.22030" target="_blank" rel="noopener noreferrer">Read the Paper</a></h3>
         </div>
       </div>
@@ -455,7 +455,7 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
               <div class="infoHeadline">
                 <h2>About ReXGroundingCT</h2>
               </div>
-              <p>ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging. It comprises 3,142 non-contrast chest CT scans with 8,028 annotated findings (16,301 entities) from the CT-RATE dataset. ReXGroundingCT enables sentence-level grounding for both focal and non-focal lung and pleural abnormalities across 14 categories. On ReXrank, we are hosting ReXGroundingCT's testset, which contains 100 CT scans with exhaustive radiologist annotations for all visible findings.</p>
+              <p>ReXGroundingCT is a large-scale 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations in volumetric imaging. It comprises 3,142 non-contrast chest CT scans with 8,028 annotated findings (16,301 entities) from the CT-RATE dataset. ReXGroundingCT enables sentence-level grounding for both focal and non-focal lung and pleural abnormalities across 14 categories. This archived leaderboard reports results on the original 100-case v1 test set, which has exhaustive radiologist annotations for all visible findings. These results are not comparable to the current leaderboard, which uses the 300-case test set.</p>
               <hr>
               <div class="infoHeadline">
                 <h2>Performance Metrics</h2>
@@ -680,6 +680,6 @@ def generate_rexgroundingct_html(csv_path, output_path, per_category_csv_path=No
 if __name__ == '__main__':
     generate_rexgroundingct_html(
         './ReXGroundingCT/ReXGroundingCT.csv',
-    './ReXGroundingCT/index.html',
+    './ReXGroundingCT/v1_leaderboard.html',
     './ReXGroundingCT/per_category_results.csv'
     )

@@ -159,7 +159,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     </div>
   </div>
   <div class="challenge-banner">
-    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> — Pre-registration is open! <a href="./ReXGroundingCT/challenge.html">Learn More &rarr;</a>
+    🏆 <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> has concluded. <a href="./ReXGroundingCT/challenge.html">See the final results &rarr;</a> The <a href="./ReXGroundingCT/index.html">ReXGroundingCT leaderboard</a> remains open for submissions.
   </div>
   <div class="cover" id="topCover">
     <div class="container">

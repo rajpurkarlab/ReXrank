@@ -208,8 +208,8 @@
     .eval-badge { color: #a41034; font-weight: 600; animation: evalPulse 1.2s ease-in-out infinite; }
     @keyframes evalPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-    /* Give the content (esp. the 8-column leaderboard) more room so metric columns
-       aren't pushed off-screen and names like "Kwang-Hyun Uhm" don't wrap. */
+    /* Give the content (esp. the leaderboard) more room so metric columns
+       aren't pushed off-screen and long names don't wrap. */
     @media (min-width: 992px) {
       #contentCover .container, #topCover .container { width: 94%; max-width: 1320px; }
     }
@@ -269,14 +269,71 @@
           <div class="infoCard">
             <div class="infoBody justified-text">
 
+              <div style="background:#eef7ee;border:1px solid #c8e6c9;border-left:4px solid #2e7d32;border-radius:4px;padding:14px 18px;margin-bottom:28px;font-size:15px;line-height:1.6;">
+                🏁 <strong>The challenge has concluded.</strong> The official final results are below. The benchmark remains open for new submissions on the <a href="./index.html">ReXGroundingCT leaderboard</a>.
+              </div>
+
               <div class="challenge-section" id="leaderboard">
-                <h3>📊 Leaderboard</h3>
-                <p>Live standings on a <strong>public 50% subset</strong> of the held-out test set, ranked by mean Dice. The other 50% is withheld — <strong>final results on the full test set will be revealed at MICCAI 2026.</strong> Each submitter is ranked by their single best submission. <strong>Click any row for its per-category breakdown.</strong> Updated automatically as submissions are evaluated.</p>
-                <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
+                <h3>📊 Final Results</h3>
+                <p>Official final standings on the <strong>full 300-case held-out test set</strong>, ranked by mean Dice per case. Each team is represented by its declared final model, or by its best model on the public 50% split if none was declared.</p>
                 <div style="overflow-x:auto;">
-                  <table class="table" id="lbTable" style="display:none;margin-top:10px;">
-                    <thead><tr><th>#</th><th>Submission</th><th>Team</th><th>Submitter</th><th>Institution</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance F1</th></tr></thead>
-                    <tbody id="lbBody"></tbody>
+                  <table class="table" id="lbTable" style="margin-top:10px;">
+                    <thead><tr><th>#</th><th>Model</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance Precision</th><th>Instance Recall</th><th>Instance F1</th></tr></thead>
+                    <tbody>
+                      <tr class="rank-1"><td>1</td><td>CIRCLE</td><td class="rank-metric">0.375</td><td>0.768</td><td>0.272</td><td>0.457</td><td>0.341</td></tr>
+                      <tr class="rank-2"><td>2</td><td>Grounder_1.4n</td><td class="rank-metric">0.365</td><td>0.763</td><td>0.280</td><td>0.443</td><td>0.343</td></tr>
+                      <tr class="rank-3"><td>3</td><td>TAGS_TAPv3</td><td class="rank-metric">0.362</td><td>0.765</td><td>0.254</td><td>0.487</td><td>0.334</td></tr>
+                      <tr><td>4</td><td>needpaper_v0.6_a</td><td class="rank-metric">0.361</td><td>0.777</td><td>0.242</td><td>0.438</td><td>0.312</td></tr>
+                      <tr><td>5</td><td>juniper_v0.2qbc</td><td class="rank-metric">0.353</td><td>0.746</td><td>0.117</td><td>0.497</td><td>0.190</td></tr>
+                      <tr><td>6</td><td>ww-t4-03</td><td class="rank-metric">0.352</td><td>0.765</td><td>0.162</td><td>0.492</td><td>0.243</td></tr>
+                      <tr><td>7</td><td>Curia-MAE-loc-v0</td><td class="rank-metric">0.343</td><td>0.753</td><td>0.183</td><td>0.456</td><td>0.261</td></tr>
+                      <tr><td>8</td><td>ThoraxTell 1.4.d</td><td class="rank-metric">0.339</td><td>0.742</td><td>0.169</td><td>0.456</td><td>0.246</td></tr>
+                      <tr><td>9</td><td>SJTU426Lab-V18</td><td class="rank-metric">0.333</td><td>0.716</td><td>0.169</td><td>0.466</td><td>0.248</td></tr>
+                      <tr><td>10</td><td>VoxTell_tv5way_s025</td><td class="rank-metric">0.333</td><td>0.689</td><td>0.231</td><td>0.421</td><td>0.299</td></tr>
+                      <tr><td>11</td><td>finalc3</td><td class="rank-metric">0.332</td><td>0.741</td><td>0.123</td><td>0.504</td><td>0.197</td></tr>
+                      <tr><td>12</td><td>needfirstplace_v1.23</td><td class="rank-metric">0.329</td><td>0.722</td><td>0.120</td><td>0.440</td><td>0.189</td></tr>
+                      <tr><td>13</td><td>CARE-CT</td><td class="rank-metric">0.329</td><td>0.739</td><td>0.168</td><td>0.434</td><td>0.242</td></tr>
+                      <tr><td>14</td><td>Unnamed model (UGcIaf)</td><td class="rank-metric">0.329</td><td>0.730</td><td>0.198</td><td>0.412</td><td>0.268</td></tr>
+                      <tr><td>15</td><td>IMRVox-0914-1</td><td class="rank-metric">0.327</td><td>0.715</td><td>0.266</td><td>0.419</td><td>0.326</td></tr>
+                      <tr><td>16</td><td>Referent-V2</td><td class="rank-metric">0.326</td><td>0.737</td><td>0.146</td><td>0.453</td><td>0.221</td></tr>
+                      <tr><td>17</td><td>test3</td><td class="rank-metric">0.326</td><td>0.725</td><td>0.218</td><td>0.405</td><td>0.283</td></tr>
+                      <tr><td>18</td><td>MUW-Grounder-v2</td><td class="rank-metric">0.323</td><td>0.749</td><td>0.163</td><td>0.456</td><td>0.240</td></tr>
+                      <tr><td>19</td><td>Farm-Best-HZ-12</td><td class="rank-metric">0.323</td><td>0.735</td><td>0.286</td><td>0.420</td><td>0.340</td></tr>
+                      <tr><td>20</td><td>test16</td><td class="rank-metric">0.322</td><td>0.730</td><td>0.271</td><td>0.411</td><td>0.327</td></tr>
+                      <tr><td>21</td><td>VT++</td><td class="rank-metric">0.321</td><td>0.710</td><td>0.152</td><td>0.430</td><td>0.224</td></tr>
+                      <tr><td>22</td><td>VoXTell-FT-B24k-E0</td><td class="rank-metric">0.320</td><td>0.713</td><td>0.122</td><td>0.486</td><td>0.195</td></tr>
+                      <tr><td>23</td><td>A4</td><td class="rank-metric">0.320</td><td>0.716</td><td>0.106</td><td>0.509</td><td>0.176</td></tr>
+                      <tr><td>24</td><td>C2-VoxTell</td><td class="rank-metric">0.313</td><td>0.708</td><td>0.146</td><td>0.408</td><td>0.215</td></tr>
+                      <tr><td>25</td><td>FarmAdd100-LateRefine60_40-TTA3</td><td class="rank-metric">0.312</td><td>0.716</td><td>0.291</td><td>0.395</td><td>0.335</td></tr>
+                      <tr><td>26</td><td>CALM</td><td class="rank-metric">0.308</td><td>0.682</td><td>0.143</td><td>0.445</td><td>0.216</td></tr>
+                      <tr><td>27</td><td>e2edq</td><td class="rank-metric">0.299</td><td>0.701</td><td>0.128</td><td>0.389</td><td>0.193</td></tr>
+                      <tr><td>28</td><td>VT-FT-v3</td><td class="rank-metric">0.287</td><td>0.674</td><td>0.112</td><td>0.398</td><td>0.175</td></tr>
+                      <tr><td>29</td><td>Voxtell_finetue</td><td class="rank-metric">0.285</td><td>0.649</td><td>0.113</td><td>0.440</td><td>0.180</td></tr>
+                      <tr><td>30</td><td>MMM</td><td class="rank-metric">0.275</td><td>0.677</td><td>0.156</td><td>0.395</td><td>0.224</td></tr>
+                      <tr><td>31</td><td>V6</td><td class="rank-metric">0.274</td><td>0.601</td><td>0.165</td><td>0.304</td><td>0.214</td></tr>
+                      <tr><td>32</td><td>Voxtell-FT</td><td class="rank-metric">0.269</td><td>0.662</td><td>0.126</td><td>0.396</td><td>0.191</td></tr>
+                      <tr><td>33</td><td>voxtell_valadapt_all200_e3_t075</td><td class="rank-metric">0.267</td><td>0.646</td><td>0.085</td><td>0.442</td><td>0.142</td></tr>
+                      <tr><td>34</td><td>Unnamed model (2kb0p8)</td><td class="rank-metric">0.267</td><td>0.644</td><td>0.278</td><td>0.354</td><td>0.311</td></tr>
+                      <tr><td>35</td><td>MedSigLIP_SiamGround_Ens_gated</td><td class="rank-metric">0.256</td><td>0.648</td><td>0.125</td><td>0.322</td><td>0.180</td></tr>
+                      <tr><td>36</td><td>GroundXpert-CT</td><td class="rank-metric">0.249</td><td>0.545</td><td>0.095</td><td>0.301</td><td>0.144</td></tr>
+                      <tr><td>37</td><td>Ganfx</td><td class="rank-metric">0.246</td><td>0.529</td><td>0.091</td><td>0.298</td><td>0.140</td></tr>
+                      <tr><td>38</td><td>rexgct_178_all200_ema_protected023</td><td class="rank-metric">0.230</td><td>0.517</td><td>0.110</td><td>0.296</td><td>0.161</td></tr>
+                      <tr><td>39</td><td>voxpr</td><td class="rank-metric">0.226</td><td>0.562</td><td>0.106</td><td>0.289</td><td>0.155</td></tr>
+                      <tr><td>40</td><td>Swin-X</td><td class="rank-metric">0.221</td><td>0.507</td><td>0.084</td><td>0.318</td><td>0.132</td></tr>
+                      <tr><td>41</td><td>VoxTell Prompt Aug.</td><td class="rank-metric">0.220</td><td>0.510</td><td>0.105</td><td>0.277</td><td>0.152</td></tr>
+                      <tr><td>42</td><td>SJTU</td><td class="rank-metric">0.218</td><td>0.471</td><td>0.066</td><td>0.286</td><td>0.107</td></tr>
+                      <tr><td>43</td><td>VT-zero</td><td class="rank-metric">0.217</td><td>0.507</td><td>0.069</td><td>0.257</td><td>0.109</td></tr>
+                      <tr><td>44</td><td>Voxtell_phase_3_exp_001_v2</td><td class="rank-metric">0.214</td><td>0.524</td><td>0.103</td><td>0.275</td><td>0.150</td></tr>
+                      <tr><td>45</td><td>VoxTell-ZS + orientation correction</td><td class="rank-metric">0.210</td><td>0.485</td><td>0.080</td><td>0.250</td><td>0.121</td></tr>
+                      <tr><td>46</td><td>VoxTell_0001</td><td class="rank-metric">0.210</td><td>0.486</td><td>0.080</td><td>0.250</td><td>0.122</td></tr>
+                      <tr><td>47</td><td>SLR3D</td><td class="rank-metric">0.194</td><td>0.541</td><td>0.057</td><td>0.338</td><td>0.098</td></tr>
+                      <tr><td>48</td><td>TextSwinUNETR-baseline</td><td class="rank-metric">0.194</td><td>0.495</td><td>0.191</td><td>0.221</td><td>0.205</td></tr>
+                      <tr><td>49</td><td>ConTEXTual Net CT - 1</td><td class="rank-metric">0.183</td><td>0.490</td><td>0.083</td><td>0.252</td><td>0.125</td></tr>
+                      <tr><td>50</td><td>Rex—CT</td><td class="rank-metric">0.179</td><td>0.400</td><td>0.055</td><td>0.233</td><td>0.089</td></tr>
+                      <tr><td>51</td><td>Text-Swin CT</td><td class="rank-metric">0.157</td><td>0.376</td><td>0.056</td><td>0.208</td><td>0.088</td></tr>
+                      <tr><td>52</td><td>TextUNet3D-Ground_v2</td><td class="rank-metric">0.154</td><td>0.471</td><td>0.166</td><td>0.180</td><td>0.173</td></tr>
+                      <tr><td>53</td><td>Voxtell_LoRA_916k</td><td class="rank-metric">0.146</td><td>0.419</td><td>0.029</td><td>0.348</td><td>0.054</td></tr>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -285,61 +342,7 @@
 
               <div class="challenge-section" id="register">
                 <h3>🚀 Register &amp; Submit</h3>
-                <p>Registration is <strong>open</strong>. <strong>All submissions are made here, through the Register &amp; Submit form below</strong> — create an account, register your team, then submit your predictions as a Google Drive link. This is the only submission channel.</p>
-                <p style="font-size:14px;color:#666;">The <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> are a reference for the required prediction <em>format</em> only — they are not a separate way to submit. Review them so your predictions are formatted correctly, then submit through the form below.</p>
-
-                <!-- Account panel (login / create account) -->
-                <div class="preregister-form" id="authPanel">
-                  <div style="display:flex;gap:10px;margin-bottom:18px;">
-                    <button type="button" id="tabLogin" style="flex:1;background:#a41034;">Log In</button>
-                    <button type="button" id="tabSignup" style="flex:1;background:#888;">Create Account</button>
-                  </div>
-                  <div id="loginForm">
-                    <input type="email" id="loginEmail" placeholder="Email" />
-                    <input type="password" id="loginPass" placeholder="Password" />
-                    <button type="button" id="loginBtn">Log In</button>
-                    <p style="font-size:13px;margin-top:10px;text-align:right;"><a href="#" id="forgotBtn">Forgot password?</a></p>
-                  </div>
-                  <div id="signupForm" style="display:none;">
-                    <input type="text" id="suName" placeholder="Your name (optional)" />
-                    <input type="email" id="suEmail" placeholder="Email" />
-                    <input type="password" id="suPass" placeholder="Password (min 6 characters)" />
-                    <button type="button" id="signupBtn">Create Account</button>
-                    <p style="font-size:13px;color:#666;margin-top:8px;">You'll get a verification email — <strong>check your spam/junk folder</strong> if it's not in your inbox — verify it before logging in.</p>
-                  </div>
-                  <div id="authMsg" style="margin-top:12px;font-size:14px;"></div>
-                  <button type="button" id="resendBtn" style="display:none;background:#888;margin-top:10px;">Resend verification email</button>
-                </div>
-
-                <!-- Member panel (team registration + submission, after login) -->
-                <div id="memberPanel" style="display:none;">
-                  <p style="text-align:right;font-size:13px;color:#666;">Signed in as <span id="whoami"></span> · <a href="#" id="logoutBtn">Log out</a></p>
-
-                  <div class="preregister-form" id="teamForm">
-                    <h4 id="teamFormTitle" style="margin-top:0;color:#a41034;">Register your team</h4>
-                    <input type="text" id="teamName" placeholder="Team name" />
-                    <input type="email" id="teamEmail" placeholder="Contact email" />
-                    <label style="display:block;font-size:13px;color:#666;margin-bottom:6px;">Members (name &amp; affiliation):</label>
-                    <div id="memberRows"></div>
-                    <button type="button" id="addMemberBtn" style="background:#888;margin-bottom:12px;">+ Add member</button>
-                    <button type="button" id="teamSubmitBtn">Register Team</button>
-                  </div>
-
-                  <div class="preregister-form" id="submitForm" style="display:none;">
-                    <h4 style="margin-top:0;color:#a41034;">Team: <span id="teamLabel"></span></h4>
-                    <input type="hidden" id="subPhase" value="test" />
-                    <p style="font-size:13px;color:#666;margin-bottom:10px;">Your predictions are evaluated on the <strong>held-out test set</strong> and appear on the leaderboard as official results.</p>
-                    <input type="text" id="subMethod" placeholder="Model name (required)" required />
-                    <input type="url" id="subLink" placeholder="Google Drive link to a single .zip of your predictions" />
-                    <p style="font-size:13px;color:#a41034;margin:-8px 0 12px;"><strong>⚠️ Submit a single <code>.zip</code> file</strong> (not a folder), containing your 300 prediction <code>.nii.gz</code> files. <strong>Set sharing to "Anyone with the link"</strong> before submitting — restricted links, folders, and access-requested links cannot be evaluated automatically.</p>
-                    <textarea id="subNotes" placeholder="Notes (optional)" rows="2" style="width:100%;padding:10px 14px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px;font-size:15px;"></textarea>
-                    <p style="font-size:13px;color:#333;background:#f7f7f9;border:1px solid #e0e0e0;border-radius:4px;padding:10px 12px;margin-bottom:14px;">⏱️ Evaluation runs automatically — <strong>expect your result on the leaderboard within ~2 hours (max)</strong>. Your entry will show as <em>“⏳ Evaluating…”</em> while it runs. Please <strong>do not submit again until you receive your result.</strong></p>
-                    <button type="button" id="subSubmitBtn">Submit Predictions</button>
-                    <div id="subList" style="margin-top:16px;font-size:13px;"></div>
-                  </div>
-
-                  <div id="memberMsg" style="margin-top:12px;font-size:14px;"></div>
-                </div>
+                <p>Challenge submissions closed on September 14, 2026. The benchmark remains open: to submit a new model, register and upload on the <a href="./index.html#register">ReXGroundingCT leaderboard</a>, where it is evaluated on the same 300-case test set.</p>
               </div>
 
               <hr>
@@ -418,14 +421,14 @@
                     <div class="timeline-label">Challenge launched — registration open, test set released</div>
                   </div>
                   <div class="timeline-item">
-                    <div class="timeline-date">June — September 14, 2026 — in progress</div>
-                    <div class="timeline-label">Submission phase (open now) — submit multiple runs; each is evaluated on the held-out test set and appears on the leaderboard</div>
+                    <div class="timeline-date">June — September 14, 2026</div>
+                    <div class="timeline-label">Submission phase — teams submitted multiple runs, each evaluated on the held-out test set</div>
                   </div>
-                  <div class="timeline-item upcoming">
+                  <div class="timeline-item">
                     <div class="timeline-date">September 14, 2026</div>
                     <div class="timeline-label">Submission deadline, 11:59 PM Boston / Eastern Time (ET) — final leaderboard standings locked as the official results</div>
                   </div>
-                  <div class="timeline-item upcoming">
+                  <div class="timeline-item">
                     <div class="timeline-date">Late September 2026</div>
                     <div class="timeline-label">Results announced &amp; challenge session at MICCAI 2026</div>
                   </div>
@@ -458,7 +461,7 @@
               <div class="challenge-section">
                 <h3>📝 How to Participate</h3>
                 <ul>
-                  <li><strong>Registration is open</strong> — create an account and register your team using the form below to participate.</li>
+                  <li><strong>Challenge submissions are closed.</strong> The benchmark remains open on the <a href="./index.html#register">ReXGroundingCT leaderboard</a>.</li>
                   <li>Training and validation data are publicly available — you can start developing and evaluating your method now.</li>
                   <li>Any publicly available or private training data, including pre-trained models and external datasets, may be used. All external data sources must be described in the method submission.</li>
                   <li>All predictions on the test set must be <strong>fully automatic</strong> — no manual intervention, post-hoc editing, or case-specific tuning allowed.</li>
@@ -501,7 +504,7 @@
               <div class="challenge-section">
                 <h3>📄 Resources</h3>
                 <ul>
-                  <li><a href="./index.html">ReXGroundingCT Leaderboard</a></li>
+                  <li><a href="./index.html">ReXGroundingCT Leaderboard (open for submissions)</a></li>
                   <li><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT" target="_blank">Dataset on HuggingFace</a></li>
                   <li><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT/blob/main/rexrank_eval.py" target="_blank">Evaluation Code</a></li>
                   <li><a href="../explore/submission_guideline_ct.html" target="_blank">Submission Guidelines</a></li>
@@ -560,327 +563,5 @@
   </nav>
 
   <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- Firebase (Auth + Firestore) — client-side, works on static GitHub Pages -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
-  <script>
-    $(document).ready(function() {
-      // ===== Firebase config — paste yours from Firebase console (Project settings > General > Your apps > Web). =====
-      var firebaseConfig = {
-        apiKey: "AIzaSyDb-itWou3m4IvOvS1etcQaP0D_Kkac3b0",
-        authDomain: "rexgrounding-challenge.firebaseapp.com",
-        projectId: "rexgrounding-challenge",
-        storageBucket: "rexgrounding-challenge.firebasestorage.app",
-        messagingSenderId: "711353076921",
-        appId: "1:711353076921:web:67053eaef29ca01600df68",
-        measurementId: "G-2SMYVCG6VS"
-      };
-      firebase.initializeApp(firebaseConfig);
-      var auth = firebase.auth();
-      var db = firebase.firestore();
-      var FV = firebase.firestore.FieldValue;
-
-      function msg(sel, color, text) { $(sel).css('color', color).text(text); }
-
-      // Email-notification hook (Google Apps Script web app) — see submission_notify_apps_script.gs.
-      // Organizer submission-notification email DISABLED on request (2026-08-30).
-      // To re-enable, restore: 'https://script.google.com/macros/s/AKfycbycetaIf0E-jCdiIcTIgeTyvuBtU9_n5Z7-PbHchMiOj15QF_jPhFZB-HNMllxcxQ3B/exec'
-      var EMAIL_HOOK_URL = '';   // blank -> notify function returns immediately (no email)
-
-      // --- Submission deadline: Sep 14, 2026, 11:59 PM Boston/Eastern (EDT = UTC-4) ---
-      // Same instant the Firestore rules enforce server-side, so the UI matches the real lock.
-      var SUBMISSION_DEADLINE = new Date('2026-09-15T04:00:00Z');
-      function submissionsClosed() { return new Date() >= SUBMISSION_DEADLINE; }
-      function applyDeadlineState() {
-        if (!submissionsClosed()) return;
-        $('#subSubmitBtn').prop('disabled', true).text('Submissions closed');
-        $('#subMethod, #subLink, #subNotes').prop('disabled', true);
-        if (!$('#subClosedNote').length) {
-          $('#subSubmitBtn').before('<p id="subClosedNote" style="color:#a41034;font-weight:600;margin-bottom:12px;">Submissions are closed. The deadline (September 14, 2026, 11:59 PM ET) has passed and the leaderboard standings are final.</p>');
-        }
-      }
-
-      loadLeaderboard();  // public; runs regardless of login state
-
-      // --- account tabs ---
-      $('#tabLogin').on('click', function() { $('#loginForm').show(); $('#signupForm').hide(); $('#authMsg').text(''); $('#resendBtn').hide(); });
-      $('#tabSignup').on('click', function() { $('#signupForm').show(); $('#loginForm').hide(); $('#authMsg').text(''); $('#resendBtn').hide(); });
-
-      // --- create account (email/password + verification email) ---
-      $('#signupBtn').on('click', function() {
-        var email = $.trim($('#suEmail').val()), pass = $('#suPass').val(), name = $.trim($('#suName').val());
-        if (!email || pass.length < 6) { msg('#authMsg', '#c00', 'Enter an email and a password of at least 6 characters.'); return; }
-        var self = this; $(self).prop('disabled', true).text('Creating...');
-        function done() { $(self).prop('disabled', false).text('Create Account'); }
-        auth.createUserWithEmailAndPassword(email, pass)
-          .then(function(cred) {
-            var p = name ? cred.user.updateProfile({ displayName: name }) : Promise.resolve();
-            return p.then(function() { return cred.user.sendEmailVerification(); });
-          })
-          // keep the (unverified) user signed in so the Resend button works
-          .then(function() {
-            msg('#authMsg', '#2e7d32', 'Account created! Check your email (and spam/junk folder) to verify, then log in.');
-            $('#resendBtn').show(); startResendCooldown(); done();
-          })
-          .catch(function(e) {
-            // Common case: they started signing up before but never verified. Don't dead-end them —
-            // if the password matches (it's their account), sign in and re-send verification.
-            if (e && e.code === 'auth/email-already-in-use') {
-              auth.signInWithEmailAndPassword(email, pass)
-                .then(function(cred) {
-                  if (!cred.user.emailVerified) {
-                    return cred.user.sendEmailVerification().then(function() {
-                      msg('#authMsg', '#2e7d32', "You already started signing up with this email but haven't verified it yet. We've re-sent the verification email — check your inbox/spam (then log in).");
-                      $('#resendBtn').show(); startResendCooldown();
-                    });
-                  }
-                  msg('#authMsg', '#2e7d32', "This email already has a verified account — you're now signed in.");
-                })
-                .catch(function() {
-                  msg('#authMsg', '#c00', 'This email is already registered. Please use Log In above — and "Forgot password?" if you don\'t remember your password.');
-                })
-                .then(done);
-            } else {
-              msg('#authMsg', '#c00', e.message); done();
-            }
-          });
-      });
-
-      // --- login ---
-      $('#loginBtn').on('click', function() {
-        var email = $.trim($('#loginEmail').val()), pass = $('#loginPass').val();
-        var self = this; $(self).prop('disabled', true).text('Logging in...');
-        auth.signInWithEmailAndPassword(email, pass)
-          .then(function(cred) {
-            if (!cred.user.emailVerified) { msg('#authMsg', '#c00', "Your email isn't verified yet — check your inbox/spam, or resend below."); $('#resendBtn').show(); }
-          })
-          .catch(function(e) { msg('#authMsg', '#c00', e.message); })
-          .then(function() { $(self).prop('disabled', false).text('Log In'); });
-      });
-
-      // --- reset password (sends a Firebase password-reset email) ---
-      $('#forgotBtn').on('click', function(e) {
-        e.preventDefault();
-        var email = $.trim($('#loginEmail').val());
-        if (!email) { msg('#authMsg', '#c00', 'Enter your email above, then click "Forgot password?".'); return; }
-        auth.sendPasswordResetEmail(email)
-          .then(function() { msg('#authMsg', '#2e7d32', 'Password-reset email sent to ' + email + '. Check your inbox/spam.'); })
-          .catch(function(e) { msg('#authMsg', '#c00', e.message); });
-      });
-
-      $('#logoutBtn').on('click', function(e) { e.preventDefault(); $('#resendBtn').hide(); auth.signOut(); });
-
-      // --- resend verification email (uses the signed-in-but-unverified user) ---
-      var RESEND_COOLDOWN = 60, resendTimer = null;
-      function startResendCooldown() {
-        var btn = $('#resendBtn'), left = RESEND_COOLDOWN;
-        clearInterval(resendTimer);
-        btn.prop('disabled', true).text('Resend available in ' + left + 's');
-        resendTimer = setInterval(function() {
-          left -= 1;
-          if (left <= 0) { clearInterval(resendTimer); btn.prop('disabled', false).text('Resend verification email'); }
-          else { btn.text('Resend available in ' + left + 's'); }
-        }, 1000);
-      }
-      $('#resendBtn').on('click', function() {
-        var u = auth.currentUser;
-        if (!u) { msg('#authMsg', '#c00', 'Log in first, then resend.'); return; }
-        $('#resendBtn').prop('disabled', true).text('Sending...');
-        u.sendEmailVerification()
-          .then(function() { msg('#authMsg', '#2e7d32', 'Verification email re-sent to ' + u.email + '. Check your inbox/spam.'); startResendCooldown(); })
-          .catch(function(e) { msg('#authMsg', '#c00', e.message); $('#resendBtn').prop('disabled', false).text('Resend verification email'); });
-      });
-
-      // --- auth state drives which panel shows ---
-      auth.onAuthStateChanged(function(user) {
-        if (user && user.emailVerified) {
-          $('#authPanel').hide(); $('#memberPanel').show();
-          $('#whoami').text(user.displayName || user.email);
-          loadTeam(user);
-        } else {
-          $('#memberPanel').hide(); $('#authPanel').show();
-          if (user && !user.emailVerified) {
-            msg('#authMsg', '#c00', "Your email isn't verified yet — check your inbox/spam, or resend below.");
-            $('#resendBtn').show();
-          } else {
-            $('#resendBtn').hide();
-          }
-        }
-      });
-
-      // --- team member rows ---
-      function addMemberRow(name, aff) {
-        var row = $('<div class="member-row"></div>');
-        row.append($('<input type="text" placeholder="Member name">').addClass('m-name').val(name || ''));
-        row.append($('<input type="text" placeholder="Affiliation">').addClass('m-aff').val(aff || ''));
-        var rm = $('<button type="button" class="remove-member" title="Remove member">&times;</button>');
-        rm.on('click', function() { row.remove(); });
-        row.append(rm);
-        $('#memberRows').append(row);
-      }
-      $('#addMemberBtn').on('click', function() { addMemberRow(); });
-
-      function loadTeam(user) {
-        db.collection('teams').doc(user.uid).get().then(function(doc) {
-          $('#memberRows').empty();
-          if (doc.exists) {
-            var d = doc.data();
-            $('#teamName').val(d.teamName || '');
-            $('#teamEmail').val(d.contactEmail || '');
-            (d.members || []).forEach(function(m) { addMemberRow(m.name, m.affiliation); });
-            if (!$('#memberRows').children().length) addMemberRow();
-            $('#teamFormTitle').text('Your team');
-            $('#teamSubmitBtn').text('Save changes');
-            $('#submitForm').show(); $('#teamLabel').text(d.teamName || ''); applyDeadlineState();
-            loadSubs(user);
-          } else {
-            $('#teamName').val(''); $('#teamEmail').val('');
-            addMemberRow();
-            $('#teamFormTitle').text('Register your team');
-            $('#teamSubmitBtn').text('Register Team');
-            $('#submitForm').hide();
-          }
-          $('#teamForm').show();
-        });
-      }
-
-      // --- register / update team (one team doc per user, id = uid) ---
-      $('#teamSubmitBtn').on('click', function() {
-        var user = auth.currentUser; if (!user) return;
-        var teamName = $.trim($('#teamName').val()), email = $.trim($('#teamEmail').val()) || user.email;
-        if (!teamName) { msg('#memberMsg', '#c00', 'Enter a team name.'); return; }
-        var members = [];
-        $('#memberRows .member-row').each(function() {
-          var n = $.trim($(this).find('.m-name').val()), a = $.trim($(this).find('.m-aff').val());
-          if (n && a) members.push({ name: n, affiliation: a });
-        });
-        if (!members.length) { msg('#memberMsg', '#c00', 'Add at least one member (name + affiliation).'); return; }
-        var self = this, origText = $(self).text(); $(self).prop('disabled', true).text('Saving...');
-        // Uniqueness check reads the PII-free team_names index (NOT /teams, which is owner-read-only).
-        db.collection('team_names').where('teamName', '==', teamName).get().then(function(qs) {
-          var taken = false; qs.forEach(function(d) { if (d.id !== user.uid) taken = true; });
-          if (taken) { msg('#memberMsg', '#c00', 'Team name already taken.'); return Promise.reject('dup'); }
-          return db.collection('teams').doc(user.uid).get();
-        }).then(function(existing) {
-          var data = { teamName: teamName, contactEmail: email, members: members, ownerUid: user.uid, updatedAt: FV.serverTimestamp() };
-          if (!existing.exists) data.createdAt = FV.serverTimestamp();
-          return db.collection('teams').doc(user.uid).set(data, { merge: true });
-        }).then(function() {
-          // Mirror the name into the public, PII-free index used for uniqueness checks.
-          return db.collection('team_names').doc(user.uid).set({ teamName: teamName, ownerUid: user.uid, updatedAt: FV.serverTimestamp() });
-        }).then(function() { msg('#memberMsg', '#2e7d32', 'Team saved!'); loadTeam(user); })
-          .catch(function(e) { if (e !== 'dup') msg('#memberMsg', '#c00', e.message || 'Failed'); })
-          .then(function() { $(self).prop('disabled', false).text(origText); });
-      });
-
-      // --- submit prediction ---
-      $('#subSubmitBtn').on('click', function() {
-        var user = auth.currentUser; if (!user) return;
-        if (submissionsClosed()) {
-          applyDeadlineState();
-          msg('#memberMsg', '#c00', 'Submissions are closed — the deadline (September 14, 2026, 11:59 PM ET) has passed.');
-          return;
-        }
-        var methodName = $.trim($('#subMethod').val());
-        if (!methodName) { msg('#memberMsg', '#c00', 'Enter a model name.'); return; }
-        var link = $.trim($('#subLink').val());
-        if (!/^https?:\/\/(drive|docs)\.google\.com\//.test(link)) { msg('#memberMsg', '#c00', 'Enter a valid Google Drive link.'); return; }
-        var self = this; $(self).prop('disabled', true).text('Submitting...');
-        var phase = $('#subPhase').val(), notes = $.trim($('#subNotes').val());
-        db.collection('teams').doc(user.uid).get().then(function(doc) {
-          var teamName = doc.exists ? doc.data().teamName : '';
-          return db.collection('submissions').add({
-            ownerUid: user.uid, teamName: teamName, driveLink: link, phase: phase,
-            methodName: methodName, notes: notes, status: 'submitted', createdAt: FV.serverTimestamp()
-          }).then(function() {
-            notifySubmission({ team: teamName, email: user.email, phase: phase, method: methodName, driveLink: link, date: new Date().toISOString() });
-          });
-        }).then(function() { msg('#memberMsg', '#2e7d32', 'Submission received!'); $('#subLink').val(''); $('#subMethod').val(''); loadSubs(user); })
-          .catch(function(e) { msg('#memberMsg', '#c00', e.message || 'Failed'); })
-          .then(function() { $(self).prop('disabled', false).text('Submit Predictions'); });
-      });
-
-      function loadSubs(user) {
-        db.collection('submissions').where('ownerUid', '==', user.uid).get().then(function(qs) {
-          if (qs.empty) { $('#subList').html(''); return; }
-          var rows = []; qs.forEach(function(d) { rows.push(d.data()); });
-          rows.sort(function(a, b) { return ((b.createdAt && b.createdAt.seconds) || 0) - ((a.createdAt && a.createdAt.seconds) || 0); });
-          var html = '<strong>Your submissions:</strong><ul style="padding-left:18px;">';
-          rows.forEach(function(s) {
-            var t = (s.createdAt && s.createdAt.toDate) ? s.createdAt.toDate().toLocaleString() : '';
-            html += '<li>[' + s.phase + '] ' + (s.methodName || '(run)') + ' — ' + (s.status || 'submitted') + ' — ' + t + '</li>';
-          });
-          $('#subList').html(html + '</ul>');
-        });
-      }
-
-      // --- public leaderboard (read-only; organizers populate the `leaderboard` collection) ---
-      var LB_CAT_ORDER = ["1a", "1b", "1c", "1d", "1e", "1f", "2a", "2b", "2c", "2d", "2e", "2f", "2g", "2h"];
-      var LB_CAT_LABELS = {"1a": "Bronchial wall thickening", "1b": "Bronchiectasis", "1c": "Emphysema (incl. Centrilobular, Paraseptal, Bullous)", "1d": "Septal thickening (incl. Interlobular, Reticulation)", "1e": "Micronodules (incl. Centrilobular, Tree-in-bud, Perilymphatic)", "1f": "Other (non-focal)", "2a": "Linear (incl. subsegmental atelectasis, scarring, fibrosis)", "2b": "Atelectasis, consolidation", "2c": "Groundglass opacity", "2d": "Pulmonary nodules/masses", "2e": "Pleural effusion or thickening", "2f": "Honeycombing", "2g": "Pneumothorax", "2h": "Other (focal)"};
-      function loadLeaderboard() {
-        db.collection('leaderboard').get().then(function(qs) {
-          if (qs.empty) { $('#lbStatus').text('No results yet — submissions are evaluated periodically during the development phase.'); return; }
-          var all = []; qs.forEach(function(d) { all.push(d.data()); });
-          var evaluating = all.filter(function(r) { return r.status === 'evaluating'; });
-          var scored = all.filter(function(r) { return r.status !== 'evaluating' && typeof r.dice === 'number'; });
-          scored.sort(function(a, b) { return (b.dice || 0) - (a.dice || 0); });
-          function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
-          function idcols(r) {
-            return '<td>' + (r.team || '') + '</td><td>' + (r.registeredTeam || '—') +
-                   '</td><td>' + (r.submitter || '—') + '</td><td>' + (r.institution || '—') + '</td>';
-          }
-          function catDetail(r) {
-            if (!r.perCategory) return '<div style="padding:8px 4px;color:#888;">Per-category results not available for this submission.</div>';
-            var pc = r.perCategory, order = LB_CAT_ORDER.slice();
-            Object.keys(pc).forEach(function(k) { if (order.indexOf(k) === -1) order.push(k); });
-            var body = '';
-            order.forEach(function(c) {
-              var it = pc[c]; if (!it) return;
-              var lab = LB_CAT_LABELS[c] || (c === 'unknown' ? 'Uncategorized' : '');
-              body += '<tr><td style="text-align:left;"><b>' + c + '</b>' + (lab ? ' — ' + lab : '') +
-                      '</td><td>' + (it.n != null ? it.n : 0) + '</td><td>' + fmt(it.dice) + '</td><td>' + fmt(it.hit) + '</td></tr>';
-            });
-            return '<table class="table" style="margin:4px 0;background:#fff;"><thead><tr>' +
-                   '<th style="text-align:left;">Category</th><th>n</th><th>Dice</th><th>Hit Rate</th></tr></thead><tbody>' +
-                   body + '</tbody></table>';
-          }
-          var medal = ['rank-1', 'rank-2', 'rank-3'];
-          var seen = {}, rank = 0, idx = 0;   // rank by submitter's BEST entry, so one person can't hold two places
-          var html = '';
-          function emit(r, cls, rankCell) {
-            var id = idx++;
-            html += '<tr class="row-toggle' + (cls ? ' ' + cls : '') + '" data-idx="' + id + '"><td>' + rankCell + '</td>' + idcols(r) +
-                    '<td class="rank-metric">' + fmt(r.dice) + '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>' +
-                    '<tr class="cat-detail" data-for="' + id + '" style="display:none;"><td colspan="8" style="background:#fafafa;">' + catDetail(r) + '</td></tr>';
-          }
-          scored.forEach(function(r) {
-            var key = (r.submitterKey || r.submitter || r.team || '').toLowerCase();
-            if (!seen[key]) { seen[key] = true; rank += 1; emit(r, medal[rank - 1] || '', rank); }  // best submission
-            else { emit(r, 'secondary', '—'); }                                                     // same submitter, not ranked
-          });
-          evaluating.forEach(function(r) {
-            html += '<tr class="evaluating"><td>•</td>' + idcols(r) +
-                    '<td colspan="3"><span class="eval-badge">⏳ Evaluating…</span></td></tr>';
-          });
-          $('#lbBody').html(html); $('#lbStatus').hide(); $('#lbTable').show();
-          $('#lbBody tr.row-toggle').css('cursor', 'pointer').attr('title', 'Click to see per-category results').on('click', function() {
-            $('#lbBody tr.cat-detail[data-for="' + $(this).data('idx') + '"]').toggle();
-          });
-        }).catch(function() { $('#lbStatus').text('Could not load the leaderboard right now.'); });
-      }
-
-      // --- notify organizer by email on each submission (fire-and-forget; no-op until EMAIL_HOOK_URL is set) ---
-      function notifySubmission(data) {
-        if (!EMAIL_HOOK_URL || EMAIL_HOOK_URL.indexOf('PASTE_') === 0) return;
-        var iframeName = 'notif_' + Date.now();
-        var $iframe = $('<iframe name="' + iframeName + '" style="display:none;"></iframe>').appendTo('body');
-        var $form = $('<form></form>').attr({ method: 'POST', action: EMAIL_HOOK_URL, target: iframeName }).css('display', 'none');
-        Object.keys(data).forEach(function(k) { $form.append($('<input>').attr({ name: k, value: data[k] })); });
-        $form.appendTo('body').submit();
-        setTimeout(function() { $iframe.remove(); $form.remove(); }, 2000);
-      }
-    });
-  </script>
 </body>
 </html>
