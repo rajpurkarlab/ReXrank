@@ -126,7 +126,7 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
     }
   </style>
 </head>
-<body class="has-banner">
+<body>
   <div class="navbar navbar-default navbar-fixed-top" id="topNavbar" role="navigation">
     <div class="container clearfix" id="navContainer">
       <div class="rightNav">
