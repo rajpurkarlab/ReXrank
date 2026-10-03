@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>ReXGroundingCT Challenge @ MICCAI 2026</title>
+  <title>ReXGroundingCT Challenge @ MICCAI 2026 (Archive)</title>
   <meta name="description" content="ReXGroundingCT Challenge at MICCAI 2026: Segmentation of findings from free-text radiology reports in 3D chest CT scans."/>
   <meta name="keywords" content="ReXGroundingCT, MICCAI 2026, challenge, radiology, chest CT, segmentation, medical imaging"/>
   <meta property="og:title" content="ReXGroundingCT Challenge @ MICCAI 2026"/>
@@ -215,6 +215,7 @@
     }
     /* Keep leaderboard cells on one line; the wrapper scrolls horizontally if needed. */
     #lbTable th, #lbTable td { white-space: nowrap; }
+      .final-tag { display:inline-block; font-size:11px; font-weight:600; color:#2e7d32; border:1px solid #a5d6a7; border-radius:3px; padding:0 5px; margin-left:6px; vertical-align:middle; }
   </style>
 </head>
 <body>
@@ -270,69 +271,782 @@
             <div class="infoBody justified-text">
 
               <div style="background:#eef7ee;border:1px solid #c8e6c9;border-left:4px solid #2e7d32;border-radius:4px;padding:14px 18px;margin-bottom:28px;font-size:15px;line-height:1.6;">
-                🏁 <strong>The challenge has concluded.</strong> The official final results are below. The benchmark remains open for new submissions on the <a href="./index.html">ReXGroundingCT leaderboard</a>.
+                <strong>The challenge has concluded.</strong> This page archives every submission made during the challenge. The official final results are on the <a href="./index.html">ReXGroundingCT leaderboard</a>, which remains open for new submissions.
               </div>
 
               <div class="challenge-section" id="leaderboard">
-                <h3>📊 Final Results</h3>
-                <p>Official final standings on the <strong>full 300-case held-out test set</strong>, ranked by mean Dice per case. Each team is represented by its declared final model, or by its best model on the public 50% split if none was declared.</p>
-                <div style="overflow-x:auto;">
-                  <table class="table" id="lbTable" style="margin-top:10px;">
+                <h3>All Challenge Submissions</h3>
+                <p>All 766 submissions made during the challenge, scored on the full 300-case held-out test set and ranked by mean Dice per case. Entries marked <span class="final-tag">Final</span> are the 53 official final entries, one per team; the <a href="./index.html#leaderboard">official final results</a> are on the ReXGroundingCT leaderboard.</p>
+                <div style="overflow:auto;max-height:640px;border:1px solid #eee;">
+                  <table class="table" id="lbTable" style="margin:0;">
                     <thead><tr><th>#</th><th>Model</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance Precision</th><th>Instance Recall</th><th>Instance F1</th></tr></thead>
                     <tbody>
-                      <tr class="rank-1"><td>1</td><td>CIRCLE</td><td class="rank-metric">0.375</td><td>0.768</td><td>0.272</td><td>0.457</td><td>0.341</td></tr>
-                      <tr class="rank-2"><td>2</td><td>Grounder_1.4n</td><td class="rank-metric">0.365</td><td>0.763</td><td>0.280</td><td>0.443</td><td>0.343</td></tr>
-                      <tr class="rank-3"><td>3</td><td>TAGS_TAPv3</td><td class="rank-metric">0.362</td><td>0.765</td><td>0.254</td><td>0.487</td><td>0.334</td></tr>
-                      <tr><td>4</td><td>needpaper_v0.6_a</td><td class="rank-metric">0.361</td><td>0.777</td><td>0.242</td><td>0.438</td><td>0.312</td></tr>
-                      <tr><td>5</td><td>juniper_v0.2qbc</td><td class="rank-metric">0.353</td><td>0.746</td><td>0.117</td><td>0.497</td><td>0.190</td></tr>
-                      <tr><td>6</td><td>ww-t4-03</td><td class="rank-metric">0.352</td><td>0.765</td><td>0.162</td><td>0.492</td><td>0.243</td></tr>
-                      <tr><td>7</td><td>Curia-MAE-loc-v0</td><td class="rank-metric">0.343</td><td>0.753</td><td>0.183</td><td>0.456</td><td>0.261</td></tr>
-                      <tr><td>8</td><td>ThoraxTell 1.4.d</td><td class="rank-metric">0.339</td><td>0.742</td><td>0.169</td><td>0.456</td><td>0.246</td></tr>
-                      <tr><td>9</td><td>SJTU426Lab-V18</td><td class="rank-metric">0.333</td><td>0.716</td><td>0.169</td><td>0.466</td><td>0.248</td></tr>
-                      <tr><td>10</td><td>VoxTell_tv5way_s025</td><td class="rank-metric">0.333</td><td>0.689</td><td>0.231</td><td>0.421</td><td>0.299</td></tr>
-                      <tr><td>11</td><td>finalc3</td><td class="rank-metric">0.332</td><td>0.741</td><td>0.123</td><td>0.504</td><td>0.197</td></tr>
-                      <tr><td>12</td><td>needfirstplace_v1.23</td><td class="rank-metric">0.329</td><td>0.722</td><td>0.120</td><td>0.440</td><td>0.189</td></tr>
-                      <tr><td>13</td><td>CARE-CT</td><td class="rank-metric">0.329</td><td>0.739</td><td>0.168</td><td>0.434</td><td>0.242</td></tr>
-                      <tr><td>14</td><td>Unnamed model (UGcIaf)</td><td class="rank-metric">0.329</td><td>0.730</td><td>0.198</td><td>0.412</td><td>0.268</td></tr>
-                      <tr><td>15</td><td>IMRVox-0914-1</td><td class="rank-metric">0.327</td><td>0.715</td><td>0.266</td><td>0.419</td><td>0.326</td></tr>
-                      <tr><td>16</td><td>Referent-V2</td><td class="rank-metric">0.326</td><td>0.737</td><td>0.146</td><td>0.453</td><td>0.221</td></tr>
-                      <tr><td>17</td><td>test3</td><td class="rank-metric">0.326</td><td>0.725</td><td>0.218</td><td>0.405</td><td>0.283</td></tr>
-                      <tr><td>18</td><td>MUW-Grounder-v2</td><td class="rank-metric">0.323</td><td>0.749</td><td>0.163</td><td>0.456</td><td>0.240</td></tr>
-                      <tr><td>19</td><td>Farm-Best-HZ-12</td><td class="rank-metric">0.323</td><td>0.735</td><td>0.286</td><td>0.420</td><td>0.340</td></tr>
-                      <tr><td>20</td><td>test16</td><td class="rank-metric">0.322</td><td>0.730</td><td>0.271</td><td>0.411</td><td>0.327</td></tr>
-                      <tr><td>21</td><td>VT++</td><td class="rank-metric">0.321</td><td>0.710</td><td>0.152</td><td>0.430</td><td>0.224</td></tr>
-                      <tr><td>22</td><td>VoXTell-FT-B24k-E0</td><td class="rank-metric">0.320</td><td>0.713</td><td>0.122</td><td>0.486</td><td>0.195</td></tr>
-                      <tr><td>23</td><td>A4</td><td class="rank-metric">0.320</td><td>0.716</td><td>0.106</td><td>0.509</td><td>0.176</td></tr>
-                      <tr><td>24</td><td>C2-VoxTell</td><td class="rank-metric">0.313</td><td>0.708</td><td>0.146</td><td>0.408</td><td>0.215</td></tr>
-                      <tr><td>25</td><td>FarmAdd100-LateRefine60_40-TTA3</td><td class="rank-metric">0.312</td><td>0.716</td><td>0.291</td><td>0.395</td><td>0.335</td></tr>
-                      <tr><td>26</td><td>CALM</td><td class="rank-metric">0.308</td><td>0.682</td><td>0.143</td><td>0.445</td><td>0.216</td></tr>
-                      <tr><td>27</td><td>e2edq</td><td class="rank-metric">0.299</td><td>0.701</td><td>0.128</td><td>0.389</td><td>0.193</td></tr>
-                      <tr><td>28</td><td>VT-FT-v3</td><td class="rank-metric">0.287</td><td>0.674</td><td>0.112</td><td>0.398</td><td>0.175</td></tr>
-                      <tr><td>29</td><td>Voxtell_finetue</td><td class="rank-metric">0.285</td><td>0.649</td><td>0.113</td><td>0.440</td><td>0.180</td></tr>
-                      <tr><td>30</td><td>MMM</td><td class="rank-metric">0.275</td><td>0.677</td><td>0.156</td><td>0.395</td><td>0.224</td></tr>
-                      <tr><td>31</td><td>V6</td><td class="rank-metric">0.274</td><td>0.601</td><td>0.165</td><td>0.304</td><td>0.214</td></tr>
-                      <tr><td>32</td><td>Voxtell-FT</td><td class="rank-metric">0.269</td><td>0.662</td><td>0.126</td><td>0.396</td><td>0.191</td></tr>
-                      <tr><td>33</td><td>voxtell_valadapt_all200_e3_t075</td><td class="rank-metric">0.267</td><td>0.646</td><td>0.085</td><td>0.442</td><td>0.142</td></tr>
-                      <tr><td>34</td><td>Unnamed model (2kb0p8)</td><td class="rank-metric">0.267</td><td>0.644</td><td>0.278</td><td>0.354</td><td>0.311</td></tr>
-                      <tr><td>35</td><td>MedSigLIP_SiamGround_Ens_gated</td><td class="rank-metric">0.256</td><td>0.648</td><td>0.125</td><td>0.322</td><td>0.180</td></tr>
-                      <tr><td>36</td><td>GroundXpert-CT</td><td class="rank-metric">0.249</td><td>0.545</td><td>0.095</td><td>0.301</td><td>0.144</td></tr>
-                      <tr><td>37</td><td>Ganfx</td><td class="rank-metric">0.246</td><td>0.529</td><td>0.091</td><td>0.298</td><td>0.140</td></tr>
-                      <tr><td>38</td><td>rexgct_178_all200_ema_protected023</td><td class="rank-metric">0.230</td><td>0.517</td><td>0.110</td><td>0.296</td><td>0.161</td></tr>
-                      <tr><td>39</td><td>voxpr</td><td class="rank-metric">0.226</td><td>0.562</td><td>0.106</td><td>0.289</td><td>0.155</td></tr>
-                      <tr><td>40</td><td>Swin-X</td><td class="rank-metric">0.221</td><td>0.507</td><td>0.084</td><td>0.318</td><td>0.132</td></tr>
-                      <tr><td>41</td><td>VoxTell Prompt Aug.</td><td class="rank-metric">0.220</td><td>0.510</td><td>0.105</td><td>0.277</td><td>0.152</td></tr>
-                      <tr><td>42</td><td>SJTU</td><td class="rank-metric">0.218</td><td>0.471</td><td>0.066</td><td>0.286</td><td>0.107</td></tr>
-                      <tr><td>43</td><td>VT-zero</td><td class="rank-metric">0.217</td><td>0.507</td><td>0.069</td><td>0.257</td><td>0.109</td></tr>
-                      <tr><td>44</td><td>Voxtell_phase_3_exp_001_v2</td><td class="rank-metric">0.214</td><td>0.524</td><td>0.103</td><td>0.275</td><td>0.150</td></tr>
-                      <tr><td>45</td><td>VoxTell-ZS + orientation correction</td><td class="rank-metric">0.210</td><td>0.485</td><td>0.080</td><td>0.250</td><td>0.121</td></tr>
-                      <tr><td>46</td><td>VoxTell_0001</td><td class="rank-metric">0.210</td><td>0.486</td><td>0.080</td><td>0.250</td><td>0.122</td></tr>
-                      <tr><td>47</td><td>SLR3D</td><td class="rank-metric">0.194</td><td>0.541</td><td>0.057</td><td>0.338</td><td>0.098</td></tr>
-                      <tr><td>48</td><td>TextSwinUNETR-baseline</td><td class="rank-metric">0.194</td><td>0.495</td><td>0.191</td><td>0.221</td><td>0.205</td></tr>
-                      <tr><td>49</td><td>ConTEXTual Net CT - 1</td><td class="rank-metric">0.183</td><td>0.490</td><td>0.083</td><td>0.252</td><td>0.125</td></tr>
-                      <tr><td>50</td><td>Rex—CT</td><td class="rank-metric">0.179</td><td>0.400</td><td>0.055</td><td>0.233</td><td>0.089</td></tr>
-                      <tr><td>51</td><td>Text-Swin CT</td><td class="rank-metric">0.157</td><td>0.376</td><td>0.056</td><td>0.208</td><td>0.088</td></tr>
-                      <tr><td>52</td><td>TextUNet3D-Ground_v2</td><td class="rank-metric">0.154</td><td>0.471</td><td>0.166</td><td>0.180</td><td>0.173</td></tr>
-                      <tr><td>53</td><td>Voxtell_LoRA_916k</td><td class="rank-metric">0.146</td><td>0.419</td><td>0.029</td><td>0.348</td><td>0.054</td></tr>
+                      <tr><td>1</td><td>CIRCLE <span class="final-tag">Final</span></td><td class="rank-metric">0.375</td><td>0.768</td><td>0.272</td><td>0.457</td><td>0.341</td></tr>
+                      <tr><td>2</td><td>CIRCLE (submission 2)</td><td class="rank-metric">0.375</td><td>0.768</td><td>0.272</td><td>0.457</td><td>0.341</td></tr>
+                      <tr><td>3</td><td>UShanghaitech</td><td class="rank-metric">0.370</td><td>0.756</td><td>0.254</td><td>0.451</td><td>0.325</td></tr>
+                      <tr><td>4</td><td>Grounder_1.4n <span class="final-tag">Final</span></td><td class="rank-metric">0.365</td><td>0.763</td><td>0.280</td><td>0.443</td><td>0.343</td></tr>
+                      <tr><td>5</td><td>Grounder_1.4m</td><td class="rank-metric">0.365</td><td>0.763</td><td>0.275</td><td>0.448</td><td>0.341</td></tr>
+                      <tr><td>6</td><td>TAGS_TAP (submission 4)</td><td class="rank-metric">0.365</td><td>0.766</td><td>0.211</td><td>0.502</td><td>0.297</td></tr>
+                      <tr><td>7</td><td>TAGS_TAP (submission 5)</td><td class="rank-metric">0.364</td><td>0.770</td><td>0.209</td><td>0.501</td><td>0.295</td></tr>
+                      <tr><td>8</td><td>Grounder_1.4l</td><td class="rank-metric">0.364</td><td>0.763</td><td>0.280</td><td>0.443</td><td>0.343</td></tr>
+                      <tr><td>9</td><td>Grounder_1.4j</td><td class="rank-metric">0.363</td><td>0.765</td><td>0.283</td><td>0.448</td><td>0.347</td></tr>
+                      <tr><td>10</td><td>TAGS_TAP (submission 7)</td><td class="rank-metric">0.363</td><td>0.763</td><td>0.266</td><td>0.494</td><td>0.346</td></tr>
+                      <tr><td>11</td><td>TAGS_TAP (submission 8)</td><td class="rank-metric">0.363</td><td>0.761</td><td>0.271</td><td>0.494</td><td>0.350</td></tr>
+                      <tr><td>12</td><td>TAGS_TAP (submission 10)</td><td class="rank-metric">0.363</td><td>0.761</td><td>0.266</td><td>0.493</td><td>0.346</td></tr>
+                      <tr><td>13</td><td>Grounder_1.4g</td><td class="rank-metric">0.363</td><td>0.766</td><td>0.283</td><td>0.449</td><td>0.347</td></tr>
+                      <tr><td>14</td><td>TAGS_TAP (submission 11)</td><td class="rank-metric">0.363</td><td>0.761</td><td>0.264</td><td>0.489</td><td>0.342</td></tr>
+                      <tr><td>15</td><td>TAGS_TAP (submission 9)</td><td class="rank-metric">0.363</td><td>0.763</td><td>0.262</td><td>0.493</td><td>0.342</td></tr>
+                      <tr><td>16</td><td>TAGS_TAP (submission 14)</td><td class="rank-metric">0.362</td><td>0.766</td><td>0.257</td><td>0.488</td><td>0.337</td></tr>
+                      <tr><td>17</td><td>TAGS_TAPv2</td><td class="rank-metric">0.362</td><td>0.765</td><td>0.252</td><td>0.488</td><td>0.332</td></tr>
+                      <tr><td>18</td><td>TAGS_TAP_th</td><td class="rank-metric">0.362</td><td>0.766</td><td>0.265</td><td>0.490</td><td>0.344</td></tr>
+                      <tr><td>19</td><td>TAGS_TAP (submission 12)</td><td class="rank-metric">0.362</td><td>0.756</td><td>0.299</td><td>0.465</td><td>0.364</td></tr>
+                      <tr><td>20</td><td>TAGS_TAP (submission 2)</td><td class="rank-metric">0.362</td><td>0.766</td><td>0.203</td><td>0.502</td><td>0.289</td></tr>
+                      <tr><td>21</td><td>TAGS_TAPv3 <span class="final-tag">Final</span></td><td class="rank-metric">0.362</td><td>0.765</td><td>0.254</td><td>0.487</td><td>0.334</td></tr>
+                      <tr><td>22</td><td>TAGS_TAP (submission 13)</td><td class="rank-metric">0.362</td><td>0.763</td><td>0.267</td><td>0.490</td><td>0.346</td></tr>
+                      <tr><td>23</td><td>Grounder_1.4e</td><td class="rank-metric">0.361</td><td>0.766</td><td>0.280</td><td>0.444</td><td>0.344</td></tr>
+                      <tr><td>24</td><td>needpaper_v0.6_d</td><td class="rank-metric">0.361</td><td>0.773</td><td>0.256</td><td>0.440</td><td>0.324</td></tr>
+                      <tr><td>25</td><td>TAGS_TAP_th (submission 2)</td><td class="rank-metric">0.361</td><td>0.759</td><td>0.269</td><td>0.488</td><td>0.347</td></tr>
+                      <tr><td>26</td><td>needpaper_v0.6_b</td><td class="rank-metric">0.361</td><td>0.773</td><td>0.249</td><td>0.443</td><td>0.319</td></tr>
+                      <tr><td>27</td><td>TAGS_TAP</td><td class="rank-metric">0.361</td><td>0.761</td><td>0.199</td><td>0.500</td><td>0.285</td></tr>
+                      <tr><td>28</td><td>needpaper_v0.6_e</td><td class="rank-metric">0.361</td><td>0.775</td><td>0.255</td><td>0.439</td><td>0.323</td></tr>
+                      <tr><td>29</td><td>needpaper_v0.6_a <span class="final-tag">Final</span></td><td class="rank-metric">0.361</td><td>0.777</td><td>0.242</td><td>0.438</td><td>0.312</td></tr>
+                      <tr><td>30</td><td>needpaper_v0.6_c</td><td class="rank-metric">0.360</td><td>0.777</td><td>0.253</td><td>0.441</td><td>0.321</td></tr>
+                      <tr><td>31</td><td>Grounder_1.4i</td><td class="rank-metric">0.360</td><td>0.751</td><td>0.288</td><td>0.432</td><td>0.345</td></tr>
+                      <tr><td>32</td><td>Grounder_1.4h</td><td class="rank-metric">0.360</td><td>0.754</td><td>0.286</td><td>0.441</td><td>0.347</td></tr>
+                      <tr><td>33</td><td>needpaper_v0.5_d</td><td class="rank-metric">0.360</td><td>0.780</td><td>0.232</td><td>0.443</td><td>0.305</td></tr>
+                      <tr><td>34</td><td>needpaper_v0.2_latout</td><td class="rank-metric">0.359</td><td>0.773</td><td>0.234</td><td>0.433</td><td>0.304</td></tr>
+                      <tr><td>35</td><td>needpaper_v0.2_lat</td><td class="rank-metric">0.359</td><td>0.773</td><td>0.233</td><td>0.433</td><td>0.303</td></tr>
+                      <tr><td>36</td><td>needpaper_v0.4_a2</td><td class="rank-metric">0.359</td><td>0.778</td><td>0.222</td><td>0.440</td><td>0.295</td></tr>
+                      <tr><td>37</td><td>Grounder_1.4d</td><td class="rank-metric">0.359</td><td>0.761</td><td>0.266</td><td>0.439</td><td>0.331</td></tr>
+                      <tr><td>38</td><td>needpaper_v0.4_a1</td><td class="rank-metric">0.359</td><td>0.778</td><td>0.227</td><td>0.440</td><td>0.300</td></tr>
+                      <tr><td>39</td><td>Grounder_1.4c</td><td class="rank-metric">0.359</td><td>0.758</td><td>0.259</td><td>0.434</td><td>0.325</td></tr>
+                      <tr><td>40</td><td>needpaper_v0.5_c</td><td class="rank-metric">0.359</td><td>0.771</td><td>0.235</td><td>0.436</td><td>0.306</td></tr>
+                      <tr><td>41</td><td>Grounder_1.4k</td><td class="rank-metric">0.358</td><td>0.751</td><td>0.269</td><td>0.436</td><td>0.332</td></tr>
+                      <tr><td>42</td><td>needpaper_v0.4_b4</td><td class="rank-metric">0.358</td><td>0.775</td><td>0.238</td><td>0.435</td><td>0.308</td></tr>
+                      <tr><td>43</td><td>needpaper_v0.4_b1</td><td class="rank-metric">0.358</td><td>0.771</td><td>0.237</td><td>0.431</td><td>0.306</td></tr>
+                      <tr><td>44</td><td>needpaper_v0.4_a3</td><td class="rank-metric">0.358</td><td>0.770</td><td>0.229</td><td>0.439</td><td>0.301</td></tr>
+                      <tr><td>45</td><td>needpaper_v0.2_avg</td><td class="rank-metric">0.358</td><td>0.773</td><td>0.231</td><td>0.433</td><td>0.301</td></tr>
+                      <tr><td>46</td><td>needpaper_v0.5_e</td><td class="rank-metric">0.358</td><td>0.777</td><td>0.231</td><td>0.441</td><td>0.303</td></tr>
+                      <tr><td>47</td><td>needpaper_v0.5_b</td><td class="rank-metric">0.358</td><td>0.770</td><td>0.237</td><td>0.432</td><td>0.306</td></tr>
+                      <tr><td>48</td><td>needpaper_v0.7_b</td><td class="rank-metric">0.357</td><td>0.777</td><td>0.231</td><td>0.441</td><td>0.303</td></tr>
+                      <tr><td>49</td><td>needpaper_v0.2_fin</td><td class="rank-metric">0.357</td><td>0.777</td><td>0.229</td><td>0.441</td><td>0.302</td></tr>
+                      <tr><td>50</td><td>Grounder_1.4a</td><td class="rank-metric">0.357</td><td>0.758</td><td>0.270</td><td>0.432</td><td>0.332</td></tr>
+                      <tr><td>51</td><td>needpaper_v0.3_b</td><td class="rank-metric">0.357</td><td>0.775</td><td>0.237</td><td>0.432</td><td>0.306</td></tr>
+                      <tr><td>52</td><td>needpaper_v0.7_a</td><td class="rank-metric">0.357</td><td>0.771</td><td>0.237</td><td>0.436</td><td>0.307</td></tr>
+                      <tr><td>53</td><td>needpaper_v0.3_a</td><td class="rank-metric">0.356</td><td>0.766</td><td>0.230</td><td>0.425</td><td>0.298</td></tr>
+                      <tr><td>54</td><td>Grounder_1.4b</td><td class="rank-metric">0.356</td><td>0.758</td><td>0.285</td><td>0.432</td><td>0.344</td></tr>
+                      <tr><td>55</td><td>needpaper_v0.3_c</td><td class="rank-metric">0.356</td><td>0.770</td><td>0.240</td><td>0.429</td><td>0.308</td></tr>
+                      <tr><td>56</td><td>TAGS_fs (submission 2)</td><td class="rank-metric">0.355</td><td>0.763</td><td>0.189</td><td>0.492</td><td>0.273</td></tr>
+                      <tr><td>57</td><td>TAGS_TAP (submission 3)</td><td class="rank-metric">0.355</td><td>0.730</td><td>0.226</td><td>0.476</td><td>0.307</td></tr>
+                      <tr><td>58</td><td>needpaper_v0.4_b2</td><td class="rank-metric">0.355</td><td>0.768</td><td>0.241</td><td>0.423</td><td>0.307</td></tr>
+                      <tr><td>59</td><td>needpaper_v0.5_a</td><td class="rank-metric">0.355</td><td>0.758</td><td>0.240</td><td>0.420</td><td>0.306</td></tr>
+                      <tr><td>60</td><td>Grounder_1.4f</td><td class="rank-metric">0.355</td><td>0.749</td><td>0.300</td><td>0.419</td><td>0.350</td></tr>
+                      <tr><td>61</td><td>Grounder_1.3</td><td class="rank-metric">0.355</td><td>0.758</td><td>0.268</td><td>0.432</td><td>0.330</td></tr>
+                      <tr><td>62</td><td>needpaper_v0.2_a</td><td class="rank-metric">0.355</td><td>0.771</td><td>0.235</td><td>0.436</td><td>0.306</td></tr>
+                      <tr><td>63</td><td>needpaper_v0.2_b</td><td class="rank-metric">0.355</td><td>0.766</td><td>0.247</td><td>0.445</td><td>0.318</td></tr>
+                      <tr><td>64</td><td>TAGS_fs</td><td class="rank-metric">0.354</td><td>0.763</td><td>0.174</td><td>0.489</td><td>0.256</td></tr>
+                      <tr><td>65</td><td>juniper_v0.1re</td><td class="rank-metric">0.354</td><td>0.753</td><td>0.211</td><td>0.451</td><td>0.288</td></tr>
+                      <tr><td>66</td><td>Grounder_1.4</td><td class="rank-metric">0.353</td><td>0.770</td><td>0.265</td><td>0.423</td><td>0.326</td></tr>
+                      <tr><td>67</td><td>mmv1-t4-03</td><td class="rank-metric">0.353</td><td>0.768</td><td>0.163</td><td>0.488</td><td>0.244</td></tr>
+                      <tr><td>68</td><td>mmv1-t4-04</td><td class="rank-metric">0.353</td><td>0.766</td><td>0.163</td><td>0.483</td><td>0.244</td></tr>
+                      <tr><td>69</td><td>juniper_v0.2qbc <span class="final-tag">Final</span></td><td class="rank-metric">0.353</td><td>0.746</td><td>0.117</td><td>0.497</td><td>0.190</td></tr>
+                      <tr><td>70</td><td>mmv1-t8b0-t8-03</td><td class="rank-metric">0.352</td><td>0.768</td><td>0.162</td><td>0.488</td><td>0.243</td></tr>
+                      <tr><td>71</td><td>mmv1-t8-04</td><td class="rank-metric">0.352</td><td>0.766</td><td>0.163</td><td>0.480</td><td>0.243</td></tr>
+                      <tr><td>72</td><td>juniper_v0.1ree5</td><td class="rank-metric">0.352</td><td>0.737</td><td>0.135</td><td>0.496</td><td>0.212</td></tr>
+                      <tr><td>73</td><td>mmv1-t8b0-t8-04</td><td class="rank-metric">0.352</td><td>0.766</td><td>0.163</td><td>0.479</td><td>0.243</td></tr>
+                      <tr><td>74</td><td>needpaper_v0.2_c</td><td class="rank-metric">0.352</td><td>0.758</td><td>0.248</td><td>0.435</td><td>0.316</td></tr>
+                      <tr><td>75</td><td>mmv1-t8-03</td><td class="rank-metric">0.352</td><td>0.768</td><td>0.162</td><td>0.491</td><td>0.244</td></tr>
+                      <tr><td>76</td><td>juniper_v0.1ree</td><td class="rank-metric">0.352</td><td>0.747</td><td>0.213</td><td>0.440</td><td>0.287</td></tr>
+                      <tr><td>77</td><td>ww-t4-03 (submission 2) <span class="final-tag">Final</span></td><td class="rank-metric">0.352</td><td>0.765</td><td>0.162</td><td>0.492</td><td>0.243</td></tr>
+                      <tr><td>78</td><td>ww-t4-03</td><td class="rank-metric">0.352</td><td>0.765</td><td>0.162</td><td>0.492</td><td>0.243</td></tr>
+                      <tr><td>79</td><td>juniper_v0.1br</td><td class="rank-metric">0.352</td><td>0.746</td><td>0.142</td><td>0.493</td><td>0.220</td></tr>
+                      <tr><td>80</td><td>mmv1-t4-05</td><td class="rank-metric">0.352</td><td>0.763</td><td>0.163</td><td>0.469</td><td>0.242</td></tr>
+                      <tr><td>81</td><td>juniper_v0.1s</td><td class="rank-metric">0.352</td><td>0.737</td><td>0.136</td><td>0.494</td><td>0.213</td></tr>
+                      <tr><td>82</td><td>ww-t4-04</td><td class="rank-metric">0.352</td><td>0.763</td><td>0.162</td><td>0.486</td><td>0.243</td></tr>
+                      <tr><td>83</td><td>ww-t4-04 (submission 2)</td><td class="rank-metric">0.352</td><td>0.763</td><td>0.162</td><td>0.486</td><td>0.243</td></tr>
+                      <tr><td>84</td><td>mmv1-t12b03-t8-04</td><td class="rank-metric">0.351</td><td>0.766</td><td>0.162</td><td>0.480</td><td>0.243</td></tr>
+                      <tr><td>85</td><td>mmv1-t12b03-t8-03</td><td class="rank-metric">0.351</td><td>0.771</td><td>0.161</td><td>0.489</td><td>0.243</td></tr>
+                      <tr><td>86</td><td>juniper_v0.1reenr</td><td class="rank-metric">0.351</td><td>0.739</td><td>0.137</td><td>0.496</td><td>0.214</td></tr>
+                      <tr><td>87</td><td>mmv1-t8b0-t8-05</td><td class="rank-metric">0.351</td><td>0.756</td><td>0.165</td><td>0.473</td><td>0.244</td></tr>
+                      <tr><td>88</td><td>ww-t8b0-t8-03</td><td class="rank-metric">0.351</td><td>0.765</td><td>0.161</td><td>0.492</td><td>0.242</td></tr>
+                      <tr><td>89</td><td>juniper_v0.2qb</td><td class="rank-metric">0.351</td><td>0.742</td><td>0.117</td><td>0.496</td><td>0.189</td></tr>
+                      <tr><td>90</td><td>ww-t8-04</td><td class="rank-metric">0.351</td><td>0.763</td><td>0.162</td><td>0.484</td><td>0.242</td></tr>
+                      <tr><td>91</td><td>ww-t8-04 (submission 2)</td><td class="rank-metric">0.351</td><td>0.763</td><td>0.162</td><td>0.484</td><td>0.242</td></tr>
+                      <tr><td>92</td><td>juniper_v0.1reen</td><td class="rank-metric">0.351</td><td>0.739</td><td>0.135</td><td>0.496</td><td>0.212</td></tr>
+                      <tr><td>93</td><td>ww-t8b0-t8-04</td><td class="rank-metric">0.351</td><td>0.763</td><td>0.162</td><td>0.483</td><td>0.242</td></tr>
+                      <tr><td>94</td><td>juniper_v0.2q</td><td class="rank-metric">0.351</td><td>0.741</td><td>0.116</td><td>0.493</td><td>0.188</td></tr>
+                      <tr><td>95</td><td>ww-t8-03 (submission 2)</td><td class="rank-metric">0.351</td><td>0.765</td><td>0.161</td><td>0.495</td><td>0.243</td></tr>
+                      <tr><td>96</td><td>ww-t8-03</td><td class="rank-metric">0.351</td><td>0.765</td><td>0.161</td><td>0.495</td><td>0.243</td></tr>
+                      <tr><td>97</td><td>mmv1-t8-05</td><td class="rank-metric">0.351</td><td>0.765</td><td>0.164</td><td>0.473</td><td>0.244</td></tr>
+                      <tr><td>98</td><td>ww00 (submission 2)</td><td class="rank-metric">0.351</td><td>0.754</td><td>0.162</td><td>0.485</td><td>0.243</td></tr>
+                      <tr><td>99</td><td>ww00</td><td class="rank-metric">0.351</td><td>0.754</td><td>0.162</td><td>0.485</td><td>0.243</td></tr>
+                      <tr><td>100</td><td>ww-t4-05 (submission 2)</td><td class="rank-metric">0.350</td><td>0.759</td><td>0.162</td><td>0.473</td><td>0.241</td></tr>
+                      <tr><td>101</td><td>ww-t4-05</td><td class="rank-metric">0.350</td><td>0.759</td><td>0.162</td><td>0.473</td><td>0.241</td></tr>
+                      <tr><td>102</td><td>ww-t12b03-t8-04</td><td class="rank-metric">0.350</td><td>0.763</td><td>0.161</td><td>0.484</td><td>0.242</td></tr>
+                      <tr><td>103</td><td>ww-t12b03-t8-03</td><td class="rank-metric">0.350</td><td>0.768</td><td>0.160</td><td>0.493</td><td>0.242</td></tr>
+                      <tr><td>104</td><td>hav1-24only-t4-03</td><td class="rank-metric">0.350</td><td>0.756</td><td>0.186</td><td>0.475</td><td>0.268</td></tr>
+                      <tr><td>105</td><td>needpaper_v0.7_c</td><td class="rank-metric">0.350</td><td>0.758</td><td>0.240</td><td>0.415</td><td>0.304</td></tr>
+                      <tr><td>106</td><td>hav1-24-t4-03</td><td class="rank-metric">0.350</td><td>0.747</td><td>0.195</td><td>0.476</td><td>0.276</td></tr>
+                      <tr><td>107</td><td>ww-t8b0-t8-05</td><td class="rank-metric">0.350</td><td>0.753</td><td>0.163</td><td>0.477</td><td>0.243</td></tr>
+                      <tr><td>108</td><td>hav1-24only-t4-04</td><td class="rank-metric">0.350</td><td>0.754</td><td>0.187</td><td>0.469</td><td>0.267</td></tr>
+                      <tr><td>109</td><td>mmv1-t12b03-t8-05</td><td class="rank-metric">0.350</td><td>0.759</td><td>0.164</td><td>0.474</td><td>0.244</td></tr>
+                      <tr><td>110</td><td>hav1-24-t4-04</td><td class="rank-metric">0.350</td><td>0.746</td><td>0.195</td><td>0.471</td><td>0.276</td></tr>
+                      <tr><td>111</td><td>needpaper_v0.7_d</td><td class="rank-metric">0.349</td><td>0.756</td><td>0.242</td><td>0.414</td><td>0.306</td></tr>
+                      <tr><td>112</td><td>hav1-24only-t8b0-t8-03</td><td class="rank-metric">0.349</td><td>0.756</td><td>0.185</td><td>0.475</td><td>0.266</td></tr>
+                      <tr><td>113</td><td>ww-t8-05 (submission 2)</td><td class="rank-metric">0.349</td><td>0.761</td><td>0.163</td><td>0.476</td><td>0.243</td></tr>
+                      <tr><td>114</td><td>ww-t8-05</td><td class="rank-metric">0.349</td><td>0.761</td><td>0.163</td><td>0.476</td><td>0.243</td></tr>
+                      <tr><td>115</td><td>mmv1-t8b0-04</td><td class="rank-metric">0.349</td><td>0.759</td><td>0.163</td><td>0.480</td><td>0.243</td></tr>
+                      <tr><td>116</td><td>mmv1-t12b03-03</td><td class="rank-metric">0.349</td><td>0.770</td><td>0.160</td><td>0.486</td><td>0.241</td></tr>
+                      <tr><td>117</td><td>hav1-24only-t8-04</td><td class="rank-metric">0.349</td><td>0.754</td><td>0.187</td><td>0.467</td><td>0.267</td></tr>
+                      <tr><td>118</td><td>hav1-24only-t8b0-t8-04</td><td class="rank-metric">0.349</td><td>0.754</td><td>0.187</td><td>0.466</td><td>0.267</td></tr>
+                      <tr><td>119</td><td>hav1-24-t8b0-t8-03</td><td class="rank-metric">0.349</td><td>0.747</td><td>0.193</td><td>0.476</td><td>0.275</td></tr>
+                      <tr><td>120</td><td>mmv1-t12b03-04</td><td class="rank-metric">0.349</td><td>0.765</td><td>0.161</td><td>0.480</td><td>0.241</td></tr>
+                      <tr><td>121</td><td>hav1-24only-t8-03</td><td class="rank-metric">0.349</td><td>0.756</td><td>0.185</td><td>0.478</td><td>0.267</td></tr>
+                      <tr><td>122</td><td>hav1-24-t8-04</td><td class="rank-metric">0.349</td><td>0.746</td><td>0.195</td><td>0.468</td><td>0.276</td></tr>
+                      <tr><td>123</td><td>ha_v1_04_tv_ct</td><td class="rank-metric">0.349</td><td>0.763</td><td>0.163</td><td>0.483</td><td>0.244</td></tr>
+                      <tr><td>124</td><td>hav1-24-t8b0-t8-04</td><td class="rank-metric">0.349</td><td>0.746</td><td>0.196</td><td>0.468</td><td>0.276</td></tr>
+                      <tr><td>125</td><td>hav1-24-t8-03</td><td class="rank-metric">0.349</td><td>0.747</td><td>0.193</td><td>0.479</td><td>0.275</td></tr>
+                      <tr><td>126</td><td>mmv1-t8b0-03</td><td class="rank-metric">0.349</td><td>0.763</td><td>0.160</td><td>0.484</td><td>0.241</td></tr>
+                      <tr><td>127</td><td>hav1-24only-t4-05</td><td class="rank-metric">0.349</td><td>0.751</td><td>0.188</td><td>0.456</td><td>0.266</td></tr>
+                      <tr><td>128</td><td>TAGS_TAP (submission 6)</td><td class="rank-metric">0.348</td><td>0.766</td><td>0.180</td><td>0.493</td><td>0.264</td></tr>
+                      <tr><td>129</td><td>ww-t12b03-t8-05</td><td class="rank-metric">0.348</td><td>0.756</td><td>0.163</td><td>0.478</td><td>0.243</td></tr>
+                      <tr><td>130</td><td>hav1-24-t4-05</td><td class="rank-metric">0.348</td><td>0.742</td><td>0.197</td><td>0.457</td><td>0.275</td></tr>
+                      <tr><td>131</td><td>hav1-24only-t12b03-t8-04</td><td class="rank-metric">0.348</td><td>0.754</td><td>0.186</td><td>0.467</td><td>0.266</td></tr>
+                      <tr><td>132</td><td>hav1-24only-t12b03-t8-03</td><td class="rank-metric">0.348</td><td>0.759</td><td>0.184</td><td>0.476</td><td>0.265</td></tr>
+                      <tr><td>133</td><td>testf</td><td class="rank-metric">0.348</td><td>0.730</td><td>0.139</td><td>0.471</td><td>0.215</td></tr>
+                      <tr><td>134</td><td>TAGS_th (submission 2)</td><td class="rank-metric">0.348</td><td>0.754</td><td>0.179</td><td>0.488</td><td>0.262</td></tr>
+                      <tr><td>135</td><td>hav1-24-t12b03-t8-04</td><td class="rank-metric">0.348</td><td>0.746</td><td>0.194</td><td>0.468</td><td>0.275</td></tr>
+                      <tr><td>136</td><td>hav1-24-t12b03-t8-03</td><td class="rank-metric">0.348</td><td>0.751</td><td>0.192</td><td>0.477</td><td>0.274</td></tr>
+                      <tr><td>137</td><td>hav1-24only-t8b0-t8-05</td><td class="rank-metric">0.348</td><td>0.744</td><td>0.189</td><td>0.460</td><td>0.268</td></tr>
+                      <tr><td>138</td><td>ww-t8b0-04</td><td class="rank-metric">0.348</td><td>0.756</td><td>0.161</td><td>0.484</td><td>0.242</td></tr>
+                      <tr><td>139</td><td>ww-t12b03-03</td><td class="rank-metric">0.348</td><td>0.766</td><td>0.159</td><td>0.490</td><td>0.240</td></tr>
+                      <tr><td>140</td><td>hav1-24-t8b0-t8-05</td><td class="rank-metric">0.348</td><td>0.735</td><td>0.198</td><td>0.461</td><td>0.277</td></tr>
+                      <tr><td>141</td><td>juniper_v0.2r</td><td class="rank-metric">0.348</td><td>0.753</td><td>0.161</td><td>0.533</td><td>0.248</td></tr>
+                      <tr><td>142</td><td>ww-t12b03-04</td><td class="rank-metric">0.348</td><td>0.761</td><td>0.160</td><td>0.484</td><td>0.240</td></tr>
+                      <tr><td>143</td><td>hav1-24only-t8-05</td><td class="rank-metric">0.348</td><td>0.753</td><td>0.189</td><td>0.460</td><td>0.268</td></tr>
+                      <tr><td>144</td><td>mmv1-t12b03-05</td><td class="rank-metric">0.348</td><td>0.758</td><td>0.163</td><td>0.473</td><td>0.242</td></tr>
+                      <tr><td>145</td><td>ww-t8b0-03</td><td class="rank-metric">0.347</td><td>0.759</td><td>0.159</td><td>0.488</td><td>0.240</td></tr>
+                      <tr><td>146</td><td>hav1-24-t8-05</td><td class="rank-metric">0.347</td><td>0.744</td><td>0.198</td><td>0.461</td><td>0.277</td></tr>
+                      <tr><td>147</td><td>comparison_test</td><td class="rank-metric">0.347</td><td>0.763</td><td>0.111</td><td>0.530</td><td>0.183</td></tr>
+                      <tr><td>148</td><td>mmv1-t8b0-05</td><td class="rank-metric">0.347</td><td>0.756</td><td>0.164</td><td>0.474</td><td>0.244</td></tr>
+                      <tr><td>149</td><td>juniper_v0.1rt</td><td class="rank-metric">0.347</td><td>0.771</td><td>0.114</td><td>0.533</td><td>0.187</td></tr>
+                      <tr><td>150</td><td>ha_v1_24_f16a_w75_25</td><td class="rank-metric">0.347</td><td>0.735</td><td>0.202</td><td>0.455</td><td>0.279</td></tr>
+                      <tr><td>151</td><td>TAGS_th (submission 3)</td><td class="rank-metric">0.347</td><td>0.759</td><td>0.169</td><td>0.498</td><td>0.252</td></tr>
+                      <tr><td>152</td><td>hav1-24only-t12b03-t8-05</td><td class="rank-metric">0.347</td><td>0.747</td><td>0.189</td><td>0.461</td><td>0.268</td></tr>
+                      <tr><td>153</td><td>ww-t4b0-03</td><td class="rank-metric">0.347</td><td>0.759</td><td>0.162</td><td>0.482</td><td>0.243</td></tr>
+                      <tr><td>154</td><td>ww-t4b0-04</td><td class="rank-metric">0.347</td><td>0.758</td><td>0.164</td><td>0.481</td><td>0.244</td></tr>
+                      <tr><td>155</td><td>TAGS_th_cp</td><td class="rank-metric">0.347</td><td>0.754</td><td>0.168</td><td>0.484</td><td>0.249</td></tr>
+                      <tr><td>156</td><td>hav1-24-t12b03-t8-05</td><td class="rank-metric">0.347</td><td>0.739</td><td>0.198</td><td>0.463</td><td>0.277</td></tr>
+                      <tr><td>157</td><td>hav1-24only-t8b0-04</td><td class="rank-metric">0.346</td><td>0.747</td><td>0.187</td><td>0.467</td><td>0.267</td></tr>
+                      <tr><td>158</td><td>hav1-24only-t12b03-03</td><td class="rank-metric">0.346</td><td>0.758</td><td>0.182</td><td>0.473</td><td>0.263</td></tr>
+                      <tr><td>159</td><td>ww-t12b03-05</td><td class="rank-metric">0.346</td><td>0.754</td><td>0.161</td><td>0.477</td><td>0.241</td></tr>
+                      <tr><td>160</td><td>juniper_baseline</td><td class="rank-metric">0.346</td><td>0.730</td><td>0.151</td><td>0.430</td><td>0.223</td></tr>
+                      <tr><td>161</td><td>hav1-24only-t12b03-04</td><td class="rank-metric">0.346</td><td>0.753</td><td>0.184</td><td>0.467</td><td>0.264</td></tr>
+                      <tr><td>162</td><td>hav1-24-t8b0-04</td><td class="rank-metric">0.346</td><td>0.739</td><td>0.195</td><td>0.468</td><td>0.275</td></tr>
+                      <tr><td>163</td><td>hav1-24-t12b03-03</td><td class="rank-metric">0.346</td><td>0.749</td><td>0.190</td><td>0.474</td><td>0.272</td></tr>
+                      <tr><td>164</td><td>ww-t8b0-05</td><td class="rank-metric">0.346</td><td>0.753</td><td>0.163</td><td>0.478</td><td>0.243</td></tr>
+                      <tr><td>165</td><td>hav1-24-t12b03-04</td><td class="rank-metric">0.346</td><td>0.744</td><td>0.192</td><td>0.468</td><td>0.273</td></tr>
+                      <tr><td>166</td><td>hav1-24only-t8b0-03</td><td class="rank-metric">0.346</td><td>0.751</td><td>0.183</td><td>0.471</td><td>0.263</td></tr>
+                      <tr><td>167</td><td>ha_v1_24_tv8_tv28</td><td class="rank-metric">0.346</td><td>0.742</td><td>0.192</td><td>0.454</td><td>0.270</td></tr>
+                      <tr><td>168</td><td>ww-t4b0-05</td><td class="rank-metric">0.346</td><td>0.754</td><td>0.163</td><td>0.474</td><td>0.242</td></tr>
+                      <tr><td>169</td><td>TAGS_th</td><td class="rank-metric">0.346</td><td>0.761</td><td>0.167</td><td>0.483</td><td>0.248</td></tr>
+                      <tr><td>170</td><td>hav1-24-t8b0-03</td><td class="rank-metric">0.346</td><td>0.742</td><td>0.191</td><td>0.472</td><td>0.272</td></tr>
+                      <tr><td>171</td><td>mm-v1-04</td><td class="rank-metric">0.345</td><td>0.753</td><td>0.163</td><td>0.461</td><td>0.241</td></tr>
+                      <tr><td>172</td><td>ha_v1_18_tv8</td><td class="rank-metric">0.345</td><td>0.741</td><td>0.188</td><td>0.451</td><td>0.266</td></tr>
+                      <tr><td>173</td><td>hav1-24-t4b0-03</td><td class="rank-metric">0.345</td><td>0.742</td><td>0.196</td><td>0.466</td><td>0.276</td></tr>
+                      <tr><td>174</td><td>hav1-24-t4b0-04</td><td class="rank-metric">0.345</td><td>0.741</td><td>0.198</td><td>0.466</td><td>0.278</td></tr>
+                      <tr><td>175</td><td>hav1-24only-t12b03-05</td><td class="rank-metric">0.345</td><td>0.746</td><td>0.187</td><td>0.460</td><td>0.266</td></tr>
+                      <tr><td>176</td><td>hav1-24only-t8b0-05</td><td class="rank-metric">0.344</td><td>0.744</td><td>0.189</td><td>0.461</td><td>0.268</td></tr>
+                      <tr><td>177</td><td>hav1-24-t12b03-05</td><td class="rank-metric">0.344</td><td>0.737</td><td>0.195</td><td>0.461</td><td>0.274</td></tr>
+                      <tr><td>178</td><td>hav1-24-t8b0-05</td><td class="rank-metric">0.344</td><td>0.735</td><td>0.197</td><td>0.462</td><td>0.277</td></tr>
+                      <tr><td>179</td><td>hav1-24-t4b0-05</td><td class="rank-metric">0.344</td><td>0.737</td><td>0.198</td><td>0.459</td><td>0.276</td></tr>
+                      <tr><td>180</td><td>ha_v1_14_tv4</td><td class="rank-metric">0.344</td><td>0.739</td><td>0.186</td><td>0.445</td><td>0.262</td></tr>
+                      <tr><td>181</td><td>Curia-MAE-loc-v0 <span class="final-tag">Final</span></td><td class="rank-metric">0.343</td><td>0.753</td><td>0.183</td><td>0.456</td><td>0.261</td></tr>
+                      <tr><td>182</td><td>needpaper_v0.0_plain</td><td class="rank-metric">0.343</td><td>0.758</td><td>0.235</td><td>0.400</td><td>0.296</td></tr>
+                      <tr><td>183</td><td>needpaper_v0.1_hv2</td><td class="rank-metric">0.343</td><td>0.761</td><td>0.230</td><td>0.425</td><td>0.299</td></tr>
+                      <tr><td>184</td><td>ha_v1_08_tv</td><td class="rank-metric">0.343</td><td>0.749</td><td>0.177</td><td>0.449</td><td>0.253</td></tr>
+                      <tr><td>185</td><td>ha_v1_04_tv</td><td class="rank-metric">0.342</td><td>0.753</td><td>0.181</td><td>0.460</td><td>0.260</td></tr>
+                      <tr><td>186</td><td>ha_v3_10</td><td class="rank-metric">0.342</td><td>0.732</td><td>0.175</td><td>0.446</td><td>0.251</td></tr>
+                      <tr><td>187</td><td>ha_v1_07_ct</td><td class="rank-metric">0.342</td><td>0.746</td><td>0.156</td><td>0.470</td><td>0.234</td></tr>
+                      <tr><td>188</td><td>sp2d_extent_v1_U01k</td><td class="rank-metric">0.341</td><td>0.741</td><td>0.164</td><td>0.462</td><td>0.242</td></tr>
+                      <tr><td>189</td><td>needpaper_v0.1_plain</td><td class="rank-metric">0.341</td><td>0.730</td><td>0.259</td><td>0.402</td><td>0.315</td></tr>
+                      <tr><td>190</td><td>ha_v1_10</td><td class="rank-metric">0.340</td><td>0.735</td><td>0.176</td><td>0.446</td><td>0.253</td></tr>
+                      <tr><td>191</td><td>U11000_tv_resample_v1_ct</td><td class="rank-metric">0.340</td><td>0.759</td><td>0.140</td><td>0.462</td><td>0.215</td></tr>
+                      <tr><td>192</td><td>needpaper_v0.0</td><td class="rank-metric">0.340</td><td>0.744</td><td>0.315</td><td>0.374</td><td>0.342</td></tr>
+                      <tr><td>193</td><td>U11000_resample_v1_cat</td><td class="rank-metric">0.340</td><td>0.754</td><td>0.140</td><td>0.462</td><td>0.215</td></tr>
+                      <tr><td>194</td><td>ha_v1_07</td><td class="rank-metric">0.339</td><td>0.735</td><td>0.180</td><td>0.447</td><td>0.256</td></tr>
+                      <tr><td>195</td><td>ThoraxTell 1.4.d <span class="final-tag">Final</span></td><td class="rank-metric">0.339</td><td>0.742</td><td>0.169</td><td>0.456</td><td>0.246</td></tr>
+                      <tr><td>196</td><td>ha_v2_10</td><td class="rank-metric">0.339</td><td>0.734</td><td>0.183</td><td>0.445</td><td>0.259</td></tr>
+                      <tr><td>197</td><td>TAGS_dd</td><td class="rank-metric">0.339</td><td>0.751</td><td>0.146</td><td>0.503</td><td>0.226</td></tr>
+                      <tr><td>198</td><td>ha_v1_04_tv_native</td><td class="rank-metric">0.339</td><td>0.742</td><td>0.156</td><td>0.453</td><td>0.231</td></tr>
+                      <tr><td>199</td><td>TAGS_dt</td><td class="rank-metric">0.338</td><td>0.747</td><td>0.145</td><td>0.498</td><td>0.225</td></tr>
+                      <tr><td>200</td><td>sp2d_extent_v1_U1500</td><td class="rank-metric">0.338</td><td>0.742</td><td>0.165</td><td>0.456</td><td>0.242</td></tr>
+                      <tr><td>201</td><td>juniper-v0.1r</td><td class="rank-metric">0.338</td><td>0.739</td><td>0.159</td><td>0.494</td><td>0.241</td></tr>
+                      <tr><td>202</td><td>TAGS_dc</td><td class="rank-metric">0.338</td><td>0.749</td><td>0.145</td><td>0.515</td><td>0.226</td></tr>
+                      <tr><td>203</td><td>VoxTell 1.4b</td><td class="rank-metric">0.338</td><td>0.739</td><td>0.168</td><td>0.455</td><td>0.246</td></tr>
+                      <tr><td>204</td><td>TAGS_th_cp (submission 2)</td><td class="rank-metric">0.338</td><td>0.742</td><td>0.157</td><td>0.491</td><td>0.238</td></tr>
+                      <tr><td>205</td><td>controlside</td><td class="rank-metric">0.337</td><td>0.727</td><td>0.324</td><td>0.421</td><td>0.366</td></tr>
+                      <tr><td>206</td><td>controlsel</td><td class="rank-metric">0.337</td><td>0.727</td><td>0.323</td><td>0.421</td><td>0.366</td></tr>
+                      <tr><td>207</td><td>ha_v1_04_tv_resample</td><td class="rank-metric">0.337</td><td>0.747</td><td>0.174</td><td>0.448</td><td>0.251</td></tr>
+                      <tr><td>208</td><td>TAGS_dtm</td><td class="rank-metric">0.337</td><td>0.753</td><td>0.141</td><td>0.512</td><td>0.221</td></tr>
+                      <tr><td>209</td><td>b0_d0p75_U14k</td><td class="rank-metric">0.337</td><td>0.753</td><td>0.150</td><td>0.503</td><td>0.231</td></tr>
+                      <tr><td>210</td><td>sp2d_extent_v1_U05k</td><td class="rank-metric">0.337</td><td>0.737</td><td>0.167</td><td>0.450</td><td>0.243</td></tr>
+                      <tr><td>211</td><td>sample1_d06</td><td class="rank-metric">0.337</td><td>0.727</td><td>0.164</td><td>0.443</td><td>0.239</td></tr>
+                      <tr><td>212</td><td>V++_d11ct</td><td class="rank-metric">0.337</td><td>0.739</td><td>0.179</td><td>0.450</td><td>0.256</td></tr>
+                      <tr><td>213</td><td>juniper_v0.2rt</td><td class="rank-metric">0.337</td><td>0.746</td><td>0.220</td><td>0.494</td><td>0.304</td></tr>
+                      <tr><td>214</td><td>ff16c-11</td><td class="rank-metric">0.336</td><td>0.732</td><td>0.179</td><td>0.446</td><td>0.255</td></tr>
+                      <tr><td>215</td><td>sample1_d05</td><td class="rank-metric">0.336</td><td>0.730</td><td>0.162</td><td>0.446</td><td>0.238</td></tr>
+                      <tr><td>216</td><td>sample1_d07</td><td class="rank-metric">0.336</td><td>0.723</td><td>0.163</td><td>0.438</td><td>0.238</td></tr>
+                      <tr><td>217</td><td>U11000_tv_resample_v1</td><td class="rank-metric">0.336</td><td>0.741</td><td>0.162</td><td>0.449</td><td>0.238</td></tr>
+                      <tr><td>218</td><td>ThoraxTell 1.4c</td><td class="rank-metric">0.336</td><td>0.737</td><td>0.191</td><td>0.446</td><td>0.267</td></tr>
+                      <tr><td>219</td><td>ff16c-12</td><td class="rank-metric">0.336</td><td>0.732</td><td>0.179</td><td>0.445</td><td>0.255</td></tr>
+                      <tr><td>220</td><td>b3_d0p75_U07k</td><td class="rank-metric">0.336</td><td>0.777</td><td>0.134</td><td>0.506</td><td>0.212</td></tr>
+                      <tr><td>221</td><td>b0_d0p75_U15k</td><td class="rank-metric">0.336</td><td>0.742</td><td>0.142</td><td>0.480</td><td>0.220</td></tr>
+                      <tr><td>222</td><td>cfv3_U05k</td><td class="rank-metric">0.336</td><td>0.744</td><td>0.170</td><td>0.445</td><td>0.246</td></tr>
+                      <tr><td>223</td><td>sample1_d04</td><td class="rank-metric">0.336</td><td>0.730</td><td>0.162</td><td>0.450</td><td>0.238</td></tr>
+                      <tr><td>224</td><td>sample2_d06</td><td class="rank-metric">0.336</td><td>0.735</td><td>0.160</td><td>0.446</td><td>0.236</td></tr>
+                      <tr><td>225</td><td>juniper_v0.1f2</td><td class="rank-metric">0.336</td><td>0.741</td><td>0.154</td><td>0.485</td><td>0.234</td></tr>
+                      <tr><td>226</td><td>b0_d0p75_U13k</td><td class="rank-metric">0.336</td><td>0.746</td><td>0.133</td><td>0.478</td><td>0.208</td></tr>
+                      <tr><td>227</td><td>tv55_d075_U12k</td><td class="rank-metric">0.336</td><td>0.744</td><td>0.148</td><td>0.485</td><td>0.227</td></tr>
+                      <tr><td>228</td><td>b3_d0p75_U08k</td><td class="rank-metric">0.335</td><td>0.763</td><td>0.142</td><td>0.485</td><td>0.220</td></tr>
+                      <tr><td>229</td><td>U13000_tv_native_v1_ct</td><td class="rank-metric">0.335</td><td>0.741</td><td>0.143</td><td>0.478</td><td>0.220</td></tr>
+                      <tr><td>230</td><td>sample1_d09</td><td class="rank-metric">0.335</td><td>0.725</td><td>0.164</td><td>0.428</td><td>0.237</td></tr>
+                      <tr><td>231</td><td>U13000_tv_resample_v1</td><td class="rank-metric">0.335</td><td>0.746</td><td>0.144</td><td>0.462</td><td>0.219</td></tr>
+                      <tr><td>232</td><td>sample2_d08</td><td class="rank-metric">0.335</td><td>0.735</td><td>0.161</td><td>0.443</td><td>0.236</td></tr>
+                      <tr><td>233</td><td>sp2b2c_U01k</td><td class="rank-metric">0.335</td><td>0.741</td><td>0.163</td><td>0.446</td><td>0.238</td></tr>
+                      <tr><td>234</td><td>U17000_tv_native_v1</td><td class="rank-metric">0.335</td><td>0.737</td><td>0.143</td><td>0.445</td><td>0.217</td></tr>
+                      <tr><td>235</td><td>U12000_tv_resample_v1_ct</td><td class="rank-metric">0.335</td><td>0.749</td><td>0.150</td><td>0.451</td><td>0.225</td></tr>
+                      <tr><td>236</td><td>V++_f16a-11</td><td class="rank-metric">0.335</td><td>0.734</td><td>0.179</td><td>0.437</td><td>0.254</td></tr>
+                      <tr><td>237</td><td>ff16b-11</td><td class="rank-metric">0.335</td><td>0.734</td><td>0.179</td><td>0.437</td><td>0.254</td></tr>
+                      <tr><td>238</td><td>sp2d_extent_v1_U500</td><td class="rank-metric">0.334</td><td>0.746</td><td>0.154</td><td>0.471</td><td>0.232</td></tr>
+                      <tr><td>239</td><td>sample1_d10</td><td class="rank-metric">0.334</td><td>0.722</td><td>0.164</td><td>0.425</td><td>0.236</td></tr>
+                      <tr><td>240</td><td>sp2a_v2_U03k</td><td class="rank-metric">0.334</td><td>0.735</td><td>0.169</td><td>0.448</td><td>0.246</td></tr>
+                      <tr><td>241</td><td>sample2_d09</td><td class="rank-metric">0.334</td><td>0.735</td><td>0.162</td><td>0.441</td><td>0.237</td></tr>
+                      <tr><td>242</td><td>baseline12</td><td class="rank-metric">0.334</td><td>0.729</td><td>0.242</td><td>0.433</td><td>0.310</td></tr>
+                      <tr><td>243</td><td>baseline13</td><td class="rank-metric">0.334</td><td>0.729</td><td>0.242</td><td>0.433</td><td>0.310</td></tr>
+                      <tr><td>244</td><td>ff16b-12</td><td class="rank-metric">0.334</td><td>0.732</td><td>0.179</td><td>0.436</td><td>0.254</td></tr>
+                      <tr><td>245</td><td>c4d</td><td class="rank-metric">0.334</td><td>0.744</td><td>0.121</td><td>0.506</td><td>0.195</td></tr>
+                      <tr><td>246</td><td>c4dresxdo</td><td class="rank-metric">0.334</td><td>0.744</td><td>0.121</td><td>0.506</td><td>0.195</td></tr>
+                      <tr><td>247</td><td>overall c6</td><td class="rank-metric">0.334</td><td>0.734</td><td>0.112</td><td>0.495</td><td>0.182</td></tr>
+                      <tr><td>248</td><td>U13000_tv_native_v1</td><td class="rank-metric">0.334</td><td>0.749</td><td>0.138</td><td>0.466</td><td>0.213</td></tr>
+                      <tr><td>249</td><td>sp2a_v2_U01k</td><td class="rank-metric">0.334</td><td>0.732</td><td>0.173</td><td>0.446</td><td>0.249</td></tr>
+                      <tr><td>250</td><td>Juniper-v0</td><td class="rank-metric">0.334</td><td>0.746</td><td>0.162</td><td>0.476</td><td>0.242</td></tr>
+                      <tr><td>251</td><td>sp2a_U06k</td><td class="rank-metric">0.333</td><td>0.730</td><td>0.175</td><td>0.443</td><td>0.251</td></tr>
+                      <tr><td>252</td><td>Grounder_1.2</td><td class="rank-metric">0.333</td><td>0.718</td><td>0.237</td><td>0.400</td><td>0.298</td></tr>
+                      <tr><td>253</td><td>V++_d12</td><td class="rank-metric">0.333</td><td>0.727</td><td>0.179</td><td>0.430</td><td>0.253</td></tr>
+                      <tr><td>254</td><td>U13000_tv_native_v2</td><td class="rank-metric">0.333</td><td>0.749</td><td>0.139</td><td>0.465</td><td>0.214</td></tr>
+                      <tr><td>255</td><td>U15000_tv_resample_v1</td><td class="rank-metric">0.333</td><td>0.754</td><td>0.157</td><td>0.458</td><td>0.234</td></tr>
+                      <tr><td>256</td><td>V++_d11</td><td class="rank-metric">0.333</td><td>0.727</td><td>0.178</td><td>0.431</td><td>0.252</td></tr>
+                      <tr><td>257</td><td>sp2a_U02k</td><td class="rank-metric">0.333</td><td>0.725</td><td>0.173</td><td>0.445</td><td>0.249</td></tr>
+                      <tr><td>258</td><td>Juniper-v0.1</td><td class="rank-metric">0.333</td><td>0.746</td><td>0.153</td><td>0.488</td><td>0.233</td></tr>
+                      <tr><td>259</td><td>sample1_d11</td><td class="rank-metric">0.333</td><td>0.718</td><td>0.163</td><td>0.419</td><td>0.235</td></tr>
+                      <tr><td>260</td><td>SJTU426Lab-V18 <span class="final-tag">Final</span></td><td class="rank-metric">0.333</td><td>0.716</td><td>0.169</td><td>0.466</td><td>0.248</td></tr>
+                      <tr><td>261</td><td>V++_e12</td><td class="rank-metric">0.333</td><td>0.720</td><td>0.184</td><td>0.430</td><td>0.257</td></tr>
+                      <tr><td>262</td><td>main c4d1a</td><td class="rank-metric">0.333</td><td>0.737</td><td>0.126</td><td>0.500</td><td>0.201</td></tr>
+                      <tr><td>263</td><td>main c4d</td><td class="rank-metric">0.333</td><td>0.737</td><td>0.126</td><td>0.500</td><td>0.201</td></tr>
+                      <tr><td>264</td><td>VoxTell_tv5way_s025 <span class="final-tag">Final</span></td><td class="rank-metric">0.333</td><td>0.689</td><td>0.231</td><td>0.421</td><td>0.299</td></tr>
+                      <tr><td>265</td><td>small30_tv28_U12k</td><td class="rank-metric">0.333</td><td>0.747</td><td>0.134</td><td>0.474</td><td>0.209</td></tr>
+                      <tr><td>266</td><td>VoxTell_cw_s025</td><td class="rank-metric">0.333</td><td>0.713</td><td>0.211</td><td>0.449</td><td>0.288</td></tr>
+                      <tr><td>267</td><td>V++_e11</td><td class="rank-metric">0.333</td><td>0.722</td><td>0.183</td><td>0.431</td><td>0.257</td></tr>
+                      <tr><td>268</td><td>main c6</td><td class="rank-metric">0.333</td><td>0.727</td><td>0.116</td><td>0.489</td><td>0.187</td></tr>
+                      <tr><td>269</td><td>VoxTell_tv4way_s025</td><td class="rank-metric">0.333</td><td>0.698</td><td>0.235</td><td>0.418</td><td>0.301</td></tr>
+                      <tr><td>270</td><td>U10000_tv_resample_v1</td><td class="rank-metric">0.333</td><td>0.730</td><td>0.168</td><td>0.463</td><td>0.246</td></tr>
+                      <tr><td>271</td><td>U18000_tv_resample_v1</td><td class="rank-metric">0.333</td><td>0.749</td><td>0.167</td><td>0.447</td><td>0.243</td></tr>
+                      <tr><td>272</td><td>ff16a-12</td><td class="rank-metric">0.333</td><td>0.722</td><td>0.184</td><td>0.427</td><td>0.257</td></tr>
+                      <tr><td>273</td><td>ff16a-11</td><td class="rank-metric">0.333</td><td>0.723</td><td>0.183</td><td>0.427</td><td>0.257</td></tr>
+                      <tr><td>274</td><td>V++_f16a-1</td><td class="rank-metric">0.333</td><td>0.723</td><td>0.183</td><td>0.427</td><td>0.257</td></tr>
+                      <tr><td>275</td><td>sample2_d10</td><td class="rank-metric">0.332</td><td>0.734</td><td>0.164</td><td>0.435</td><td>0.238</td></tr>
+                      <tr><td>276</td><td>finalc2</td><td class="rank-metric">0.332</td><td>0.742</td><td>0.123</td><td>0.502</td><td>0.198</td></tr>
+                      <tr><td>277</td><td>sp2a_U03k fix</td><td class="rank-metric">0.332</td><td>0.739</td><td>0.170</td><td>0.445</td><td>0.246</td></tr>
+                      <tr><td>278</td><td>U14000_tv_native_v1_ct</td><td class="rank-metric">0.332</td><td>0.741</td><td>0.139</td><td>0.465</td><td>0.214</td></tr>
+                      <tr><td>279</td><td>cfv3_U04k</td><td class="rank-metric">0.332</td><td>0.754</td><td>0.173</td><td>0.445</td><td>0.249</td></tr>
+                      <tr><td>280</td><td>Curia-MAE-loc-v0.1</td><td class="rank-metric">0.332</td><td>0.722</td><td>0.174</td><td>0.435</td><td>0.249</td></tr>
+                      <tr><td>281</td><td>sp2a_U01k</td><td class="rank-metric">0.332</td><td>0.729</td><td>0.168</td><td>0.448</td><td>0.244</td></tr>
+                      <tr><td>282</td><td>U20000_tv_native_v1</td><td class="rank-metric">0.332</td><td>0.718</td><td>0.147</td><td>0.430</td><td>0.219</td></tr>
+                      <tr><td>283</td><td>U14000_tv_resample_v1</td><td class="rank-metric">0.332</td><td>0.741</td><td>0.180</td><td>0.450</td><td>0.258</td></tr>
+                      <tr><td>284</td><td>U10000_tv_resample_v2</td><td class="rank-metric">0.332</td><td>0.729</td><td>0.168</td><td>0.462</td><td>0.247</td></tr>
+                      <tr><td>285</td><td>finalc3 <span class="final-tag">Final</span></td><td class="rank-metric">0.332</td><td>0.741</td><td>0.123</td><td>0.504</td><td>0.197</td></tr>
+                      <tr><td>286</td><td>finalc</td><td class="rank-metric">0.332</td><td>0.729</td><td>0.124</td><td>0.489</td><td>0.197</td></tr>
+                      <tr><td>287</td><td>c4dri1xdo</td><td class="rank-metric">0.332</td><td>0.730</td><td>0.122</td><td>0.491</td><td>0.195</td></tr>
+                      <tr><td>288</td><td>sp2b2c_U02k</td><td class="rank-metric">0.332</td><td>0.741</td><td>0.160</td><td>0.451</td><td>0.237</td></tr>
+                      <tr><td>289</td><td>Finalb</td><td class="rank-metric">0.332</td><td>0.727</td><td>0.134</td><td>0.484</td><td>0.210</td></tr>
+                      <tr><td>290</td><td>finalb2</td><td class="rank-metric">0.331</td><td>0.725</td><td>0.134</td><td>0.484</td><td>0.210</td></tr>
+                      <tr><td>291</td><td>c4xdoall</td><td class="rank-metric">0.331</td><td>0.739</td><td>0.117</td><td>0.514</td><td>0.191</td></tr>
+                      <tr><td>292</td><td>V++_d3_original</td><td class="rank-metric">0.331</td><td>0.723</td><td>0.174</td><td>0.430</td><td>0.248</td></tr>
+                      <tr><td>293</td><td>V++_d3</td><td class="rank-metric">0.331</td><td>0.723</td><td>0.174</td><td>0.430</td><td>0.248</td></tr>
+                      <tr><td>294</td><td>overall c5 ens3 mqb1 1a</td><td class="rank-metric">0.331</td><td>0.735</td><td>0.114</td><td>0.504</td><td>0.186</td></tr>
+                      <tr><td>295</td><td>VoxTell_tvs3_s025</td><td class="rank-metric">0.331</td><td>0.691</td><td>0.236</td><td>0.421</td><td>0.303</td></tr>
+                      <tr><td>296</td><td>MainTfinalb</td><td class="rank-metric">0.331</td><td>0.729</td><td>0.134</td><td>0.482</td><td>0.210</td></tr>
+                      <tr><td>297</td><td>neededfirstplace-_-</td><td class="rank-metric">0.331</td><td>0.713</td><td>0.125</td><td>0.445</td><td>0.195</td></tr>
+                      <tr><td>298</td><td>agent1</td><td class="rank-metric">0.331</td><td>0.729</td><td>0.131</td><td>0.488</td><td>0.207</td></tr>
+                      <tr><td>299</td><td>c4xdomqAll</td><td class="rank-metric">0.331</td><td>0.746</td><td>0.117</td><td>0.515</td><td>0.191</td></tr>
+                      <tr><td>300</td><td>main c5 1a</td><td class="rank-metric">0.331</td><td>0.727</td><td>0.121</td><td>0.491</td><td>0.194</td></tr>
+                      <tr><td>301</td><td>overall c51a</td><td class="rank-metric">0.331</td><td>0.727</td><td>0.121</td><td>0.491</td><td>0.194</td></tr>
+                      <tr><td>302</td><td>c5dresmqb1</td><td class="rank-metric">0.331</td><td>0.727</td><td>0.121</td><td>0.491</td><td>0.194</td></tr>
+                      <tr><td>303</td><td>overall c5dresmqb1</td><td class="rank-metric">0.331</td><td>0.727</td><td>0.121</td><td>0.491</td><td>0.194</td></tr>
+                      <tr><td>304</td><td>V++_e3</td><td class="rank-metric">0.331</td><td>0.718</td><td>0.178</td><td>0.430</td><td>0.252</td></tr>
+                      <tr><td>305</td><td>overall c5 dresri1xdo1a</td><td class="rank-metric">0.331</td><td>0.723</td><td>0.127</td><td>0.486</td><td>0.202</td></tr>
+                      <tr><td>306</td><td>c5dresri1xdo1a</td><td class="rank-metric">0.331</td><td>0.723</td><td>0.127</td><td>0.486</td><td>0.202</td></tr>
+                      <tr><td>307</td><td>B3_S1_lobeROI_resample_v1</td><td class="rank-metric">0.331</td><td>0.734</td><td>0.149</td><td>0.441</td><td>0.223</td></tr>
+                      <tr><td>308</td><td>sp2b2c_v2_U03k</td><td class="rank-metric">0.331</td><td>0.735</td><td>0.172</td><td>0.435</td><td>0.247</td></tr>
+                      <tr><td>309</td><td>main c3</td><td class="rank-metric">0.331</td><td>0.734</td><td>0.128</td><td>0.499</td><td>0.203</td></tr>
+                      <tr><td>310</td><td>main c4d ri1xdo</td><td class="rank-metric">0.331</td><td>0.723</td><td>0.127</td><td>0.486</td><td>0.201</td></tr>
+                      <tr><td>311</td><td>TAGS_v25</td><td class="rank-metric">0.330</td><td>0.742</td><td>0.142</td><td>0.494</td><td>0.221</td></tr>
+                      <tr><td>312</td><td>U14000_tv_native_v1</td><td class="rank-metric">0.330</td><td>0.735</td><td>0.149</td><td>0.452</td><td>0.224</td></tr>
+                      <tr><td>313</td><td>sp2d_extent_v1_U03k</td><td class="rank-metric">0.330</td><td>0.730</td><td>0.166</td><td>0.454</td><td>0.243</td></tr>
+                      <tr><td>314</td><td>main c4 xdoall</td><td class="rank-metric">0.330</td><td>0.732</td><td>0.122</td><td>0.509</td><td>0.197</td></tr>
+                      <tr><td>315</td><td>TAGS_v2</td><td class="rank-metric">0.330</td><td>0.741</td><td>0.137</td><td>0.497</td><td>0.214</td></tr>
+                      <tr><td>316</td><td>UShanghaiTech (submission 2)</td><td class="rank-metric">0.330</td><td>0.694</td><td>0.257</td><td>0.382</td><td>0.307</td></tr>
+                      <tr><td>317</td><td>U16000_tv_native_v1</td><td class="rank-metric">0.330</td><td>0.732</td><td>0.138</td><td>0.446</td><td>0.211</td></tr>
+                      <tr><td>318</td><td>B3_S1_lobeROI_v1_native</td><td class="rank-metric">0.330</td><td>0.725</td><td>0.223</td><td>0.405</td><td>0.288</td></tr>
+                      <tr><td>319</td><td>SJTU426Lab-V17</td><td class="rank-metric">0.330</td><td>0.715</td><td>0.170</td><td>0.460</td><td>0.248</td></tr>
+                      <tr><td>320</td><td>B3_S1_lobeROI_resample_v2</td><td class="rank-metric">0.330</td><td>0.732</td><td>0.150</td><td>0.441</td><td>0.223</td></tr>
+                      <tr><td>321</td><td>b3_d0p75_U05k</td><td class="rank-metric">0.330</td><td>0.746</td><td>0.143</td><td>0.480</td><td>0.220</td></tr>
+                      <tr><td>322</td><td>B3_S1_lobeROI_v1_native_only</td><td class="rank-metric">0.330</td><td>0.727</td><td>0.147</td><td>0.413</td><td>0.217</td></tr>
+                      <tr><td>323</td><td>main c5 ens3 mqb1 1a</td><td class="rank-metric">0.330</td><td>0.729</td><td>0.118</td><td>0.498</td><td>0.191</td></tr>
+                      <tr><td>324</td><td>composite 5</td><td class="rank-metric">0.330</td><td>0.732</td><td>0.129</td><td>0.488</td><td>0.204</td></tr>
+                      <tr><td>325</td><td>V++_d2</td><td class="rank-metric">0.330</td><td>0.725</td><td>0.173</td><td>0.431</td><td>0.247</td></tr>
+                      <tr><td>326</td><td>U16000_tv_resample_v1</td><td class="rank-metric">0.330</td><td>0.747</td><td>0.175</td><td>0.448</td><td>0.252</td></tr>
+                      <tr><td>327</td><td>composite</td><td class="rank-metric">0.330</td><td>0.722</td><td>0.128</td><td>0.481</td><td>0.202</td></tr>
+                      <tr><td>328</td><td>tv28_U14k</td><td class="rank-metric">0.330</td><td>0.737</td><td>0.158</td><td>0.463</td><td>0.235</td></tr>
+                      <tr><td>329</td><td>needfirstplace_v1.24</td><td class="rank-metric">0.330</td><td>0.713</td><td>0.125</td><td>0.443</td><td>0.195</td></tr>
+                      <tr><td>330</td><td>needfirstplace_v1.22</td><td class="rank-metric">0.330</td><td>0.720</td><td>0.119</td><td>0.439</td><td>0.188</td></tr>
+                      <tr><td>331</td><td>B3_S1_lobeROI_v2_native</td><td class="rank-metric">0.330</td><td>0.722</td><td>0.225</td><td>0.403</td><td>0.289</td></tr>
+                      <tr><td>332</td><td>c5xdomqALL1a</td><td class="rank-metric">0.330</td><td>0.739</td><td>0.122</td><td>0.509</td><td>0.197</td></tr>
+                      <tr><td>333</td><td>overall c5 xdomqall1a</td><td class="rank-metric">0.330</td><td>0.739</td><td>0.122</td><td>0.509</td><td>0.197</td></tr>
+                      <tr><td>334</td><td>main_C4_xdomqall</td><td class="rank-metric">0.330</td><td>0.739</td><td>0.122</td><td>0.509</td><td>0.197</td></tr>
+                      <tr><td>335</td><td>needfirstplace_v1.18</td><td class="rank-metric">0.330</td><td>0.727</td><td>0.111</td><td>0.432</td><td>0.177</td></tr>
+                      <tr><td>336</td><td>B3_S1_lobeROI_v2_native_only</td><td class="rank-metric">0.330</td><td>0.723</td><td>0.148</td><td>0.411</td><td>0.218</td></tr>
+                      <tr><td>337</td><td>V++_e2</td><td class="rank-metric">0.330</td><td>0.720</td><td>0.177</td><td>0.431</td><td>0.251</td></tr>
+                      <tr><td>338</td><td>IMRVox0909-1</td><td class="rank-metric">0.330</td><td>0.725</td><td>0.259</td><td>0.438</td><td>0.325</td></tr>
+                      <tr><td>339</td><td>needfirstplace_v1.23 <span class="final-tag">Final</span></td><td class="rank-metric">0.329</td><td>0.722</td><td>0.120</td><td>0.440</td><td>0.189</td></tr>
+                      <tr><td>340</td><td>TAGS_basetest</td><td class="rank-metric">0.329</td><td>0.749</td><td>0.151</td><td>0.473</td><td>0.229</td></tr>
+                      <tr><td>341</td><td>composite 3 real</td><td class="rank-metric">0.329</td><td>0.727</td><td>0.130</td><td>0.481</td><td>0.205</td></tr>
+                      <tr><td>342</td><td>baseline14</td><td class="rank-metric">0.329</td><td>0.730</td><td>0.290</td><td>0.382</td><td>0.330</td></tr>
+                      <tr><td>343</td><td>needfirstplace_v1.17</td><td class="rank-metric">0.329</td><td>0.727</td><td>0.112</td><td>0.435</td><td>0.178</td></tr>
+                      <tr><td>344</td><td>b3_d0p75_U04k</td><td class="rank-metric">0.329</td><td>0.725</td><td>0.132</td><td>0.475</td><td>0.206</td></tr>
+                      <tr><td>345</td><td>IMRVox-0904-1</td><td class="rank-metric">0.329</td><td>0.723</td><td>0.262</td><td>0.436</td><td>0.328</td></tr>
+                      <tr><td>346</td><td>CARE-CT (submission 2) <span class="final-tag">Final</span></td><td class="rank-metric">0.329</td><td>0.739</td><td>0.168</td><td>0.434</td><td>0.242</td></tr>
+                      <tr><td>347</td><td>overall c5 xdoallmqb11a</td><td class="rank-metric">0.329</td><td>0.729</td><td>0.113</td><td>0.505</td><td>0.184</td></tr>
+                      <tr><td>348</td><td>needfirstplace_v1.21</td><td class="rank-metric">0.329</td><td>0.722</td><td>0.121</td><td>0.438</td><td>0.190</td></tr>
+                      <tr><td>349</td><td>VoxTell_v9aug_step025</td><td class="rank-metric">0.329</td><td>0.696</td><td>0.214</td><td>0.445</td><td>0.289</td></tr>
+                      <tr><td>350</td><td>tv28_U13k</td><td class="rank-metric">0.329</td><td>0.751</td><td>0.137</td><td>0.498</td><td>0.215</td></tr>
+                      <tr><td>351</td><td>Unnamed model (UGcIaf) <span class="final-tag">Final</span></td><td class="rank-metric">0.329</td><td>0.730</td><td>0.198</td><td>0.412</td><td>0.268</td></tr>
+                      <tr><td>352</td><td>needfirstplace_v1.2</td><td class="rank-metric">0.329</td><td>0.727</td><td>0.110</td><td>0.432</td><td>0.175</td></tr>
+                      <tr><td>353</td><td>ThoraxTell 1.3</td><td class="rank-metric">0.329</td><td>0.727</td><td>0.134</td><td>0.465</td><td>0.208</td></tr>
+                      <tr><td>354</td><td>composite 2</td><td class="rank-metric">0.329</td><td>0.720</td><td>0.128</td><td>0.480</td><td>0.202</td></tr>
+                      <tr><td>355</td><td>overall c5 xdom1all mqb1 1a</td><td class="rank-metric">0.329</td><td>0.735</td><td>0.113</td><td>0.506</td><td>0.184</td></tr>
+                      <tr><td>356</td><td>composite 7</td><td class="rank-metric">0.328</td><td>0.722</td><td>0.143</td><td>0.468</td><td>0.219</td></tr>
+                      <tr><td>357</td><td>composite 6 (submission 2)</td><td class="rank-metric">0.328</td><td>0.722</td><td>0.143</td><td>0.468</td><td>0.219</td></tr>
+                      <tr><td>358</td><td>V++_old_combo_v2</td><td class="rank-metric">0.328</td><td>0.729</td><td>0.143</td><td>0.425</td><td>0.214</td></tr>
+                      <tr><td>359</td><td>needfirstplace_v1.19</td><td class="rank-metric">0.328</td><td>0.727</td><td>0.110</td><td>0.435</td><td>0.176</td></tr>
+                      <tr><td>360</td><td>control4</td><td class="rank-metric">0.328</td><td>0.737</td><td>0.251</td><td>0.423</td><td>0.315</td></tr>
+                      <tr><td>361</td><td>ha_v1_06_tv28</td><td class="rank-metric">0.328</td><td>0.727</td><td>0.160</td><td>0.456</td><td>0.236</td></tr>
+                      <tr><td>362</td><td>composite 4</td><td class="rank-metric">0.328</td><td>0.735</td><td>0.127</td><td>0.485</td><td>0.202</td></tr>
+                      <tr><td>363</td><td>main c5 xdoallmqb11a</td><td class="rank-metric">0.328</td><td>0.722</td><td>0.117</td><td>0.499</td><td>0.190</td></tr>
+                      <tr><td>364</td><td>overallc5xdoallmqb1</td><td class="rank-metric">0.328</td><td>0.722</td><td>0.117</td><td>0.499</td><td>0.190</td></tr>
+                      <tr><td>365</td><td>c5xdoALLmqb1</td><td class="rank-metric">0.328</td><td>0.722</td><td>0.117</td><td>0.499</td><td>0.190</td></tr>
+                      <tr><td>366</td><td>control6</td><td class="rank-metric">0.328</td><td>0.739</td><td>0.256</td><td>0.423</td><td>0.319</td></tr>
+                      <tr><td>367</td><td>B3_S1_lobeROI_v2_with_B0</td><td class="rank-metric">0.328</td><td>0.725</td><td>0.149</td><td>0.421</td><td>0.220</td></tr>
+                      <tr><td>368</td><td>SJTU426Lab-V16</td><td class="rank-metric">0.328</td><td>0.718</td><td>0.158</td><td>0.463</td><td>0.236</td></tr>
+                      <tr><td>369</td><td>baseline14sel</td><td class="rank-metric">0.328</td><td>0.722</td><td>0.359</td><td>0.364</td><td>0.361</td></tr>
+                      <tr><td>370</td><td>sample2_d11</td><td class="rank-metric">0.328</td><td>0.725</td><td>0.163</td><td>0.423</td><td>0.235</td></tr>
+                      <tr><td>371</td><td>composite 3</td><td class="rank-metric">0.328</td><td>0.715</td><td>0.126</td><td>0.477</td><td>0.199</td></tr>
+                      <tr><td>372</td><td>control5</td><td class="rank-metric">0.328</td><td>0.737</td><td>0.252</td><td>0.423</td><td>0.316</td></tr>
+                      <tr><td>373</td><td>ThoraxTell 1.4</td><td class="rank-metric">0.328</td><td>0.725</td><td>0.144</td><td>0.461</td><td>0.220</td></tr>
+                      <tr><td>374</td><td>V++_old_combo_v1</td><td class="rank-metric">0.328</td><td>0.729</td><td>0.142</td><td>0.425</td><td>0.213</td></tr>
+                      <tr><td>375</td><td>B3_S1_lobeROI_v1_with_B0</td><td class="rank-metric">0.328</td><td>0.725</td><td>0.148</td><td>0.422</td><td>0.219</td></tr>
+                      <tr><td>376</td><td>VoxTell_cot83_ph2</td><td class="rank-metric">0.328</td><td>0.711</td><td>0.214</td><td>0.448</td><td>0.290</td></tr>
+                      <tr><td>377</td><td>VoxTell_cot83_ph</td><td class="rank-metric">0.328</td><td>0.711</td><td>0.214</td><td>0.448</td><td>0.290</td></tr>
+                      <tr><td>378</td><td>U15000_tv_native_v1</td><td class="rank-metric">0.328</td><td>0.729</td><td>0.140</td><td>0.420</td><td>0.209</td></tr>
+                      <tr><td>379</td><td>Referent-V2 (submission 2)</td><td class="rank-metric">0.327</td><td>0.735</td><td>0.157</td><td>0.448</td><td>0.233</td></tr>
+                      <tr><td>380</td><td>main c5 xdom1all mqb1 1a</td><td class="rank-metric">0.327</td><td>0.729</td><td>0.117</td><td>0.500</td><td>0.190</td></tr>
+                      <tr><td>381</td><td>IMRVox-0914-1 <span class="final-tag">Final</span></td><td class="rank-metric">0.327</td><td>0.715</td><td>0.266</td><td>0.419</td><td>0.326</td></tr>
+                      <tr><td>382</td><td>Grounder_1.1</td><td class="rank-metric">0.327</td><td>0.732</td><td>0.261</td><td>0.408</td><td>0.318</td></tr>
+                      <tr><td>383</td><td>VoxTell_v8enc</td><td class="rank-metric">0.327</td><td>0.704</td><td>0.182</td><td>0.432</td><td>0.256</td></tr>
+                      <tr><td>384</td><td>tv55_d075_U13k</td><td class="rank-metric">0.327</td><td>0.763</td><td>0.128</td><td>0.499</td><td>0.204</td></tr>
+                      <tr><td>385</td><td>VoxTell_tv-s3</td><td class="rank-metric">0.327</td><td>0.680</td><td>0.227</td><td>0.417</td><td>0.294</td></tr>
+                      <tr><td>386</td><td>U18000_tv_native_v1</td><td class="rank-metric">0.327</td><td>0.722</td><td>0.155</td><td>0.422</td><td>0.226</td></tr>
+                      <tr><td>387</td><td>IMRVox0911-1</td><td class="rank-metric">0.327</td><td>0.718</td><td>0.259</td><td>0.426</td><td>0.322</td></tr>
+                      <tr><td>388</td><td>tv55_d075_U14k</td><td class="rank-metric">0.327</td><td>0.737</td><td>0.130</td><td>0.448</td><td>0.202</td></tr>
+                      <tr><td>389</td><td>U12000_tv_resample_v1</td><td class="rank-metric">0.327</td><td>0.739</td><td>0.161</td><td>0.432</td><td>0.234</td></tr>
+                      <tr><td>390</td><td>V++_b3</td><td class="rank-metric">0.327</td><td>0.730</td><td>0.148</td><td>0.447</td><td>0.222</td></tr>
+                      <tr><td>391</td><td>U17000_tv_resample_v1</td><td class="rank-metric">0.327</td><td>0.739</td><td>0.160</td><td>0.441</td><td>0.235</td></tr>
+                      <tr><td>392</td><td>IMRVox-0906-1</td><td class="rank-metric">0.327</td><td>0.730</td><td>0.243</td><td>0.439</td><td>0.313</td></tr>
+                      <tr><td>393</td><td>VoXTell_2.0</td><td class="rank-metric">0.326</td><td>0.710</td><td>0.178</td><td>0.423</td><td>0.251</td></tr>
+                      <tr><td>394</td><td>ThoraxTell 1.2</td><td class="rank-metric">0.326</td><td>0.723</td><td>0.144</td><td>0.460</td><td>0.219</td></tr>
+                      <tr><td>395</td><td>IMRVox-0911-2</td><td class="rank-metric">0.326</td><td>0.727</td><td>0.254</td><td>0.435</td><td>0.321</td></tr>
+                      <tr><td>396</td><td>juniper_v0.1f</td><td class="rank-metric">0.326</td><td>0.701</td><td>0.406</td><td>0.347</td><td>0.374</td></tr>
+                      <tr><td>397</td><td>Referent-V2 <span class="final-tag">Final</span></td><td class="rank-metric">0.326</td><td>0.737</td><td>0.146</td><td>0.453</td><td>0.221</td></tr>
+                      <tr><td>398</td><td>V++_d1ct</td><td class="rank-metric">0.326</td><td>0.730</td><td>0.161</td><td>0.435</td><td>0.235</td></tr>
+                      <tr><td>399</td><td>sp2b2c_U06k</td><td class="rank-metric">0.326</td><td>0.732</td><td>0.161</td><td>0.429</td><td>0.234</td></tr>
+                      <tr><td>400</td><td>test3 <span class="final-tag">Final</span></td><td class="rank-metric">0.326</td><td>0.725</td><td>0.218</td><td>0.405</td><td>0.283</td></tr>
+                      <tr><td>401</td><td>Unnamed model (cAQSo8)</td><td class="rank-metric">0.326</td><td>0.725</td><td>0.159</td><td>0.431</td><td>0.233</td></tr>
+                      <tr><td>402</td><td>SJTU426Lab-V15</td><td class="rank-metric">0.326</td><td>0.710</td><td>0.158</td><td>0.460</td><td>0.235</td></tr>
+                      <tr><td>403</td><td>CARE-CT-V2</td><td class="rank-metric">0.326</td><td>0.713</td><td>0.231</td><td>0.416</td><td>0.297</td></tr>
+                      <tr><td>404</td><td>VoxTell_v8enc_LT</td><td class="rank-metric">0.325</td><td>0.704</td><td>0.200</td><td>0.428</td><td>0.273</td></tr>
+                      <tr><td>405</td><td>TAGS_s</td><td class="rank-metric">0.325</td><td>0.730</td><td>0.145</td><td>0.479</td><td>0.223</td></tr>
+                      <tr><td>406</td><td>selector 4</td><td class="rank-metric">0.325</td><td>0.727</td><td>0.127</td><td>0.475</td><td>0.200</td></tr>
+                      <tr><td>407</td><td>V++_e1</td><td class="rank-metric">0.325</td><td>0.716</td><td>0.161</td><td>0.431</td><td>0.234</td></tr>
+                      <tr><td>408</td><td>MICLAB_VoXTell_E</td><td class="rank-metric">0.325</td><td>0.708</td><td>0.135</td><td>0.488</td><td>0.211</td></tr>
+                      <tr><td>409</td><td>tap1</td><td class="rank-metric">0.325</td><td>0.710</td><td>0.127</td><td>0.476</td><td>0.201</td></tr>
+                      <tr><td>410</td><td>resample_0p75-0p7-0p7</td><td class="rank-metric">0.325</td><td>0.737</td><td>0.150</td><td>0.446</td><td>0.225</td></tr>
+                      <tr><td>411</td><td>U19000_tv_native_v1</td><td class="rank-metric">0.325</td><td>0.722</td><td>0.141</td><td>0.404</td><td>0.210</td></tr>
+                      <tr><td>412</td><td>cfv3_U01k</td><td class="rank-metric">0.325</td><td>0.723</td><td>0.176</td><td>0.438</td><td>0.251</td></tr>
+                      <tr><td>413</td><td>tv28_U15k</td><td class="rank-metric">0.325</td><td>0.739</td><td>0.143</td><td>0.453</td><td>0.218</td></tr>
+                      <tr><td>414</td><td>V++_b2</td><td class="rank-metric">0.325</td><td>0.729</td><td>0.148</td><td>0.448</td><td>0.222</td></tr>
+                      <tr><td>415</td><td>VoxTell_v8tv</td><td class="rank-metric">0.325</td><td>0.689</td><td>0.219</td><td>0.421</td><td>0.288</td></tr>
+                      <tr><td>416</td><td>VoxTell_cot83_t85</td><td class="rank-metric">0.324</td><td>0.706</td><td>0.193</td><td>0.455</td><td>0.271</td></tr>
+                      <tr><td>417</td><td>B3_S1_lobeROI_v1</td><td class="rank-metric">0.324</td><td>0.723</td><td>0.147</td><td>0.450</td><td>0.221</td></tr>
+                      <tr><td>418</td><td>B3_S1_lobeROI_v2</td><td class="rank-metric">0.324</td><td>0.722</td><td>0.148</td><td>0.449</td><td>0.222</td></tr>
+                      <tr><td>419</td><td>control3</td><td class="rank-metric">0.324</td><td>0.729</td><td>0.246</td><td>0.418</td><td>0.310</td></tr>
+                      <tr><td>420</td><td>selector 3</td><td class="rank-metric">0.324</td><td>0.723</td><td>0.153</td><td>0.466</td><td>0.231</td></tr>
+                      <tr><td>421</td><td>control2</td><td class="rank-metric">0.324</td><td>0.727</td><td>0.244</td><td>0.417</td><td>0.308</td></tr>
+                      <tr><td>422</td><td>F2</td><td class="rank-metric">0.324</td><td>0.704</td><td>0.192</td><td>0.449</td><td>0.269</td></tr>
+                      <tr><td>423</td><td>VoxTell_v9aug</td><td class="rank-metric">0.324</td><td>0.692</td><td>0.199</td><td>0.433</td><td>0.272</td></tr>
+                      <tr><td>424</td><td>small30_tv28_U14k</td><td class="rank-metric">0.324</td><td>0.727</td><td>0.168</td><td>0.448</td><td>0.244</td></tr>
+                      <tr><td>425</td><td>IMRVox-0902-3</td><td class="rank-metric">0.324</td><td>0.716</td><td>0.252</td><td>0.426</td><td>0.317</td></tr>
+                      <tr><td>426</td><td>cfv3_restart4k_U06k</td><td class="rank-metric">0.324</td><td>0.734</td><td>0.153</td><td>0.418</td><td>0.224</td></tr>
+                      <tr><td>427</td><td>tv28_U12k</td><td class="rank-metric">0.323</td><td>0.735</td><td>0.168</td><td>0.447</td><td>0.244</td></tr>
+                      <tr><td>428</td><td>MUW-Grounder-v2 <span class="final-tag">Final</span></td><td class="rank-metric">0.323</td><td>0.749</td><td>0.163</td><td>0.456</td><td>0.240</td></tr>
+                      <tr><td>429</td><td>test9</td><td class="rank-metric">0.323</td><td>0.732</td><td>0.287</td><td>0.418</td><td>0.340</td></tr>
+                      <tr><td>430</td><td>test8</td><td class="rank-metric">0.323</td><td>0.732</td><td>0.287</td><td>0.418</td><td>0.340</td></tr>
+                      <tr><td>431</td><td>VoxTell_tv-s3_t85</td><td class="rank-metric">0.323</td><td>0.680</td><td>0.225</td><td>0.404</td><td>0.289</td></tr>
+                      <tr><td>432</td><td>Farm-Best-HZ-12 <span class="final-tag">Final</span></td><td class="rank-metric">0.323</td><td>0.735</td><td>0.286</td><td>0.420</td><td>0.340</td></tr>
+                      <tr><td>433</td><td>test1</td><td class="rank-metric">0.323</td><td>0.735</td><td>0.286</td><td>0.420</td><td>0.340</td></tr>
+                      <tr><td>434</td><td>test2 (submission 2)</td><td class="rank-metric">0.323</td><td>0.735</td><td>0.286</td><td>0.420</td><td>0.340</td></tr>
+                      <tr><td>435</td><td>B3_only_LLR_v2</td><td class="rank-metric">0.323</td><td>0.708</td><td>0.138</td><td>0.417</td><td>0.208</td></tr>
+                      <tr><td>436</td><td>U12000_tv_native_v1</td><td class="rank-metric">0.323</td><td>0.722</td><td>0.137</td><td>0.465</td><td>0.212</td></tr>
+                      <tr><td>437</td><td>Farm-Best-Siyu-8</td><td class="rank-metric">0.323</td><td>0.737</td><td>0.286</td><td>0.421</td><td>0.340</td></tr>
+                      <tr><td>438</td><td>test7</td><td class="rank-metric">0.323</td><td>0.732</td><td>0.287</td><td>0.417</td><td>0.340</td></tr>
+                      <tr><td>439</td><td>U12000_tv_native_v2</td><td class="rank-metric">0.323</td><td>0.722</td><td>0.138</td><td>0.463</td><td>0.213</td></tr>
+                      <tr><td>440</td><td>B3_only_LLR_v1-2</td><td class="rank-metric">0.322</td><td>0.708</td><td>0.137</td><td>0.417</td><td>0.206</td></tr>
+                      <tr><td>441</td><td>encall1</td><td class="rank-metric">0.322</td><td>0.704</td><td>0.134</td><td>0.468</td><td>0.208</td></tr>
+                      <tr><td>442</td><td>composite 6</td><td class="rank-metric">0.322</td><td>0.722</td><td>0.130</td><td>0.461</td><td>0.203</td></tr>
+                      <tr><td>443</td><td>F1</td><td class="rank-metric">0.322</td><td>0.704</td><td>0.202</td><td>0.448</td><td>0.278</td></tr>
+                      <tr><td>444</td><td>B3_only_LLR_v1</td><td class="rank-metric">0.322</td><td>0.706</td><td>0.137</td><td>0.417</td><td>0.207</td></tr>
+                      <tr><td>445</td><td>Farm-Best-HZ-11</td><td class="rank-metric">0.322</td><td>0.737</td><td>0.287</td><td>0.418</td><td>0.341</td></tr>
+                      <tr><td>446</td><td>sp2b2c_v2_U01k</td><td class="rank-metric">0.322</td><td>0.720</td><td>0.159</td><td>0.417</td><td>0.231</td></tr>
+                      <tr><td>447</td><td>test5</td><td class="rank-metric">0.322</td><td>0.729</td><td>0.252</td><td>0.411</td><td>0.312</td></tr>
+                      <tr><td>448</td><td>test11</td><td class="rank-metric">0.322</td><td>0.725</td><td>0.252</td><td>0.408</td><td>0.312</td></tr>
+                      <tr><td>449</td><td>test16 <span class="final-tag">Final</span></td><td class="rank-metric">0.322</td><td>0.730</td><td>0.271</td><td>0.411</td><td>0.327</td></tr>
+                      <tr><td>450</td><td>CARE-CT-V2 (submission 2)</td><td class="rank-metric">0.322</td><td>0.704</td><td>0.220</td><td>0.400</td><td>0.284</td></tr>
+                      <tr><td>451</td><td>final</td><td class="rank-metric">0.322</td><td>0.727</td><td>0.271</td><td>0.411</td><td>0.327</td></tr>
+                      <tr><td>452</td><td>test18</td><td class="rank-metric">0.322</td><td>0.727</td><td>0.271</td><td>0.411</td><td>0.327</td></tr>
+                      <tr><td>453</td><td>selector fix</td><td class="rank-metric">0.322</td><td>0.713</td><td>0.153</td><td>0.460</td><td>0.230</td></tr>
+                      <tr><td>454</td><td>baseline11</td><td class="rank-metric">0.322</td><td>0.715</td><td>0.200</td><td>0.415</td><td>0.270</td></tr>
+                      <tr><td>455</td><td>test17</td><td class="rank-metric">0.322</td><td>0.727</td><td>0.271</td><td>0.411</td><td>0.327</td></tr>
+                      <tr><td>456</td><td>control1</td><td class="rank-metric">0.322</td><td>0.722</td><td>0.225</td><td>0.411</td><td>0.291</td></tr>
+                      <tr><td>457</td><td>test15</td><td class="rank-metric">0.322</td><td>0.723</td><td>0.256</td><td>0.408</td><td>0.315</td></tr>
+                      <tr><td>458</td><td>test14</td><td class="rank-metric">0.322</td><td>0.723</td><td>0.256</td><td>0.408</td><td>0.315</td></tr>
+                      <tr><td>459</td><td>VT++_resample_semantic_v2</td><td class="rank-metric">0.322</td><td>0.711</td><td>0.159</td><td>0.433</td><td>0.232</td></tr>
+                      <tr><td>460</td><td>V++_b1</td><td class="rank-metric">0.322</td><td>0.723</td><td>0.132</td><td>0.448</td><td>0.204</td></tr>
+                      <tr><td>461</td><td>VT++ <span class="final-tag">Final</span></td><td class="rank-metric">0.321</td><td>0.710</td><td>0.152</td><td>0.430</td><td>0.224</td></tr>
+                      <tr><td>462</td><td>test13</td><td class="rank-metric">0.321</td><td>0.725</td><td>0.254</td><td>0.407</td><td>0.313</td></tr>
+                      <tr><td>463</td><td>MICLAB_VoXTell_E0</td><td class="rank-metric">0.321</td><td>0.708</td><td>0.127</td><td>0.489</td><td>0.202</td></tr>
+                      <tr><td>464</td><td>resample_1p0-0p7-0p7</td><td class="rank-metric">0.321</td><td>0.711</td><td>0.158</td><td>0.433</td><td>0.232</td></tr>
+                      <tr><td>465</td><td>test12</td><td class="rank-metric">0.321</td><td>0.725</td><td>0.252</td><td>0.407</td><td>0.311</td></tr>
+                      <tr><td>466</td><td>V++_resample_semantic_v1</td><td class="rank-metric">0.321</td><td>0.711</td><td>0.158</td><td>0.433</td><td>0.231</td></tr>
+                      <tr><td>467</td><td>VoXTell-FT-B24k-E</td><td class="rank-metric">0.321</td><td>0.696</td><td>0.127</td><td>0.476</td><td>0.200</td></tr>
+                      <tr><td>468</td><td>SJTU426Lab-V14</td><td class="rank-metric">0.321</td><td>0.706</td><td>0.160</td><td>0.451</td><td>0.236</td></tr>
+                      <tr><td>469</td><td>VoxTell_v9aug_ph</td><td class="rank-metric">0.321</td><td>0.691</td><td>0.214</td><td>0.419</td><td>0.284</td></tr>
+                      <tr><td>470</td><td>Referent-b</td><td class="rank-metric">0.321</td><td>0.723</td><td>0.147</td><td>0.425</td><td>0.219</td></tr>
+                      <tr><td>471</td><td>U9000_tv_resample_v1</td><td class="rank-metric">0.321</td><td>0.734</td><td>0.169</td><td>0.462</td><td>0.248</td></tr>
+                      <tr><td>472</td><td>rescue4</td><td class="rank-metric">0.321</td><td>0.701</td><td>0.152</td><td>0.455</td><td>0.228</td></tr>
+                      <tr><td>473</td><td>V++_lobeROI_v2</td><td class="rank-metric">0.321</td><td>0.718</td><td>0.151</td><td>0.445</td><td>0.225</td></tr>
+                      <tr><td>474</td><td>Referent</td><td class="rank-metric">0.321</td><td>0.710</td><td>0.125</td><td>0.424</td><td>0.193</td></tr>
+                      <tr><td>475</td><td>ri1</td><td class="rank-metric">0.321</td><td>0.711</td><td>0.125</td><td>0.494</td><td>0.200</td></tr>
+                      <tr><td>476</td><td>IMRVox-0902-2</td><td class="rank-metric">0.321</td><td>0.727</td><td>0.249</td><td>0.428</td><td>0.315</td></tr>
+                      <tr><td>477</td><td>control</td><td class="rank-metric">0.321</td><td>0.720</td><td>0.210</td><td>0.408</td><td>0.278</td></tr>
+                      <tr><td>478</td><td>VT++_semantic_v1</td><td class="rank-metric">0.321</td><td>0.710</td><td>0.150</td><td>0.430</td><td>0.223</td></tr>
+                      <tr><td>479</td><td>VT++_semantic_v1 (submission 2)</td><td class="rank-metric">0.321</td><td>0.710</td><td>0.150</td><td>0.430</td><td>0.223</td></tr>
+                      <tr><td>480</td><td>SJTU426Lab-V13</td><td class="rank-metric">0.321</td><td>0.704</td><td>0.160</td><td>0.450</td><td>0.236</td></tr>
+                      <tr><td>481</td><td>V++_lobeROI_v1</td><td class="rank-metric">0.321</td><td>0.720</td><td>0.149</td><td>0.446</td><td>0.224</td></tr>
+                      <tr><td>482</td><td>MICLab_VoxTell</td><td class="rank-metric">0.320</td><td>0.701</td><td>0.132</td><td>0.478</td><td>0.207</td></tr>
+                      <tr><td>483</td><td>V++_a3</td><td class="rank-metric">0.320</td><td>0.710</td><td>0.133</td><td>0.440</td><td>0.205</td></tr>
+                      <tr><td>484</td><td>S4</td><td class="rank-metric">0.320</td><td>0.699</td><td>0.206</td><td>0.417</td><td>0.276</td></tr>
+                      <tr><td>485</td><td>VoXTell_1.1</td><td class="rank-metric">0.320</td><td>0.710</td><td>0.172</td><td>0.420</td><td>0.244</td></tr>
+                      <tr><td>486</td><td>MUW-Grounder</td><td class="rank-metric">0.320</td><td>0.742</td><td>0.162</td><td>0.453</td><td>0.239</td></tr>
+                      <tr><td>487</td><td>U9000_tv_resample_v2</td><td class="rank-metric">0.320</td><td>0.732</td><td>0.170</td><td>0.461</td><td>0.248</td></tr>
+                      <tr><td>488</td><td>VoXTell-FT-B24k-E0 <span class="final-tag">Final</span></td><td class="rank-metric">0.320</td><td>0.713</td><td>0.122</td><td>0.486</td><td>0.195</td></tr>
+                      <tr><td>489</td><td>A4 <span class="final-tag">Final</span></td><td class="rank-metric">0.320</td><td>0.716</td><td>0.106</td><td>0.509</td><td>0.176</td></tr>
+                      <tr><td>490</td><td>b3_d0p75_U06k</td><td class="rank-metric">0.320</td><td>0.732</td><td>0.145</td><td>0.454</td><td>0.220</td></tr>
+                      <tr><td>491</td><td>ccd1</td><td class="rank-metric">0.320</td><td>0.725</td><td>0.101</td><td>0.499</td><td>0.168</td></tr>
+                      <tr><td>492</td><td>b0_d0p75_U12k</td><td class="rank-metric">0.320</td><td>0.753</td><td>0.113</td><td>0.507</td><td>0.185</td></tr>
+                      <tr><td>493</td><td>A3</td><td class="rank-metric">0.320</td><td>0.716</td><td>0.106</td><td>0.509</td><td>0.176</td></tr>
+                      <tr><td>494</td><td>Farm-Best-HZ-9</td><td class="rank-metric">0.320</td><td>0.725</td><td>0.289</td><td>0.410</td><td>0.339</td></tr>
+                      <tr><td>495</td><td>rescue2</td><td class="rank-metric">0.319</td><td>0.703</td><td>0.158</td><td>0.456</td><td>0.235</td></tr>
+                      <tr><td>496</td><td>baseline10</td><td class="rank-metric">0.319</td><td>0.715</td><td>0.212</td><td>0.408</td><td>0.279</td></tr>
+                      <tr><td>497</td><td>CARE-CT</td><td class="rank-metric">0.319</td><td>0.696</td><td>0.353</td><td>0.380</td><td>0.366</td></tr>
+                      <tr><td>498</td><td>voxtell-hz</td><td class="rank-metric">0.319</td><td>0.730</td><td>0.291</td><td>0.407</td><td>0.339</td></tr>
+                      <tr><td>499</td><td>selector</td><td class="rank-metric">0.319</td><td>0.704</td><td>0.154</td><td>0.456</td><td>0.230</td></tr>
+                      <tr><td>500</td><td>cfv3_restart4k_U05k</td><td class="rank-metric">0.319</td><td>0.734</td><td>0.160</td><td>0.433</td><td>0.234</td></tr>
+                      <tr><td>501</td><td>rb1</td><td class="rank-metric">0.319</td><td>0.710</td><td>0.122</td><td>0.477</td><td>0.194</td></tr>
+                      <tr><td>502</td><td>cfv3_U02k</td><td class="rank-metric">0.319</td><td>0.734</td><td>0.171</td><td>0.430</td><td>0.244</td></tr>
+                      <tr><td>503</td><td>TAGS (submission 5)</td><td class="rank-metric">0.319</td><td>0.725</td><td>0.146</td><td>0.463</td><td>0.222</td></tr>
+                      <tr><td>504</td><td>V++_a2</td><td class="rank-metric">0.319</td><td>0.710</td><td>0.132</td><td>0.441</td><td>0.203</td></tr>
+                      <tr><td>505</td><td>Farm-Best-Hz-7</td><td class="rank-metric">0.319</td><td>0.725</td><td>0.291</td><td>0.408</td><td>0.340</td></tr>
+                      <tr><td>506</td><td>VoXTell_2.2</td><td class="rank-metric">0.319</td><td>0.716</td><td>0.182</td><td>0.407</td><td>0.252</td></tr>
+                      <tr><td>507</td><td>VoXTell_2.3_t</td><td class="rank-metric">0.319</td><td>0.716</td><td>0.182</td><td>0.407</td><td>0.252</td></tr>
+                      <tr><td>508</td><td>VoXTell_1.2_clsaux</td><td class="rank-metric">0.319</td><td>0.715</td><td>0.190</td><td>0.400</td><td>0.258</td></tr>
+                      <tr><td>509</td><td>ign1</td><td class="rank-metric">0.319</td><td>0.708</td><td>0.123</td><td>0.490</td><td>0.197</td></tr>
+                      <tr><td>510</td><td>rescue3</td><td class="rank-metric">0.319</td><td>0.706</td><td>0.148</td><td>0.468</td><td>0.225</td></tr>
+                      <tr><td>511</td><td>VoXTell_2.1_hu</td><td class="rank-metric">0.318</td><td>0.715</td><td>0.180</td><td>0.409</td><td>0.250</td></tr>
+                      <tr><td>512</td><td>enclora1</td><td class="rank-metric">0.318</td><td>0.703</td><td>0.129</td><td>0.472</td><td>0.203</td></tr>
+                      <tr><td>513</td><td>ThoraxTell 1.1</td><td class="rank-metric">0.318</td><td>0.716</td><td>0.141</td><td>0.452</td><td>0.215</td></tr>
+                      <tr><td>514</td><td>VoxTell_v9dsaug</td><td class="rank-metric">0.318</td><td>0.674</td><td>0.172</td><td>0.409</td><td>0.242</td></tr>
+                      <tr><td>515</td><td>igra1</td><td class="rank-metric">0.318</td><td>0.708</td><td>0.120</td><td>0.476</td><td>0.192</td></tr>
+                      <tr><td>516</td><td>fa1p0</td><td class="rank-metric">0.318</td><td>0.698</td><td>0.132</td><td>0.466</td><td>0.206</td></tr>
+                      <tr><td>517</td><td>crowd b</td><td class="rank-metric">0.318</td><td>0.708</td><td>0.117</td><td>0.472</td><td>0.188</td></tr>
+                      <tr><td>518</td><td>SJTU426Lab-v11</td><td class="rank-metric">0.317</td><td>0.711</td><td>0.133</td><td>0.486</td><td>0.209</td></tr>
+                      <tr><td>519</td><td>ECCVrejected2</td><td class="rank-metric">0.317</td><td>0.710</td><td>0.216</td><td>0.384</td><td>0.277</td></tr>
+                      <tr><td>520</td><td>selector focal</td><td class="rank-metric">0.317</td><td>0.715</td><td>0.105</td><td>0.468</td><td>0.171</td></tr>
+                      <tr><td>521</td><td>baseline3</td><td class="rank-metric">0.317</td><td>0.722</td><td>0.195</td><td>0.428</td><td>0.268</td></tr>
+                      <tr><td>522</td><td>needfirstplace_v1.16</td><td class="rank-metric">0.317</td><td>0.696</td><td>0.119</td><td>0.415</td><td>0.186</td></tr>
+                      <tr><td>523</td><td>Farm-Best-HZ-10</td><td class="rank-metric">0.317</td><td>0.718</td><td>0.291</td><td>0.398</td><td>0.336</td></tr>
+                      <tr><td>524</td><td>rescue</td><td class="rank-metric">0.317</td><td>0.708</td><td>0.154</td><td>0.455</td><td>0.231</td></tr>
+                      <tr><td>525</td><td>Grounder</td><td class="rank-metric">0.316</td><td>0.703</td><td>0.212</td><td>0.413</td><td>0.280</td></tr>
+                      <tr><td>526</td><td>baseline9</td><td class="rank-metric">0.316</td><td>0.704</td><td>0.238</td><td>0.389</td><td>0.295</td></tr>
+                      <tr><td>527</td><td>UShanghaiTech</td><td class="rank-metric">0.316</td><td>0.696</td><td>0.233</td><td>0.390</td><td>0.292</td></tr>
+                      <tr><td>528</td><td>dec2</td><td class="rank-metric">0.316</td><td>0.704</td><td>0.125</td><td>0.462</td><td>0.197</td></tr>
+                      <tr><td>529</td><td>tv28_U21k</td><td class="rank-metric">0.316</td><td>0.715</td><td>0.163</td><td>0.420</td><td>0.235</td></tr>
+                      <tr><td>530</td><td>V++_c2</td><td class="rank-metric">0.316</td><td>0.716</td><td>0.147</td><td>0.428</td><td>0.218</td></tr>
+                      <tr><td>531</td><td>needfirstplace_v1.1</td><td class="rank-metric">0.316</td><td>0.701</td><td>0.118</td><td>0.415</td><td>0.184</td></tr>
+                      <tr><td>532</td><td>test (submission 2)</td><td class="rank-metric">0.316</td><td>0.715</td><td>0.198</td><td>0.405</td><td>0.266</td></tr>
+                      <tr><td>533</td><td>V++_a1</td><td class="rank-metric">0.316</td><td>0.706</td><td>0.122</td><td>0.441</td><td>0.192</td></tr>
+                      <tr><td>534</td><td>curi1</td><td class="rank-metric">0.316</td><td>0.710</td><td>0.122</td><td>0.465</td><td>0.193</td></tr>
+                      <tr><td>535</td><td>needfirstplace_v1.11</td><td class="rank-metric">0.316</td><td>0.701</td><td>0.119</td><td>0.415</td><td>0.185</td></tr>
+                      <tr><td>536</td><td>needfirstplace_v1.08</td><td class="rank-metric">0.315</td><td>0.699</td><td>0.117</td><td>0.417</td><td>0.182</td></tr>
+                      <tr><td>537</td><td>SJTU426Lab-V12</td><td class="rank-metric">0.315</td><td>0.689</td><td>0.166</td><td>0.435</td><td>0.240</td></tr>
+                      <tr><td>538</td><td>VoXTell_1.3</td><td class="rank-metric">0.315</td><td>0.696</td><td>0.192</td><td>0.405</td><td>0.260</td></tr>
+                      <tr><td>539</td><td>needfirstplace_v1.13</td><td class="rank-metric">0.315</td><td>0.703</td><td>0.119</td><td>0.415</td><td>0.185</td></tr>
+                      <tr><td>540</td><td>hn1</td><td class="rank-metric">0.315</td><td>0.689</td><td>0.135</td><td>0.458</td><td>0.208</td></tr>
+                      <tr><td>541</td><td>needfirstplace_v1.14</td><td class="rank-metric">0.315</td><td>0.703</td><td>0.120</td><td>0.417</td><td>0.186</td></tr>
+                      <tr><td>542</td><td>VoxFiLm_v2</td><td class="rank-metric">0.315</td><td>0.708</td><td>0.115</td><td>0.436</td><td>0.181</td></tr>
+                      <tr><td>543</td><td>IMRVox-Base3</td><td class="rank-metric">0.315</td><td>0.706</td><td>0.264</td><td>0.418</td><td>0.324</td></tr>
+                      <tr><td>544</td><td>needfirstplace_v1.12</td><td class="rank-metric">0.315</td><td>0.701</td><td>0.119</td><td>0.415</td><td>0.185</td></tr>
+                      <tr><td>545</td><td>needfirstplace_v1.15</td><td class="rank-metric">0.315</td><td>0.701</td><td>0.119</td><td>0.413</td><td>0.185</td></tr>
+                      <tr><td>546</td><td>baseline6</td><td class="rank-metric">0.315</td><td>0.715</td><td>0.232</td><td>0.399</td><td>0.293</td></tr>
+                      <tr><td>547</td><td>JECT_f</td><td class="rank-metric">0.315</td><td>0.734</td><td>0.266</td><td>0.385</td><td>0.315</td></tr>
+                      <tr><td>548</td><td>test2</td><td class="rank-metric">0.315</td><td>0.715</td><td>0.204</td><td>0.399</td><td>0.270</td></tr>
+                      <tr><td>549</td><td>baseline8</td><td class="rank-metric">0.315</td><td>0.713</td><td>0.368</td><td>0.330</td><td>0.348</td></tr>
+                      <tr><td>550</td><td>IMRVox-0902-1</td><td class="rank-metric">0.314</td><td>0.689</td><td>0.307</td><td>0.394</td><td>0.345</td></tr>
+                      <tr><td>551</td><td>needfirstplace_v1.09</td><td class="rank-metric">0.314</td><td>0.692</td><td>0.118</td><td>0.412</td><td>0.183</td></tr>
+                      <tr><td>552</td><td>IMRVox-Base2</td><td class="rank-metric">0.314</td><td>0.706</td><td>0.141</td><td>0.425</td><td>0.211</td></tr>
+                      <tr><td>553</td><td>IMRVox-Base</td><td class="rank-metric">0.314</td><td>0.696</td><td>0.277</td><td>0.418</td><td>0.333</td></tr>
+                      <tr><td>554</td><td>ECCVrejected</td><td class="rank-metric">0.314</td><td>0.701</td><td>0.230</td><td>0.370</td><td>0.284</td></tr>
+                      <tr><td>555</td><td>IMRVox1</td><td class="rank-metric">0.314</td><td>0.706</td><td>0.292</td><td>0.398</td><td>0.337</td></tr>
+                      <tr><td>556</td><td>U11000_tv_native_v1</td><td class="rank-metric">0.313</td><td>0.699</td><td>0.174</td><td>0.412</td><td>0.245</td></tr>
+                      <tr><td>557</td><td>rescue 5</td><td class="rank-metric">0.313</td><td>0.698</td><td>0.152</td><td>0.453</td><td>0.227</td></tr>
+                      <tr><td>558</td><td>baseline5</td><td class="rank-metric">0.313</td><td>0.716</td><td>0.205</td><td>0.400</td><td>0.272</td></tr>
+                      <tr><td>559</td><td>C2-VoxTell <span class="final-tag">Final</span></td><td class="rank-metric">0.313</td><td>0.708</td><td>0.146</td><td>0.408</td><td>0.215</td></tr>
+                      <tr><td>560</td><td>VoXTell_1.0</td><td class="rank-metric">0.312</td><td>0.699</td><td>0.153</td><td>0.416</td><td>0.224</td></tr>
+                      <tr><td>561</td><td>Farm-Best-HZ-6</td><td class="rank-metric">0.312</td><td>0.716</td><td>0.291</td><td>0.395</td><td>0.335</td></tr>
+                      <tr><td>562</td><td>FarmAdd100-LateRefine60_40-TTA3 <span class="final-tag">Final</span></td><td class="rank-metric">0.312</td><td>0.716</td><td>0.291</td><td>0.395</td><td>0.335</td></tr>
+                      <tr><td>563</td><td>U11000_tv_native_v2</td><td class="rank-metric">0.312</td><td>0.698</td><td>0.175</td><td>0.410</td><td>0.245</td></tr>
+                      <tr><td>564</td><td>V++_c3</td><td class="rank-metric">0.312</td><td>0.722</td><td>0.144</td><td>0.430</td><td>0.216</td></tr>
+                      <tr><td>565</td><td>Farm-Best-Siyu-9</td><td class="rank-metric">0.312</td><td>0.711</td><td>0.276</td><td>0.389</td><td>0.323</td></tr>
+                      <tr><td>566</td><td>Farm-Best-Siyu-10</td><td class="rank-metric">0.312</td><td>0.711</td><td>0.276</td><td>0.389</td><td>0.323</td></tr>
+                      <tr><td>567</td><td>VoXTell_3.0_dual</td><td class="rank-metric">0.312</td><td>0.710</td><td>0.164</td><td>0.422</td><td>0.236</td></tr>
+                      <tr><td>568</td><td>VoxTell_Supreme_11M_Hybrid_V8_1</td><td class="rank-metric">0.312</td><td>0.674</td><td>0.248</td><td>0.403</td><td>0.307</td></tr>
+                      <tr><td>569</td><td>baseline_plus_re</td><td class="rank-metric">0.312</td><td>0.710</td><td>0.140</td><td>0.434</td><td>0.212</td></tr>
+                      <tr><td>570</td><td>fresh1</td><td class="rank-metric">0.312</td><td>0.710</td><td>0.098</td><td>0.499</td><td>0.163</td></tr>
+                      <tr><td>571</td><td>VoxTell_Supreme_11M_Hybrid_V8</td><td class="rank-metric">0.311</td><td>0.672</td><td>0.249</td><td>0.407</td><td>0.309</td></tr>
+                      <tr><td>572</td><td>2s-cg-k3_15-emph VoxNormal</td><td class="rank-metric">0.311</td><td>0.701</td><td>0.154</td><td>0.453</td><td>0.230</td></tr>
+                      <tr><td>573</td><td>VoxTell_Supreme_11M_Hybrid_V2</td><td class="rank-metric">0.311</td><td>0.674</td><td>0.264</td><td>0.397</td><td>0.317</td></tr>
+                      <tr><td>574</td><td>A1</td><td class="rank-metric">0.310</td><td>0.680</td><td>0.108</td><td>0.450</td><td>0.174</td></tr>
+                      <tr><td>575</td><td>VoxTell_Supreme_11M_Hybrid_V1</td><td class="rank-metric">0.310</td><td>0.679</td><td>0.258</td><td>0.388</td><td>0.310</td></tr>
+                      <tr><td>576</td><td>VoXTell_3.1_dualsep</td><td class="rank-metric">0.310</td><td>0.698</td><td>0.170</td><td>0.406</td><td>0.239</td></tr>
+                      <tr><td>577</td><td>fresh1b40</td><td class="rank-metric">0.310</td><td>0.706</td><td>0.098</td><td>0.497</td><td>0.164</td></tr>
+                      <tr><td>578</td><td>2s-cg-k3_15 VoxNormal</td><td class="rank-metric">0.310</td><td>0.698</td><td>0.131</td><td>0.454</td><td>0.203</td></tr>
+                      <tr><td>579</td><td>A2</td><td class="rank-metric">0.310</td><td>0.708</td><td>0.088</td><td>0.501</td><td>0.150</td></tr>
+                      <tr><td>580</td><td>baseline10000_0.5</td><td class="rank-metric">0.310</td><td>0.696</td><td>0.236</td><td>0.370</td><td>0.288</td></tr>
+                      <tr><td>581</td><td>baseline4</td><td class="rank-metric">0.310</td><td>0.704</td><td>0.235</td><td>0.389</td><td>0.293</td></tr>
+                      <tr><td>582</td><td>JECT_base</td><td class="rank-metric">0.309</td><td>0.720</td><td>0.242</td><td>0.382</td><td>0.296</td></tr>
+                      <tr><td>583</td><td>TAGS (submission 4)</td><td class="rank-metric">0.309</td><td>0.711</td><td>0.145</td><td>0.437</td><td>0.218</td></tr>
+                      <tr><td>584</td><td>CALM <span class="final-tag">Final</span></td><td class="rank-metric">0.308</td><td>0.682</td><td>0.143</td><td>0.445</td><td>0.216</td></tr>
+                      <tr><td>585</td><td>VT++_raw</td><td class="rank-metric">0.308</td><td>0.699</td><td>0.130</td><td>0.431</td><td>0.200</td></tr>
+                      <tr><td>586</td><td>2s-cg-k3_2 VoxNormal</td><td class="rank-metric">0.308</td><td>0.698</td><td>0.127</td><td>0.448</td><td>0.198</td></tr>
+                      <tr><td>587</td><td>baseline7</td><td class="rank-metric">0.308</td><td>0.698</td><td>0.351</td><td>0.324</td><td>0.337</td></tr>
+                      <tr><td>588</td><td>VoXTell-FT_LF-Pres6-Loose-NoRoute</td><td class="rank-metric">0.307</td><td>0.674</td><td>0.157</td><td>0.450</td><td>0.232</td></tr>
+                      <tr><td>589</td><td>VoXTell-FT_LF-KFold10-LatGate</td><td class="rank-metric">0.307</td><td>0.668</td><td>0.220</td><td>0.413</td><td>0.287</td></tr>
+                      <tr><td>590</td><td>VoxTell_Supreme_11M_Hybrid_V6</td><td class="rank-metric">0.307</td><td>0.665</td><td>0.259</td><td>0.388</td><td>0.310</td></tr>
+                      <tr><td>591</td><td>2s-cg-k3_25 VoxNormal</td><td class="rank-metric">0.307</td><td>0.694</td><td>0.127</td><td>0.453</td><td>0.199</td></tr>
+                      <tr><td>592</td><td>FARM-Best-Siyu-7</td><td class="rank-metric">0.306</td><td>0.703</td><td>0.272</td><td>0.393</td><td>0.322</td></tr>
+                      <tr><td>593</td><td>VoXTell-FT_LF-KFold5-Low-LatGate</td><td class="rank-metric">0.306</td><td>0.665</td><td>0.216</td><td>0.404</td><td>0.281</td></tr>
+                      <tr><td>594</td><td>CALM_v4</td><td class="rank-metric">0.306</td><td>0.696</td><td>0.133</td><td>0.455</td><td>0.205</td></tr>
+                      <tr><td>595</td><td>VoxTell_FT-Hybrid-V2-Repaired_1</td><td class="rank-metric">0.305</td><td>0.675</td><td>0.229</td><td>0.421</td><td>0.297</td></tr>
+                      <tr><td>596</td><td>Farm-Best-Siyu-4</td><td class="rank-metric">0.305</td><td>0.711</td><td>0.140</td><td>0.410</td><td>0.209</td></tr>
+                      <tr><td>597</td><td>needfirstplace_v1.06</td><td class="rank-metric">0.305</td><td>0.680</td><td>0.109</td><td>0.410</td><td>0.172</td></tr>
+                      <tr><td>598</td><td>VoXTell-FT_LF-KFold5-Low</td><td class="rank-metric">0.305</td><td>0.663</td><td>0.211</td><td>0.404</td><td>0.277</td></tr>
+                      <tr><td>599</td><td>VoXTell-FT_LF-KFold5-LS008-LatGate</td><td class="rank-metric">0.305</td><td>0.663</td><td>0.218</td><td>0.404</td><td>0.283</td></tr>
+                      <tr><td>600</td><td>VoxTell_Supreme_11M_Hybrid_V3</td><td class="rank-metric">0.304</td><td>0.662</td><td>0.254</td><td>0.382</td><td>0.305</td></tr>
+                      <tr><td>601</td><td>VoXTell-FT_LF-Pres6-NoRoute</td><td class="rank-metric">0.304</td><td>0.675</td><td>0.188</td><td>0.427</td><td>0.261</td></tr>
+                      <tr><td>602</td><td>SJTU426Lab-V10</td><td class="rank-metric">0.304</td><td>0.710</td><td>0.123</td><td>0.489</td><td>0.196</td></tr>
+                      <tr><td>603</td><td>needfirstplace_v1.07</td><td class="rank-metric">0.303</td><td>0.674</td><td>0.109</td><td>0.408</td><td>0.172</td></tr>
+                      <tr><td>604</td><td>VoXTell-FT_LF-KFold5-Hit</td><td class="rank-metric">0.303</td><td>0.670</td><td>0.202</td><td>0.419</td><td>0.273</td></tr>
+                      <tr><td>605</td><td>VoXTell-FT_LF-KFold5-VL</td><td class="rank-metric">0.303</td><td>0.655</td><td>0.224</td><td>0.399</td><td>0.287</td></tr>
+                      <tr><td>606</td><td>VoXTell-FT_LF-Pres6</td><td class="rank-metric">0.302</td><td>0.672</td><td>0.196</td><td>0.424</td><td>0.268</td></tr>
+                      <tr><td>607</td><td>VoXTell-FT_LF-KFold5-Guarded</td><td class="rank-metric">0.302</td><td>0.658</td><td>0.205</td><td>0.399</td><td>0.271</td></tr>
+                      <tr><td>608</td><td>VoXTell_FT_LF-Diffuse-Aware-V1</td><td class="rank-metric">0.302</td><td>0.675</td><td>0.153</td><td>0.428</td><td>0.226</td></tr>
+                      <tr><td>609</td><td>Farm-Best-Siyu-5</td><td class="rank-metric">0.301</td><td>0.699</td><td>0.138</td><td>0.393</td><td>0.205</td></tr>
+                      <tr><td>610</td><td>V++_c1</td><td class="rank-metric">0.301</td><td>0.708</td><td>0.127</td><td>0.431</td><td>0.197</td></tr>
+                      <tr><td>611</td><td>2s-cg-k3</td><td class="rank-metric">0.300</td><td>0.701</td><td>0.113</td><td>0.435</td><td>0.180</td></tr>
+                      <tr><td>612</td><td>Vox-Normal-LV2</td><td class="rank-metric">0.300</td><td>0.708</td><td>0.091</td><td>0.446</td><td>0.152</td></tr>
+                      <tr><td>613</td><td>needfirstplace_v1.05</td><td class="rank-metric">0.300</td><td>0.653</td><td>0.107</td><td>0.398</td><td>0.169</td></tr>
+                      <tr><td>614</td><td>MICLAB_VoXTell-B36k</td><td class="rank-metric">0.299</td><td>0.682</td><td>0.132</td><td>0.462</td><td>0.205</td></tr>
+                      <tr><td>615</td><td>2sk3</td><td class="rank-metric">0.299</td><td>0.696</td><td>0.121</td><td>0.432</td><td>0.188</td></tr>
+                      <tr><td>616</td><td>e2edq <span class="final-tag">Final</span></td><td class="rank-metric">0.299</td><td>0.701</td><td>0.128</td><td>0.389</td><td>0.193</td></tr>
+                      <tr><td>617</td><td>VoxTell_KFold0_Selective_Guidance_V1</td><td class="rank-metric">0.299</td><td>0.649</td><td>0.224</td><td>0.397</td><td>0.286</td></tr>
+                      <tr><td>618</td><td>needfirstplace_v1.04</td><td class="rank-metric">0.299</td><td>0.656</td><td>0.111</td><td>0.421</td><td>0.176</td></tr>
+                      <tr><td>619</td><td>2sk3_0.4</td><td class="rank-metric">0.299</td><td>0.689</td><td>0.131</td><td>0.418</td><td>0.200</td></tr>
+                      <tr><td>620</td><td>MUW-GroundCT-v3</td><td class="rank-metric">0.298</td><td>0.692</td><td>0.183</td><td>0.416</td><td>0.254</td></tr>
+                      <tr><td>621</td><td>ThoraxTell</td><td class="rank-metric">0.298</td><td>0.686</td><td>0.104</td><td>0.448</td><td>0.169</td></tr>
+                      <tr><td>622</td><td>VoxTell_5Fold_Selective_Guidance_V1</td><td class="rank-metric">0.298</td><td>0.649</td><td>0.237</td><td>0.381</td><td>0.293</td></tr>
+                      <tr><td>623</td><td>Vox-Normal-LV</td><td class="rank-metric">0.297</td><td>0.704</td><td>0.085</td><td>0.466</td><td>0.143</td></tr>
+                      <tr><td>624</td><td>VoxTell_Supreme_11M_Hybrid_V5</td><td class="rank-metric">0.297</td><td>0.662</td><td>0.261</td><td>0.377</td><td>0.309</td></tr>
+                      <tr><td>625</td><td>VoxFiLM-v1</td><td class="rank-metric">0.297</td><td>0.696</td><td>0.124</td><td>0.438</td><td>0.193</td></tr>
+                      <tr><td>626</td><td>needfirstplace_v1.03</td><td class="rank-metric">0.297</td><td>0.651</td><td>0.103</td><td>0.415</td><td>0.165</td></tr>
+                      <tr><td>627</td><td>TAGS (submission 3)</td><td class="rank-metric">0.297</td><td>0.708</td><td>0.117</td><td>0.460</td><td>0.186</td></tr>
+                      <tr><td>628</td><td>Farm-Best-HZ-2</td><td class="rank-metric">0.296</td><td>0.686</td><td>0.245</td><td>0.379</td><td>0.297</td></tr>
+                      <tr><td>629</td><td>E2EV19</td><td class="rank-metric">0.296</td><td>0.692</td><td>0.130</td><td>0.383</td><td>0.194</td></tr>
+                      <tr><td>630</td><td>SJTU426Lab-V5naive</td><td class="rank-metric">0.296</td><td>0.672</td><td>0.112</td><td>0.441</td><td>0.179</td></tr>
+                      <tr><td>631</td><td>VoXTell-FT_LF</td><td class="rank-metric">0.296</td><td>0.656</td><td>0.127</td><td>0.446</td><td>0.198</td></tr>
+                      <tr><td>632</td><td>Farm-Best-HZ-3</td><td class="rank-metric">0.296</td><td>0.682</td><td>0.255</td><td>0.369</td><td>0.302</td></tr>
+                      <tr><td>633</td><td>TAGS (submission 2)</td><td class="rank-metric">0.296</td><td>0.706</td><td>0.131</td><td>0.433</td><td>0.201</td></tr>
+                      <tr><td>634</td><td>FARM-Siyu-Best-Hyper-V2</td><td class="rank-metric">0.295</td><td>0.684</td><td>0.104</td><td>0.418</td><td>0.166</td></tr>
+                      <tr><td>635</td><td>Vox-Normal</td><td class="rank-metric">0.294</td><td>0.706</td><td>0.084</td><td>0.483</td><td>0.143</td></tr>
+                      <tr><td>636</td><td>VoxTell-SC-Hybrid-V1</td><td class="rank-metric">0.294</td><td>0.667</td><td>0.189</td><td>0.436</td><td>0.264</td></tr>
+                      <tr><td>637</td><td>VoXTell-FT-B24k-Anatomy</td><td class="rank-metric">0.294</td><td>0.679</td><td>0.111</td><td>0.446</td><td>0.178</td></tr>
+                      <tr><td>638</td><td>ISOMAPv2</td><td class="rank-metric">0.294</td><td>0.672</td><td>0.243</td><td>0.373</td><td>0.295</td></tr>
+                      <tr><td>639</td><td>VT-FT-v2</td><td class="rank-metric">0.293</td><td>0.653</td><td>0.094</td><td>0.415</td><td>0.154</td></tr>
+                      <tr><td>640</td><td>e2emix</td><td class="rank-metric">0.293</td><td>0.692</td><td>0.166</td><td>0.388</td><td>0.232</td></tr>
+                      <tr><td>641</td><td>needfirstplace_v1.02</td><td class="rank-metric">0.293</td><td>0.656</td><td>0.100</td><td>0.410</td><td>0.160</td></tr>
+                      <tr><td>642</td><td>IMRPhraseVox-2</td><td class="rank-metric">0.293</td><td>0.684</td><td>0.293</td><td>0.374</td><td>0.329</td></tr>
+                      <tr><td>643</td><td>FARM-Siyu-Best-Hyper</td><td class="rank-metric">0.292</td><td>0.689</td><td>0.097</td><td>0.421</td><td>0.157</td></tr>
+                      <tr><td>644</td><td>SJTU426Lab-V5censored</td><td class="rank-metric">0.292</td><td>0.684</td><td>0.096</td><td>0.468</td><td>0.159</td></tr>
+                      <tr><td>645</td><td>2sk3_0.5</td><td class="rank-metric">0.290</td><td>0.662</td><td>0.141</td><td>0.394</td><td>0.208</td></tr>
+                      <tr><td>646</td><td>IMRPhraseVox</td><td class="rank-metric">0.289</td><td>0.667</td><td>0.271</td><td>0.361</td><td>0.309</td></tr>
+                      <tr><td>647</td><td>VoxTell_FT-Hybrid-V2-Repaired</td><td class="rank-metric">0.288</td><td>0.698</td><td>0.212</td><td>0.433</td><td>0.284</td></tr>
+                      <tr><td>648</td><td>VT-FT-v3 <span class="final-tag">Final</span></td><td class="rank-metric">0.287</td><td>0.674</td><td>0.112</td><td>0.398</td><td>0.175</td></tr>
+                      <tr><td>649</td><td>VoXTell-FT-B6000-Anatomy</td><td class="rank-metric">0.286</td><td>0.655</td><td>0.101</td><td>0.438</td><td>0.164</td></tr>
+                      <tr><td>650</td><td>TAGS</td><td class="rank-metric">0.286</td><td>0.698</td><td>0.110</td><td>0.433</td><td>0.176</td></tr>
+                      <tr><td>651</td><td>needfirstplace_v1.01</td><td class="rank-metric">0.286</td><td>0.637</td><td>0.139</td><td>0.387</td><td>0.205</td></tr>
+                      <tr><td>652</td><td>CALM_v3</td><td class="rank-metric">0.286</td><td>0.634</td><td>0.138</td><td>0.431</td><td>0.209</td></tr>
+                      <tr><td>653</td><td>IMRVox</td><td class="rank-metric">0.285</td><td>0.663</td><td>0.302</td><td>0.345</td><td>0.322</td></tr>
+                      <tr><td>654</td><td>Voxtell_finetue <span class="final-tag">Final</span></td><td class="rank-metric">0.285</td><td>0.649</td><td>0.113</td><td>0.440</td><td>0.180</td></tr>
+                      <tr><td>655</td><td>Unnamed model (oxgBqX)</td><td class="rank-metric">0.285</td><td>0.658</td><td>0.118</td><td>0.459</td><td>0.187</td></tr>
+                      <tr><td>656</td><td>test</td><td class="rank-metric">0.285</td><td>0.679</td><td>0.195</td><td>0.359</td><td>0.253</td></tr>
+                      <tr><td>657</td><td>JECT_revert336_1p0mm</td><td class="rank-metric">0.284</td><td>0.680</td><td>0.157</td><td>0.372</td><td>0.221</td></tr>
+                      <tr><td>658</td><td>pbe2epure</td><td class="rank-metric">0.283</td><td>0.682</td><td>0.107</td><td>0.405</td><td>0.170</td></tr>
+                      <tr><td>659</td><td>VT-FT-v1</td><td class="rank-metric">0.281</td><td>0.653</td><td>0.101</td><td>0.392</td><td>0.160</td></tr>
+                      <tr><td>660</td><td>baseline (submission 2)</td><td class="rank-metric">0.281</td><td>0.663</td><td>0.112</td><td>0.420</td><td>0.177</td></tr>
+                      <tr><td>661</td><td>baseline2</td><td class="rank-metric">0.281</td><td>0.663</td><td>0.112</td><td>0.420</td><td>0.177</td></tr>
+                      <tr><td>662</td><td>VoXTell-FT (submission 2)</td><td class="rank-metric">0.280</td><td>0.658</td><td>0.105</td><td>0.461</td><td>0.171</td></tr>
+                      <tr><td>663</td><td>V5</td><td class="rank-metric">0.279</td><td>0.612</td><td>0.152</td><td>0.324</td><td>0.207</td></tr>
+                      <tr><td>664</td><td>B3_S1_lobeROI_resample_raw</td><td class="rank-metric">0.278</td><td>0.668</td><td>0.089</td><td>0.443</td><td>0.148</td></tr>
+                      <tr><td>665</td><td>PBbe2e</td><td class="rank-metric">0.277</td><td>0.662</td><td>0.182</td><td>0.339</td><td>0.237</td></tr>
+                      <tr><td>666</td><td>MMM final</td><td class="rank-metric">0.276</td><td>0.667</td><td>0.161</td><td>0.374</td><td>0.225</td></tr>
+                      <tr><td>667</td><td>MMM <span class="final-tag">Final</span></td><td class="rank-metric">0.275</td><td>0.677</td><td>0.156</td><td>0.395</td><td>0.224</td></tr>
+                      <tr><td>668</td><td>CoRaL_Crops</td><td class="rank-metric">0.275</td><td>0.584</td><td>0.325</td><td>0.298</td><td>0.311</td></tr>
+                      <tr><td>669</td><td>Jolia-Loc-v0.1</td><td class="rank-metric">0.275</td><td>0.660</td><td>0.147</td><td>0.361</td><td>0.209</td></tr>
+                      <tr><td>670</td><td>VoXTell-FT-B1000-Anatomy</td><td class="rank-metric">0.274</td><td>0.612</td><td>0.089</td><td>0.394</td><td>0.145</td></tr>
+                      <tr><td>671</td><td>needfirstplace_v1.0</td><td class="rank-metric">0.274</td><td>0.612</td><td>0.126</td><td>0.374</td><td>0.188</td></tr>
+                      <tr><td>672</td><td>V6 <span class="final-tag">Final</span></td><td class="rank-metric">0.274</td><td>0.601</td><td>0.165</td><td>0.304</td><td>0.214</td></tr>
+                      <tr><td>673</td><td>MUW-GroundCT-v2</td><td class="rank-metric">0.272</td><td>0.643</td><td>0.206</td><td>0.375</td><td>0.265</td></tr>
+                      <tr><td>674</td><td>FARM-Siyu-First</td><td class="rank-metric">0.272</td><td>0.643</td><td>0.052</td><td>0.413</td><td>0.093</td></tr>
+                      <tr><td>675</td><td>FARM-Siyu-Second</td><td class="rank-metric">0.272</td><td>0.658</td><td>0.086</td><td>0.463</td><td>0.145</td></tr>
+                      <tr><td>676</td><td>CoRaL</td><td class="rank-metric">0.271</td><td>0.576</td><td>0.246</td><td>0.303</td><td>0.272</td></tr>
+                      <tr><td>677</td><td>Voxtell-FT <span class="final-tag">Final</span></td><td class="rank-metric">0.269</td><td>0.662</td><td>0.126</td><td>0.396</td><td>0.191</td></tr>
+                      <tr><td>678</td><td>voxtell_valadapt_all200_e3_t075 <span class="final-tag">Final</span></td><td class="rank-metric">0.267</td><td>0.646</td><td>0.085</td><td>0.442</td><td>0.142</td></tr>
+                      <tr><td>679</td><td>voxtell_valadapt_all200_e3_t075_gate1c_t030</td><td class="rank-metric">0.267</td><td>0.648</td><td>0.083</td><td>0.442</td><td>0.140</td></tr>
+                      <tr><td>680</td><td>deepset</td><td class="rank-metric">0.267</td><td>0.644</td><td>0.278</td><td>0.354</td><td>0.311</td></tr>
+                      <tr><td>681</td><td>Unnamed model (2kb0p8) <span class="final-tag">Final</span></td><td class="rank-metric">0.267</td><td>0.644</td><td>0.278</td><td>0.354</td><td>0.311</td></tr>
+                      <tr><td>682</td><td>VoXTell-FT-Anatomy</td><td class="rank-metric">0.267</td><td>0.605</td><td>0.076</td><td>0.397</td><td>0.128</td></tr>
+                      <tr><td>683</td><td>nninteractive</td><td class="rank-metric">0.266</td><td>0.619</td><td>0.103</td><td>0.352</td><td>0.159</td></tr>
+                      <tr><td>684</td><td>Unnamed model (rt1JZx)</td><td class="rank-metric">0.266</td><td>0.620</td><td>0.101</td><td>0.357</td><td>0.158</td></tr>
+                      <tr><td>685</td><td>e6_rescue_2a2c2d</td><td class="rank-metric">0.263</td><td>0.622</td><td>0.201</td><td>0.347</td><td>0.255</td></tr>
+                      <tr><td>686</td><td>e1_rescue_1c2a2c2d</td><td class="rank-metric">0.263</td><td>0.620</td><td>0.201</td><td>0.347</td><td>0.255</td></tr>
+                      <tr><td>687</td><td>w100_raw</td><td class="rank-metric">0.261</td><td>0.644</td><td>0.103</td><td>0.417</td><td>0.166</td></tr>
+                      <tr><td>688</td><td>VoxTell-FT</td><td class="rank-metric">0.259</td><td>0.600</td><td>0.072</td><td>0.402</td><td>0.123</td></tr>
+                      <tr><td>689</td><td>e2eunetfine</td><td class="rank-metric">0.258</td><td>0.624</td><td>0.092</td><td>0.384</td><td>0.149</td></tr>
+                      <tr><td>690</td><td>MedSigLIP_SiamGround_Ens_gated <span class="final-tag">Final</span></td><td class="rank-metric">0.256</td><td>0.648</td><td>0.125</td><td>0.322</td><td>0.180</td></tr>
+                      <tr><td>691</td><td>QWen3_v2</td><td class="rank-metric">0.256</td><td>0.588</td><td>0.141</td><td>0.285</td><td>0.189</td></tr>
+                      <tr><td>692</td><td>voxtell_e005_vocomni_e6</td><td class="rank-metric">0.256</td><td>0.588</td><td>0.141</td><td>0.285</td><td>0.189</td></tr>
+                      <tr><td>693</td><td>FindingNemo_oemer</td><td class="rank-metric">0.254</td><td>0.608</td><td>0.132</td><td>0.377</td><td>0.195</td></tr>
+                      <tr><td>694</td><td>needfirstplace</td><td class="rank-metric">0.254</td><td>0.595</td><td>0.154</td><td>0.363</td><td>0.216</td></tr>
+                      <tr><td>695</td><td>2e2unetpure</td><td class="rank-metric">0.252</td><td>0.627</td><td>0.103</td><td>0.408</td><td>0.164</td></tr>
+                      <tr><td>696</td><td>Jolia-Loc-v0</td><td class="rank-metric">0.250</td><td>0.595</td><td>0.226</td><td>0.274</td><td>0.247</td></tr>
+                      <tr><td>697</td><td>GroundXpert-CT (submission 7) <span class="final-tag">Final</span></td><td class="rank-metric">0.249</td><td>0.545</td><td>0.095</td><td>0.301</td><td>0.144</td></tr>
+                      <tr><td>698</td><td>MedSigLIP_SiamGround_25d_gated</td><td class="rank-metric">0.249</td><td>0.648</td><td>0.106</td><td>0.360</td><td>0.164</td></tr>
+                      <tr><td>699</td><td>GroundXpert-CT (submission 8)</td><td class="rank-metric">0.249</td><td>0.541</td><td>0.095</td><td>0.300</td><td>0.145</td></tr>
+                      <tr><td>700</td><td>GroundXpert-CT (submission 6)</td><td class="rank-metric">0.247</td><td>0.536</td><td>0.093</td><td>0.297</td><td>0.142</td></tr>
+                      <tr><td>701</td><td>Ganfx <span class="final-tag">Final</span></td><td class="rank-metric">0.246</td><td>0.529</td><td>0.091</td><td>0.298</td><td>0.140</td></tr>
+                      <tr><td>702</td><td>GroundXpert-CT (submission 5)</td><td class="rank-metric">0.246</td><td>0.538</td><td>0.095</td><td>0.298</td><td>0.144</td></tr>
+                      <tr><td>703</td><td>JECT</td><td class="rank-metric">0.241</td><td>0.622</td><td>0.194</td><td>0.316</td><td>0.241</td></tr>
+                      <tr><td>704</td><td>SJTU426Lab-v176</td><td class="rank-metric">0.239</td><td>0.560</td><td>0.225</td><td>0.285</td><td>0.251</td></tr>
+                      <tr><td>705</td><td>GroundXpert-CT (submission 3)</td><td class="rank-metric">0.238</td><td>0.531</td><td>0.089</td><td>0.302</td><td>0.138</td></tr>
+                      <tr><td>706</td><td>V4</td><td class="rank-metric">0.238</td><td>0.529</td><td>0.145</td><td>0.293</td><td>0.194</td></tr>
+                      <tr><td>707</td><td>MUW-GroundCT</td><td class="rank-metric">0.237</td><td>0.582</td><td>0.139</td><td>0.318</td><td>0.193</td></tr>
+                      <tr><td>708</td><td>Farm-Siyu-Best-6</td><td class="rank-metric">0.235</td><td>0.567</td><td>0.220</td><td>0.314</td><td>0.259</td></tr>
+                      <tr><td>709</td><td>e2ecordinate</td><td class="rank-metric">0.232</td><td>0.600</td><td>0.100</td><td>0.402</td><td>0.160</td></tr>
+                      <tr><td>710</td><td>2e2mix</td><td class="rank-metric">0.231</td><td>0.584</td><td>0.087</td><td>0.338</td><td>0.138</td></tr>
+                      <tr><td>711</td><td>rexgct_178_all200_ema</td><td class="rank-metric">0.230</td><td>0.514</td><td>0.090</td><td>0.290</td><td>0.137</td></tr>
+                      <tr><td>712</td><td>rexgct_178_all200_ema_protected023 <span class="final-tag">Final</span></td><td class="rank-metric">0.230</td><td>0.517</td><td>0.110</td><td>0.296</td><td>0.161</td></tr>
+                      <tr><td>713</td><td>e2e</td><td class="rank-metric">0.230</td><td>0.591</td><td>0.095</td><td>0.381</td><td>0.152</td></tr>
+                      <tr><td>714</td><td>COLIPRI (submission 2)</td><td class="rank-metric">0.229</td><td>0.624</td><td>0.217</td><td>0.341</td><td>0.266</td></tr>
+                      <tr><td>715</td><td>VoXTell_4.0_global</td><td class="rank-metric">0.229</td><td>0.565</td><td>0.306</td><td>0.232</td><td>0.264</td></tr>
+                      <tr><td>716</td><td>voxpr <span class="final-tag">Final</span></td><td class="rank-metric">0.226</td><td>0.562</td><td>0.106</td><td>0.289</td><td>0.155</td></tr>
+                      <tr><td>717</td><td>GroundXpert-CT (submission 4)</td><td class="rank-metric">0.221</td><td>0.507</td><td>0.084</td><td>0.318</td><td>0.132</td></tr>
+                      <tr><td>718</td><td>Swin-X <span class="final-tag">Final</span></td><td class="rank-metric">0.221</td><td>0.507</td><td>0.084</td><td>0.318</td><td>0.132</td></tr>
+                      <tr><td>719</td><td>VoxTell Prompt Aug. <span class="final-tag">Final</span></td><td class="rank-metric">0.220</td><td>0.510</td><td>0.105</td><td>0.277</td><td>0.152</td></tr>
+                      <tr><td>720</td><td>SJTU <span class="final-tag">Final</span></td><td class="rank-metric">0.218</td><td>0.471</td><td>0.066</td><td>0.286</td><td>0.107</td></tr>
+                      <tr><td>721</td><td>VT-zero <span class="final-tag">Final</span></td><td class="rank-metric">0.217</td><td>0.507</td><td>0.069</td><td>0.257</td><td>0.109</td></tr>
+                      <tr><td>722</td><td>final submission</td><td class="rank-metric">0.215</td><td>0.533</td><td>0.100</td><td>0.262</td><td>0.145</td></tr>
+                      <tr><td>723</td><td>e2etrain</td><td class="rank-metric">0.215</td><td>0.562</td><td>0.088</td><td>0.331</td><td>0.139</td></tr>
+                      <tr><td>724</td><td>rexgct_023</td><td class="rank-metric">0.215</td><td>0.493</td><td>0.104</td><td>0.259</td><td>0.149</td></tr>
+                      <tr><td>725</td><td>Voxtell_phase_3_exp_001_v2 <span class="final-tag">Final</span></td><td class="rank-metric">0.214</td><td>0.524</td><td>0.103</td><td>0.275</td><td>0.150</td></tr>
+                      <tr><td>726</td><td>GroundXpert-CT V3</td><td class="rank-metric">0.212</td><td>0.462</td><td>0.063</td><td>0.281</td><td>0.103</td></tr>
+                      <tr><td>727</td><td>VoxTell-ZS + orientation correction <span class="final-tag">Final</span></td><td class="rank-metric">0.210</td><td>0.485</td><td>0.080</td><td>0.250</td><td>0.121</td></tr>
+                      <tr><td>728</td><td>VoxTell_001</td><td class="rank-metric">0.210</td><td>0.486</td><td>0.080</td><td>0.250</td><td>0.122</td></tr>
+                      <tr><td>729</td><td>VoxTell_0001 <span class="final-tag">Final</span></td><td class="rank-metric">0.210</td><td>0.486</td><td>0.080</td><td>0.250</td><td>0.122</td></tr>
+                      <tr><td>730</td><td>phase2b_offtheshelf_test_submission</td><td class="rank-metric">0.209</td><td>0.491</td><td>0.079</td><td>0.249</td><td>0.120</td></tr>
+                      <tr><td>731</td><td>COLIPRI</td><td class="rank-metric">0.205</td><td>0.570</td><td>0.182</td><td>0.336</td><td>0.236</td></tr>
+                      <tr><td>732</td><td>baseline</td><td class="rank-metric">0.196</td><td>0.514</td><td>0.044</td><td>0.395</td><td>0.079</td></tr>
+                      <tr><td>733</td><td>SLR3D (submission 2) <span class="final-tag">Final</span></td><td class="rank-metric">0.194</td><td>0.541</td><td>0.057</td><td>0.338</td><td>0.098</td></tr>
+                      <tr><td>734</td><td>TextSwinUNETR-baseline <span class="final-tag">Final</span></td><td class="rank-metric">0.194</td><td>0.495</td><td>0.191</td><td>0.221</td><td>0.205</td></tr>
+                      <tr><td>735</td><td>SLR3D</td><td class="rank-metric">0.192</td><td>0.545</td><td>0.048</td><td>0.352</td><td>0.085</td></tr>
+                      <tr><td>736</td><td>MUW-Text2UNet-v2</td><td class="rank-metric">0.188</td><td>0.519</td><td>0.081</td><td>0.332</td><td>0.130</td></tr>
+                      <tr><td>737</td><td>ConTEXTual Net CT - 1 <span class="final-tag">Final</span></td><td class="rank-metric">0.183</td><td>0.490</td><td>0.083</td><td>0.252</td><td>0.125</td></tr>
+                      <tr><td>738</td><td>Rex—CT <span class="final-tag">Final</span></td><td class="rank-metric">0.179</td><td>0.400</td><td>0.055</td><td>0.233</td><td>0.089</td></tr>
+                      <tr><td>739</td><td>GroundXpert-CT (submission 2)</td><td class="rank-metric">0.179</td><td>0.400</td><td>0.055</td><td>0.233</td><td>0.089</td></tr>
+                      <tr><td>740</td><td>zeroshot</td><td class="rank-metric">0.176</td><td>0.438</td><td>0.062</td><td>0.267</td><td>0.101</td></tr>
+                      <tr><td>741</td><td>VoXTell-FT</td><td class="rank-metric">0.174</td><td>0.416</td><td>0.031</td><td>0.351</td><td>0.057</td></tr>
+                      <tr><td>742</td><td>FARM-VoxTell-FT-Test</td><td class="rank-metric">0.165</td><td>0.435</td><td>0.039</td><td>0.294</td><td>0.070</td></tr>
+                      <tr><td>743</td><td>FARM-VoxTell-FT</td><td class="rank-metric">0.165</td><td>0.435</td><td>0.039</td><td>0.294</td><td>0.070</td></tr>
+                      <tr><td>744</td><td>Voxtell_naive_finetuning_001</td><td class="rank-metric">0.160</td><td>0.409</td><td>0.086</td><td>0.247</td><td>0.127</td></tr>
+                      <tr><td>745</td><td>GroundXpert-CT</td><td class="rank-metric">0.157</td><td>0.376</td><td>0.056</td><td>0.208</td><td>0.088</td></tr>
+                      <tr><td>746</td><td>Text-Swin CT <span class="final-tag">Final</span></td><td class="rank-metric">0.157</td><td>0.376</td><td>0.056</td><td>0.208</td><td>0.088</td></tr>
+                      <tr><td>747</td><td>TextUNet3D-Ground_v2 <span class="final-tag">Final</span></td><td class="rank-metric">0.154</td><td>0.471</td><td>0.166</td><td>0.180</td><td>0.173</td></tr>
+                      <tr><td>748</td><td>SAT</td><td class="rank-metric">0.154</td><td>0.376</td><td>0.092</td><td>0.219</td><td>0.129</td></tr>
+                      <tr><td>749</td><td>FARM-VoxTell-FT-HZ-3</td><td class="rank-metric">0.153</td><td>0.433</td><td>0.041</td><td>0.308</td><td>0.072</td></tr>
+                      <tr><td>750</td><td>FARM-VoxTell-FT-HZ-2</td><td class="rank-metric">0.146</td><td>0.426</td><td>0.049</td><td>0.291</td><td>0.084</td></tr>
+                      <tr><td>751</td><td>FARM-VoxTell-FT-HZ</td><td class="rank-metric">0.146</td><td>0.426</td><td>0.049</td><td>0.291</td><td>0.084</td></tr>
+                      <tr><td>752</td><td>Voxtell_LoRA_916k (submission 2) <span class="final-tag">Final</span></td><td class="rank-metric">0.146</td><td>0.419</td><td>0.029</td><td>0.348</td><td>0.054</td></tr>
+                      <tr><td>753</td><td>V3</td><td class="rank-metric">0.143</td><td>0.357</td><td>0.038</td><td>0.191</td><td>0.063</td></tr>
+                      <tr><td>754</td><td>VT-1</td><td class="rank-metric">0.137</td><td>0.369</td><td>0.048</td><td>0.292</td><td>0.082</td></tr>
+                      <tr><td>755</td><td>phase_3_exp_002_mean_teacher</td><td class="rank-metric">0.121</td><td>0.320</td><td>0.028</td><td>0.501</td><td>0.052</td></tr>
+                      <tr><td>756</td><td>Unnamed model (FatpLa)</td><td class="rank-metric">0.118</td><td>0.308</td><td>0.076</td><td>0.196</td><td>0.109</td></tr>
+                      <tr><td>757</td><td>voxtell_v1.1_zeroshot_test_submission</td><td class="rank-metric">0.111</td><td>0.289</td><td>0.063</td><td>0.156</td><td>0.090</td></tr>
+                      <tr><td>758</td><td>TextUNet3D-Ground</td><td class="rank-metric">0.109</td><td>0.326</td><td>0.119</td><td>0.143</td><td>0.130</td></tr>
+                      <tr><td>759</td><td>MUW-Text2UNet</td><td class="rank-metric">0.108</td><td>0.309</td><td>0.024</td><td>0.235</td><td>0.044</td></tr>
+                      <tr><td>760</td><td>V2</td><td class="rank-metric">0.095</td><td>0.232</td><td>0.055</td><td>0.134</td><td>0.078</td></tr>
+                      <tr><td>761</td><td>vocal-v1</td><td class="rank-metric">0.095</td><td>0.241</td><td>0.053</td><td>0.141</td><td>0.077</td></tr>
+                      <tr><td>762</td><td>VoXTell-FT_LF-Hybrid-CC-NoRoute</td><td class="rank-metric">0.090</td><td>0.232</td><td>0.017</td><td>0.111</td><td>0.029</td></tr>
+                      <tr><td>763</td><td>phase5_exp001_posthoc_top10_submission.zip</td><td class="rank-metric">0.085</td><td>0.253</td><td>0.029</td><td>0.177</td><td>0.050</td></tr>
+                      <tr><td>764</td><td>VoxTell zero-shot (verbatim prompts) UCSF</td><td class="rank-metric">0.051</td><td>0.144</td><td>0.050</td><td>0.092</td><td>0.065</td></tr>
+                      <tr><td>765</td><td>Exp 002 - Spatial Prior Quantile Baseline</td><td class="rank-metric">0.018</td><td>0.065</td><td>0.001</td><td>0.012</td><td>0.002</td></tr>
+                      <tr><td>766</td><td>Voxtell_LoRA_916k</td><td class="rank-metric">0.004</td><td>0.009</td><td>0.000</td><td>0.006</td><td>0.001</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -341,14 +1055,14 @@
               <hr>
 
               <div class="challenge-section" id="register">
-                <h3>🚀 Register &amp; Submit</h3>
+                <h3>Register &amp; Submit</h3>
                 <p>Challenge submissions closed on September 14, 2026. The benchmark remains open: to submit a new model, register and upload on the <a href="./index.html#register">ReXGroundingCT leaderboard</a>, where it is evaluated on the same 300-case test set.</p>
               </div>
 
               <hr>
 
               <div class="challenge-section">
-                <h3>🏆 About the Challenge</h3>
+                <h3>About the Challenge</h3>
                 <p>The <strong>ReXGrounding Challenge</strong> is a <a href="https://conferences.miccai.org/2026/" target="_blank">MICCAI 2026</a> challenge designed to evaluate models on localizing unconstrained radiology findings described in natural language to precise 3D segmentation masks in volumetric chest CT.</p>
                 <p style="margin-top:10px;">Unlike prior challenges that focus on category-level lesion or organ segmentation, this benchmark requires models to interpret diverse clinical language — including anatomical descriptors, spatial relations, and morphological attributes — and ground it accurately in volumetric space. The dataset includes both focal and diffuse abnormalities, spans a wide range of radiological patterns, and reflects real-world reporting variability.</p>
                 <p style="margin-top:10px;">The challenge is built upon <strong>CT-RATE</strong>, a large-scale dataset of non-contrast chest CT scans paired with free-text radiology reports, and is further extended with expert-verified, pixel-level 3D segmentations corresponding to individual report findings. The challenge is hosted on the <a href="./index.html">ReXrank leaderboard</a>.</p>
@@ -357,7 +1071,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>🔬 Task</h3>
+                <h3>Task</h3>
                 <p>Participants are evaluated on <strong>free-text finding grounding</strong>: a model receives a CT volume and a natural-language finding from a radiology report and must output a 3D segmentation mask corresponding to that description. The challenge is organized into two tracks: a <em>Main track</em> that consumes the free-text finding directly, and a more general <em>Overall track</em> (see <a href="#tracks">Challenge Tracks</a> below). In both tracks, fixed-category (class-based) segmentation that cannot separate two findings in different locations is out of scope and will be disqualified.</p>
                 <p style="margin-top:10px;">Findings span <strong>14 categories</strong> covering both typically non-focal abnormalities (bronchial wall thickening, bronchiectasis, emphysema, septal thickening, micronodules, and other diffuse abnormalities) and typically focal abnormalities (linear opacities, atelectasis/consolidation, ground-glass opacities, pulmonary nodules/masses, pleural effusion/thickening, honeycombing, pneumothorax, and other focal findings).</p>
               </div>
@@ -365,7 +1079,7 @@
               <hr>
 
               <div class="challenge-section" id="tracks">
-                <h3>🎯 Challenge Tracks</h3>
+                <h3>Challenge Tracks</h3>
                 <p>The challenge is structured around two tracks, each with its own set of winners. Every eligible <em>Main-track</em> submission is automatically considered for the <em>Overall track</em> as well, so a strong free-text method can place in both.</p>
 
                 <p style="margin-top:16px;"><strong style="color:#a41034;">1. Main Track: Free-Text Grounding.</strong> Methods in this track must consume the exact free-text finding as provided, conditioning the segmentation directly on that text (e.g., as a text embedding). The raw prompt is not rewritten into a structured representation before it reaches the model. This is the original goal of the challenge: flexible models that ground free-text findings natively.</p>
@@ -395,7 +1109,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>📦 Dataset</h3>
+                <h3>Dataset</h3>
                 <table class="table" style="margin-top:10px;">
                   <thead><tr><th>Split</th><th>Cases</th><th>Annotations</th></tr></thead>
                   <tbody>
@@ -410,7 +1124,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>📅 Timeline</h3>
+                <h3>Timeline</h3>
                 <div class="timeline">
                   <div class="timeline-item">
                     <div class="timeline-date">Until June 2026</div>
@@ -438,7 +1152,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>📊 Evaluation Metrics</h3>
+                <h3>Evaluation Metrics</h3>
                 <p><strong>Ranking metric:</strong> Average Dice Similarity Coefficient (DSC) per finding per case.</p>
                 <p style="margin-top:12px;"><strong>Overlap-based metrics:</strong></p>
                 <ul>
@@ -459,7 +1173,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>📝 How to Participate</h3>
+                <h3>How to Participate</h3>
                 <ul>
                   <li><strong>Challenge submissions are closed.</strong> The benchmark remains open on the <a href="./index.html#register">ReXGroundingCT leaderboard</a>.</li>
                   <li>Training and validation data are publicly available — you can start developing and evaluating your method now.</li>
@@ -474,7 +1188,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>🏅 Awards &amp; Publication</h3>
+                <h3>Awards &amp; Publication</h3>
                 <ul>
                   <li>The challenge has two tracks (Main and Overall), each with its own winners; every Main-track submission is automatically eligible for the Overall track (see <a href="#tracks">Challenge Tracks</a>).</li>
                   <li>Top performing teams in each track will receive <strong>certificates</strong> and invited <strong>oral/spotlight presentations</strong> at the challenge session.</li>
@@ -488,7 +1202,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>👥 Organizers</h3>
+                <h3>Organizers</h3>
                 <ul>
                   <li>Mohammed Baharoon — Harvard Medical School, USA</li>
                   <li>Pranav Rajpurkar — Harvard Medical School, USA</li>
@@ -502,7 +1216,7 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>📄 Resources</h3>
+                <h3>Resources</h3>
                 <ul>
                   <li><a href="./index.html">ReXGroundingCT Leaderboard (open for submissions)</a></li>
                   <li><a href="https://huggingface.co/datasets/rajpurkarlab/ReXGroundingCT" target="_blank">Dataset on HuggingFace</a></li>
@@ -515,14 +1229,14 @@
               <hr>
 
               <div class="challenge-section">
-                <h3>📧 Contact</h3>
+                <h3>Contact</h3>
                 <p>For questions about the challenge, please contact <a href="mailto:MohammedSalimAB@outlook.com">Mohammed Baharoon</a>.</p>
               </div>
 
               <hr>
 
               <div class="challenge-section">
-                <h3>📚 References</h3>
+                <h3>References</h3>
                 <p style="margin-bottom:12px;"><strong>ReXGroundingCT:</strong></p>
                 <pre style="background:#f7f7f9;padding:14px;border-radius:4px;font-size:13px;overflow-x:auto;white-space:pre-wrap;">@article{baharoon2026rexgroundingct,
   title={ReXGroundingCT: A 3D Chest CT Dataset for Segmentation of Findings from Free-Text Reports},
