@@ -191,6 +191,11 @@
     /* Dice = the official ranking metric: keep it emphasized (bold), no longer red */
     #lbTable th.rank-metric, #lbTable td.rank-metric { font-weight: 700; }
     #lbTable th.rank-metric { border-bottom: 2px solid #a41034; }
+    /* Click a metric header to rank by it (as on the main ReXrank leaderboards) */
+    #lbTable th.lb-sort { cursor: pointer; user-select: none; }
+    #lbTable th.lb-sort::after { content: ' \2195'; color: #bbb; font-weight: 400; }
+    #lbTable th.lb-sort.rank-metric::after { content: ' \25BC'; color: #a41034; }
+    #lbTable th.lb-sort:hover { color: #a41034; }
 
     /* Medal backgrounds for the top 3 (gold / silver / bronze) */
     #lbTable tr.rank-1 td { background: #faf1c6 !important; }
@@ -280,10 +285,10 @@
 
               <div class="challenge-section" id="leaderboard">
                 <h3>All Challenge Submissions</h3>
-                <p>All 766 submissions made during the challenge, scored on the full 300-case held-out test set and ranked by mean Dice per case. Entries marked <span class="final-tag">Final</span> are the 53 official final entries, one per team; the <a href="./index.html#leaderboard">official final results</a> are on the ReXGroundingCT leaderboard.</p>
+                <p>All 766 submissions made during the challenge, scored on the full 300-case held-out test set and ranked by mean Dice per case (click a metric's column header to rank by it instead). Entries marked <span class="final-tag">Final</span> are the 53 official final entries, one per team; the <a href="./index.html#leaderboard">official final results</a> are on the ReXGroundingCT leaderboard.</p>
                 <div style="overflow:auto;max-height:640px;border:1px solid #eee;">
                   <table class="table" id="lbTable" style="margin:0;">
-                    <thead><tr><th>#</th><th>Model</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance Precision</th><th>Instance Recall</th><th>Instance F1</th></tr></thead>
+                    <thead><tr><th>#</th><th>Model</th><th class="lb-sort rank-metric">Dice</th><th class="lb-sort">Hit Rate</th><th class="lb-sort">Instance Precision</th><th class="lb-sort">Instance Recall</th><th class="lb-sort">Instance F1</th></tr></thead>
                     <tbody>
                       <tr><td>1</td><td class="model-cell">CIRCLE <span class="final-tag">Final</span><p class="institution">United Imaging Intelligence<br>ShanghaiTech University<br>Zhongshan Hospital</p><span class="date label label-default">9/13/2026</span></td><td class="rank-metric">0.375</td><td>0.768</td><td>0.272</td><td>0.457</td><td>0.341</td></tr>
                       <tr><td>2</td><td class="model-cell">CIRCLE<p class="institution">United Imaging Intelligence<br>ShanghaiTech University<br>Zhongshan Hospital</p><span class="date label label-default">9/14/2026</span></td><td class="rank-metric">0.375</td><td>0.768</td><td>0.272</td><td>0.457</td><td>0.341</td></tr>
@@ -1281,5 +1286,24 @@
   </nav>
 
   <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script>
+    // Rank the archived submissions by any metric column (higher is better), then renumber.
+    $(function() {
+      var $t = $('#lbTable');
+      $t.find('th.lb-sort').attr('title', 'Click to rank by this metric').on('click', function() {
+        var col = $(this).index(), $rows = $t.find('tbody tr').get();
+        $rows.sort(function(a, b) {
+          return parseFloat($(b).children().eq(col).text()) - parseFloat($(a).children().eq(col).text()) ||
+                 parseFloat($(b).children().eq(2).text()) - parseFloat($(a).children().eq(2).text());
+        });
+        $.each($rows, function(i, r) {
+          $(r).children().eq(0).text(i + 1);
+          $(r).children().removeClass('rank-metric').eq(col).addClass('rank-metric');
+          $t.children('tbody').append(r);
+        });
+        $t.find('th.lb-sort').removeClass('rank-metric'); $(this).addClass('rank-metric');
+      });
+    });
+  </script>
 </body>
 </html>

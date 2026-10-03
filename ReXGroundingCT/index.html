@@ -191,6 +191,11 @@
     /* Dice = the official ranking metric: keep it emphasized (bold), no longer red */
     #lbTable th.rank-metric, #lbTable td.rank-metric { font-weight: 700; }
     #lbTable th.rank-metric { border-bottom: 2px solid #a41034; }
+    /* Click a metric header to rank by it (as on the main ReXrank leaderboards) */
+    #lbTable th.lb-sort { cursor: pointer; user-select: none; }
+    #lbTable th.lb-sort::after { content: ' \2195'; color: #bbb; font-weight: 400; }
+    #lbTable th.lb-sort.rank-metric::after { content: ' \25BC'; color: #a41034; }
+    #lbTable th.lb-sort:hover { color: #a41034; }
 
     /* Medal backgrounds for the top 3 (gold / silver / bronze) */
     #lbTable tr.rank-1 td { background: #faf1c6 !important; }
@@ -277,11 +282,11 @@
 
               <div class="challenge-section" id="leaderboard">
                 <h3>Leaderboard</h3>
-                <p>Results on the <strong>full 300-case held-out test set</strong>, ranked by mean Dice per case. Click any row for its per-category breakdown. New submissions are evaluated automatically and appear here once scored.</p>
+                <p>Results on the <strong>full 300-case held-out test set</strong>, ranked by mean Dice per case. Click a metric's column header to rank by that metric instead, or click any row for its per-category breakdown. New submissions are evaluated automatically and appear here once scored.</p>
                 <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
                 <div style="overflow-x:auto;">
                   <table class="table" id="lbTable" style="display:none;margin-top:10px;">
-                    <thead><tr><th>#</th><th>Model</th><th class="rank-metric">Dice</th><th>Hit Rate</th><th>Instance Precision</th><th>Instance Recall</th><th>Instance F1</th></tr></thead>
+                    <thead><tr><th>#</th><th>Model</th><th class="lb-sort rank-metric" data-sort="dice">Dice</th><th class="lb-sort" data-sort="hitRate">Hit Rate</th><th class="lb-sort" data-sort="instancePrecision">Instance Precision</th><th class="lb-sort" data-sort="instanceRecall">Instance Recall</th><th class="lb-sort" data-sort="instanceF1">Instance F1</th></tr></thead>
                     <tbody id="lbBody"></tbody>
                   </table>
                 </div>
@@ -750,7 +755,7 @@
           all = all.filter(function(r) { return r.challengeFinal === true || r.postChallenge === true; });
           var evaluating = all.filter(function(r) { return r.status === 'evaluating'; });
           var scored = all.filter(function(r) { return r.status !== 'evaluating' && typeof r.dice === 'number'; });
-          scored.sort(function(a, b) { return (b.dice || 0) - (a.dice || 0); });
+          var METRICS = ['dice', 'hitRate', 'instancePrecision', 'instanceRecall', 'instanceF1'];   // all higher-is-better
           function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
           // Model names are typed by participants: escape them, never inject raw HTML.
           function esc(x) { return String(x == null ? '' : x).replace(/[&<>"']/g, function(c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]; }); }
@@ -781,27 +786,35 @@
                    body + '</tbody></table>';
           }
           var medal = ['rank-1', 'rank-2', 'rank-3'];
-          var seen = {}, rank = 0, idx = 0;   // rank by each participant's BEST entry, so one team can't hold two places
-          var html = '';
-          function emit(r, cls, rankCell) {
-            var id = idx++;
-            html += '<tr class="row-toggle' + (cls ? ' ' + cls : '') + '" data-idx="' + id + '"><td>' + rankCell + '</td>' + idcols(r) +
-                    '<td class="rank-metric">' + fmt(r.dice) + '</td><td>' + fmt(r.hitRate) + '</td><td>' + fmt(r.instancePrecision) + '</td><td>' + fmt(r.instanceRecall) + '</td><td>' + fmt(r.instanceF1) + '</td></tr>' +
-                    '<tr class="cat-detail" data-for="' + id + '" style="display:none;"><td colspan="7" style="background:#fafafa;">' + catDetail(r) + '</td></tr>';
+          function num(x) { return (typeof x === 'number') ? x : -1; }
+          function render(sortKey) {
+            // rank by each participant's BEST entry on the chosen metric, so one team can't hold two places
+            var rows = scored.slice().sort(function(a, b) { return (num(b[sortKey]) - num(a[sortKey])) || (num(b.dice) - num(a.dice)); });
+            var seen = {}, rank = 0, idx = 0, html = '';
+            function emit(r, cls, rankCell) {
+              var id = idx++;
+              html += '<tr class="row-toggle' + (cls ? ' ' + cls : '') + '" data-idx="' + id + '"><td>' + rankCell + '</td>' + idcols(r) +
+                      METRICS.map(function(m) { return '<td' + (m === sortKey ? ' class="rank-metric"' : '') + '>' + fmt(r[m]) + '</td>'; }).join('') + '</tr>' +
+                      '<tr class="cat-detail" data-for="' + id + '" style="display:none;"><td colspan="7" style="background:#fafafa;">' + catDetail(r) + '</td></tr>';
+            }
+            rows.forEach(function(r) {
+              var key = (r.submitterKey || r.team || '').toLowerCase();   // opaque random group key
+              if (!seen[key]) { seen[key] = true; rank += 1; emit(r, medal[rank - 1] || '', rank); }  // best submission
+              else { emit(r, 'secondary', '—'); }                                                     // same participant, not ranked
+            });
+            evaluating.forEach(function(r) {
+              html += '<tr class="evaluating"><td>•</td>' + idcols(r) +
+                      '<td colspan="5"><span class="eval-badge">Evaluating…</span></td></tr>';
+            });
+            $('#lbBody').html(html);
+            $('#lbTable th.lb-sort').removeClass('rank-metric').filter('[data-sort="' + sortKey + '"]').addClass('rank-metric');
+            $('#lbBody tr.row-toggle').css('cursor', 'pointer').attr('title', 'Click to see per-category results').on('click', function() {
+              $('#lbBody tr.cat-detail[data-for="' + $(this).data('idx') + '"]').toggle();
+            });
           }
-          scored.forEach(function(r) {
-            var key = (r.submitterKey || r.team || '').toLowerCase();   // opaque random group key
-            if (!seen[key]) { seen[key] = true; rank += 1; emit(r, medal[rank - 1] || '', rank); }  // best submission
-            else { emit(r, 'secondary', '—'); }                                                     // same participant, not ranked
-          });
-          evaluating.forEach(function(r) {
-            html += '<tr class="evaluating"><td>•</td>' + idcols(r) +
-                    '<td colspan="5"><span class="eval-badge">Evaluating…</span></td></tr>';
-          });
-          $('#lbBody').html(html); $('#lbStatus').hide(); $('#lbTable').show();
-          $('#lbBody tr.row-toggle').css('cursor', 'pointer').attr('title', 'Click to see per-category results').on('click', function() {
-            $('#lbBody tr.cat-detail[data-for="' + $(this).data('idx') + '"]').toggle();
-          });
+          $('#lbTable th.lb-sort').attr('title', 'Click to rank by this metric').off('click').on('click', function() { render($(this).data('sort')); });
+          render('dice');
+          $('#lbStatus').hide(); $('#lbTable').show();
         }).catch(function() { $('#lbStatus').text('Could not load the leaderboard right now.'); });
       }
 
