@@ -201,8 +201,9 @@
     #lbTable tr.rank-3 td:first-child { border-left: 4px solid #cd7f32; }
 
     /* Model cell: name, institution and submission date, as on the original leaderboard */
+    #lbTable td { vertical-align: middle; }
     #lbTable td.model-cell { text-align: left; }
-    #lbTable .institution { font-style: italic; font-weight: 300; margin: 2px 0 4px; white-space: normal; }
+    #lbTable .institution { font-style: italic; font-weight: 300; margin: 2px 0 4px; white-space: normal; line-height: 1.35; }
     #lbTable .date { font-weight: normal; }
 
     /* Extra (non-best) submissions from the same participant — shown, but not ranked */
@@ -761,7 +762,7 @@
             var name = r.baseLabel || String(r.team || '').replace(/ \(submission \d+\)$/, '');
             var d = fmtDate(r.submittedAt);
             return '<td class="model-cell">' + esc(name) +
-                   (r.institution ? '<p class="institution">' + esc(r.institution) + '</p>' : '') +
+                   (r.institution ? '<p class="institution">' + String(r.institution).split('\n').map(esc).join('<br>') + '</p>' : '') +   // one institution per line
                    (d ? '<span class="date label label-default">' + esc(d) + '</span>' : '') + '</td>';
           }
           function catDetail(r) {
