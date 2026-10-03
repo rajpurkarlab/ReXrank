@@ -5,9 +5,9 @@
   <meta charset="utf-8"/>
   <title>ReXGroundingCT Leaderboard</title>
   <meta name="description" content="ReXGroundingCT leaderboard: segmentation of findings from free-text radiology reports in 3D chest CT."/>
-  <meta name="keywords" content="ReXGroundingCT, MICCAI 2026, challenge, radiology, chest CT, segmentation, medical imaging"/>
+  <meta name="keywords" content="ReXGroundingCT, leaderboard, benchmark, radiology, chest CT, segmentation, medical imaging"/>
   <meta property="og:title" content="ReXGroundingCT Leaderboard"/>
-  <meta property="og:description" content="Segmentation of findings from free-text radiology reports in 3D chest CT — a MICCAI 2026 challenge."/>
+  <meta property="og:description" content="ReXGroundingCT leaderboard: segmentation of findings from free-text radiology reports in 3D chest CT."/>
   <meta property="og:url" content="https://rajpurkarlab.github.io/ReXrank/ReXGroundingCT/index.html"/>
   <meta property="og:type" content="website"/>
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
@@ -200,6 +200,11 @@
     #lbTable tr.rank-2 td:first-child { border-left: 4px solid #9aa0a6; }
     #lbTable tr.rank-3 td:first-child { border-left: 4px solid #cd7f32; }
 
+    /* Model cell: name, institution and submission date, as on the original leaderboard */
+    #lbTable td.model-cell { text-align: left; }
+    #lbTable .institution { font-style: italic; font-weight: 300; margin: 2px 0 4px; white-space: normal; }
+    #lbTable .date { font-weight: normal; }
+
     /* Extra (non-best) submissions from the same participant — shown, but not ranked */
     #lbTable tr.secondary td { color: #999; font-style: italic; }
 
@@ -271,7 +276,7 @@
 
               <div class="challenge-section" id="leaderboard">
                 <h3>Leaderboard</h3>
-                <p>Official final results of the <strong>ReXGroundingCT Challenge @ MICCAI 2026</strong> on the full 300-case held-out test set, ranked by mean Dice per case. Each challenge team is represented by its declared final model, or by its best model on the public 50% split if none was declared. The leaderboard remains open: new submissions are evaluated on the same test set and ranked alongside. Click any row for its per-category breakdown.</p>
+                <p>Results on the <strong>full 300-case held-out test set</strong>, ranked by mean Dice per case. Click any row for its per-category breakdown. New submissions are evaluated automatically and appear here once scored.</p>
                 <div id="lbStatus" style="font-size:14px;color:#666;">Loading leaderboard…</div>
                 <div style="overflow-x:auto;">
                   <table class="table" id="lbTable" style="display:none;margin-top:10px;">
@@ -347,7 +352,7 @@
               <div class="challenge-section">
                 <h3>About ReXGroundingCT</h3>
                 <p>ReXGroundingCT is a 3D chest CT dataset linking free-text radiology findings to pixel-level segmentations, built on the <strong>CT-RATE</strong> dataset of non-contrast chest CT scans paired with radiology reports. It enables sentence-level grounding for both focal and non-focal lung and pleural abnormalities across 14 categories.</p>
-                <p style="margin-top:10px;">This leaderboard evaluates models that localize a radiology finding described in natural language as a precise 3D segmentation mask. It began as the <a href="./challenge.html">ReXGroundingCT Challenge at MICCAI 2026</a> and remains open as an ongoing benchmark on the same 300-case held-out test set.</p>
+                <p style="margin-top:10px;">This leaderboard evaluates models that localize a radiology finding described in natural language as a precise 3D segmentation mask, on a 300-case held-out test set.</p>
               </div>
 
               <hr>
@@ -739,8 +744,8 @@
         db.collection('leaderboard').get().then(function(qs) {
           if (qs.empty) { $('#lbStatus').text('No results yet — submissions are evaluated automatically.'); return; }
           var all = []; qs.forEach(function(d) { all.push(d.data()); });
-          // Main board = the official challenge final results + post-challenge submissions.
-          // Every other challenge-era submission is listed on the archive (challenge.html).
+          // Shown: each challenge team's official final entry + every submission since.
+          // Other challenge-era submissions are listed on the archive (challenge.html).
           all = all.filter(function(r) { return r.challengeFinal === true || r.postChallenge === true; });
           var evaluating = all.filter(function(r) { return r.status === 'evaluating'; });
           var scored = all.filter(function(r) { return r.status !== 'evaluating' && typeof r.dice === 'number'; });
@@ -748,7 +753,17 @@
           function fmt(x) { return (typeof x === 'number') ? x.toFixed(3) : '—'; }
           // Model names are typed by participants: escape them, never inject raw HTML.
           function esc(x) { return String(x == null ? '' : x).replace(/[&<>"']/g, function(c) { return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]; }); }
-          function idcols(r) { return '<td>' + esc(r.team) + '</td>'; }   // model name only; nothing about who submitted
+          function fmtDate(t) {   // M/D/YYYY in Boston time, as on the original leaderboard
+            var d = (t && t.toDate) ? t.toDate() : null;
+            return d ? d.toLocaleDateString('en-US', { timeZone: 'America/New_York' }) : '';
+          }
+          function idcols(r) {     // model name, institution, submission date (never a person's name)
+            var name = r.baseLabel || String(r.team || '').replace(/ \(submission \d+\)$/, '');
+            var d = fmtDate(r.submittedAt);
+            return '<td class="model-cell">' + esc(name) +
+                   (r.institution ? '<p class="institution">' + esc(r.institution) + '</p>' : '') +
+                   (d ? '<span class="date label label-default">' + esc(d) + '</span>' : '') + '</td>';
+          }
           function catDetail(r) {
             if (!r.perCategory) return '<div style="padding:8px 4px;color:#888;">Per-category results not available for this submission.</div>';
             var pc = r.perCategory, order = LB_CAT_ORDER.slice();
