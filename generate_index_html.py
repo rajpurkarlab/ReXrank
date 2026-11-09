@@ -489,6 +489,20 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $("#modelTableTest").trigger("sorton", [[[3, 1]]]);
                 updateRankTest(); // Update ranks after switching
             });
+
+            // V1 overview: Findings (ranked by CRIMSON) <-> Findings + Impression (ranked by 1/RadCliQ-v1)
+            $("#rankBtnFindings").click(function() {
+                $("#rankFindingsV1").show();
+                $("#rankReportsV1").hide();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#rankBtnReports").removeClass('btn-black').addClass('btn-gray');
+            });
+            $("#rankBtnReports").click(function() {
+                $("#rankFindingsV1").hide();
+                $("#rankReportsV1").show();
+                $(this).removeClass('btn-gray').addClass('btn-black');
+                $("#rankBtnFindings").removeClass('btn-black').addClass('btn-gray');
+            });
           });
           document.addEventListener('DOMContentLoaded', function() {
           const urlParams = new URLSearchParams(window.location.search);
