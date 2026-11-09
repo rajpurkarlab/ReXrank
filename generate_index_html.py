@@ -413,6 +413,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnIU").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTableIU", true);
+                // Findings tab: rank by CRIMSON (col 2), descending
+                $("#modelTableIU").trigger("sorton", [[[2, 1]]]);
                 updateRanksIU(); // Update ranks after switching
             });
             $("#testBtnPrivate").click(function() {
@@ -421,6 +423,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnPrivate").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTablePrivate", true);
+                // Findings tab: rank by CRIMSON (col 2), descending
+                $("#modelTablePrivate").trigger("sorton", [[[2, 1]]]);
                 updateRanksPrivate(); // Update ranks after switching
             });
             $("#testBtnCheXpert").click(function() {
@@ -429,6 +433,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTableCheXpert", true);
+                // Findings tab: rank by CRIMSON (col 2), descending
+                $("#modelTableCheXpert").trigger("sorton", [[[2, 1]]]);
                 updateRanksCheXpert(); // Update ranks after switching
             });
             $("#testBtnMIMIC").click(function() {
@@ -437,6 +443,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#validBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTableTest", true);
+                // Findings tab: rank by CRIMSON (col 2), descending
+                $("#modelTableTest").trigger("sorton", [[[2, 1]]]);
                 updateRankTest(); // Update ranks after switching
             });
     
@@ -447,6 +455,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnIU").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTableIU", false);
+                // Findings+Impression tab: rank by 1/RadCliQ-v1 (col 3), descending (no CRIMSON there)
+                $("#modelTableIU").trigger("sorton", [[[3, 1]]]);
                 updateRanksIU(); // Update ranks after switching
             });
             $("#validBtnPrivate").click(function() {
@@ -455,6 +465,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnPrivate").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTablePrivate", false);
+                // Findings+Impression tab: rank by 1/RadCliQ-v1 (col 3), descending (no CRIMSON there)
+                $("#modelTablePrivate").trigger("sorton", [[[3, 1]]]);
                 updateRanksPrivate(); // Update ranks after switching
             });
             $("#validBtnCheXpert").click(function() {
@@ -463,6 +475,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnCheXpert").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTableCheXpert", false);
+                // Findings+Impression tab: rank by 1/RadCliQ-v1 (col 3), descending (no CRIMSON there)
+                $("#modelTableCheXpert").trigger("sorton", [[[3, 1]]]);
                 updateRanksCheXpert(); // Update ranks after switching
             });
             $("#validBtnMIMIC").click(function() {
@@ -471,6 +485,8 @@ def generate_html(table_chexpertplus_html, table_iuxray_html, table_mimiccxr_htm
                 $(this).removeClass('btn-gray').addClass('btn-black');
                 $("#testBtnMIMIC").removeClass('btn-black').addClass('btn-gray');
               toggleCrimsonColumn("#modelTableTest", false);
+                // Findings+Impression tab: rank by 1/RadCliQ-v1 (col 3), descending (no CRIMSON there)
+                $("#modelTableTest").trigger("sorton", [[[3, 1]]]);
                 updateRankTest(); // Update ranks after switching
             });
           });
