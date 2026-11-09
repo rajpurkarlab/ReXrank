@@ -8,3 +8,4 @@ Rank,Date,Model Name,Institution,Model URL,BLEU,BertScore,SembScore,RadGraph,1/R
 7,2025,UniRG-CXR,Microsoft Research,https://arxiv.org/abs/2601.17151,0.3,0.532,0.573,0.3,1.59,0.612,0.494
 8,2025,CheXOne-R1,Stanford,https://github.com/YBZh/CheXOne-R1,0.226,0.388,0.484,0.199,0.926,0.515,0.475
 9,2026,MedGemma 1.5 4B, Google,https://deepmind.google/models/gemma/medgemma/,0.202,0.404,0.501,0.24,1.013,0.591,0.532
+10,2026,CXR-Agent,Individual,,0.301,0.535,0.553,0.304,1.569,0.628,0.523
