@@ -344,7 +344,7 @@
                     <input type="url" id="subLink" placeholder="Google Drive link to a single .zip of your predictions" />
                     <p style="font-size:13px;color:#a41034;margin:-8px 0 12px;"><strong>Submit a single <code>.zip</code> file</strong> (not a folder), containing your 300 prediction <code>.nii.gz</code> files. <strong>Set sharing to "Anyone with the link"</strong> before submitting — restricted links, folders, and access-requested links cannot be evaluated automatically.</p>
                     <textarea id="subNotes" placeholder="Notes (optional)" rows="2" style="width:100%;padding:10px 14px;margin-bottom:14px;border:1px solid #ccc;border-radius:4px;font-size:15px;"></textarea>
-                    <p style="font-size:13px;color:#333;background:#f7f7f9;border:1px solid #e0e0e0;border-radius:4px;padding:10px 12px;margin-bottom:14px;">Evaluation runs automatically — <strong>expect your result on the leaderboard within ~2 hours (max)</strong>. Your entry will show as <em>“Evaluating…”</em> while it runs. Please <strong>do not submit again until you receive your result.</strong></p>
+                    <p style="font-size:13px;color:#333;background:#f7f7f9;border:1px solid #e0e0e0;border-radius:4px;padding:10px 12px;margin-bottom:14px;">Evaluation runs automatically — <strong>expect your result on the leaderboard within about 3 hours</strong> (longer if several submissions are queued). Your entry will show as <em>“Evaluating…”</em> while it runs. Please <strong>do not submit again until you receive your result.</strong> Each participant may have <strong>up to 3 submissions evaluated per rolling 7 days</strong>; additional submissions are marked <em>rate_limited</em> and are not scored.</p>
                     <button type="button" id="subSubmitBtn">Submit Predictions</button>
                     <div id="subList" style="margin-top:16px;font-size:13px;"></div>
                   </div>
@@ -416,6 +416,7 @@
                   <li>All predictions on the test set must be <strong>fully automatic</strong> — no manual intervention, post-hoc editing, or case-specific tuning.</li>
                   <li><strong>Free-text grounding.</strong> Methods may condition on the free-text finding directly or on a structured representation parsed from it, but must take in more than the finding category alone and must be able to produce distinct masks for two findings in different locations. Class-based segmentation (a fixed set of class masks selected by label) is out of scope and will be removed.</li>
                   <li>You can submit multiple runs; each is evaluated on the full 300-case test set, and each participant is ranked by their best submission. Please use the validation set for model selection and avoid excessive resubmission.</li>
+                  <li>Submission cap: each participant may have up to 3 submissions evaluated in any rolling 7-day window. Additional submissions are marked <em>rate_limited</em> and are not scored; the submission list shows when you can submit again.</li>
                   <li>See the <a href="../explore/submission_guideline_ct.html" target="_blank">submission guidelines</a> for format details.</li>
                 </ul>
               </div>
@@ -737,7 +738,7 @@
           var html = '<strong>Your submissions:</strong><ul style="padding-left:18px;">';
           rows.forEach(function(s) {
             var t = (s.createdAt && s.createdAt.toDate) ? s.createdAt.toDate().toLocaleString() : '';
-            html += '<li>[' + $('<i>').text(s.phase || '').html() + '] ' + $('<i>').text(s.methodName || '(run)').html() + ' — ' + $('<i>').text(s.status || 'submitted').html() + ' — ' + t + '</li>';
+            html += '<li>[' + $('<i>').text(s.phase || '').html() + '] ' + $('<i>').text(s.methodName || '(run)').html() + ' — ' + $('<i>').text(s.status || 'submitted').html() + ((s.status === 'rate_limited' && s.reviewReason) ? ' (' + $('<i>').text(s.reviewReason).html() + ')' : '') + ' — ' + t + '</li>';
           });
           $('#subList').html(html + '</ul>');
         });
