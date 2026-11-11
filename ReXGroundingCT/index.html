@@ -210,6 +210,8 @@
     #lbTable th, #lbTable td, #lbTable td.model-cell { text-align: center; }
     #lbTable .institution { font-style: italic; font-weight: 300; margin: 2px 0 4px; white-space: normal; line-height: 1.35; }
     #lbTable .date { font-weight: normal; }
+    /* Official final entry from the MICCAI 2026 challenge period */
+    #lbTable .challenge-tag { font-weight: normal; background: #a41034; margin-left: 4px; cursor: help; }
 
     /* Extra (non-best) submissions from the same participant — shown, but not ranked */
     #lbTable tr.secondary td { color: #999; font-style: italic; }
@@ -769,7 +771,9 @@
             var d = fmtDate(r.submittedAt);
             return '<td class="model-cell">' + esc(name) +
                    (r.institution ? '<p class="institution">' + String(r.institution).split('\n').map(esc).join('<br>') + '</p>' : '') +   // one institution per line
-                   (d ? '<span class="date label label-default">' + esc(d) + '</span>' : '') + '</td>';
+                   (d ? '<span class="date label label-default">' + esc(d) + '</span>' : '') +
+                   (r.challengeFinal === true ? '<span class="challenge-tag label" title="Official final entry of the ReXGroundingCT Challenge @ MICCAI 2026' +
+                     (typeof r.challengeRank === 'number' ? ' (challenge rank #' + r.challengeRank + ')' : '') + '">MICCAI 2026 Challenge</span>' : '') + '</td>';
           }
           function catDetail(r) {
             if (!r.perCategory) return '<div style="padding:8px 4px;color:#888;">Per-category results not available for this submission.</div>';
